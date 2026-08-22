@@ -32,6 +32,36 @@ actually used — which is why a long skill costs nothing until you need it, and
 why the `description` is the field worth fussing over: it's what Claude reads
 when deciding whether the skill applies.
 
+## Installed plugins
+
+Two design plugins are declared in `.claude/settings.json`, so cloud and web
+sessions install them at session start — nothing vendored into this repo, and
+updates come from upstream:
+
+| Plugin | Source | Adds |
+| --- | --- | --- |
+| `frontend-design` | [anthropics/claude-code](https://github.com/anthropics/claude-code/tree/main/plugins/frontend-design) | `/frontend-design` — aesthetic direction, typography, and avoiding templated AI-looking output |
+| `ui-ux-pro-max` | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | `/ui-ux-pro-max` plus `brand`, `design`, `design-system`, `ui-styling`, `slides`, `banner-design` — searchable local databases of styles, palettes, font pairings, charts, and per-stack guidance |
+
+Plugin skills are namespaced, so they're `/ui-ux-pro-max:design` and the like —
+no collisions with the local skills above.
+
+To add another, find its marketplace repo and add two entries:
+
+```jsonc
+{
+  "extraKnownMarketplaces": {
+    "<marketplace-name>": { "source": { "source": "github", "repo": "owner/repo" } }
+  },
+  "enabledPlugins": { "<plugin-name>@<marketplace-name>": true }
+}
+```
+
+The marketplace name is not the repo name — it's the `name` field inside that
+repo's `.claude-plugin/marketplace.json`. Getting it wrong fails silently at
+session start, so check it, or run `claude plugin marketplace add owner/repo`
+once and read back the name it prints.
+
 ## Write your own
 
 ```bash
