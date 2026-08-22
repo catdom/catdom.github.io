@@ -1,0 +1,42 @@
+---
+/**
+ * Email, one click away, with no form and no backend.
+ * Without the clipboard API this is just a mailto: link — which is why the
+ * anchor carries the real href and the copy button is a separate control
+ * that JS un-hides.
+ */
+import { profile } from '../lib/profile';
+import Lottie from './Lottie.astro';
+import Icon from './Icon.astro';
+---
+
+<div class="cluster" style="--gap: var(--space-2)">
+  <a class="btn btn--primary" href={`mailto:${profile.email}`}>
+    {profile.email}
+    <Icon name="arrow-ne" size={16} />
+  </a>
+
+  <button
+    class="btn btn--ghost copy-email"
+    type="button"
+    data-copy={profile.email}
+    hidden
+  >
+    <Lottie name="check" fallback="copy" size={16} trigger="hover" />
+    <span data-copy-feedback>Copy</span>
+    <span class="copy-email__feedback" aria-hidden="true">Copied to clipboard</span>
+  </button>
+
+  <p class="visually-hidden" role="status" aria-live="polite" data-copy-live></p>
+</div>
+
+<script>
+  // Mirror the copy confirmation into a live region for screen readers, and
+  // play the check animation once the clipboard write actually succeeded.
+  document.addEventListener('copy:done', (e) => {
+    const live = document.querySelector('[data-copy-live]');
+    if (live) live.textContent = 'Email address copied to clipboard';
+    const host = (e.target as HTMLElement)?.querySelector('[data-lottie]');
+    host?.dispatchEvent(new Event('lottie:play'));
+  });
+</script>

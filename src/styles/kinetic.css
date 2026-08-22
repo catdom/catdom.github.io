@@ -1,0 +1,106 @@
+@layer components {
+  /* =========================================================================
+     KINETIC TYPOGRAPHY
+     Real variable-font axis animation. Two independent drivers:
+
+     · scroll velocity  -> --k-vel  (0..1)  set on :root by the kinetic module
+     · cursor proximity -> --k-prox (0..1)  set per-element
+
+     Axes are then derived declaratively in CSS. Nothing here animates
+     `font-size` or layout, so there is no reflow — only paint.
+     ====================================================================== */
+  .kinetic {
+    font-family: var(--font-display);
+    font-size: var(--display);
+    line-height: var(--leading-display);
+    letter-spacing: var(--track-display);
+    text-wrap: balance;
+
+    /* Fast scroll -> narrower and lighter (the type "leans into" the motion).
+       Cursor close  -> heavier and wider (the type "reaches back"). */
+    font-variation-settings:
+      'wght' calc(400 + (var(--k-prox, 0) * 300) - (var(--k-vel, 0) * 120)),
+      'wdth' calc(100 - (var(--k-vel, 0) * 22) + (var(--k-prox, 0) * 0)),
+      'opsz' 96;
+
+    transition: font-variation-settings var(--dur-base) var(--ease-out);
+  }
+
+  /* Per-word proximity: each word is its own element with its own --k-prox,
+     so the heading responds to the cursor as a field, not as one block. */
+  .kinetic__word {
+    display: inline-block;
+    font-variation-settings:
+      'wght' calc(400 + (var(--k-prox, 0) * 320) - (var(--k-vel, 0) * 110)),
+      'wdth' calc(100 - (var(--k-vel, 0) * 20)),
+      'opsz' 96;
+    transition: font-variation-settings 220ms var(--ease-out);
+    will-change: font-variation-settings;
+  }
+
+  /* Entrance: words rise into place on first paint. */
+  .kinetic__word > span {
+    display: inline-block;
+    translate: 0 var(--enter-y, 0);
+    opacity: var(--enter-o, 1);
+    transition:
+      translate 700ms var(--ease-out) var(--enter-delay, 0ms),
+      opacity 700ms var(--ease-out) var(--enter-delay, 0ms);
+  }
+  .kinetic[data-enter='pending'] .kinetic__word > span {
+    --enter-y: 0.42em;
+    --enter-o: 0;
+  }
+
+  /* Secondary kinetic treatment for section headings. */
+  .kinetic--sm {
+    font-size: var(--step-4);
+    letter-spacing: var(--track-tight);
+    line-height: var(--leading-tight);
+  }
+
+  /* --- Marquee: a slow ticker whose speed is nudged by scroll velocity --- */
+  .marquee {
+    --marquee-dur: 38s;
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .marquee__track {
+    display: flex;
+    flex: none;
+    gap: var(--space-6);
+    padding-inline-end: var(--space-6);
+    animation: marquee var(--marquee-dur) linear infinite;
+    animation-play-state: running;
+  }
+  .marquee__item {
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    font-variation-settings: 'wght' 400, 'wdth' calc(100 - (var(--k-vel, 0) * 18));
+    color: var(--text-3);
+    white-space: nowrap;
+    transition: font-variation-settings var(--dur-base) var(--ease-out);
+  }
+  .marquee__item::after {
+    content: '\002F\002F';
+    margin-inline-start: var(--space-6);
+    color: var(--accent);
+  }
+  @keyframes marquee {
+    from { transform: translate3d(0, 0, 0); }
+    to   { transform: translate3d(-50%, 0, 0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .kinetic, .kinetic__word, .marquee__item {
+      font-variation-settings: 'wght' 500, 'wdth' 100, 'opsz' 96 !important;
+      transition: none !important;
+    }
+    .kinetic__word > span { --enter-y: 0 !important; --enter-o: 1 !important; }
+    .marquee__track { animation: none; }
+    .marquee { mask-image: none; -webkit-mask-image: none; }
+  }
+}

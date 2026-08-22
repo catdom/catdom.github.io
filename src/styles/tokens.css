@@ -1,0 +1,196 @@
+/* ============================================================================
+   TOKENS — "Warm Instrument"
+   Single source of truth for the whole design system.
+   Change a value here and it propagates everywhere. No hardcoded colours,
+   sizes or timings are permitted anywhere else in the codebase.
+   ========================================================================= */
+
+@layer tokens {
+  :root {
+    /* ---- Palette: warm neutral ramp (hue ~30-40deg, never pure grey) ---- */
+    --warm-950: #0b0a09;
+    --warm-900: #121110;
+    --warm-850: #171614;
+    --warm-800: #1d1b19;
+    --warm-750: #232120;
+    --warm-700: #262320;
+    --warm-600: #302c28;
+    --warm-500: #4a443e;
+    --warm-400: #6e6862;
+    --warm-300: #8a827a;
+    --warm-200: #a8a099;
+    --warm-150: #c9c1b8;
+    --warm-100: #e4dcd2;
+    --warm-50:  #f5f1eb;
+    --warm-25:  #fbf8f4;
+    --warm-0:   #ffffff;
+
+    /* ---- Accent. Swap these two lines to re-brand the entire site. ------ */
+    --accent:       #e8552a;   /* Ember */
+    --accent-soft:  #ff7a52;
+    --accent-ink:   #ffffff;   /* text placed on top of --accent */
+    --signal:       #4ade80;   /* "available" status only */
+
+    /* ---- Semantic colour: LIGHT is the base definition ------------------ */
+    --bg:            var(--warm-25);
+    --bg-subtle:     var(--warm-50);
+    --surface:       var(--warm-0);
+    --surface-2:     var(--warm-50);
+    --surface-hover: var(--warm-0);
+    --hairline:      var(--warm-100);
+    --hairline-hi:   var(--warm-150);
+    --text:          #16130f;
+    --text-2:        #56504a;
+    --text-3:        var(--warm-300);
+    --selection:     color-mix(in oklab, var(--accent) 22%, transparent);
+
+    /* Card physicality: hairline + inset top highlight + low ambient shadow.
+       Deliberately NOT a big blurry drop shadow. */
+    --card-highlight: rgba(255, 255, 255, 0.9);
+    --shadow-ambient:
+      0 1px 2px rgba(22, 19, 15, 0.04),
+      0 12px 32px -16px rgba(22, 19, 15, 0.12);
+    --shadow-lift:
+      0 2px 4px rgba(22, 19, 15, 0.05),
+      0 24px 56px -20px rgba(22, 19, 15, 0.2);
+    --specular: rgba(255, 255, 255, 0.55);
+    --grain-opacity: 0.025;
+
+    /* ---- Typography ------------------------------------------------------ */
+    --font-display: 'Bricolage Grotesque Variable', 'Bricolage Grotesque',
+      ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-text: 'Inter Variable', 'Inter', ui-sans-serif, system-ui,
+      -apple-system, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace,
+      'SF Mono', 'Cascadia Code', Menlo, monospace;
+
+    /* Fluid scale. Minor third at small viewports opening to ~1.333. */
+    --step--2: clamp(0.694rem, 0.68rem + 0.07vw, 0.75rem);
+    --step--1: clamp(0.833rem, 0.8rem + 0.16vw, 0.938rem);
+    --step-0:  clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+    --step-1:  clamp(1.2rem, 1.13rem + 0.35vw, 1.424rem);
+    --step-2:  clamp(1.44rem, 1.32rem + 0.6vw, 1.9rem);
+    --step-3:  clamp(1.728rem, 1.53rem + 0.99vw, 2.53rem);
+    --step-4:  clamp(2.074rem, 1.76rem + 1.57vw, 3.375rem);
+    --step-5:  clamp(2.488rem, 2.01rem + 2.39vw, 4.5rem);
+    --display: clamp(3.5rem, 1.9rem + 8vw, 9rem);
+
+    --leading-display: 0.9;
+    --leading-tight: 1.1;
+    --leading-snug: 1.3;
+    --leading-body: 1.6;
+
+    --track-display: -0.045em;
+    --track-tight: -0.025em;
+    --track-normal: -0.011em;
+    --track-label: 0.12em;
+
+    /* Variable-font axes, mutated at runtime by the kinetic type module. */
+    --axis-wght: 500;
+    --axis-wdth: 100;
+    --axis-opsz: 48;
+
+    /* ---- Space: 4px base unit ------------------------------------------- */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.5rem;
+    --space-6: 2rem;
+    --space-7: 2.5rem;
+    --space-8: 3rem;
+    --space-9: 4rem;
+    --space-10: 6rem;
+
+    --gutter: clamp(1rem, 0.6rem + 2vw, 1.75rem);
+    --bento-gap: clamp(0.75rem, 0.55rem + 0.8vw, 1.25rem);
+    --card-pad: clamp(1.25rem, 0.95rem + 1.4vw, 2rem);
+    --section-rhythm: clamp(5rem, 3rem + 9vh, 11rem);
+    --measure: 62ch;
+    --container: 78rem;
+
+    /* ---- Form ------------------------------------------------------------ */
+    --radius-lg: 24px;
+    --radius-md: 14px;
+    --radius-sm: 8px;
+    --radius-pill: 999px;
+    --border: 1px;
+
+    /* ---- Motion ---------------------------------------------------------- */
+    --dur-fast: 140ms;
+    --dur-base: 240ms;
+    --dur-slow: 420ms;
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    --tilt-max: 6deg;
+
+    /* ---- Depth ----------------------------------------------------------- */
+    --z-base: 0;
+    --z-raised: 10;
+    --z-sticky: 100;
+    --z-nav: 200;
+    --z-overlay: 300;
+
+    color-scheme: light dark;
+  }
+
+  /* ---- DARK: redefine semantics only, never re-declare the ramp --------- */
+  :root[data-theme='dark'] {
+    --bg:            var(--warm-950);
+    --bg-subtle:     var(--warm-900);
+    --surface:       var(--warm-800);
+    --surface-2:     var(--warm-850);
+    --surface-hover: var(--warm-700);
+    --hairline:      var(--warm-600);
+    --hairline-hi:   var(--warm-500);
+    --text:          #f4efe9;
+    --text-2:        var(--warm-200);
+    --text-3:        var(--warm-400);
+
+    --accent:      #ff5f36;
+    --accent-soft: #ff8a63;
+
+    --card-highlight: rgba(255, 255, 255, 0.07);
+    --shadow-ambient:
+      0 1px 2px rgba(0, 0, 0, 0.4),
+      0 16px 40px -20px rgba(0, 0, 0, 0.7);
+    --shadow-lift:
+      0 2px 6px rgba(0, 0, 0, 0.45),
+      0 32px 64px -24px rgba(0, 0, 0, 0.8);
+    --specular: rgba(255, 255, 255, 0.09);
+    --grain-opacity: 0.04;
+
+    color-scheme: dark;
+  }
+
+  /* System preference, only when the user has made no explicit choice. */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) {
+      --bg:            var(--warm-950);
+      --bg-subtle:     var(--warm-900);
+      --surface:       var(--warm-800);
+      --surface-2:     var(--warm-850);
+      --surface-hover: var(--warm-700);
+      --hairline:      var(--warm-600);
+      --hairline-hi:   var(--warm-500);
+      --text:          #f4efe9;
+      --text-2:        var(--warm-200);
+      --text-3:        var(--warm-400);
+
+      --accent:      #ff5f36;
+      --accent-soft: #ff8a63;
+
+      --card-highlight: rgba(255, 255, 255, 0.07);
+      --shadow-ambient:
+        0 1px 2px rgba(0, 0, 0, 0.4),
+        0 16px 40px -20px rgba(0, 0, 0, 0.7);
+      --shadow-lift:
+        0 2px 6px rgba(0, 0, 0, 0.45),
+        0 32px 64px -24px rgba(0, 0, 0, 0.8);
+      --specular: rgba(255, 255, 255, 0.09);
+      --grain-opacity: 0.04;
+
+      color-scheme: dark;
+    }
+  }
+}

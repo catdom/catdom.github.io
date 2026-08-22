@@ -1,0 +1,10 @@
+---
+import { profile } from '../lib/profile';
+
+const { state, label } = profile.availability;
+---
+
+<span class="status" data-state={state}>
+  <span class="status__dot"></span>
+  {label}
+</span>

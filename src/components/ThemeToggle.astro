@@ -1,0 +1,12 @@
+---
+import Icon from './Icon.astro';
+---
+
+<button class="icon-btn" data-theme-toggle type="button" aria-label="Colour theme">
+  <Icon name="sun" size={17} data-theme-icon="light" />
+  <Icon name="moon" size={17} data-theme-icon="dark" hidden />
+</button>
+
+<style>
+  .icon-btn :global(svg[hidden]) { display: none; }
+</style>
