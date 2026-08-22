@@ -1,0 +1,55 @@
+---
+import { profile } from '../lib/profile';
+import ThemeToggle from './ThemeToggle.astro';
+
+interface Props { variant?: 'home' | 'inner' }
+const { variant = 'home' } = Astro.props;
+
+const links =
+  variant === 'home'
+    ? [
+        { href: '#work', label: 'Work' },
+        { href: '#about', label: 'About' },
+        { href: '#contact', label: 'Contact' },
+      ]
+    : [
+        { href: '/#work', label: 'Work' },
+        { href: '/#about', label: 'About' },
+        { href: '/#contact', label: 'Contact' },
+      ];
+---
+
+<header class="nav">
+  <nav class="container nav__inner" aria-label="Primary">
+    <a href="/" class="wordmark" aria-label={`${profile.name} — home`}>
+      {/* The full name needs room; below 30rem the monogram stands in so the
+          section links stay on screen rather than being hidden behind a menu. */}
+      <span class="wordmark__full">{profile.name}</span>
+      <span class="wordmark__short" aria-hidden="true">{profile.shortName}</span><span
+        class="accent">.</span>
+    </a>
+
+    <div class="nav__links">
+      {links.map((l) => <a class="nav__link" href={l.href}>{l.label}</a>)}
+    </div>
+
+    <div class="cluster" style="--gap: var(--space-2)">
+      <a class="btn btn--ghost nav__cta" href={`mailto:${profile.email}`}>
+        Get in touch
+      </a>
+      <ThemeToggle />
+    </div>
+  </nav>
+</header>
+
+<style>
+  .nav__cta { display: none; }
+  @media (min-width: 36rem) { .nav__cta { display: inline-flex; } }
+
+  .wordmark__short { display: inline; }
+  .wordmark__full { display: none; }
+  @media (min-width: 30rem) {
+    .wordmark__short { display: none; }
+    .wordmark__full { display: inline; }
+  }
+</style>

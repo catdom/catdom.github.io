@@ -1,0 +1,13 @@
+/* Layer order is declared once, here, and is the only thing that governs
+   cascade priority in this project. No `!important` outside reduced-motion
+   guards, no specificity wars. */
+@layer reset, tokens, base, layout, components, utilities;
+
+@import './fonts.css';
+@import './reset.css';
+@import './tokens.css';
+@import './base.css';
+@import './layout.css';
+@import './components.css';
+@import './kinetic.css';
+@import './utilities.css';

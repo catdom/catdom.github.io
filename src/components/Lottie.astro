@@ -1,0 +1,44 @@
+---
+/**
+ * A dotLottie icon that is an inline SVG first and an animation second.
+ *
+ * The SVG in the slot IS the icon: it renders server-side, needs no JS, and
+ * is what most visitors will ever see. lottie.ts upgrades it in place only
+ * when the element is visible and the visitor's connection and motion
+ * preferences permit. See the comment block in src/scripts/lottie.ts.
+ */
+import Icon from './Icon.astro';
+import type { IconName } from '../lib/icons';
+
+interface Props {
+  /** File in public/lottie, without the extension. */
+  name: 'arrow' | 'check' | 'pulse';
+  /** Icon rendered as the static, no-JS fallback. */
+  fallback: IconName;
+  /** 'hover' plays on pointer-enter of the enclosing [data-lottie-zone]. */
+  trigger?: 'hover' | 'auto';
+  loop?: boolean;
+  size?: number;
+  class?: string;
+}
+
+const {
+  name,
+  fallback,
+  trigger = 'hover',
+  loop = false,
+  size = 24,
+  class: className,
+} = Astro.props;
+---
+
+<span
+  class:list={['lottie', className]}
+  style={`--lottie-size:${size}px`}
+  data-lottie={`/lottie/${name}.lottie`}
+  data-lottie-trigger={trigger}
+  data-lottie-loop={String(loop)}
+  aria-hidden="true"
+>
+  <Icon name={fallback} size={size} />
+</span>

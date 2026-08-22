@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+import KineticHeading from '../components/KineticHeading.astro';
+---
+
+<Layout title="Not found" description="That page does not exist." variant="inner">
+  <section class="section notfound">
+    <div class="container">
+      <p class="label">Error 404</p>
+      <KineticHeading text="Nothing here." as="h1" animateEntrance={false} />
+      <p class="measure text-2 notfound__body">
+        The page you were after has moved or never existed. This one, at least,
+        works offline.
+      </p>
+      <a class="btn btn--primary notfound__cta" href="/">Back to the start</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .notfound { padding-block-start: clamp(4rem, 14vh, 10rem); min-block-size: 60svh; }
+  .notfound .label { margin-block-end: var(--space-4); }
+  .notfound__body { margin-block-start: var(--space-5); font-size: var(--step-1); }
+  .notfound__cta { margin-block-start: var(--space-7); }
+</style>
