@@ -9,6 +9,7 @@ In a session started on this repo, type:
 
 - `/hello-skill` — explains the mechanics against the actual files
 - `/explain-changes` — summarizes your uncommitted work (edit a file first)
+- `/commit` — writes a commit message from the diff and commits
 
 `/explain-changes` also runs without being asked for by name: say "what did I
 change?" and Claude reaches for it on its own.
@@ -18,7 +19,8 @@ change?" and Claude reaches for it on its own.
 ```
 .claude/skills/
 ├── hello-skill/SKILL.md      # user-invoked only, explains itself
-└── explain-changes/SKILL.md  # Claude invokes this one automatically too
+├── explain-changes/SKILL.md  # Claude invokes this one automatically too
+└── commit/SKILL.md           # takes an argument, pre-approves its git commands
 ```
 
 A skill is one directory containing a `SKILL.md`. The **directory name** is the
