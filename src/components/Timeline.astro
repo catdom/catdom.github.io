@@ -1,0 +1,263 @@
+---
+import { careerIntro } from '../data/home';
+import { timeline, education, educationLabel } from '../data/timeline';
+import { langPrefix, type Lang } from '../data/types';
+import Icon from './Icon.astro';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const i = careerIntro[lang];
+const base = langPrefix(lang);
+const more = { en: 'Read the full case', es: 'Ver el caso completo' }[lang];
+---
+
+<section class="career" id="career" data-tone="light">
+  <div class="shell split">
+    <div class="career__aside">
+      <p class="eyebrow" data-reveal>{i.label}</p>
+      <h2 class="h2" data-reveal>{i.heading}</h2>
+      <p class="lead" data-reveal style="--reveal-delay:80ms">{i.body}</p>
+    </div>
+
+    <div>
+      <ul class="acc" data-acc>
+        {timeline.map((e, n) => (
+          <li class="acc__item" data-reveal style={`--reveal-delay:${Math.min(n, 4) * 60}ms`}>
+            <h3>
+              <button
+                type="button"
+                class="acc__trigger"
+                aria-expanded="false"
+                aria-controls={`panel-${e.id}`}
+                id={`trigger-${e.id}`}
+              >
+                <span class="acc__range">{e.range}</span>
+                <span class="acc__title">
+                  <span class="acc__role">{e.role[lang]}</span>
+                  <span class="acc__company">{e.company}</span>
+                </span>
+                <span class="acc__sign" aria-hidden="true"></span>
+              </button>
+            </h3>
+
+            <div
+              class="acc__panel"
+              id={`panel-${e.id}`}
+              role="region"
+              aria-labelledby={`trigger-${e.id}`}
+              hidden
+            >
+              <div class="acc__panelInner">
+                <p class="acc__meta">
+                  <span>{e.period[lang]}</span>
+                  <span aria-hidden="true">·</span>
+                  <span>{e.location[lang]}</span>
+                </p>
+                <ul class="acc__bullets">
+                  {e.bullets[lang].map((b) => <li>{b}</li>)}
+                </ul>
+                {e.caseSlug && (
+                  <a class="acc__more" href={`${base}/work/${e.caseSlug}/`}>
+                    {more}
+                    <Icon name="arrow-up-right" size={16} />
+                  </a>
+                )}
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+
+      <div class="edu" data-reveal>
+        <p class="eyebrow">{educationLabel[lang]}</p>
+        <ul>
+          {education.map((e) => (
+            <li>
+              <span class="edu__school">{e.school}</span>
+              <span class="edu__program">{e.program[lang]}</span>
+              <span class="edu__years">{e.years}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .career { padding-block: var(--section-y); background: var(--paper); }
+
+  .career__aside {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+    align-self: start;
+  }
+
+  @media (min-width: 900px) {
+    .career__aside { position: sticky; top: 7rem; }
+  }
+
+  .career__aside .lead { font-size: var(--fs-small); max-width: 34ch; }
+
+  .acc {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    --acc-rail: 7.5rem;
+    --acc-gap: clamp(0.75rem, 2vw, 1.75rem);
+  }
+
+  .acc__item { border-top: 1px solid #e6e3ea; }
+  .acc__item:last-of-type { border-bottom: 1px solid #e6e3ea; }
+
+  .acc__item h3 { font-weight: inherit; }
+
+  .acc__trigger {
+    width: 100%;
+    display: grid;
+    grid-template-columns: var(--acc-rail) minmax(0, 1fr) auto;
+    align-items: start;
+    gap: var(--acc-gap);
+    padding-block: clamp(1.15rem, 2vw, 1.6rem);
+    text-align: left;
+    color: var(--ink);
+    transition: color var(--dur-fast) var(--ease);
+  }
+
+  /* Hovering one row dims the rest, as in the reference. */
+  .acc:hover .acc__item:not(:hover) .acc__trigger { color: var(--ink-faint); }
+
+  .acc__range {
+    font-size: var(--fs-small);
+    font-variant-numeric: tabular-nums;
+    color: var(--ink-faint);
+    padding-top: 0.45rem;
+    white-space: nowrap;
+    transition: color var(--dur-fast) var(--ease);
+  }
+
+  .acc__title { display: grid; gap: 0.15rem; min-width: 0; }
+
+  .acc__role {
+    font-size: var(--fs-row);
+    line-height: 1.15;
+    letter-spacing: var(--track-h3);
+  }
+
+  .acc__company {
+    font-size: var(--fs-small);
+    color: var(--ink-muted);
+    transition: color var(--dur-fast) var(--ease);
+  }
+
+  .acc:hover .acc__item:not(:hover) .acc__company { color: var(--ink-faint); }
+
+  /* Two crossed bars: the upright one rotates flat, turning + into −. */
+  .acc__sign {
+    position: relative;
+    width: 22px;
+    height: 22px;
+    margin-top: 0.55rem;
+  }
+
+  .acc__sign::before,
+  .acc__sign::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 1.5px;
+    margin-top: -0.75px;
+    border-radius: 1px;
+    background: currentColor;
+    transition: transform var(--dur) var(--ease);
+  }
+
+  .acc__sign::after { transform: rotate(90deg); }
+
+  .acc__trigger[aria-expanded='true'] .acc__sign::after { transform: rotate(0deg); }
+
+  .acc__panel { overflow: hidden; }
+
+  .acc__panelInner {
+    display: grid;
+    gap: 1rem;
+    padding: 0 0 clamp(1.5rem, 2.4vw, 2.25rem);
+    margin-left: calc(var(--acc-rail) + var(--acc-gap));
+    max-width: 62ch;
+  }
+
+  .acc__meta {
+    display: flex;
+    gap: 0.5rem;
+    font-size: var(--fs-small);
+    color: var(--ink-faint);
+  }
+
+  .acc__bullets {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.65rem;
+    color: var(--ink-muted);
+  }
+
+  .acc__bullets li {
+    position: relative;
+    padding-left: 1.15rem;
+  }
+
+  .acc__bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--lavender-line);
+  }
+
+  .acc__more {
+    justify-self: start;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.9375rem;
+    border-bottom: 1px solid var(--ink-faint);
+    padding-bottom: 2px;
+    transition: border-color var(--dur-fast) var(--ease);
+  }
+
+  .acc__more:hover { border-color: var(--ink); }
+
+  /* --- Education ---------------------------------------------------------- */
+
+  .edu { margin-top: clamp(2.5rem, 4vw, 4rem); display: grid; gap: 1rem; }
+
+  .edu ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+
+  .edu li {
+    display: grid;
+    grid-template-columns: minmax(0, auto) minmax(0, 1fr) auto;
+    gap: 0.5rem 1rem;
+    align-items: baseline;
+    font-size: 0.9375rem;
+    padding-block: 0.4rem;
+    border-top: 1px solid #f0eef3;
+  }
+
+  .edu__program { color: var(--ink-muted); }
+  .edu__years { color: var(--ink-faint); font-size: var(--fs-small); font-variant-numeric: tabular-nums; }
+
+  @media (max-width: 560px) {
+    .acc__trigger { grid-template-columns: minmax(0, 1fr) auto; }
+    .acc__range { display: none; }
+    .acc__panelInner { margin-left: 0; }
+    .edu li { grid-template-columns: minmax(0, 1fr) auto; }
+    .edu__program { grid-column: 1 / -1; }
+  }
+</style>

@@ -1,0 +1,21 @@
+---
+import Nav from './Nav.astro';
+import Hero from './Hero.astro';
+import Roles from './Roles.astro';
+import Strengths from './Strengths.astro';
+import Timeline from './Timeline.astro';
+import Footer from './Footer.astro';
+import type { Lang } from '../data/types';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+---
+
+<Nav lang={lang} path="" />
+<main id="main">
+  <Hero lang={lang} />
+  <Roles lang={lang} />
+  <Strengths lang={lang} />
+  <Timeline lang={lang} />
+</main>
+<Footer lang={lang} />

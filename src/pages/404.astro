@@ -1,25 +1,22 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import KineticHeading from '../components/KineticHeading.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
 ---
 
-<Layout title="Not found" description="That page does not exist." variant="inner">
-  <section class="section notfound">
-    <div class="container">
-      <p class="label">Error 404</p>
-      <KineticHeading text="Nothing here." as="h1" animateEntrance={false} />
-      <p class="measure text-2 notfound__body">
-        The page you were after has moved or never existed. This one, at least,
-        works offline.
-      </p>
-      <a class="btn btn--primary notfound__cta" href="/">Back to the start</a>
+<Layout lang="en" title="Not found — Jordi Catalán" description="This page does not exist.">
+  <Nav lang="en" anchors={false} />
+  <main id="main" class="nf">
+    <div class="shell">
+      <p class="eyebrow">404</p>
+      <h1 class="h2">This page doesn’t exist.</h1>
+      <a class="pill pill--ghost" href="/">Back to home</a>
     </div>
-  </section>
+  </main>
+  <Footer lang="en" />
 </Layout>
 
 <style>
-  .notfound { padding-block-start: clamp(4rem, 14vh, 10rem); min-block-size: 60svh; }
-  .notfound .label { margin-block-end: var(--space-4); }
-  .notfound__body { margin-block-start: var(--space-5); font-size: var(--step-1); }
-  .notfound__cta { margin-block-start: var(--space-7); }
+  .nf { padding-block: clamp(9rem, 18vw, 14rem) var(--section-y); }
+  .nf .shell { display: grid; gap: 1.25rem; justify-items: start; }
 </style>

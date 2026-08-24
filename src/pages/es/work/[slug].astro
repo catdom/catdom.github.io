@@ -1,0 +1,26 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Nav from '../../../components/Nav.astro';
+import CasePage from '../../../components/CasePage.astro';
+import Footer from '../../../components/Footer.astro';
+import { cases } from '../../../data/cases';
+
+export function getStaticPaths() {
+  return cases.map((study) => ({ params: { slug: study.slug }, props: { study } }));
+}
+
+const { study } = Astro.props;
+---
+
+<Layout
+  lang="es"
+  path={`/work/${study.slug}`}
+  title={`${study.company} — Jordi Catalán`}
+  description={study.tagline.es}
+>
+  <Nav lang="es" path={`/work/${study.slug}`} anchors={false} />
+  <main id="main">
+    <CasePage lang="es" study={study} />
+  </main>
+  <Footer lang="es" />
+</Layout>

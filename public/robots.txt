@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# ⚑ Update the host before deploying.
-Sitemap: https://example.com/sitemap.xml
+Sitemap: https://catdom.github.io/sitemap.xml

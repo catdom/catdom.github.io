@@ -1,99 +1,77 @@
 ---
 import '../styles/global.css';
-import { profile } from '../lib/profile';
-import Nav from '../components/Nav.astro';
-import Footer from '../components/Footer.astro';
+import { site, ui } from '../data/site';
+import { LANGS, langPrefix, type Lang } from '../data/types';
 
 interface Props {
-  title?: string;
-  description?: string;
-  variant?: 'home' | 'inner';
-  ogImage?: string;
+  lang: Lang;
+  title: string;
+  description: string;
+  /** Path after the language prefix, e.g. '' or '/work/fotocasa'. */
+  path?: string;
+  theme?: 'light' | 'dark';
 }
 
-const {
-  title,
-  description = profile.seo.description,
-  variant = 'home',
-  ogImage = '/og/default.png',
-} = Astro.props;
+const { lang, title, description, path = '', theme = 'light' } = Astro.props;
 
-const pageTitle = title ? `${title} — ${profile.name}` : profile.seo.title;
-const canonical = new URL(Astro.url.pathname, Astro.site ?? profile.seo.origin);
-const ogUrl = new URL(ogImage, Astro.site ?? profile.seo.origin);
+const canonical = `${site.origin}${langPrefix(lang)}${path}/`.replace(/\/+$/, '/');
+const alternates = LANGS.map((l) => ({
+  lang: l,
+  href: `${site.origin}${langPrefix(l)}${path}/`.replace(/\/+$/, '/'),
+}));
 
-const personSchema = {
+const personLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
-  name: profile.name,
-  jobTitle: profile.role,
-  email: `mailto:${profile.email}`,
-  url: canonical.origin,
-  address: { '@type': 'PostalAddress', addressLocality: profile.location },
-  sameAs: profile.socials.map((s) => s.href),
+  name: site.name,
+  jobTitle: 'Head of UX & Design Operations',
+  email: `mailto:${site.email}`,
+  url: site.origin,
+  sameAs: [site.linkedin],
+  address: { '@type': 'PostalAddress', addressLocality: site.location, addressCountry: 'ES' },
 };
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang} class="no-js" data-theme={theme}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <title>{pageTitle}</title>
+    <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical.href} />
+    <link rel="canonical" href={canonical} />
+    {alternates.map((a) => <link rel="alternate" hreflang={a.lang} href={a.href} />)}
+    <link rel="alternate" hreflang="x-default" href={`${site.origin}/`} />
 
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonical.href} />
-    <meta property="og:image" content={ogUrl.href} />
-    <meta name="twitter:card" content="summary_large_image" />
-
-    <meta name="theme-color" content="#fbf8f4" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0b0a09" media="(prefers-color-scheme: dark)" />
-
-    <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-
-    <!-- The display font is needed for the very first pixel painted. The
-         other two are requested by CSS as soon as it parses, so only this
-         one earns a preload. -->
     <link
       rel="preload"
-      href="/fonts/bricolage-grotesque-var-latin.woff2"
+      href="/fonts/geist-latin.woff2"
       as="font"
       type="font/woff2"
       crossorigin
     />
 
-    <!-- Theme, applied before first paint. Inline and blocking on purpose:
-         any async alternative produces a flash of the wrong theme. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={lang === 'en' ? 'en_GB' : 'es_ES'} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <meta name="theme-color" content="#190a1d" />
+
     <script is:inline>
-      (function () {
-        try {
-          var t = localStorage.getItem('theme');
-          if (t === 'light' || t === 'dark') {
-            document.documentElement.setAttribute('data-theme', t);
-          }
-        } catch (e) {
-          /* Storage unavailable — fall through to the OS preference. */
-        }
-      })();
+      document.documentElement.classList.remove('no-js');
     </script>
-
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(personLd)} />
   </head>
-
   <body>
-    <a class="skip-link" href="#main">Skip to content</a>
-    <Nav variant={variant} />
-    <main id="main"><slot /></main>
-    <Footer />
+    <a class="skip-link" href="#main">{ui[lang].skip}</a>
+    <slot />
 
     <script>
-      import '../scripts/main';
+      import '../scripts/main.ts';
     </script>
   </body>
 </html>

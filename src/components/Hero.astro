@@ -1,0 +1,113 @@
+---
+import { availability, ui } from '../data/site';
+import { hero } from '../data/home';
+import Icon from './Icon.astro';
+import type { Lang } from '../data/types';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const h = hero[lang];
+const a = availability[lang];
+---
+
+<section class="hero" id="top" data-tone="light">
+  <!-- Soft ground shapes, barely there — depth without ornament. -->
+  <svg class="hero__ground" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <path d="M300 900C300 640 420 470 640 400 500 520 470 700 500 900Z" />
+    <path d="M760 900C740 610 880 420 1130 340 950 500 900 690 940 900Z" />
+    <path d="M-40 900C-20 720 60 600 200 545 90 660 70 780 95 900Z" />
+  </svg>
+
+  <div class="shell hero__inner">
+    <p class="chip hero__eyebrow" data-reveal>{h.eyebrow}</p>
+
+    <h1 class="display hero__title">
+      {h.lines.map((line, i) => (
+        <span class="hero__line" data-reveal style={`--reveal-delay:${80 + i * 90}ms`}>{line}</span>
+      ))}
+    </h1>
+
+    <p class="lead hero__body" data-reveal style="--reveal-delay:280ms">{h.body}</p>
+  </div>
+
+  <div class="shell hero__foot">
+    <p class="hero__avail" data-reveal style="--reveal-delay:380ms">
+      <span class="chip">{a.badge}</span>
+      <span class="hero__availNote">{a.note}</span>
+    </p>
+
+    <a class="pill pill--ghost hero__scroll" href="#roles" data-reveal style="--reveal-delay:380ms">
+      {ui[lang].scroll}
+      <Icon name="arrow-down" size={15} />
+    </a>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    background: var(--lavender);
+    display: grid;
+    grid-template-rows: 1fr auto;
+    align-items: center;
+    padding-block: 8rem 1.75rem;
+    overflow: hidden;
+  }
+
+  .hero__ground {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    fill: #fff;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  .hero__inner {
+    position: relative;
+    text-align: center;
+    display: grid;
+    justify-items: center;
+    gap: clamp(1.25rem, 2.4vw, 2rem);
+  }
+
+  .hero__eyebrow { background: rgb(255 255 255 / 0.55); }
+
+  .hero__title {
+    display: grid;
+    /* Two display lines that reveal in sequence. */
+    max-width: 20ch;
+  }
+
+  .hero__line { display: block; }
+
+  .hero__body { max-width: 46ch; color: #4e4a56; }
+
+  .hero__foot {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .hero__avail {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: var(--fs-small);
+    color: var(--ink-muted);
+  }
+
+  .hero__availNote { border-left: 1px solid var(--lavender-line); padding-left: 0.75rem; }
+
+  .hero__scroll { background: rgb(255 255 255 / 0.55); }
+
+  @media (max-width: 600px) {
+    .hero__foot { justify-content: flex-start; }
+    .hero__scroll { display: none; }
+  }
+</style>

@@ -1,5 +1,5 @@
 {
-  "name": "portfolio-2026",
+  "name": "jordi-catalan-portfolio",
   "type": "module",
   "version": "0.1.0",
   "private": true,
@@ -10,7 +10,6 @@
     "check": "astro check"
   },
   "dependencies": {
-    "@lottiefiles/dotlottie-web": "^0.79.2",
     "astro": "^5.14.1"
   },
   "devDependencies": {
