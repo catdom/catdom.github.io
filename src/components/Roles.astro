@@ -1,0 +1,149 @@
+---
+import { intro } from '../data/home';
+import { featuredCases } from '../data/cases';
+import { langPrefix, type Lang } from '../data/types';
+import Icon from './Icon.astro';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const i = intro[lang];
+const base = langPrefix(lang);
+---
+
+<section class="roles on-dark" id="roles" data-tone="dark">
+  <div class="shell split">
+    <p class="eyebrow roles__label" data-reveal>{i.label}</p>
+
+    <div class="roles__main">
+      <h2 class="h2 roles__heading" data-reveal>{i.heading}</h2>
+
+      <div class="roles__body prose-col">
+        {i.body.map((para, n) => (
+          <p class="lead" data-reveal style={`--reveal-delay:${n * 90}ms`}>{para}</p>
+        ))}
+      </div>
+
+      <ol class="rolelist" data-rolelist>
+        {featuredCases.map((c, n) => (
+          <li data-reveal style={`--reveal-delay:${n * 90}ms`}>
+            <a class="rolerow" href={`${base}/work/${c.slug}/`}>
+              <span class="rolerow__num">({String(n + 1).padStart(2, '0')})</span>
+              <span class="rolerow__text">
+                <span class="rolerow__company">{c.company}</span>
+                <span class="rolerow__role">{c.role[lang]}</span>
+              </span>
+              <span class="rolerow__period">{c.period[lang]}</span>
+              <Icon name="arrow-up-right" size={20} class="rolerow__arrow" />
+            </a>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<style>
+  .roles {
+    background: var(--dark);
+    color: var(--on-dark);
+    padding-block: var(--section-y);
+  }
+
+  .roles__label { padding-top: 0.6rem; }
+
+  .roles__main { display: grid; gap: clamp(2rem, 3.5vw, 3rem); }
+
+  .roles__heading { max-width: 22ch; }
+
+  .roles__body { display: grid; gap: 1.15rem; }
+
+  .rolelist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.25rem;
+  }
+
+  /* The reference's signature interaction: the whole row fills with a pale
+     pill on hover, the type flips to dark, and an arrow slides in. */
+  .rolerow {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto auto;
+    align-items: center;
+    gap: clamp(0.75rem, 1.6vw, 1.5rem);
+    padding: clamp(0.85rem, 1.4vw, 1.15rem) clamp(1rem, 1.6vw, 1.4rem);
+    border-radius: 12px;
+    transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+  }
+
+  .rolerow:hover,
+  .rolerow:focus-visible {
+    background: var(--lavender);
+    color: var(--ink);
+    outline: none;
+  }
+
+  /* Siblings recede while one row is hovered. */
+  .rolelist:hover li:not(:hover) .rolerow { color: var(--on-dark-faint); }
+
+  .rolerow__num {
+    font-size: var(--fs-row);
+    letter-spacing: -0.02em;
+    color: var(--on-dark-faint);
+    font-variant-numeric: tabular-nums;
+    transition: color var(--dur-fast) var(--ease);
+  }
+
+  .rolerow:hover .rolerow__num { color: var(--ink-faint); }
+
+  .rolerow__text {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem 0.75rem;
+    min-width: 0;
+  }
+
+  .rolerow__company {
+    font-size: var(--fs-row);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  .rolerow__role {
+    font-size: var(--fs-small);
+    color: var(--on-dark-muted);
+    transition: color var(--dur-fast) var(--ease);
+  }
+
+  .rolerow:hover .rolerow__role { color: var(--ink-muted); }
+
+  .rolerow__period {
+    font-size: var(--fs-small);
+    color: var(--on-dark-faint);
+    white-space: nowrap;
+    transition: color var(--dur-fast) var(--ease);
+  }
+
+  .rolerow:hover .rolerow__period { color: var(--ink-muted); }
+
+  .rolerow__arrow {
+    opacity: 0;
+    transform: translate(-6px, 6px);
+    transition: opacity var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+  }
+
+  .rolerow:hover .rolerow__arrow,
+  .rolerow:focus-visible .rolerow__arrow {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (max-width: 720px) {
+    .rolerow { grid-template-columns: auto minmax(0, 1fr) auto; }
+    .rolerow__period { display: none; }
+    /* On touch there is no hover, so the arrow is always visible. */
+    .rolerow__arrow { opacity: 0.5; transform: none; }
+  }
+</style>

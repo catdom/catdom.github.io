@@ -1,0 +1,97 @@
+---
+import { strengthsIntro } from '../data/home';
+import { strengths } from '../data/strengths';
+import { site, ui } from '../data/site';
+import Icon from './Icon.astro';
+import type { Lang } from '../data/types';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const i = strengthsIntro[lang];
+---
+
+<section class="strengths" id="strengths" data-tone="light">
+  <div class="shell">
+    <div class="band">
+      <div class="split band__head">
+        <p class="eyebrow" data-reveal>{i.label}</p>
+        <div class="band__headText">
+          <h2 class="h2" data-reveal>{i.heading}</h2>
+          <p class="lead" data-reveal style="--reveal-delay:80ms">{i.body}</p>
+        </div>
+      </div>
+
+      <div class="split band__body">
+        <div class="band__aside">
+          <a class="pill pill--solid" href={`mailto:${site.email}`} data-reveal>
+            {ui[lang].contact}
+          </a>
+        </div>
+
+        <ul class="cards">
+          {strengths.map((s, n) => (
+            <li class="card" data-reveal style={`--reveal-delay:${(n % 2) * 90}ms`}>
+              <span class="card__icon"><Icon name={s.icon} size={22} /></span>
+              <h3 class="h3">{s.title[lang]}</h3>
+              <p>{s.body[lang]}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .strengths { padding-block: clamp(3rem, 6vw, 5rem); background: var(--paper); }
+
+  .band {
+    background: var(--lavender);
+    border-radius: var(--r-band);
+    padding: clamp(2.5rem, 5vw, 5rem) clamp(1.25rem, 3.5vw, 3.5rem);
+    display: grid;
+    gap: clamp(2.5rem, 4vw, 4rem);
+  }
+
+  .band__headText { display: grid; gap: 1rem; }
+  .band__headText .lead { max-width: 46ch; }
+
+  .band__aside { align-self: end; }
+
+  .cards {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: clamp(1rem, 1.6vw, 1.5rem);
+  }
+
+  @media (min-width: 720px) {
+    .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  .card {
+    background: var(--paper);
+    border-radius: var(--r-card);
+    padding: clamp(1.5rem, 2.4vw, 2rem);
+    display: grid;
+    align-content: start;
+    gap: 0.75rem;
+    transition: transform var(--dur) var(--ease);
+  }
+
+  .card:hover { transform: translateY(-4px); }
+
+  .card__icon {
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 13px;
+    background: var(--dark);
+    color: var(--lavender);
+    margin-bottom: 0.5rem;
+  }
+
+  .card p { color: var(--ink-muted); }
+</style>

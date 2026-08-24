@@ -1,0 +1,77 @@
+---
+import '../styles/global.css';
+import { site, ui } from '../data/site';
+import { LANGS, langPrefix, type Lang } from '../data/types';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  /** Path after the language prefix, e.g. '' or '/work/fotocasa'. */
+  path?: string;
+  theme?: 'light' | 'dark';
+}
+
+const { lang, title, description, path = '', theme = 'light' } = Astro.props;
+
+const canonical = `${site.origin}${langPrefix(lang)}${path}/`.replace(/\/+$/, '/');
+const alternates = LANGS.map((l) => ({
+  lang: l,
+  href: `${site.origin}${langPrefix(l)}${path}/`.replace(/\/+$/, '/'),
+}));
+
+const personLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  jobTitle: 'Head of UX & Design Operations',
+  email: `mailto:${site.email}`,
+  url: site.origin,
+  sameAs: [site.linkedin],
+  address: { '@type': 'PostalAddress', addressLocality: site.location, addressCountry: 'ES' },
+};
+---
+
+<!doctype html>
+<html lang={lang} class="no-js" data-theme={theme}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {alternates.map((a) => <link rel="alternate" hreflang={a.lang} href={a.href} />)}
+    <link rel="alternate" hreflang="x-default" href={`${site.origin}/`} />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link
+      rel="preload"
+      href="/fonts/geist-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={lang === 'en' ? 'en_GB' : 'es_ES'} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <meta name="theme-color" content="#190a1d" />
+
+    <script is:inline>
+      document.documentElement.classList.remove('no-js');
+    </script>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(personLd)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{ui[lang].skip}</a>
+    <slot />
+
+    <script>
+      import '../scripts/main.ts';
+    </script>
+  </body>
+</html>

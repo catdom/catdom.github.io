@@ -1,0 +1,279 @@
+---
+import { ui } from '../data/site';
+import { cases, type CaseStudy } from '../data/cases';
+import { langPrefix, type Lang } from '../data/types';
+import Icon from './Icon.astro';
+
+interface Props { lang: Lang; study: CaseStudy }
+const { lang, study } = Astro.props;
+const base = langPrefix(lang);
+
+const index = cases.findIndex((c) => c.slug === study.slug);
+const next = cases[(index + 1) % cases.length];
+
+const labels = {
+  en: { problem: 'The problem', solution: 'The solution', highlights: 'Highlights' },
+  es: { problem: 'El problema', solution: 'La solución', highlights: 'Lo más relevante' },
+}[lang];
+
+const wide = study.images.filter((i) => i.span !== 'half');
+const half = study.images.filter((i) => i.span === 'half');
+---
+
+<article class="case">
+  <!-- Masthead --------------------------------------------------------- -->
+  <header class="case__top on-dark" data-tone="dark">
+    <div class="shell">
+      <a class="case__back" href={`${base}/#roles`}>
+        <Icon name="arrow-left" size={16} />
+        {ui[lang].backHome}
+      </a>
+
+      <p class="eyebrow case__company" data-reveal>{study.company}</p>
+      <h1 class="h2 case__title" data-reveal style="--reveal-delay:60ms">{study.tagline[lang]}</h1>
+
+      <dl class="case__meta" data-reveal style="--reveal-delay:140ms">
+        <div>
+          <dt>{ui[lang].role}</dt>
+          <dd>{study.role[lang]}</dd>
+        </div>
+        <div>
+          <dt>{ui[lang].period}</dt>
+          <dd>{study.period[lang]}</dd>
+        </div>
+        <div>
+          <dt>{ui[lang].company}</dt>
+          <dd>{study.company}</dd>
+        </div>
+      </dl>
+    </div>
+  </header>
+
+  <!-- Problem / solution ------------------------------------------------ -->
+  <section class="case__pair" data-tone="light">
+    <div class="shell case__pairGrid">
+      <div class="case__pairCol" data-reveal>
+        <p class="eyebrow">{labels.problem}</p>
+        <p class="case__pairText">{study.problem[lang]}</p>
+      </div>
+      <div class="case__pairCol" data-reveal style="--reveal-delay:90ms">
+        <p class="eyebrow">{labels.solution}</p>
+        <p class="case__pairText">{study.solution[lang]}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lead image slot ---------------------------------------------------- -->
+  {wide.length > 0 && (
+    <section class="case__media" data-tone="light">
+      <div class="shell">
+        {wide.map((img) => (
+          <figure class="case__figure" data-reveal>
+            <img src={`/cases/${img.src}`} alt={img.alt[lang]} loading="lazy" decoding="async" />
+            {img.caption && <figcaption>{img.caption[lang]}</figcaption>}
+          </figure>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- Narrative ---------------------------------------------------------- -->
+  <section class="case__body" data-tone="light">
+    <div class="shell">
+      {study.sections.map((s) => (
+        <div class="split case__section">
+          <p class="eyebrow" data-reveal>{s.title[lang]}</p>
+          <div class="case__sectionText prose-col">
+            {s.body[lang].map((para, n) => (
+              <p data-reveal style={`--reveal-delay:${n * 80}ms`}>{para}</p>
+            ))}
+          </div>
+        </div>
+      ))}
+
+      {half.length > 0 && (
+        <div class="case__pairMedia">
+          {half.map((img) => (
+            <figure class="case__figure" data-reveal>
+              <img src={`/cases/${img.src}`} alt={img.alt[lang]} loading="lazy" decoding="async" />
+              {img.caption && <figcaption>{img.caption[lang]}</figcaption>}
+            </figure>
+          ))}
+        </div>
+      )}
+
+      <div class="split case__section">
+        <p class="eyebrow" data-reveal>{labels.highlights}</p>
+        <ul class="case__wins prose-col">
+          {study.achievements[lang].map((a, n) => (
+            <li data-reveal style={`--reveal-delay:${Math.min(n, 4) * 70}ms`}>{a}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Next --------------------------------------------------------------- -->
+  <section class="case__next" data-tone="light">
+    <div class="shell">
+      <a class="nextcard" href={`${base}/work/${next.slug}/`}>
+        <span class="eyebrow">{ui[lang].nextCase}</span>
+        <span class="nextcard__row">
+          <span class="h2 nextcard__name">{next.company}</span>
+          <Icon name="arrow-up-right" size={28} class="nextcard__arrow" />
+        </span>
+        <span class="nextcard__role">{next.role[lang]}</span>
+      </a>
+    </div>
+  </section>
+</article>
+
+<style>
+  .case__top {
+    background: var(--dark);
+    color: var(--on-dark);
+    padding-block: clamp(7rem, 12vw, 10rem) clamp(3rem, 6vw, 5rem);
+    display: grid;
+    gap: 0;
+  }
+
+  .case__top > .shell { display: grid; gap: clamp(1.25rem, 2.5vw, 2rem); }
+
+  .case__back {
+    justify-self: start;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: var(--fs-small);
+    color: var(--on-dark-muted);
+    transition: color var(--dur-fast) var(--ease);
+  }
+
+  .case__back:hover { color: var(--on-dark); }
+
+  .case__title { max-width: 22ch; }
+
+  .case__meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+    gap: 1.25rem 2rem;
+    margin: 0;
+    padding-top: clamp(1rem, 2vw, 2rem);
+    border-top: 1px solid var(--dark-line);
+    max-width: 780px;
+  }
+
+  .case__meta dt {
+    font-size: var(--fs-small);
+    color: var(--on-dark-faint);
+    margin-bottom: 0.3rem;
+  }
+
+  .case__meta dd { margin: 0; font-size: 0.9375rem; }
+
+  /* --- Problem / solution -------------------------------------------------- */
+
+  .case__pair { padding-block: var(--section-y); }
+
+  .case__pairGrid {
+    display: grid;
+    gap: clamp(2rem, 4vw, 4rem);
+  }
+
+  @media (min-width: 820px) {
+    .case__pairGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  .case__pairCol { display: grid; gap: 1rem; align-content: start; }
+
+  .case__pairText {
+    font-size: var(--fs-lead);
+    line-height: 1.55;
+    max-width: 48ch;
+  }
+
+  /* --- Media --------------------------------------------------------------- */
+
+  .case__media { padding-bottom: clamp(3rem, 6vw, 5rem); }
+
+  .case__figure { margin: 0; display: grid; gap: 0.75rem; }
+
+  .case__figure img {
+    width: 100%;
+    border-radius: var(--r-card);
+    background: var(--lavender-soft);
+  }
+
+  .case__figure figcaption {
+    font-size: var(--fs-small);
+    color: var(--ink-faint);
+  }
+
+  .case__pairMedia {
+    display: grid;
+    gap: clamp(1rem, 2vw, 1.5rem);
+    padding-block: clamp(1rem, 3vw, 2.5rem);
+  }
+
+  @media (min-width: 720px) {
+    .case__pairMedia { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  /* --- Narrative ----------------------------------------------------------- */
+
+  .case__body { padding-bottom: var(--section-y); }
+
+  .case__section { padding-block: clamp(2rem, 4vw, 3.25rem); }
+  .case__section + .case__section { border-top: 1px solid #eeecf1; }
+
+  .case__sectionText { display: grid; gap: 1.15rem; color: var(--ink-muted); }
+
+  .case__wins { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.85rem; }
+
+  .case__wins li {
+    position: relative;
+    padding-left: 1.6rem;
+    color: var(--ink-muted);
+  }
+
+  .case__wins li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 10px;
+    height: 1px;
+    background: var(--ink-faint);
+  }
+
+  /* --- Next ---------------------------------------------------------------- */
+
+  .case__next { padding-bottom: clamp(3rem, 6vw, 5rem); }
+
+  .nextcard {
+    display: grid;
+    gap: 0.6rem;
+    background: var(--lavender);
+    border-radius: var(--r-band);
+    padding: clamp(2rem, 4vw, 3.5rem);
+    transition: background var(--dur) var(--ease);
+  }
+
+  .nextcard:hover { background: var(--lavender-soft); }
+
+  .nextcard__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .nextcard__arrow {
+    flex: none;
+    transition: transform var(--dur) var(--ease);
+  }
+
+  .nextcard:hover .nextcard__arrow { transform: translate(4px, -4px); }
+
+  .nextcard__role { font-size: var(--fs-small); color: var(--ink-muted); }
+</style>

@@ -1,0 +1,65 @@
+import type { L10n } from './types';
+
+export const site = {
+  name: 'Jordi Catalán',
+  initials: 'JC',
+  email: 'jcdcata@gmail.com',
+  linkedin: 'https://www.linkedin.com/in/jordicatalan',
+  location: 'Barcelona',
+  /** Drives canonical URLs, OG tags and the sitemap. */
+  origin: 'https://catdom.github.io',
+} as const;
+
+export const tagline: L10n = {
+  en: 'Design Leadership · Design Systems · UX Strategy',
+  es: 'Design Leadership · Design Systems · Estrategia UX',
+};
+
+export const availability: L10n<{ badge: string; note: string }> = {
+  en: { badge: '15+ years', note: 'Head of UX & Design Operations' },
+  es: { badge: '15+ años', note: 'Head of UX y Design Operations' },
+};
+
+export const nav: L10n<{ label: string; href: string }[]> = {
+  en: [
+    { label: 'Roles', href: '#roles' },
+    { label: 'Strengths', href: '#strengths' },
+    { label: 'Career', href: '#career' },
+  ],
+  es: [
+    { label: 'Puestos', href: '#roles' },
+    { label: 'Fortalezas', href: '#strengths' },
+    { label: 'Trayectoria', href: '#career' },
+  ],
+};
+
+export const ui: L10n<Record<string, string>> = {
+  en: {
+    contact: 'Get in touch',
+    scroll: 'Scroll down',
+    backToTop: 'Back to top',
+    backHome: 'Back to home',
+    rights: 'All rights reserved',
+    nextCase: 'Next role',
+    role: 'Role',
+    period: 'Period',
+    company: 'Company',
+    skip: 'Skip to content',
+    langLabel: 'Language',
+    menu: 'Menu',
+  },
+  es: {
+    contact: 'Hablemos',
+    scroll: 'Desliza',
+    backToTop: 'Volver arriba',
+    backHome: 'Volver al inicio',
+    rights: 'Todos los derechos reservados',
+    nextCase: 'Siguiente puesto',
+    role: 'Puesto',
+    period: 'Periodo',
+    company: 'Empresa',
+    skip: 'Ir al contenido',
+    langLabel: 'Idioma',
+    menu: 'Menú',
+  },
+};

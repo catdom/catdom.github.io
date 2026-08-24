@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout lang="en" title="Not found — Jordi Catalán" description="This page does not exist.">
+  <Nav lang="en" anchors={false} />
+  <main id="main" class="nf">
+    <div class="shell">
+      <p class="eyebrow">404</p>
+      <h1 class="h2">This page doesn’t exist.</h1>
+      <a class="pill pill--ghost" href="/">Back to home</a>
+    </div>
+  </main>
+  <Footer lang="en" />
+</Layout>
+
+<style>
+  .nf { padding-block: clamp(9rem, 18vw, 14rem) var(--section-y); }
+  .nf .shell { display: grid; gap: 1.25rem; justify-items: start; }
+</style>
