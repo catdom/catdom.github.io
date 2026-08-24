@@ -8,6 +8,11 @@ export const site = {
   location: 'Barcelona',
   /** Drives canonical URLs, OG tags and the sitemap. */
   origin: 'https://catdom.github.io',
+
+  /* ⚑ Search engines are locked out while the site is still being finished.
+     Flip to `true` to allow indexing — it drives the robots meta tag,
+     robots.txt and whether the sitemap is served. */
+  indexable: false,
 } as const;
 
 export const tagline: L10n = {

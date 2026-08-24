@@ -9,6 +9,9 @@ const urls = LANGS.flatMap((lang) => [
 ]);
 
 export const GET: APIRoute = () => {
+  // Nothing to submit while the site is closed to crawlers.
+  if (!site.indexable) return new Response('Not found', { status: 404 });
+
   const body = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map((u) => `  <url><loc>${u}</loc></url>`).join('\n')}
