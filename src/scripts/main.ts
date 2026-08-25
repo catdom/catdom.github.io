@@ -310,18 +310,6 @@ const contactForm = () => {
     'input[required], textarea[required]',
   )];
 
-  // The message box starts one line tall and grows with what is typed.
-  const grower = form.querySelector<HTMLTextAreaElement>('[data-autogrow]');
-  const grow = () => {
-    if (!grower) return;
-    grower.style.height = 'auto';
-    grower.style.height = `${grower.scrollHeight}px`;
-  };
-  if (grower) {
-    grower.addEventListener('input', grow);
-    grow();
-  }
-
   const setError = (field: HTMLInputElement | HTMLTextAreaElement, message: string) => {
     const wrap = field.closest<HTMLElement>('.field');
     const note = form.querySelector<HTMLElement>(`[data-err-for="${field.id}"]`);
@@ -351,9 +339,11 @@ const contactForm = () => {
     return '';
   };
 
+  /* Validation runs on submit only. Checking on blur meant a message could
+     appear the moment focus left a field, shifting everything below it while
+     the visitor was still filling the form in. Once a field has been flagged,
+     typing in it clears its own message. */
   fields.forEach((field) => {
-    // Only nag after they have had a go at the field, then keep it live.
-    field.addEventListener('blur', () => setError(field, check(field)));
     field.addEventListener('input', () => {
       if (field.closest('.field')?.hasAttribute('data-invalid')) setError(field, check(field));
     });
