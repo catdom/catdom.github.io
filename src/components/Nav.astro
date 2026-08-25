@@ -94,7 +94,38 @@ const home = `${langPrefix(lang)}/`;
     z-index: 50;
     /* Sits over both light and dark sections; the tone is swapped by JS. */
     color: var(--ink);
-    transition: color var(--dur) var(--ease);
+    transition:
+      color var(--dur) var(--ease),
+      background-color var(--dur) var(--ease),
+      border-color var(--dur) var(--ease);
+    /* Declared transparent up front so the border can transition in rather
+       than appearing the instant the class lands. */
+    background-color: transparent;
+    border-bottom: 1px solid transparent;
+  }
+
+  /* Once the page has moved, the bar earns a translucent band the width of
+     the viewport. The tone follows the section underneath. */
+  :global(.nav.is-scrolled) {
+    background-color: color-mix(in srgb, var(--paper) 72%, transparent);
+    border-bottom-color: var(--lavender-line);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+
+  :global(.nav.is-scrolled.is-on-dark) {
+    background-color: color-mix(in srgb, var(--dark) 68%, transparent);
+    border-bottom-color: var(--dark-line);
+  }
+
+  /* The sheet already covers the viewport; a band and a rule across the bar
+     would only cut it in half. */
+  :global(.nav.menu-open),
+  :global(.nav.menu-open.is-scrolled) {
+    background-color: transparent;
+    border-bottom-color: transparent;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
   }
 
   .nav__inner {
