@@ -55,32 +55,35 @@ Everything else is drawn from the CV and the case texts.
 
 ## Adding case study images
 
-Drop files into `public/cases/`, then list them on the case in
-`src/data/cases.ts`:
+Drop files into `public/cases/`. They are matched **by name, without the
+extension** — `.webp`, `.png`, `.jpg`, `.avif` and `.gif` all work, and the
+match is case-insensitive, so no renaming or converting is needed.
+
+Slots are declared on the case in `src/data/cases.ts`:
 
 ```ts
 images: [
   {
-    src: 'fotocasa-tokens.png',
+    src: 'fotocasa-3',                  // matches fotocasa-3.webp, .png, .jpg…
     span: 'wide',                       // full content width
     alt: { en: 'SUI token reference', es: 'Referencia de tokens de SUI' },
     caption: { en: 'Design tokens', es: 'Design tokens' },
   },
-  { src: 'fotocasa-a.png', span: 'half', alt: { en: '…', es: '…' } },
-  { src: 'fotocasa-b.png', span: 'half', alt: { en: '…', es: '…' } },
+  { src: 'fotocasa-4', span: 'half', alt: { en: '…', es: '…' } },
+  { src: 'fotocasa-5', span: 'half', alt: { en: '…', es: '…' } },
 ]
 ```
 
-- `span: 'wide'` renders above the narrative, full width of the content column.
-- `span: 'half'` renders in a two-up row inside the narrative — add them in pairs.
+- A slot with **no matching file renders nothing** and does not break the
+  layout, so files can be added one at a time and each appears as it lands.
+- The first `wide` image opens the case; the rest are dealt out between the
+  narrative sections. `half` images sit in a two-up row — add them in pairs.
 - `alt` is required in both languages. `caption` is optional.
-- An empty `images: []` renders nothing at all; the layout does not break.
+- If one name exists in several formats, the newest wins, in the order
+  avif → webp → png → jpg → jpeg → gif → svg.
 
 **Sizes.** Wide slots render up to ~1290px across, half slots up to ~630px.
-Export at 2× (2580px / 1260px wide) and compress — WebP or AVIF preferred, PNG
-for flat UI, JPEG for photography.
-
----
+Export at 2× (2580px / 1260px wide) and compress.
 
 ## Deploying to `catdom.github.io`
 

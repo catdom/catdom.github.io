@@ -1,5 +1,6 @@
 ---
-import { existsSync } from 'node:fs';
+import { readdirSync } from 'node:fs';
+import { extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { ui } from '../data/site';
 import { cases, type CaseStudy } from '../data/cases';
@@ -18,11 +19,37 @@ const labels = {
   es: { problem: 'El problema', solution: 'La solución', highlights: 'Lo más relevante' },
 }[lang];
 
-/* Slots whose file has not been added yet are dropped at build time, so an
-   image can be listed before it exists without leaving a broken <img>. */
-const present = study.images.filter((image) =>
-  existsSync(fileURLToPath(new URL(`../../public/cases/${image.src}`, import.meta.url))),
-);
+/* Images are matched by NAME, not by extension: whatever format a screenshot
+   happened to be exported in, dropping it into public/cases/ is enough. Slots
+   with no matching file are dropped at build time, so a slot can be declared
+   before its file exists without leaving a broken <img>. */
+const CASE_DIR = fileURLToPath(new URL('../../public/cases/', import.meta.url));
+
+let onDisk: string[] = [];
+try {
+  onDisk = readdirSync(CASE_DIR);
+} catch {
+  onDisk = [];
+}
+
+const stem = (name: string) => name.replace(/\.[^.]+$/, '').toLowerCase();
+
+/* Order only matters when one name exists in several formats — then every
+   build has to pick the same one. */
+const BY_FORMAT = ['.avif', '.webp', '.png', '.jpg', '.jpeg', '.gif', '.svg'];
+const rank = (file: string) => {
+  const i = BY_FORMAT.indexOf(extname(file).toLowerCase());
+  return i === -1 ? BY_FORMAT.length : i;
+};
+
+const resolve = (name: string) =>
+  onDisk
+    .filter((file) => stem(file) === stem(name))
+    .sort((a, b) => rank(a) - rank(b))[0];
+
+const present = study.images
+  .map((image) => ({ ...image, file: resolve(image.src) }))
+  .filter((image): image is typeof image & { file: string } => Boolean(image.file));
 
 const wide = present.filter((i) => i.span !== 'half');
 const half = present.filter((i) => i.span === 'half');
@@ -83,7 +110,7 @@ const trailing = spread.slice(study.sections.length);
     <section class="case__media" data-tone="light">
       <div class="shell">
         <figure class="case__figure" data-reveal>
-          <img src={`/cases/${lead.src}`} alt={lead.alt[lang]} loading="lazy" decoding="async" />
+          <img src={`/cases/${lead.file}`} alt={lead.alt[lang]} loading="lazy" decoding="async" />
           {lead.caption && <figcaption>{lead.caption[lang]}</figcaption>}
         </figure>
       </div>
@@ -108,7 +135,7 @@ const trailing = spread.slice(study.sections.length);
 
             {follows && (
               <figure class="case__figure case__figure--inline" data-reveal>
-                <img src={`/cases/${follows.src}`} alt={follows.alt[lang]} loading="lazy" decoding="async" />
+                <img src={`/cases/${follows.file}`} alt={follows.alt[lang]} loading="lazy" decoding="async" />
                 {follows.caption && <figcaption>{follows.caption[lang]}</figcaption>}
               </figure>
             )}
@@ -118,7 +145,7 @@ const trailing = spread.slice(study.sections.length);
 
       {trailing.map((img) => (
         <figure class="case__figure case__figure--inline" data-reveal>
-          <img src={`/cases/${img.src}`} alt={img.alt[lang]} loading="lazy" decoding="async" />
+          <img src={`/cases/${img.file}`} alt={img.alt[lang]} loading="lazy" decoding="async" />
           {img.caption && <figcaption>{img.caption[lang]}</figcaption>}
         </figure>
       ))}
@@ -127,7 +154,7 @@ const trailing = spread.slice(study.sections.length);
         <div class="case__pairMedia">
           {half.map((img) => (
             <figure class="case__figure" data-reveal>
-              <img src={`/cases/${img.src}`} alt={img.alt[lang]} loading="lazy" decoding="async" />
+              <img src={`/cases/${img.file}`} alt={img.alt[lang]} loading="lazy" decoding="async" />
               {img.caption && <figcaption>{img.caption[lang]}</figcaption>}
             </figure>
           ))}
