@@ -1,18 +1,26 @@
 import type { L10n } from './types';
 
 /**
- * PROVISIONAL — the hero copy is a first pass, flagged for review.
- * Everything else on the page is drawn from the CV and the case texts.
+ * The headline reads "<stem> <rotating phrase>", with the phrases cycling in
+ * place. Keep every phrase a similar length — a much longer one makes the
+ * line wrap and the block below it jump.
  */
-export const hero: L10n<{ eyebrow: string; lines: string[]; body: string }> = {
+export const hero: L10n<{
+  eyebrow: string;
+  stem: string[];
+  rotating: string[];
+  body: string;
+}> = {
   en: {
-    eyebrow: 'Design Leadership · Barcelona',
-    lines: ['Design that scales,', 'teams that ship'],
+    eyebrow: "Hey, I'm Jordi Catalán",
+    stem: ['Design leadership', 'focused on'],
+    rotating: ['UX strategy.', 'design systems.', 'business outcomes.'],
     body: 'Fifteen years turning design into a system: UX strategy, design operations and design systems for marketplaces used by millions.',
   },
   es: {
-    eyebrow: 'Design Leadership · Barcelona',
-    lines: ['Diseño que escala,', 'equipos que entregan'],
+    eyebrow: 'Hola, soy Jordi Catalán',
+    stem: ['Liderazgo de diseño', 'enfocado en'],
+    rotating: ['estrategia UX.', 'sistemas de diseño.', 'resultados de negocio.'],
     body: 'Quince años convirtiendo el diseño en sistema: estrategia UX, design operations y design systems para marketplaces de millones de usuarios.',
   },
 };

@@ -22,9 +22,25 @@ const a = availability[lang];
     <p class="chip hero__eyebrow" data-reveal>{h.eyebrow}</p>
 
     <h1 class="display hero__title">
-      {h.lines.map((line, i) => (
+      {h.stem.map((line, i) => (
         <span class="hero__line" data-reveal style={`--reveal-delay:${80 + i * 90}ms`}>{line}</span>
       ))}
+
+      {/* The rotating tail. Every phrase is in the markup: the whole headline
+          is readable to search engines and to anyone without JavaScript, who
+          simply sees the first one. */}
+      <span
+        class="hero__line hero__rotator"
+        data-rotator
+        data-reveal
+        style={`--reveal-delay:${80 + h.stem.length * 90}ms`}
+      >
+        {h.rotating.map((phrase, i) => (
+          <span class="hero__phrase" data-phrase aria-hidden={i > 0 ? 'true' : undefined}>
+            {phrase}
+          </span>
+        ))}
+      </span>
     </h1>
 
     <p class="lead hero__body" data-reveal style="--reveal-delay:280ms">{h.body}</p>
@@ -77,11 +93,56 @@ const a = availability[lang];
 
   .hero__title {
     display: grid;
-    /* Two display lines that reveal in sequence. */
-    max-width: 20ch;
+    justify-items: center;
+    max-width: min(100%, 22ch);
+    /* Its own scale rather than --fs-display: the rotating tail is the longest
+       line on the page and must not break, so on narrow screens the headline
+       has to be allowed smaller than the shared display minimum. */
+    font-size: clamp(1.6rem, 8.1vw, 6.75rem);
   }
 
   .hero__line { display: block; }
+
+  /* --- Rotating tail -------------------------------------------------------
+     Each phrase is stacked in the same grid cell, so the line keeps the width
+     of the longest one and nothing below it moves as they swap. The box is
+     clipped, and phrases travel through it: out through the top, in from
+     the bottom. */
+
+  .hero__rotator {
+    display: grid;
+    grid-template-areas: 'phrase';
+    justify-items: center;
+    overflow: hidden;
+    /* Descenders and the clip would fight without a little room. */
+    padding-bottom: 0.12em;
+    margin-bottom: -0.12em;
+  }
+
+  .hero__phrase {
+    grid-area: phrase;
+    /* A phrase that wraps would make the box two lines tall for all of them. */
+    white-space: nowrap;
+    /* Held below the line until it is this phrase's turn. */
+    transform: translateY(100%);
+    opacity: 0;
+    transition:
+      transform var(--roll, 260ms) cubic-bezier(0.22, 1, 0.36, 1),
+      opacity var(--roll, 260ms) cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .hero__phrase[data-in] { transform: translateY(0); opacity: 1; }
+  .hero__phrase[data-out] { transform: translateY(-100%); opacity: 0; }
+
+  /* Without JavaScript the first phrase simply sits there. */
+  .hero__rotator:not([data-ready]) .hero__phrase:first-child {
+    transform: none;
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__phrase { transition-duration: 1ms; }
+  }
 
   .hero__body { max-width: 46ch; color: #4e4a56; }
 
