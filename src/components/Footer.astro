@@ -36,15 +36,17 @@ const year = new Date().getFullYear();
               data-msg-error={ui[lang].formError}
               data-email={site.email}
             >
-              <div class="cform__row">
-                <div class="field">
-                  <label for="cf-name">{ui[lang].formName}</label>
+              <div class="field">
+                <label for="cf-name">{ui[lang].formName}</label>
+                <div class="field__control">
                   <input id="cf-name" name="name" type="text" required autocomplete="name" />
                   <p class="field__err" data-err-for="cf-name" hidden></p>
                 </div>
+              </div>
 
-                <div class="field">
-                  <label for="cf-email">{ui[lang].formEmail}</label>
+              <div class="field">
+                <label for="cf-email">{ui[lang].formEmail}</label>
+                <div class="field__control">
                   <input id="cf-email" name="email" type="email" required autocomplete="email" />
                   <p class="field__err" data-err-for="cf-email" hidden></p>
                 </div>
@@ -52,8 +54,10 @@ const year = new Date().getFullYear();
 
               <div class="field">
                 <label for="cf-message">{ui[lang].formMessage}</label>
-                <textarea id="cf-message" name="message" rows="4" required></textarea>
-                <p class="field__err" data-err-for="cf-message" hidden></p>
+                <div class="field__control">
+                  <textarea id="cf-message" name="message" rows="1" required data-autogrow></textarea>
+                  <p class="field__err" data-err-for="cf-message" hidden></p>
+                </div>
               </div>
 
               {/* Gives the notification email a useful subject line instead
@@ -72,7 +76,7 @@ const year = new Date().getFullYear();
               />
 
               <div class="cform__foot">
-                <button class="pill pill--light" type="submit" data-send>
+                <button class="cform__send" type="submit" data-send>
                   {ui[lang].formSend}
                 </button>
                 <p class="cform__status" data-status role="status" aria-live="polite"></p>
@@ -146,9 +150,12 @@ const year = new Date().getFullYear();
 
   .foot__email:hover { border-color: var(--lavender); color: var(--lavender); }
 
-  /* --- Contact form -------------------------------------------------------- */
+  /* --- Contact form --------------------------------------------------------
+     Laid out as a list of labelled rows rather than boxed inputs: a small
+     letterspaced label in the left rail, the value on a single underline to
+     the right, hairlines between. */
 
-  .foot__contact { display: grid; gap: 1.5rem; }
+  .foot__contact { display: grid; gap: clamp(1.75rem, 3vw, 2.5rem); }
 
   .foot__formTitle {
     font-size: clamp(1.6rem, 4.4vw, 2.75rem);
@@ -158,49 +165,72 @@ const year = new Date().getFullYear();
     margin: 0;
   }
 
-  .cform { display: grid; gap: 1.25rem; max-width: 46rem; }
+  .cform { max-width: 52rem; }
 
-  .cform__row { display: grid; gap: 1.25rem; }
-
-  @media (min-width: 620px) {
-    .cform__row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .field {
+    display: grid;
+    align-items: start;
+    gap: 0.35rem clamp(1rem, 3vw, 2.5rem);
+    padding-block: clamp(0.9rem, 1.8vw, 1.35rem);
+    border-top: 1px solid var(--dark-line);
   }
-
-  .field { display: grid; gap: 0.5rem; }
 
   .field label {
-    font-size: var(--fs-small);
-    color: var(--on-dark-muted);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--on-dark-faint);
+    /* Optically level with the first line of the value beside it. */
+    padding-top: 0.45rem;
   }
+
+  .field__control { display: grid; gap: 0.5rem; min-width: 0; }
 
   .field input,
   .field textarea {
     font: inherit;
     color: var(--on-dark);
-    background: var(--dark-raised);
-    border: 1px solid var(--dark-line);
-    border-radius: var(--r-card);
-    padding: 0.85rem 1rem;
+    background: none;
+    border: 0;
+    border-bottom: 1px solid var(--dark-line);
+    border-radius: 0;
+    padding: 0.15rem 0 0.5rem;
     width: 100%;
+    /* An underline field is naturally short; this keeps the tap target at the
+       44px floor without boxing it back in. An input centres its own text in
+       the extra room. */
+    min-height: 2.75rem;
     /* Below this iOS zooms the page when the field takes focus. */
-    font-size: max(1rem, 16px);
+    font-size: max(1.05rem, 16px);
     transition: border-color var(--dur-fast) var(--ease);
   }
 
-  .field textarea { resize: vertical; min-height: 7rem; }
+  /* Starts as a single underline like the rows above it and grows with the
+     text, so all three read as the same control at rest. */
+  .field textarea {
+    resize: none;
+    overflow: hidden;
+    line-height: 1.5;
+  }
+
+  .field input::placeholder,
+  .field textarea::placeholder { color: var(--on-dark-faint); }
 
   .field input:hover,
-  .field textarea:hover { border-color: var(--on-dark-faint); }
+  .field textarea:hover { border-bottom-color: var(--on-dark-faint); }
 
-  .field input:focus-visible,
-  .field textarea:focus-visible {
-    border-color: var(--lavender);
-    outline: 2px solid var(--lavender);
-    outline-offset: 1px;
+  /* The underline is the focus indicator, so it has to carry real weight —
+     hence a box-shadow rather than a thicker border, which would shift the
+     text by a pixel as it lands. */
+  .field input:focus,
+  .field textarea:focus {
+    outline: none;
+    border-bottom-color: var(--lavender);
+    box-shadow: 0 1px 0 0 var(--lavender);
   }
 
   .field[data-invalid] input,
-  .field[data-invalid] textarea { border-color: #e88b8b; }
+  .field[data-invalid] textarea { border-bottom-color: #e88b8b; }
 
   .field__err {
     font-size: var(--fs-small);
@@ -215,17 +245,34 @@ const year = new Date().getFullYear();
     flex-wrap: wrap;
     align-items: center;
     gap: 1rem 1.5rem;
+    padding-top: clamp(1.25rem, 2.4vw, 1.75rem);
+    border-top: 1px solid var(--dark-line);
   }
 
-  .pill--light {
+  /* Bordered, letterspaced and quiet, like the reference's COPIAR. */
+  .cform__send {
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--on-dark);
+    background: none;
+    border: 1px solid var(--on-dark-faint);
+    border-radius: var(--r-pill);
+    padding: 0.85rem 1.6rem;
+    transition:
+      background var(--dur-fast) var(--ease),
+      color var(--dur-fast) var(--ease),
+      border-color var(--dur-fast) var(--ease),
+      opacity var(--dur-fast) var(--ease);
+  }
+
+  .cform__send:hover {
     background: var(--lavender);
+    border-color: var(--lavender);
     color: var(--ink);
-    border: 1px solid transparent;
-    transition: background var(--dur-fast) var(--ease), opacity var(--dur-fast) var(--ease);
   }
 
-  .pill--light:hover { background: var(--paper); }
-  .pill--light[disabled] { opacity: 0.55; cursor: default; }
+  .cform__send[disabled] { opacity: 0.45; cursor: default; }
 
   .cform__status {
     margin: 0;
@@ -253,6 +300,10 @@ const year = new Date().getFullYear();
   }
 
   .foot__orEmail a:hover { color: var(--on-dark); border-color: var(--on-dark); }
+
+  @media (min-width: 620px) {
+    .field { grid-template-columns: 8.5rem minmax(0, 1fr); }
+  }
 
   .foot__bar {
     display: flex;
