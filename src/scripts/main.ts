@@ -421,85 +421,48 @@ const rotatingHeadline = () => {
   reduced.addEventListener('change', () => (reduced.matches ? stop() : start()));
 };
 
-/* --- 8. Tone fade --------------------------------------------------------- */
+/* --- 8. Tone, driven by scroll -------------------------------------------- */
 
-/* The section below the hero opens on the hero's own ground, so the two read
-   as one surface, and crosses to dark once a third of it has gone past the
-   top of the viewport. The header probe reads `data-tone`, so that is updated
-   alongside the class — otherwise the bar would stay in its light tone over a
-   dark section. */
+/* The panel below the hero opens on the hero's own ground and turns dark as it
+   arrives. The colour is interpolated from the scroll position rather than
+   animated on a timer — in the reference it tracks the finger, and a timed
+   fade that fires at a threshold always reads as detached from the scroll.
+   The ink cannot cross-fade with the ground (both pass through the same
+   luminance and the text disappears), so it cuts at the halfway point. */
 
-const toneFade = () => {
-  const section = document.querySelector<HTMLElement>('[data-tonefade]');
-  if (!section) return;
+const toneScroll = () => {
+  const panel = document.querySelector<HTMLElement>('[data-tonefade]');
+  if (!panel) return;
 
   const nav = document.querySelector<HTMLElement>('[data-nav]');
   let queued = false;
+  let last = -1;
 
   const update = () => {
     queued = false;
-    const rect = section.getBoundingClientRect();
-    /* Measured against the viewport, not the section's own height. Keyed to
-       the section, a third of it is a third of a very tall block on a phone,
-       where the list stacks — so the change landed hundreds of pixels of
-       scrolling too late. This fires as the section climbs into view: its top
-       edge reaching 40% up the screen still leaves the hero's ground visible
-       above it, so the continuity reads before the ground turns. */
-    const crossed = rect.top <= window.innerHeight * 0.4;
+    const rect = panel.getBoundingClientRect();
+    const vh = window.innerHeight;
 
-    if (crossed === section.classList.contains('is-dark')) return;
+    /* Starts as the panel's top edge rises past three quarters of the screen
+       and completes over the next 55% of a viewport of scrolling, so it is
+       done about when the panel has settled into view. */
+    const start = vh * 0.75;
+    const span = vh * 0.55;
+    const raw = (start - rect.top) / span;
+    const p = Math.min(1, Math.max(0, raw));
+    // Eased so the ends settle rather than clipping abruptly.
+    const eased = p * p * (3 - 2 * p);
 
-    section.classList.toggle('is-dark', crossed);
-    section.dataset.tone = crossed ? 'dark' : 'light';
-    // Re-run the header probe now rather than waiting for the next scroll tick.
-    nav?.dispatchEvent(new Event('tonecheck'));
-  };
-
-  const onScroll = () => {
-    if (queued) return;
-    queued = true;
-    requestAnimationFrame(update);
-  };
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll, { passive: true });
-  update();
-};
-
-/* --- 9. Panels growing into place --------------------------------------- */
-
-/* The rounded panels are taller than the viewport, so the reveal observer's
-   threshold fired the moment their top edge appeared at the very bottom of
-   the screen — the growth played out where nobody was looking and the panel
-   was already settled by the time it was worth reading. This waits until the
-   panel's top has climbed a little way up the viewport. */
-
-const growPanels = () => {
-  const panels = [...document.querySelectorAll<HTMLElement>('[data-grow]')];
-  if (!panels.length) return;
-
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduced) {
-    panels.forEach((el) => el.classList.add('is-in'));
-    return;
-  }
-
-  let queued = false;
-
-  const update = () => {
-    queued = false;
-    let pending = false;
-
-    for (const panel of panels) {
-      if (panel.classList.contains('is-in')) continue;
-      const rect = panel.getBoundingClientRect();
-      if (rect.top <= window.innerHeight * 0.82) panel.classList.add('is-in');
-      else pending = true;
+    if (Math.abs(eased - last) > 0.002) {
+      panel.style.setProperty('--tone-p', eased.toFixed(3));
+      last = eased;
     }
 
-    if (!pending) {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
+    const dark = eased >= 0.5;
+    if (dark !== panel.classList.contains('is-dark')) {
+      panel.classList.toggle('is-dark', dark);
+      panel.dataset.tone = dark ? 'dark' : 'light';
+      nav?.dispatchEvent(new Event('tonecheck'));
     }
   };
 
@@ -520,5 +483,4 @@ headerTone();
 smoothScroll();
 contactForm();
 rotatingHeadline();
-toneFade();
-growPanels();
+toneScroll();

@@ -11,7 +11,7 @@ const year = new Date().getFullYear();
 
 <footer class="foot on-dark" id="contact" data-tone="dark">
   <div class="shell">
-    <div class="foot__card" data-grow>
+    <div class="foot__card">
       <p class="foot__avail" data-reveal>
         <span class="chip">{a.badge}</span>
         <span>{a.note}</span>
@@ -104,7 +104,8 @@ const year = new Date().getFullYear();
   .foot { padding-block: clamp(1rem, 3vw, 2.5rem) clamp(1rem, 3vw, 2.5rem); background: var(--paper); }
 
   .foot__card {
-    --grow-bg: var(--dark);
+    background: var(--dark);
+    border-radius: var(--r-band);
     --pad-x: clamp(2rem, 3.5vw, 3.5rem);
     color: var(--on-dark);
     padding: clamp(2.5rem, 5vw, 4.5rem) var(--pad-x);

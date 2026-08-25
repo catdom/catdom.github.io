@@ -50,11 +50,6 @@
 
   /* Motion */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  /* --ease is a hard ease-out: 96% of the way in half the time. Right for a
-     hover or a reveal, wrong for a long ambient move, where it reads as a
-     snap. This spreads the motion evenly instead. */
-  --ease-soft: cubic-bezier(0.45, 0, 0.55, 1);
-  --dur-slow: 700ms;
   --dur: 520ms;
   --dur-fast: 240ms;
 }
@@ -306,44 +301,11 @@ a { color: inherit; text-decoration: none; }
   transform: none;
 }
 
-/* A rounded panel enters inset and settles to full width, so it reads as
-   growing into place.
-
-   The colour lives on a pseudo-element rather than the panel itself, and that
-   is what moves. Two earlier attempts were worse: animating margin or padding
-   re-flowed everything inside on every frame, so what moved was the content
-   rather than the panel; clipping held the content still but could never
-   inset further than the panel's own padding — 20px on a phone — without
-   cutting into the text. Painting the ground separately has neither limit, so
-   the travel can be large and the content never moves. */
-[data-grow] {
-  /* Bounded by the panel's own horizontal padding: any further and the
-     content would hang off the ground while it is still inset. Each panel
-     sets --pad-x and the travel follows it. */
-  --grow-inset: var(--pad-x);
-  position: relative;
-  isolation: isolate;
-}
-
-[data-grow]::before {
-  content: '';
-  position: absolute;
-  inset: 0 var(--grow-inset);
-  z-index: -1;
-  background: var(--grow-bg);
-  border-radius: var(--r-band);
-  transition: inset var(--dur-slow) var(--ease-soft);
-}
-
-[data-grow].is-in::before { inset: 0; }
-
 /* No JS, or reduced motion: show everything immediately. */
 .no-js [data-reveal] { opacity: 1; transform: none; }
-.no-js [data-grow]::before { inset: 0; }
 
 @media (prefers-reduced-motion: reduce) {
   [data-reveal] { opacity: 1; transform: none; }
-  [data-grow]::before { inset: 0; transition: none; }
 }
 
 .visually-hidden {
