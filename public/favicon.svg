@@ -1,7 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="7" fill="#190a1d"/>
-  <path d="M6 24V9l5 8 5-8v15" fill="none" stroke="#dde3fb" stroke-width="2.6"
-        stroke-linejoin="round" stroke-linecap="round"/>
-  <path d="M27 9v8a6 6 0 0 1-6 6h-1" fill="none" stroke="#dde3fb" stroke-width="2.6"
-        stroke-linecap="round"/>
+  <!-- No background: the triangle sits on whatever the browser's tab strip is,
+       and follows the viewer's colour scheme. An SVG favicon carries its own
+       media query, so this needs no second file. -->
+  <style>
+    path { fill: #100a16; stroke: #100a16; }
+    @media (prefers-color-scheme: dark) {
+      path { fill: #f2f0fa; stroke: #f2f0fa; }
+    }
+  </style>
+  <!-- Drawn inset and stroked with a round join, which rounds the three
+       corners without hand-built arcs. -->
+  <path d="M16 9 25 23 7 23Z" stroke-width="4" stroke-linejoin="round"/>
 </svg>
