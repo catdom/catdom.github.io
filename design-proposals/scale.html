@@ -1,0 +1,405 @@
+<title>Built for Scale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&display=swap">
+<style>
+  :root {
+    --void: #07080d;
+    --void-2: #0d0f18;
+    --chalk: #edeef5;
+    --chalk-2: #9a9db0;
+    --chalk-3: #5b5e70;
+    --lilac: #bab4ff;
+    --bolt: #4560ff;
+    --line: #1c1f2c;
+
+    --disp: 'Bricolage Grotesque', system-ui, sans-serif;
+    --body: 'Newsreader', Georgia, serif;
+
+    --gut: clamp(1.15rem, 4vw, 4rem);
+    --maxw: 1500px;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--void);
+    color: var(--chalk);
+    font-family: var(--body);
+    font-size: clamp(1rem, 1.15vw, 1.15rem);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .wrap { max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gut); }
+
+  h1, h2, h3, .num {
+    font-family: var(--disp);
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: -0.045em;
+    text-wrap: balance;
+  }
+
+  p { margin: 0; }
+
+  .eyebrow {
+    font-family: var(--disp);
+    font-weight: 500;
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--chalk-3);
+  }
+
+  /* --- Hero: the thesis, one word per line, rising ---------------------- */
+
+  .hero {
+    min-height: 100svh;
+    display: grid;
+    align-content: center;
+    gap: clamp(1.5rem, 4vh, 3rem);
+    padding-block: clamp(6rem, 14vh, 10rem) clamp(3rem, 8vh, 5rem);
+    position: relative;
+  }
+
+  /* A slow field of light behind the type &mdash; atmosphere, not ornament. */
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: -20% 0 0;
+    background: radial-gradient(75% 50% at 12% 30%, rgba(69, 96, 255, 0.18), transparent 70%),
+                radial-gradient(62% 45% at 92% 15%, rgba(186, 180, 255, 0.12), transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .hero h1 {
+    font-size: clamp(3.25rem, 18vw, 11rem);
+    line-height: 0.86;
+    font-weight: 800;
+    letter-spacing: -0.035em;
+  }
+
+  .hero h1 span { display: block; overflow: hidden; }
+  .hero h1 i {
+    display: block;
+    font-style: normal;
+    transform: translateY(105%);
+    animation: up 900ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: var(--d, 0ms);
+  }
+  @keyframes up { to { transform: none; } }
+
+  .hero h1 .lit { color: var(--lilac); }
+
+  .hero__sub {
+    max-width: 44ch;
+    font-size: clamp(1.05rem, 1.5vw, 1.4rem);
+    color: var(--chalk-2);
+    font-weight: 300;
+    opacity: 0;
+    animation: fade 900ms ease 700ms forwards;
+  }
+  @keyframes fade { to { opacity: 1; } }
+
+  .hero__foot {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem 2rem;
+    padding-top: clamp(1.5rem, 4vh, 2.5rem);
+    border-top: 1px solid var(--line);
+    opacity: 0;
+    animation: fade 900ms ease 900ms forwards;
+  }
+
+  /* --- Marquee: the brands the system reached --------------------------- */
+
+  .belt {
+    border-block: 1px solid var(--line);
+    padding-block: clamp(1rem, 2.5vh, 1.6rem);
+    overflow: hidden;
+    background: var(--void-2);
+  }
+
+  .belt__run { display: flex; gap: 0; width: max-content; animation: slide 38s linear infinite; }
+  .belt:hover .belt__run { animation-play-state: paused; }
+  @keyframes slide { to { transform: translateX(-50%); } }
+
+  .belt__run span {
+    font-family: var(--disp);
+    font-weight: 500;
+    font-size: clamp(1rem, 2vw, 1.6rem);
+    letter-spacing: -0.02em;
+    color: var(--chalk-3);
+    padding-inline: clamp(1rem, 2.5vw, 2.25rem);
+    white-space: nowrap;
+  }
+  .belt__run span::after { content: '\00b7'; margin-left: clamp(1rem, 2.5vw, 2.25rem); color: var(--bolt); }
+
+  /* --- Numbers: scale, stated -------------------------------------------- */
+
+  section { padding-block: clamp(3.5rem, 10vh, 7.5rem); }
+
+  .stack { display: grid; gap: clamp(2rem, 6vh, 4rem); }
+
+  .figures { display: grid; gap: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3rem); }
+  @media (min-width: 700px) { .figures { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1100px) { .figures { grid-template-columns: repeat(4, 1fr); } }
+
+  .figure { display: grid; gap: 0.5rem; align-content: start; border-top: 1px solid var(--line); padding-top: 1.25rem; }
+  .num {
+    font-size: clamp(3.25rem, 7vw, 6rem);
+    line-height: 0.9;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    color: var(--chalk);
+  }
+  .figure p:not(.num) { color: var(--chalk-2); font-size: 0.98rem; max-width: 26ch; font-weight: 300; }
+
+  /* --- Roles: heavy rows that come forward ------------------------------ */
+
+  .roles { display: grid; }
+
+  .role {
+    display: grid;
+    gap: 0.4rem 2rem;
+    padding-block: clamp(1.5rem, 4vh, 2.75rem);
+    border-top: 1px solid var(--line);
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    transition: opacity 320ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .roles:hover .role { opacity: 0.38; }
+  .roles:hover .role:hover { opacity: 1; }
+  .role:focus-visible { outline: 2px solid var(--bolt); outline-offset: 6px; }
+
+  @media (min-width: 860px) {
+    .role { grid-template-columns: 8rem minmax(0, 1fr) 14rem; align-items: baseline; }
+  }
+
+  .role__yr {
+    font-family: var(--disp);
+    font-weight: 500;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    color: var(--chalk-3);
+    font-variant-numeric: tabular-nums;
+  }
+  .role__co {
+    font-family: var(--disp);
+    font-weight: 700;
+    font-size: clamp(1.6rem, 4.2vw, 3.5rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+  .role__co em { font-style: normal; color: var(--lilac); }
+  .role__what { color: var(--chalk-2); font-weight: 300; font-size: 0.98rem; max-width: 34ch; }
+
+  /* --- Disciplines: serif prose against the display --------------------- */
+
+  .craft { display: grid; gap: clamp(2rem, 5vw, 3.5rem); }
+  @media (min-width: 800px) { .craft { grid-template-columns: 1fr 1fr; } }
+
+  .craft article { display: grid; gap: 0.75rem; align-content: start; }
+  .craft h3 {
+    font-size: clamp(1.35rem, 2.4vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+  .craft h3 b { color: var(--bolt); font-weight: 700; }
+  .craft p { color: var(--chalk-2); font-weight: 300; max-width: 46ch; }
+
+  /* --- Close ------------------------------------------------------------- */
+
+  footer { padding-block: clamp(4.5rem, 14vh, 10rem) clamp(3rem, 8vh, 5rem); border-top: 1px solid var(--line); }
+
+  .call { display: grid; gap: clamp(1.5rem, 4vh, 2.5rem); }
+  .call a {
+    font-family: var(--disp);
+    font-weight: 800;
+    font-size: clamp(1.75rem, 7vw, 5.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.05em;
+    color: var(--chalk);
+    text-decoration: none;
+    justify-self: start;
+    transition: color 260ms ease;
+  }
+  .call a:hover, .call a:focus-visible { color: var(--lilac); outline: none; }
+
+  .call__meta { display: flex; flex-wrap: wrap; gap: 0.6rem 2rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+
+  /* --- Reveal ------------------------------------------------------------ */
+
+  [data-r] { opacity: 0; transform: translateY(20px); }
+  .r-in [data-r] {
+    animation: rise 720ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: var(--d, 0ms);
+  }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    [data-r] { opacity: 1; transform: none; animation: none !important; }
+    .hero h1 i, .hero__sub, .hero__foot { transform: none; opacity: 1; animation: none; }
+    .belt__run { animation: none; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <p class="eyebrow" style="opacity:0;animation:fade 700ms ease 200ms forwards">Jordi Catal&aacute;n &middot; Barcelona</p>
+
+    <h1>
+      <span><i style="--d:120ms">Design</i></span>
+      <span><i style="--d:220ms">that holds</i></span>
+      <span><i class="lit" style="--d:320ms">at scale.</i></span>
+    </h1>
+
+    <p class="hero__sub">Fifteen years making design survive contact with millions of users, seven brands and three markets &mdash; as strategy, as operations, as a system other people can run.</p>
+
+    <div class="hero__foot">
+      <p class="eyebrow">Head of UX &amp; Design Operations</p>
+      <p class="eyebrow">Available for design leadership</p>
+    </div>
+  </header>
+</div>
+
+<div class="belt" aria-label="Brands the system reached">
+  <div class="belt__run">
+    <span>Fotocasa</span><span>Habitaclia</span><span>coches.net</span><span>Milanuncios</span><span>InfoJobs</span><span>Leboncoin</span><span>Kleinanzeigen</span><span>BMW.es</span>
+    <span aria-hidden="true">Fotocasa</span><span aria-hidden="true">Habitaclia</span><span aria-hidden="true">coches.net</span><span aria-hidden="true">Milanuncios</span><span aria-hidden="true">InfoJobs</span><span aria-hidden="true">Leboncoin</span><span aria-hidden="true">Kleinanzeigen</span><span aria-hidden="true">BMW.es</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <section>
+    <div class="stack">
+      <p class="eyebrow" data-r>The measure of it</p>
+      <div class="figures">
+        <div class="figure" data-r style="--d:60ms">
+          <p class="num" data-count="15" data-suffix="+">0</p>
+          <p>Years turning design into something that runs without me in the room.</p>
+        </div>
+        <div class="figure" data-r style="--d:130ms">
+          <p class="num"><span data-count="2">0</span> &rarr; <span data-count="8">0</span></p>
+          <p>A UX team grown fourfold, hiring for ownership as much as craft.</p>
+        </div>
+        <div class="figure" data-r style="--d:200ms">
+          <p class="num" data-count="7">0</p>
+          <p>Brands sharing one system without looking like each other.</p>
+        </div>
+        <div class="figure" data-r style="--d:270ms">
+          <p class="num" data-count="3">0</p>
+          <p>Markets &mdash; Spain, France, Germany &mdash; kept aligned on one vocabulary.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack">
+      <p class="eyebrow" data-r>Where</p>
+      <h2 data-r style="--d:80ms;font-size:clamp(2rem,5.5vw,4.5rem);line-height:0.95">Four marketplaces,<br>one continuous problem.</h2>
+
+      <div class="roles">
+        <div class="role" data-r style="--d:60ms">
+          <p class="role__yr">2025 &mdash; NOW</p>
+          <div><p class="role__co">Kleinanzeigen</p></div>
+          <p class="role__what">Senior Product Design. User transactions across one of Europe's largest classifieds platforms.</p>
+        </div>
+        <div class="role" data-r style="--d:120ms">
+          <p class="role__yr">2021 &mdash; 25</p>
+          <div><p class="role__co">Fotocasa <em>&amp;</em> Habitaclia</p></div>
+          <p class="role__what">Design Operations and Design Systems. Built SUI and the governance that made it stick.</p>
+        </div>
+        <div class="role" data-r style="--d:180ms">
+          <p class="role__yr">2007 &mdash; 21</p>
+          <div><p class="role__co">coches.net</p></div>
+          <p class="role__what">Head of User Experience, after nine years in UX and front-end. Research in, satisfaction measured.</p>
+        </div>
+        <div class="role" data-r style="--d:240ms">
+          <p class="role__yr">2005 &mdash; 07</p>
+          <div><p class="role__co">BMW<em>.es</em></p></div>
+          <p class="role__what">Web design and development at Herraiz Soto, where brand standards were not negotiable.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack">
+      <p class="eyebrow" data-r>What I actually do</p>
+      <div class="craft">
+        <article data-r style="--d:60ms">
+          <h3>UX <b>strategy</b></h3>
+          <p>Research and data become a direction teams can act on. I map the journeys, then tie experience quality to metrics the business already watches &mdash; CSATs on real flows, folded into company OKRs, so design stops arguing from taste.</p>
+        </article>
+        <article data-r style="--d:120ms">
+          <h3>Design <b>operations</b></h3>
+          <p>Workflows, rituals, governance, documentation. The unglamorous plumbing that makes delivery predictable and lets designers spend their hours designing instead of negotiating process.</p>
+        </article>
+        <article data-r style="--d:180ms">
+          <h3>Design <b>systems</b></h3>
+          <p>Multi-brand components, tokens, clear ownership. Grown incrementally and adopted in daily work, because a system nobody uses is a documentation project with better typography.</p>
+        </article>
+        <article data-r style="--d:240ms">
+          <h3>Growing <b>teams</b></h3>
+          <p>Hiring, onboarding, mentoring, career paths. T-shaped profiles and a skill matrix so the team keeps its depth while it gains range &mdash; and so growth does not cost cohesion.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="wrap">
+  <footer>
+    <div class="call">
+      <p class="eyebrow" data-r>Next</p>
+      <a href="#contact" data-r style="--d:80ms">Let's talk<br>about scale.</a>
+      <div class="call__meta">
+        <span class="eyebrow">Contact form</span>
+        <span class="eyebrow">linkedin.com/in/jordicatalan</span>
+        <span class="eyebrow">Barcelona</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const io = new IntersectionObserver((es) => {
+    for (const e of es) {
+      if (!e.isIntersecting) continue;
+      e.target.classList.add('r-in');
+      e.target.querySelectorAll('[data-count]').forEach(run);
+      io.unobserve(e.target);
+    }
+  }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
+
+  document.querySelectorAll('section, footer').forEach((s) => io.observe(s));
+
+  /* Counters land on the real figure &mdash; they are facts, so they must not
+     overshoot past it and settle back. */
+  function run(el) {
+    const to = Number(el.dataset.count);
+    const suffix = el.dataset.suffix || '';
+    if (reduce) { el.textContent = to + suffix; return; }
+    const dur = 1100;
+    const t0 = performance.now();
+    const tick = (t) => {
+      const p = Math.min(1, (t - t0) / dur);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(to * eased) + (p === 1 ? suffix : '');
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+</script>

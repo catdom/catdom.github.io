@@ -1,0 +1,452 @@
+<title>Spec Sheet 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Martian+Mono:wght@300;400;500&display=swap">
+<style>
+  :root {
+    --paper: #f6f6f3;
+    --panel: #fffffe;
+    --ink: #100f0d;
+    --ink-2: #57554e;
+    --ink-3: #8f8c83;
+    --rule: #d9d7d0;
+    --rule-2: #e8e6e0;
+    --mark: #1f3fd8;
+
+    --sans: 'Archivo', system-ui, sans-serif;
+    --mono: 'Martian Mono', ui-monospace, monospace;
+
+    --gut: clamp(1rem, 3.5vw, 3.25rem);
+    --maxw: 1360px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 1rem;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* The page sits on a visible measure &mdash; the same grid the work is built on. */
+  .rig {
+    position: fixed;
+    inset: 0;
+    max-width: var(--maxw);
+    margin-inline: auto;
+    padding-inline: var(--gut);
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .rig span { border-left: 1px solid var(--rule-2); }
+  .rig span:last-child { border-right: 1px solid var(--rule-2); }
+
+  @media (min-width: 900px) {
+    .rig { grid-template-columns: repeat(12, 1fr); }
+  }
+
+  .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: var(--maxw);
+    margin-inline: auto;
+    padding-inline: var(--gut);
+  }
+
+  /* --- Type ------------------------------------------------------------- */
+
+  h1, h2, h3 { margin: 0; font-weight: 600; letter-spacing: -0.035em; text-wrap: balance; }
+
+  h1 { font-size: clamp(2.6rem, 9vw, 7.5rem); line-height: 0.92; }
+  h2 { font-size: clamp(1.75rem, 4.2vw, 3.4rem); line-height: 1; }
+  h3 { font-size: clamp(1.1rem, 1.7vw, 1.4rem); letter-spacing: -0.02em; }
+
+  p { margin: 0; }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+
+  .lede { font-size: clamp(1rem, 1.3vw, 1.15rem); color: var(--ink-2); max-width: 58ch; }
+
+  /* --- Cover sheet ------------------------------------------------------ */
+
+  header.cover { padding-block: clamp(4rem, 11vh, 8rem) clamp(2.5rem, 6vh, 4rem); }
+
+  .cover__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding-bottom: clamp(3rem, 12vh, 7rem);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .mark {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+  }
+
+  .cover h1 { margin-top: clamp(2rem, 5vh, 3.5rem); }
+  .cover h1 em { font-style: normal; color: var(--mark); }
+
+  /* The measurement bar: a real dimension line, drawn once on load. */
+  .dim {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    color: var(--mark);
+  }
+
+  .dim__line { position: relative; height: 1px; background: var(--mark); transform-origin: left; }
+  .dim__line::before,
+  .dim__line::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    width: 1px;
+    height: 7px;
+    background: var(--mark);
+  }
+  .dim__line::before { left: 0; }
+  .dim__line::after { right: 0; }
+
+  .is-armed .dim__line { transform: scaleX(0); animation: draw 900ms cubic-bezier(0.16, 1, 0.3, 1) 400ms forwards; }
+  @keyframes draw { to { transform: scaleX(1); } }
+
+  /* --- Spec table ------------------------------------------------------- */
+
+  .sheet {
+    margin-top: clamp(2.5rem, 7vh, 4.5rem);
+    border-top: 1px solid var(--rule);
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.15rem 2rem;
+    padding-block: 0.9rem;
+    border-bottom: 1px solid var(--rule-2);
+  }
+
+  .row dt { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); }
+  .row dd { margin: 0; font-size: 0.95rem; }
+  .row dd b { font-weight: 600; }
+
+  @media (min-width: 700px) {
+    .row { grid-template-columns: 13rem 1fr; align-items: baseline; }
+  }
+
+  /* --- Sections --------------------------------------------------------- */
+
+  section { padding-block: clamp(4rem, 12vh, 9rem); }
+
+  .head {
+    display: grid;
+    gap: 1rem;
+    padding-bottom: clamp(2rem, 5vh, 3.5rem);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  @media (min-width: 900px) {
+    .head { grid-template-columns: 13rem 1fr; gap: 2rem; align-items: baseline; }
+  }
+
+  /* --- Parts (the four disciplines) ------------------------------------- */
+
+  .parts { display: grid; gap: 0; margin-top: -1px; }
+
+  .part {
+    display: grid;
+    gap: 0.5rem 2rem;
+    padding-block: clamp(1.5rem, 3.5vh, 2.5rem);
+    border-bottom: 1px solid var(--rule-2);
+  }
+
+  @media (min-width: 900px) {
+    .part { grid-template-columns: 13rem minmax(0, 1fr) 9rem; align-items: start; }
+  }
+
+  .part__no { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; color: var(--mark); padding-top: 0.35rem; }
+  .part__body { display: grid; gap: 0.5rem; }
+  .part__body p { color: var(--ink-2); max-width: 54ch; }
+  .part__val { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.08em; color: var(--ink-3); text-align: left; }
+
+  @media (min-width: 900px) { .part__val { text-align: right; } }
+
+  /* --- Roles ------------------------------------------------------------ */
+
+  .roles { margin-top: -1px; }
+
+  .role {
+    display: grid;
+    gap: 0.35rem 2rem;
+    padding-block: clamp(1.35rem, 3vh, 2rem);
+    border-bottom: 1px solid var(--rule-2);
+    position: relative;
+  }
+
+  @media (min-width: 900px) {
+    .role { grid-template-columns: 13rem minmax(0, 1fr) auto; align-items: baseline; }
+  }
+
+  .role__yr { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.08em; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+  .role__co { font-size: clamp(1.15rem, 2vw, 1.65rem); font-weight: 600; letter-spacing: -0.025em; }
+  .role__what { color: var(--ink-2); font-size: 0.9rem; }
+  .role__note { font-family: var(--mono); font-size: 0.6rem; color: var(--mark); letter-spacing: 0.08em; }
+
+  /* --- Numbers ---------------------------------------------------------- */
+
+  .figs {
+    display: grid;
+    gap: 1px;
+    background: var(--rule-2);
+    border: 1px solid var(--rule-2);
+    margin-top: clamp(2rem, 5vh, 3.5rem);
+  }
+
+  @media (min-width: 640px) { .figs { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1000px) { .figs { grid-template-columns: repeat(4, 1fr); } }
+
+  .fig { background: var(--panel); padding: clamp(1.25rem, 2.5vw, 2rem); display: grid; gap: 0.35rem; }
+  .fig b {
+    font-size: clamp(2rem, 4.5vw, 3.25rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .fig span { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-3); }
+
+  /* --- Contact ---------------------------------------------------------- */
+
+  footer { padding-block: clamp(4rem, 12vh, 8rem) clamp(3rem, 8vh, 5rem); border-top: 1px solid var(--rule); }
+
+  .sig { display: grid; gap: 1.5rem; }
+  .sig a {
+    font-size: clamp(1.5rem, 5vw, 3.25rem);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    justify-self: start;
+    transition: border-color 200ms ease, color 200ms ease;
+  }
+  .sig a:hover, .sig a:focus-visible { color: var(--mark); border-color: var(--mark); outline: none; }
+
+  .foot__meta { display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; padding-top: 2rem; border-top: 1px solid var(--rule-2); }
+
+  /* --- Reveal: precise, no drift --------------------------------------- */
+
+  [data-r] { opacity: 0; transform: translateY(10px); }
+  .is-armed [data-r] {
+    animation: rise 620ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: var(--d, 0ms);
+  }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+
+  .r-in [data-r2] { animation: rise 560ms cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: var(--d, 0ms); }
+  [data-r2] { opacity: 0; transform: translateY(12px); }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    [data-r], [data-r2] { opacity: 1; transform: none; animation: none !important; }
+    .is-armed .dim__line { transform: none; animation: none; }
+  }
+</style>
+
+<div class="rig" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+
+<div class="wrap">
+  <header class="cover">
+    <div class="cover__top">
+      <span class="mark">JORDI CATAL&Aacute;N</span>
+      <span class="tag">Barcelona &middot; ES</span>
+    </div>
+
+    <p class="tag" data-r style="--d:120ms">Design leadership &middot; specification</p>
+
+    <h1 data-r style="--d:200ms">I build the<br>system the<br>design <em>runs on</em>.</h1>
+
+    <div class="dim" data-r style="--d:320ms">
+      <span>2002</span><span class="dim__line"></span><span>2026</span>
+    </div>
+
+    <dl class="sheet">
+      <div class="row" data-r style="--d:420ms">
+        <dt>Discipline</dt>
+        <dd>UX strategy, design operations, design systems</dd>
+      </div>
+      <div class="row" data-r style="--d:470ms">
+        <dt>Current</dt>
+        <dd><b>Senior Product Design</b>, Kleinanzeigen &mdash; since March 2025</dd>
+      </div>
+      <div class="row" data-r style="--d:520ms">
+        <dt>Domain</dt>
+        <dd>High-traffic marketplaces. Spain, France, Germany.</dd>
+      </div>
+      <div class="row" data-r style="--d:570ms">
+        <dt>Origin</dt>
+        <dd>Front-end developer, 2002&ndash;2016. Still reads the diff.</dd>
+      </div>
+    </dl>
+  </header>
+
+  <section id="parts">
+    <div class="head">
+      <p class="tag">01 &middot; Capability</p>
+      <div>
+        <h2 data-r2>Four things I am brought in to do</h2>
+        <p class="lede" style="margin-top:1rem" data-r2 data-d>Each one is a system, not a deliverable &mdash; which is why they outlast me.</p>
+      </div>
+    </div>
+
+    <div class="parts">
+      <article class="part" data-r2 style="--d:60ms">
+        <p class="part__no">PT-01</p>
+        <div class="part__body">
+          <h3>UX strategy</h3>
+          <p>Turning research and data into a direction teams can act on. I define the vision, map the journeys, and tie experience quality to metrics the business already tracks.</p>
+        </div>
+        <p class="part__val">CSAT &rarr; OKR</p>
+      </article>
+
+      <article class="part" data-r2 style="--d:120ms">
+        <p class="part__no">PT-02</p>
+        <div class="part__body">
+          <h3>Design operations</h3>
+          <p>Reducing friction between design, product and engineering. Workflows, rituals, governance and documentation that make delivery predictable &mdash; so designers spend their time designing.</p>
+        </div>
+        <p class="part__val">3 countries</p>
+      </article>
+
+      <article class="part" data-r2 style="--d:180ms">
+        <p class="part__no">PT-03</p>
+        <div class="part__body">
+          <h3>Design systems</h3>
+          <p>Systems teams actually adopt. Multi-brand components, tokens, clear ownership and simple governance &mdash; grown incrementally rather than shipped as a framework nobody uses.</p>
+        </div>
+        <p class="part__val">7 brands</p>
+      </article>
+
+      <article class="part" data-r2 style="--d:240ms">
+        <p class="part__no">PT-04</p>
+        <div class="part__body">
+          <h3>Leading and growing teams</h3>
+          <p>Hiring, onboarding, mentoring and career paths. T-shaped profiles and a skill matrix, so depth and versatility stay in balance as the team scales.</p>
+        </div>
+        <p class="part__val">2 &rarr; 8 people</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="record">
+    <div class="head">
+      <p class="tag">02 &middot; Record</p>
+      <div>
+        <h2 data-r2>Where it was built</h2>
+        <p class="lede" style="margin-top:1rem" data-r2>Twenty-four years, four employers, one continuous problem: how design holds together as everything around it multiplies.</p>
+      </div>
+    </div>
+
+    <div class="roles">
+      <article class="role" data-r2 style="--d:60ms">
+        <p class="role__yr">2025 &mdash; NOW</p>
+        <div>
+          <p class="role__co">Kleinanzeigen</p>
+          <p class="role__what">Senior Product Design &mdash; user transactions across one of Europe's largest classifieds marketplaces</p>
+        </div>
+        <p class="role__note">DE</p>
+      </article>
+
+      <article class="role" data-r2 style="--d:110ms">
+        <p class="role__yr">2021 &mdash; 2025</p>
+        <div>
+          <p class="role__co">Fotocasa &amp; Habitaclia</p>
+          <p class="role__what">Design Operations and Design Systems &mdash; built SUI, the multi-brand system, and the governance around it</p>
+        </div>
+        <p class="role__note">ES &middot; FR &middot; DE</p>
+      </article>
+
+      <article class="role" data-r2 style="--d:160ms">
+        <p class="role__yr">2016 &mdash; 2021</p>
+        <div>
+          <p class="role__co">coches.net</p>
+          <p class="role__what">Head of User Experience &mdash; made research the input and satisfaction a measured outcome</p>
+        </div>
+        <p class="role__note">ES</p>
+      </article>
+
+      <article class="role" data-r2 style="--d:210ms">
+        <p class="role__yr">2007 &mdash; 2016</p>
+        <div>
+          <p class="role__co">coches.net</p>
+          <p class="role__what">UX and interaction, web development &mdash; built UI components still in use after I left</p>
+        </div>
+        <p class="role__note">ES</p>
+      </article>
+
+      <article class="role" data-r2 style="--d:260ms">
+        <p class="role__yr">2005 &mdash; 2007</p>
+        <div>
+          <p class="role__co">Herraiz Soto</p>
+          <p class="role__what">Web design and development &mdash; BMW.es, in an agency where brand standards were not negotiable</p>
+        </div>
+        <p class="role__note">ES</p>
+      </article>
+    </div>
+
+    <div class="figs">
+      <div class="fig" data-r2 style="--d:60ms"><b>15+</b><span>Years in the discipline</span></div>
+      <div class="fig" data-r2 style="--d:110ms"><b>2 &rarr; 8</b><span>UX team, grown and kept</span></div>
+      <div class="fig" data-r2 style="--d:160ms"><b>7</b><span>Brands on one system</span></div>
+      <div class="fig" data-r2 style="--d:210ms"><b>3</b><span>Markets aligned</span></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="sig">
+      <p class="tag">03 &middot; Contact</p>
+      <a href="#contact">Start a conversation &rarr;</a>
+      <div class="foot__meta">
+        <span class="tag">linkedin.com/in/jordicatalan</span>
+        <span class="tag">Barcelona, Spain</span>
+        <span class="tag">Open to design leadership roles</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  document.documentElement.classList.add('is-armed');
+  const io = new IntersectionObserver((es) => {
+    for (const e of es) {
+      if (!e.isIntersecting) continue;
+      e.target.classList.add('r-in');
+      io.unobserve(e.target);
+    }
+  }, { rootMargin: '0px 0px -12% 0px', threshold: 0.02 });
+  document.querySelectorAll('section, footer').forEach((s) => io.observe(s));
+</script>

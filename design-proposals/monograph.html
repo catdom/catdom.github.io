@@ -1,0 +1,408 @@
+<title>Catal&aacute;n Monograph</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@400;500;600&display=swap">
+
+<style>
+  /* ===================================================================
+     Direction C &mdash; MONOGRAPH
+     Thesis: design operations is craft and people. The career printed
+     as a monograph: warm paper, high-contrast serif display, marginalia,
+     folios, plates. Deliberately single-theme &mdash; a printed page has one
+     colour of paper.
+     =================================================================== */
+  :root {
+    --paper:  #eeeee6;
+    --paper-2:#e5e5da;
+    --ink:    #1a1a16;
+    --ink-2:  #54544a;   /* 6.5:1 on paper */
+    --rule:   #c9c9bd;
+    --rule-2: #dcdcd0;
+    --blue:   #3f6285;   /* 5.5:1 on paper */
+
+    --serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+    --sans:  "Archivo", "Helvetica Neue", Arial, sans-serif;
+
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --gut: clamp(1.25rem, 5vw, 4rem);
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+    line-height: 1.6;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection { background: var(--blue); color: var(--paper); }
+  a { color: inherit; }
+  h1, h2, h3 { margin: 0; font-family: var(--serif); font-weight: 400; }
+  p { margin: 0; }
+  img { max-width: 100%; }
+  :focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+
+  /* --- Page frame ------------------------------------------------------ */
+  .page { max-width: 82rem; margin-inline: auto; padding-inline: var(--gut); }
+
+  /* Running head, like a printed book */
+  .runner {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 1rem;
+    padding-block: 0.85rem;
+    background: color-mix(in oklab, var(--paper) 88%, transparent);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--rule-2);
+    font-size: 0.6875rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+  .runner b { font-weight: 500; color: var(--ink); letter-spacing: 0.14em; }
+  .runner span:last-child { font-variant-numeric: tabular-nums; }
+  /* On a phone the running head keeps only the essentials. */
+  @media (max-width: 640px) { .runner .cap { display: none; } }
+
+  /* Small caps utility label */
+  .cap {
+    font-size: 0.625rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    font-weight: 500;
+  }
+  .folio { font-family: var(--serif); font-size: 1.5rem; font-style: italic; color: var(--blue); line-height: 1; }
+
+  /* --- Colophon / opening --------------------------------------------- */
+  .open { padding-block: clamp(3.5rem, 12vh, 8rem) clamp(3rem, 9vh, 6rem); }
+  .open__cap { display: flex; gap: 1.25rem; align-items: baseline; }
+  .open h1 {
+    font-size: clamp(2.9rem, 13vw, 9.5rem);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    margin-top: clamp(1.5rem, 4vh, 3rem);
+    text-wrap: balance;
+  }
+  .open h1 em { font-style: italic; color: var(--blue); }
+  .open__rule { height: 1px; background: var(--ink); margin-block: clamp(1.75rem, 5vh, 3rem); transform-origin: left; }
+
+  /* Two-column opening spread: standfirst + particulars */
+  .spread { display: grid; gap: clamp(1.75rem, 5vw, 4rem); }
+  @media (min-width: 860px) { .spread { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); } }
+  .standfirst {
+    font-family: var(--serif);
+    font-size: clamp(1.35rem, 2.6vw, 2rem);
+    line-height: 1.32;
+    max-width: 34ch;
+  }
+  .standfirst::first-letter {
+    float: left;
+    font-size: 3.6em;
+    line-height: 0.78;
+    padding: 0.06em 0.09em 0 0;
+    color: var(--blue);
+  }
+  .particulars { display: grid; gap: 0; align-content: start; border-top: 1px solid var(--rule); }
+  .particulars div {
+    display: grid; grid-template-columns: 7.5rem minmax(0, 1fr);
+    gap: 0.25rem 1rem;
+    padding-block: 0.8rem;
+    border-bottom: 1px solid var(--rule-2);
+  }
+  .particulars dt { font-size: 0.625rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-2); padding-top: 0.28rem; }
+  .particulars dd { margin: 0; font-size: 0.9375rem; }
+  .particulars dd b { font-weight: 600; }
+
+  /* --- Chapter head --------------------------------------------------- */
+  .chapter { padding-block: clamp(3rem, 9vh, 6rem) 0; }
+  .chapter__head {
+    display: grid; gap: 1rem;
+    padding-bottom: clamp(1.75rem, 4vh, 2.75rem);
+    border-bottom: 1px solid var(--ink);
+  }
+  @media (min-width: 860px) {
+    .chapter__head { grid-template-columns: 8rem minmax(0, 1fr) minmax(0, 22rem); align-items: end; gap: 2.5rem; }
+  }
+  .chapter__head h2 { font-size: clamp(1.85rem, 4.6vw, 3.4rem); line-height: 1; letter-spacing: -0.02em; }
+  .chapter__head h2 em { font-style: italic; color: var(--blue); }
+  .chapter__note { color: var(--ink-2); font-size: 0.9375rem; max-width: 40ch; }
+
+  /* --- Entries with marginalia ---------------------------------------- */
+  .entry {
+    display: grid; gap: 0.6rem 2.5rem;
+    padding-block: clamp(1.75rem, 4.5vh, 3rem);
+    border-bottom: 1px solid var(--rule-2);
+  }
+  @media (min-width: 860px) {
+    .entry { grid-template-columns: 8rem minmax(0, 1fr) minmax(0, 22rem); }
+  }
+  .entry__no { font-family: var(--serif); font-style: italic; font-size: 1.35rem; color: var(--blue); line-height: 1; }
+  .entry h3 { font-size: clamp(1.5rem, 3vw, 2.25rem); line-height: 1.04; letter-spacing: -0.015em; }
+  .entry p { margin-top: 0.6rem; color: var(--ink-2); max-width: 52ch; }
+  /* the margin note &mdash; the printed-book aside */
+  .aside {
+    align-self: start;
+    border-left: 1px solid var(--blue);
+    padding-left: 1rem;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--ink-2);
+  }
+  .aside b { display: block; font-family: var(--serif); font-size: 1.6rem; font-weight: 400; color: var(--ink); line-height: 1; margin-bottom: 0.3rem; }
+  @media (min-width: 860px) { .aside { margin-top: 0.5rem; } }
+
+  /* --- Plates (the work) ---------------------------------------------- */
+  .plates { display: grid; gap: 1px; background: var(--rule); border-block: 1px solid var(--rule); margin-top: clamp(2rem, 6vh, 3.5rem); }
+  @media (min-width: 760px) { .plates { grid-template-columns: 1fr 1fr; } }
+  .plate {
+    background: var(--paper);
+    padding: clamp(1.5rem, 3.2vw, 2.5rem);
+    display: grid; gap: 0.9rem; align-content: start;
+    text-decoration: none;
+    transition: background 260ms var(--ease);
+  }
+  .plate:hover, .plate:focus-visible { background: var(--paper-2); }
+  .plate__no { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+  .plate h3 { font-size: clamp(1.6rem, 3.4vw, 2.5rem); line-height: 1; letter-spacing: -0.02em; }
+  .plate__role { font-size: 0.8125rem; color: var(--ink-2); }
+  .plate__band { display: flex; flex-wrap: wrap; gap: 0.35rem 1.25rem; padding-top: 0.5rem; border-top: 1px solid var(--rule-2); }
+  .plate .arrow { transition: transform 260ms var(--ease); display: inline-block; color: var(--blue); }
+  .plate:hover .arrow, .plate:focus-visible .arrow { transform: translateX(5px); }
+
+  /* --- Index (career) -------------------------------------------------- */
+  .index { margin-top: clamp(1.5rem, 4vh, 2.5rem); }
+  .idx {
+    display: grid; gap: 0.2rem 2rem;
+    padding-block: clamp(1.1rem, 2.6vh, 1.6rem);
+    border-bottom: 1px solid var(--rule-2);
+  }
+  @media (min-width: 700px) { .idx { grid-template-columns: 8rem minmax(0, 1fr) auto; align-items: baseline; } }
+  .idx__yr { font-size: 0.75rem; letter-spacing: 0.08em; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+  .idx__co { font-family: var(--serif); font-size: clamp(1.25rem, 2.4vw, 1.75rem); line-height: 1.1; }
+  .idx__what { color: var(--ink-2); font-size: 0.875rem; margin-top: 0.15rem; }
+  .idx__loc { font-size: 0.625rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue); }
+
+  /* --- Colophon / contact --------------------------------------------- */
+  .colophon { padding-block: clamp(4rem, 12vh, 8rem) clamp(2.5rem, 6vh, 4rem); }
+  .colophon__q {
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 8vw, 6rem);
+    line-height: 0.94;
+    letter-spacing: -0.02em;
+    max-width: 24ch;
+  }
+  .colophon__q em { font-style: italic; color: var(--blue); }
+  .cta {
+    display: inline-flex; align-items: baseline; gap: 0.75rem;
+    margin-top: clamp(1.75rem, 5vh, 3rem);
+    font-family: var(--sans); font-size: 0.9375rem; font-weight: 500;
+    text-decoration: none; color: var(--paper); background: var(--ink);
+    padding: 0.95rem 1.5rem; border-radius: 999px;
+    transition: background 240ms var(--ease), transform 240ms var(--ease);
+  }
+  .cta:hover, .cta:focus-visible { background: var(--blue); transform: translateY(-2px); }
+  .imprint {
+    display: flex; flex-wrap: wrap; gap: 0.6rem 2.5rem;
+    margin-top: clamp(3rem, 9vh, 5rem); padding-top: 1.25rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  /* --- Motion: one gesture, used consistently -------------------------- */
+  [data-r] { opacity: 0; transform: translateY(14px); }
+  html.lit .open [data-r],
+  .chapter.lit [data-r],
+  .colophon.lit [data-r] { animation: rise 700ms var(--ease) forwards; animation-delay: var(--d, 0ms); }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+  .open__rule { transform: scaleX(0); }
+  html.lit .open__rule { animation: draw 1100ms var(--ease) 300ms forwards; }
+  @keyframes draw { to { transform: scaleX(1); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    [data-r] { opacity: 1; transform: none; animation: none !important; }
+    .open__rule { transform: none; animation: none !important; }
+    .plate .arrow { transition: none; }
+  }
+</style>
+
+<div class="page">
+  <div class="runner">
+    <b>Jordi Catal&aacute;n</b>
+    <span class="cap">Design operations &amp; systems</span>
+    <span>MMXXVI</span>
+  </div>
+
+  <header class="open">
+    <div class="open__cap">
+      <span class="folio">i</span>
+      <span class="cap">A monograph &middot; Barcelona</span>
+    </div>
+    <h1>The work of<br>keeping design<br><em>coherent</em>.</h1>
+    <div class="open__rule"></div>
+    <div class="spread">
+      <p class="standfirst" data-r style="--d:220ms">
+        Twenty-four years spent on one question: how does design hold together
+        when everything around it multiplies &mdash; more brands, more markets, more
+        people, more code? The answer was never a better mockup. It was the
+        system, the operation, and the team around them.
+      </p>
+      <dl class="particulars" data-r style="--d:380ms">
+        <div><dt>Present</dt><dd><b>Senior Product Design</b>, Kleinanzeigen &mdash; Germany, since March 2025</dd></div>
+        <div><dt>Practice</dt><dd>UX strategy &middot; design operations &middot; design systems &middot; team leadership</dd></div>
+        <div><dt>Field</dt><dd>High-traffic marketplaces across Spain, France and Germany</dd></div>
+        <div><dt>Before</dt><dd>Front-end developer, 2002&ndash;2016. Still reads the diff.</dd></div>
+      </dl>
+    </div>
+  </header>
+
+  <section class="chapter" id="value">
+    <div class="chapter__head">
+      <span class="folio">I</span>
+      <h2 data-r>Where I <em>add value</em></h2>
+      <p class="chapter__note" data-r style="--d:80ms">Four things teams consistently bring me in to do &mdash; and the reason they keep me close to both strategy and delivery.</p>
+    </div>
+
+    <article class="entry" data-r style="--d:60ms">
+      <p class="entry__no">i</p>
+      <div>
+        <h3>UX strategy</h3>
+        <p>Turning research and data into a direction a team can act on. I define the vision, map the journeys, and tie experience quality to numbers the business already watches.</p>
+      </div>
+      <p class="aside"><b>CSAT &rarr; OKR</b>Satisfaction became a tracked company objective at coches.net, not a survey nobody read.</p>
+    </article>
+
+    <article class="entry" data-r style="--d:120ms">
+      <p class="entry__no">ii</p>
+      <div>
+        <h3>Design operations</h3>
+        <p>Removing the friction between design, product and engineering &mdash; workflows, rituals, governance and documentation that make delivery predictable, so designers spend their time designing.</p>
+      </div>
+      <p class="aside"><b>3 markets</b>One way of working across Spain, France and Germany, with local teams still able to move.</p>
+    </article>
+
+    <article class="entry" data-r style="--d:180ms">
+      <p class="entry__no">iii</p>
+      <div>
+        <h3>Design systems</h3>
+        <p>Systems teams actually adopt. Multi-brand components, tokens, clear ownership and light governance &mdash; grown incrementally instead of shipped as a framework nobody uses.</p>
+      </div>
+      <p class="aside"><b>7 brands</b>Fotocasa, Habitaclia, coches.net, Milanuncios, InfoJobs, Leboncoin and Kleinanzeigen on one shared foundation.</p>
+    </article>
+
+    <article class="entry" data-r style="--d:240ms">
+      <p class="entry__no">iv</p>
+      <div>
+        <h3>Leading and growing teams</h3>
+        <p>Hiring, onboarding, mentoring and career paths. T-shaped profiles and an explicit skill matrix, so depth and versatility stay in balance while the team scales.</p>
+      </div>
+      <p class="aside"><b>2 &rarr; 8</b>A UX team grown fourfold and kept together &mdash; the part of the record I am most careful about.</p>
+    </article>
+  </section>
+
+  <section class="chapter" id="plates">
+    <div class="chapter__head">
+      <span class="folio">II</span>
+      <h2 data-r>The <em>plates</em></h2>
+      <p class="chapter__note" data-r style="--d:80ms">Four pieces of work, each with its own page: the brief, the constraint, and what remained after I left.</p>
+    </div>
+
+    <div class="plates">
+      <a class="plate" href="#" data-r style="--d:60ms">
+        <div class="plate__no"><span class="cap">Plate 01</span><span class="arrow" aria-hidden="true">&rarr;</span></div>
+        <h3>Kleinanzeigen</h3>
+        <p class="plate__role">Senior Product Design &mdash; user transactions on one of Europe's largest classifieds marketplaces</p>
+        <div class="plate__band"><span class="cap">2025 &mdash; now</span><span class="cap">Germany</span></div>
+      </a>
+      <a class="plate" href="#" data-r style="--d:110ms">
+        <div class="plate__no"><span class="cap">Plate 02</span><span class="arrow" aria-hidden="true">&rarr;</span></div>
+        <h3>Fotocasa &amp; Habitaclia</h3>
+        <p class="plate__role">Design Operations and Design Systems &mdash; built the multi-brand system and the governance that kept it alive</p>
+        <div class="plate__band"><span class="cap">2021 &mdash; 2025</span><span class="cap">ES &middot; FR &middot; DE</span></div>
+      </a>
+      <a class="plate" href="#" data-r style="--d:160ms">
+        <div class="plate__no"><span class="cap">Plate 03</span><span class="arrow" aria-hidden="true">&rarr;</span></div>
+        <h3>coches.net</h3>
+        <p class="plate__role">Head of User Experience &mdash; made research the input and satisfaction a measured outcome</p>
+        <div class="plate__band"><span class="cap">2016 &mdash; 2021</span><span class="cap">Spain</span></div>
+      </a>
+      <a class="plate" href="#" data-r style="--d:210ms">
+        <div class="plate__no"><span class="cap">Plate 04</span><span class="arrow" aria-hidden="true">&rarr;</span></div>
+        <h3>BMW.es</h3>
+        <p class="plate__role">Web design and development at Herraiz Soto &mdash; an agency where brand standards were not negotiable</p>
+        <div class="plate__band"><span class="cap">2005 &mdash; 2007</span><span class="cap">Spain</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="chapter" id="index">
+    <div class="chapter__head">
+      <span class="folio">III</span>
+      <h2 data-r>The full <em>index</em></h2>
+      <p class="chapter__note" data-r style="--d:80ms">Read backwards, it is one continuous move from building interfaces to building the conditions other people build them in.</p>
+    </div>
+
+    <div class="index">
+      <article class="idx" data-r style="--d:50ms">
+        <p class="idx__yr">2025 &mdash; NOW</p>
+        <div><p class="idx__co">Kleinanzeigen</p><p class="idx__what">Senior Product Design &middot; user transactions</p></div>
+        <p class="idx__loc">Germany</p>
+      </article>
+      <article class="idx" data-r style="--d:90ms">
+        <p class="idx__yr">2021 &mdash; 2025</p>
+        <div><p class="idx__co">Fotocasa &amp; Habitaclia</p><p class="idx__what">Design Ops &amp; Systems &middot; multi-brand foundation, governance, adoption</p></div>
+        <p class="idx__loc">ES &middot; FR &middot; DE</p>
+      </article>
+      <article class="idx" data-r style="--d:130ms">
+        <p class="idx__yr">2016 &mdash; 2021</p>
+        <div><p class="idx__co">coches.net</p><p class="idx__what">Head of User Experience &middot; research practice, UX team from 2 to 8</p></div>
+        <p class="idx__loc">Spain</p>
+      </article>
+      <article class="idx" data-r style="--d:170ms">
+        <p class="idx__yr">2007 &mdash; 2016</p>
+        <div><p class="idx__co">coches.net</p><p class="idx__what">UX &amp; web development &middot; built UI components still in use after I left</p></div>
+        <p class="idx__loc">Spain</p>
+      </article>
+      <article class="idx" data-r style="--d:210ms">
+        <p class="idx__yr">2005 &mdash; 2007</p>
+        <div><p class="idx__co">Herraiz Soto</p><p class="idx__what">Web design &amp; development &middot; BMW.es</p></div>
+        <p class="idx__loc">Spain</p>
+      </article>
+      <article class="idx" data-r style="--d:250ms">
+        <p class="idx__yr">2002 &mdash; 2005</p>
+        <div><p class="idx__co">Early practice</p><p class="idx__what">Front-end development &middot; where the reading of code began</p></div>
+        <p class="idx__loc">Spain</p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="colophon" id="contact">
+    <span class="folio">IV</span>
+    <p class="colophon__q" data-r>Bringing design and delivery <em>closer together?</em></p>
+    <a class="cta" href="#contact" data-r style="--d:120ms">Write to me <span class="arrow" aria-hidden="true">&rarr;</span></a>
+    <div class="imprint">
+      <span class="cap">Barcelona, Spain</span>
+      <span class="cap">Open to design leadership roles</span>
+      <span class="cap">EN &middot; ES</span>
+      <span class="cap">LinkedIn / jordicatalan</span>
+    </div>
+  </footer>
+</div>
+
+<script>
+  document.documentElement.classList.add('lit');
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (!e.isIntersecting) continue;
+      e.target.classList.add('lit');
+      io.unobserve(e.target);
+    }
+  }, { rootMargin: '0px 0px -10% 0px', threshold: 0.02 });
+  document.querySelectorAll('.chapter, .colophon').forEach((el) => io.observe(el));
+</script>
