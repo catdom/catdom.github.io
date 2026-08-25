@@ -15,22 +15,7 @@ const home = `${langPrefix(lang)}/`;
 
 <header class="nav" data-nav>
   <div class="nav__inner">
-    <a class="mark" href={home} aria-label={site.name}>
-      <svg viewBox="0 0 42 24" width="42" height="24" aria-hidden="true">
-        <path
-          d="M13 3v12a6 6 0 0 1-6 6 6 6 0 0 1-5-2.7"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="3.1"
-          stroke-linecap="round"></path>
-        <path
-          d="M39 6.6A9 9 0 0 0 32 3a9 9 0 0 0 0 18 9 9 0 0 0 7-3.6"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="3.1"
-          stroke-linecap="round"></path>
-      </svg>
-    </a>
+    <a class="mark" href={home} aria-label={site.name}>jcd.</a>
 
     <nav class="nav__links" aria-label="Sections">
       {
@@ -140,6 +125,10 @@ const home = `${langPrefix(lang)}/`;
   .mark {
     flex: none;
     display: block;
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1;
   }
 
   .nav__links {

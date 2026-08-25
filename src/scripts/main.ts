@@ -393,9 +393,89 @@ const contactForm = () => {
   });
 };
 
+/* --- 7. Rotating headline ------------------------------------------------- */
+
+/* Swaps the tail of the headline on a fixed beat: 2s on screen, then the
+   outgoing phrase leaves through the top as the next arrives from below.
+   Every phrase is already in the markup, so without this the first one just
+   sits there and the headline still reads correctly. */
+
+const HOLD = 2000;
+const ROLL = 260;
+
+const rotatingHeadline = () => {
+  const rotator = document.querySelector<HTMLElement>('[data-rotator]');
+  if (!rotator) return;
+
+  const phrases = [...rotator.querySelectorAll<HTMLElement>('[data-phrase]')];
+  if (phrases.length < 2) return;
+
+  rotator.setAttribute('data-ready', '');
+  rotator.style.setProperty('--roll', `${ROLL}ms`);
+
+  // A screen reader should hear the headline once, not every two seconds.
+  rotator.setAttribute('aria-live', 'off');
+  phrases.forEach((phrase, i) => {
+    if (i === 0) phrase.setAttribute('data-in', '');
+    else phrase.setAttribute('aria-hidden', 'true');
+  });
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let at = 0;
+  let timer: ReturnType<typeof setTimeout> | undefined;
+
+  const step = () => {
+    const current = phrases[at];
+    at = (at + 1) % phrases.length;
+    const next = phrases[at];
+
+    current.removeAttribute('data-in');
+    current.setAttribute('data-out', '');
+    current.setAttribute('aria-hidden', 'true');
+
+    next.removeAttribute('data-out');
+    next.setAttribute('data-in', '');
+    next.removeAttribute('aria-hidden');
+
+    // Park the outgoing phrase back below the line, ready for its next turn,
+    // once it is out of sight.
+    setTimeout(() => current.removeAttribute('data-out'), ROLL);
+
+    timer = setTimeout(step, HOLD);
+  };
+
+  const start = () => {
+    if (timer || reduced.matches) return;
+    timer = setTimeout(step, HOLD);
+  };
+
+  const stop = () => {
+    clearTimeout(timer);
+    timer = undefined;
+  };
+
+  // Nothing to animate in a background tab, and nothing to animate once the
+  // headline has scrolled away.
+  document.addEventListener('visibilitychange', () => {
+    document.hidden ? stop() : start();
+  });
+
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(
+      ([entry]) => (entry.isIntersecting && !document.hidden ? start() : stop()),
+      { threshold: 0 },
+    ).observe(rotator);
+  } else {
+    start();
+  }
+
+  reduced.addEventListener('change', () => (reduced.matches ? stop() : start()));
+};
+
 reveal();
 accordion();
 headerTone();
 mobileMenu();
 smoothScroll();
 contactForm();
+rotatingHeadline();
