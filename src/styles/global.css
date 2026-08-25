@@ -301,11 +301,23 @@ a { color: inherit; text-decoration: none; }
   transform: none;
 }
 
+/* A rounded panel enters slightly inset and settles to its full width, so it
+   reads as growing into place rather than appearing. Inset rather than scaled:
+   a transform would stretch the corner radius and soften the type inside. */
+[data-grow] {
+  margin-inline: var(--grow-inset, clamp(0.75rem, 3vw, 2.5rem));
+  transition: margin-inline var(--dur-slow, 700ms) var(--ease);
+}
+
+[data-grow].is-in { margin-inline: 0; }
+
 /* No JS, or reduced motion: show everything immediately. */
 .no-js [data-reveal] { opacity: 1; transform: none; }
+.no-js [data-grow] { margin-inline: 0; }
 
 @media (prefers-reduced-motion: reduce) {
   [data-reveal] { opacity: 1; transform: none; }
+  [data-grow] { margin-inline: 0; transition: none; }
 }
 
 .visually-hidden {

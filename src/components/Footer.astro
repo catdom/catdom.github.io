@@ -9,83 +9,75 @@ const a = availability[lang];
 const year = new Date().getFullYear();
 ---
 
-<footer class="foot on-dark" data-tone="dark">
+<footer class="foot on-dark" id="contact" data-tone="dark">
   <div class="shell">
-    <div class="foot__card">
+    <div class="foot__card" data-grow>
       <p class="foot__avail" data-reveal>
         <span class="chip">{a.badge}</span>
         <span>{a.note}</span>
       </p>
 
-      {
-        site.formspreeId ? (
-          <div class="foot__contact" data-reveal style="--reveal-delay:80ms">
-            <h2 class="foot__formTitle">{ui[lang].formTitle}</h2>
+      <div class="foot__contact" data-reveal style="--reveal-delay:80ms">
+          <h2 class="foot__formTitle">{ui[lang].formTitle}</h2>
 
-            <form
-              class="cform"
-              data-cform
-              action={`https://formspree.io/f/${site.formspreeId}`}
-              method="POST"
-              novalidate
-              data-msg-required={ui[lang].formRequired}
-              data-msg-bad-email={ui[lang].formBadEmail}
-              data-msg-sending={ui[lang].formSending}
-              data-msg-send={ui[lang].formSend}
-              data-msg-sent={ui[lang].formSent}
-              data-msg-error={ui[lang].formError}
-              data-email={site.email}
-            >
-              <div class="cform__row">
-                <div class="field">
-                  <label for="cf-name">{ui[lang].formName}</label>
-                  <input id="cf-name" name="name" type="text" required autocomplete="name" />
-                  <p class="field__err" data-err-for="cf-name" hidden></p>
-                </div>
-
-                <div class="field">
-                  <label for="cf-email">{ui[lang].formEmail}</label>
-                  <input id="cf-email" name="email" type="email" required autocomplete="email" />
-                  <p class="field__err" data-err-for="cf-email" hidden></p>
-                </div>
+          <form
+            class="cform"
+            data-cform
+            action={`https://formspree.io/f/${site.formspreeId}`}
+            method="POST"
+            novalidate
+            data-msg-required={ui[lang].formRequired}
+            data-msg-bad-email={ui[lang].formBadEmail}
+            data-msg-sending={ui[lang].formSending}
+            data-msg-send={ui[lang].formSend}
+            data-msg-sent={ui[lang].formSent}
+            data-msg-error={ui[lang].formError}
+            data-email={site.email}
+          >
+            <div class="cform__row">
+              <div class="field">
+                <label for="cf-name">{ui[lang].formName}</label>
+                <input id="cf-name" name="name" type="text" required autocomplete="name" />
+                <p class="field__err" data-err-for="cf-name" hidden></p>
               </div>
 
               <div class="field">
-                <label for="cf-message">{ui[lang].formMessage}</label>
-                <textarea id="cf-message" name="message" rows="4" required></textarea>
-                <p class="field__err" data-err-for="cf-message" hidden></p>
+                <label for="cf-email">{ui[lang].formEmail}</label>
+                <input id="cf-email" name="email" type="email" required autocomplete="email" />
+                <p class="field__err" data-err-for="cf-email" hidden></p>
               </div>
+            </div>
 
-              {/* Gives the notification email a useful subject line instead
-                  of Formspree's generic one. */}
-              <input type="hidden" name="_subject" value={ui[lang].formSubject} />
+            <div class="field">
+              <label for="cf-message">{ui[lang].formMessage}</label>
+              <textarea id="cf-message" name="message" rows="4" required></textarea>
+              <p class="field__err" data-err-for="cf-message" hidden></p>
+            </div>
 
-              {/* Formspree drops anything that fills this in. Hidden from
-                  everyone but a bot walking the DOM. */}
-              <input
-                class="honeypot"
-                type="text"
-                name="_gotcha"
-                tabindex="-1"
-                autocomplete="off"
-                aria-hidden="true"
-              />
+            {/* Gives the notification email a useful subject line instead
+                of Formspree's generic one. */}
+            <input type="hidden" name="_subject" value={ui[lang].formSubject} />
 
-              <div class="cform__foot">
-                <button class="pill pill--light" type="submit" data-send>
-                  {ui[lang].formSend}
-                </button>
-                <p class="cform__status" data-status role="status" aria-live="polite"></p>
-              </div>
-            </form>
+            {/* Formspree drops anything that fills this in. Hidden from
+                everyone but a bot walking the DOM. */}
+            <input
+              class="honeypot"
+              type="text"
+              name="_gotcha"
+              tabindex="-1"
+              autocomplete="off"
+              aria-hidden="true"
+            />
 
-          </div>
-        ) : (
-          <a class="foot__email" href={`mailto:${site.email}`} data-reveal style="--reveal-delay:80ms">
-            {site.email}
-          </a>
-        )
-      }
+            <div class="cform__foot">
+              <button class="pill pill--light" type="submit" data-send>
+                {ui[lang].formSend}
+              </button>
+              <p class="cform__status" data-status role="status" aria-live="polite"></p>
+            </div>
+          </form>
+
+        </div>
 
       <div class="foot__bar">
         <p class="foot__legal">© {year} {site.name} · {ui[lang].rights}</p>
@@ -128,18 +120,6 @@ const year = new Date().getFullYear();
     color: var(--on-dark-muted);
   }
 
-  /* The email is the page's closing statement, so it carries display weight. */
-  .foot__email {
-    font-size: clamp(1.6rem, 5.2vw, 3.5rem);
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-    word-break: break-word;
-    justify-self: start;
-    border-bottom: 2px solid transparent;
-    transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
-  }
-
-  .foot__email:hover { border-color: var(--lavender); color: var(--lavender); }
 
   /* --- Contact form -------------------------------------------------------- */
 

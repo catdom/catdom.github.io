@@ -40,7 +40,7 @@ export const timeline: TimelineEntry[] = [
   {
     id: 'fotocasa',
     company: 'Fotocasa & Habitaclia',
-    role: { en: 'Design Operations | Design Systems', es: 'Design Operations | Design Systems' },
+    role: { en: 'Design Ops & Systems', es: 'Design Ops & Systems' },
     period: { en: 'Nov 2021 — May 2025', es: 'Nov 2021 — May 2025' },
     range: '2021 — 2025',
     location: { en: 'Barcelona', es: 'Barcelona' },
@@ -92,7 +92,7 @@ export const timeline: TimelineEntry[] = [
   {
     id: 'coches-ux',
     company: 'coches.net',
-    role: { en: 'UX and Interaction, Web Developer', es: 'UX e Interacción, Desarrollador Web' },
+    role: { en: 'UX & Web Development', es: 'UX y desarrollo web' },
     period: { en: 'Nov 2007 — Jan 2016', es: 'Nov 2007 — Ene 2016' },
     range: '2007 — 2016',
     location: { en: 'Barcelona', es: 'Barcelona' },
@@ -113,8 +113,8 @@ export const timeline: TimelineEntry[] = [
   },
   {
     id: 'herraiz-soto',
-    company: 'Herraiz Soto',
-    role: { en: 'Web Designer & Developer — BMW.es', es: 'Web Designer & Developer — BMW.es' },
+    company: 'Herraiz Soto — BMW.es',
+    role: { en: 'Web Design & Development', es: 'Diseño y desarrollo web' },
     period: { en: 'Jan 2005 — Nov 2007', es: 'Ene 2005 — Nov 2007' },
     range: '2005 — 2007',
     location: { en: 'Barcelona', es: 'Barcelona' },
@@ -135,7 +135,7 @@ export const timeline: TimelineEntry[] = [
   {
     id: 'freelance',
     company: 'Freelance',
-    role: { en: 'Web Designer / Developer', es: 'Web Designer / Developer' },
+    role: { en: 'Web Design & Development', es: 'Diseño y desarrollo web' },
     period: { en: 'Jan 2002 — Jan 2007', es: 'Ene 2002 — Ene 2007' },
     range: '2002 — 2007',
     location: { en: 'Barcelona', es: 'Barcelona' },

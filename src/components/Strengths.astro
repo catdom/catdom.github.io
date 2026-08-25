@@ -1,9 +1,9 @@
 ---
 import { strengthsIntro } from '../data/home';
 import { strengths } from '../data/strengths';
-import { site, ui } from '../data/site';
+import { ui } from '../data/site';
 import Icon from './Icon.astro';
-import type { Lang } from '../data/types';
+import { langPrefix, type Lang } from '../data/types';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -12,7 +12,7 @@ const i = strengthsIntro[lang];
 
 <section class="strengths" id="strengths" data-tone="light">
   <div class="shell">
-    <div class="band">
+    <div class="band" data-grow>
       <div class="split band__body">
         <div class="band__aside">
           <p class="eyebrow" data-reveal>{i.label}</p>
@@ -20,7 +20,7 @@ const i = strengthsIntro[lang];
           <p class="lead" data-reveal style="--reveal-delay:120ms">{i.body}</p>
           <a
             class="pill pill--solid band__cta"
-            href={`mailto:${site.email}`}
+            href={`${langPrefix(lang)}#contact`}
             data-reveal
             style="--reveal-delay:180ms"
           >
@@ -66,6 +66,22 @@ const i = strengthsIntro[lang];
 
   .band__cta { margin-top: 0.5rem; }
 
+  /* Single column: the button leaves the text block and follows the last
+     card, centred, so it reads as the section's closing action. */
+  @media (max-width: 899px) {
+    .band__body { display: grid; }
+    .band__aside { display: contents; }
+    .band__aside .eyebrow { order: 1; }
+    .band__aside h2 { order: 2; }
+    .band__aside .lead { order: 3; margin-bottom: 0.5rem; }
+    .cards { order: 4; }
+    .band__cta {
+      order: 5;
+      justify-self: center;
+      margin-top: clamp(1.75rem, 5vw, 2.5rem);
+    }
+  }
+
   .cards {
     list-style: none;
     margin: 0;
@@ -88,7 +104,11 @@ const i = strengthsIntro[lang];
     transition: transform var(--dur) var(--ease);
   }
 
-  .card:hover { transform: translateY(-4px); }
+  /* Only where there is a real pointer: on a touch screen this fires on tap
+     and reads as the card jumping away from the finger. */
+  @media (hover: hover) and (pointer: fine) {
+    .card:hover { transform: translateY(-4px); }
+  }
 
   .card__icon {
     display: grid;

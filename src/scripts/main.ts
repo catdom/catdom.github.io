@@ -3,7 +3,7 @@
 /* --- 1. Reveal on scroll --------------------------------------------------- */
 
 const reveal = () => {
-  const targets = document.querySelectorAll<HTMLElement>('[data-reveal]');
+  const targets = document.querySelectorAll<HTMLElement>('[data-reveal], [data-grow]');
   if (!targets.length) return;
 
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -123,54 +123,9 @@ const headerTone = () => {
 
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll, { passive: true });
+  // The tone-fade section changes its own data-tone mid-scroll.
+  nav.addEventListener('tonecheck', onScroll);
   update();
-};
-
-/* --- 4. Mobile menu ------------------------------------------------------- */
-
-const mobileMenu = () => {
-  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
-  const sheet = document.querySelector<HTMLElement>('[data-menu]');
-  if (!toggle || !sheet) return;
-
-  const nav = document.querySelector<HTMLElement>('[data-nav]');
-
-  const setOpen = (open: boolean) => {
-    toggle.setAttribute('aria-expanded', String(open));
-    document.body.style.overflow = open ? 'hidden' : '';
-    // The sheet is dark whatever section is behind it, so the bar follows.
-    nav?.classList.toggle('menu-open', open);
-
-    if (open) {
-      sheet.hidden = false;
-      // Let the browser paint the un-hidden sheet before fading it in.
-      requestAnimationFrame(() => sheet.classList.add('is-open'));
-      return;
-    }
-
-    sheet.classList.remove('is-open');
-    const done = () => {
-      sheet.hidden = true;
-      sheet.removeEventListener('transitionend', done);
-    };
-    sheet.addEventListener('transitionend', done);
-  };
-
-  toggle.addEventListener('click', () => {
-    setOpen(toggle.getAttribute('aria-expanded') !== 'true');
-  });
-
-  // Following an in-page anchor should close the sheet behind you.
-  sheet.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => setOpen(false));
-  });
-
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
-      setOpen(false);
-      toggle.focus();
-    }
-  });
 };
 
 /* --- 5. Eased scrolling ---------------------------------------------------- */
@@ -260,9 +215,6 @@ const smoothScroll = () => {
       // Ctrl+wheel is browser zoom.
       if (event.ctrlKey) return;
       if (scrollsItself(event.target)) return;
-      // The sheet is open and the body is locked.
-      if (document.body.style.overflow === 'hidden') return;
-
       // Firefox reports lines rather than pixels on some platforms.
       const scale = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? window.innerHeight : 1;
 
@@ -385,12 +337,7 @@ const contactForm = () => {
     } catch {
       button.disabled = false;
       button.textContent = copy.msgSend ?? '';
-      status.innerHTML = '';
-      status.append(copy.msgError ?? '');
-      const link = document.createElement('a');
-      link.href = `mailto:${copy.email ?? ''}`;
-      link.textContent = copy.email ?? '';
-      status.append(' ', link);
+      status.textContent = copy.msgError ?? '';
     }
   });
 };
@@ -474,10 +421,50 @@ const rotatingHeadline = () => {
   reduced.addEventListener('change', () => (reduced.matches ? stop() : start()));
 };
 
+/* --- 8. Tone fade --------------------------------------------------------- */
+
+/* The section below the hero opens on the hero's own ground, so the two read
+   as one surface, and crosses to dark once a third of it has gone past the
+   top of the viewport. The header probe reads `data-tone`, so that is updated
+   alongside the class — otherwise the bar would stay in its light tone over a
+   dark section. */
+
+const toneFade = () => {
+  const section = document.querySelector<HTMLElement>('[data-tonefade]');
+  if (!section) return;
+
+  const nav = document.querySelector<HTMLElement>('[data-nav]');
+  let queued = false;
+
+  const update = () => {
+    queued = false;
+    const rect = section.getBoundingClientRect();
+    // A third of the section has passed the top of the viewport.
+    const crossed = rect.top <= -rect.height / 3;
+
+    if (crossed === section.classList.contains('is-dark')) return;
+
+    section.classList.toggle('is-dark', crossed);
+    section.dataset.tone = crossed ? 'dark' : 'light';
+    // Re-run the header probe now rather than waiting for the next scroll tick.
+    nav?.dispatchEvent(new Event('tonecheck'));
+  };
+
+  const onScroll = () => {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(update);
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  update();
+};
+
 reveal();
 accordion();
 headerTone();
-mobileMenu();
 smoothScroll();
 contactForm();
 rotatingHeadline();
+toneFade();

@@ -25,7 +25,7 @@ const personLd = {
   '@type': 'Person',
   name: site.name,
   jobTitle: 'Head of UX & Design Operations',
-  email: `mailto:${site.email}`,
+  email: site.email,
   url: site.origin,
   sameAs: [site.linkedin],
   address: { '@type': 'PostalAddress', addressLocality: site.location, addressCountry: 'ES' },
