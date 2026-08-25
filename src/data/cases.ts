@@ -442,7 +442,7 @@ export const cases: CaseStudy[] = [
   {
     slug: 'bmw',
     company: 'BMW.es',
-    featured: false,
+    featured: true,
     role: { en: 'Web Designer & Developer — Herraiz Soto', es: 'Web Designer & Developer — Herraiz Soto' },
     period: { en: 'Jan 2005 — Nov 2007', es: 'Ene 2005 — Nov 2007' },
     years: '2005',
