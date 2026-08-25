@@ -20,7 +20,7 @@ export const site = {
    * While it is null the footer falls back to the plain email link, so the
    * page is never left with a form that goes nowhere.
    */
-  formspreeId: null as string | null,
+  formspreeId: 'xgawjnzk' as string | null,
 } as const;
 
 export const tagline: L10n = {
@@ -71,6 +71,7 @@ export const ui: L10n<Record<string, string>> = {
     formRequired: 'Please fill in this field.',
     formBadEmail: 'Please enter a valid email address.',
     formOrEmail: 'Or email me directly',
+    formSubject: 'New message from your portfolio',
   },
   es: {
     contact: 'Hablemos',
@@ -96,5 +97,6 @@ export const ui: L10n<Record<string, string>> = {
     formRequired: 'Rellena este campo, por favor.',
     formBadEmail: 'Introduce una dirección de email válida.',
     formOrEmail: 'O escríbeme directamente a',
+    formSubject: 'Nuevo mensaje desde tu portfolio',
   },
 };

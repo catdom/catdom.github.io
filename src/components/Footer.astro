@@ -56,6 +56,10 @@ const year = new Date().getFullYear();
                 <p class="field__err" data-err-for="cf-message" hidden></p>
               </div>
 
+              {/* Gives the notification email a useful subject line instead
+                  of Formspree's generic one. */}
+              <input type="hidden" name="_subject" value={ui[lang].formSubject} />
+
               {/* Formspree drops anything that fills this in. Hidden from
                   everyone but a bot walking the DOM. */}
               <input
