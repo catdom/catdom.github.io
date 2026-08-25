@@ -4,6 +4,8 @@
 --------------------------------------------------------------------------- */
 :root {
   /* Surfaces */
+  --font-heading: 'DM Sans', 'DM Sans Placeholder', sans-serif;
+
   --paper: #ffffff;
   --lavender: #dde3fb;
   --lavender-soft: #e8ebfd;
@@ -54,15 +56,27 @@
 
 /* --------------------------------------------------------------------------- */
 
-/* Subset to the four characters of the wordmark — that is the only thing on
-   the site set in DM Sans, so the full face would be 94KB for "jcd." */
+/* DM Sans sets the wordmark and every heading; Geist carries the body. */
 @font-face {
   font-family: 'DM Sans';
   font-style: normal;
   font-weight: 100 1000;
   font-display: swap;
-  src: url('/fonts/dm-sans-mark.woff2') format('woff2');
-  unicode-range: U+002E, U+0063, U+0064, U+006A;
+  src: url('/fonts/dm-sans-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 100 1000;
+  font-display: swap;
+  src: url('/fonts/dm-sans-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
 @font-face {
@@ -119,7 +133,13 @@ img { height: auto; }
 button, input, select, textarea { font: inherit; color: inherit; }
 button { background: none; border: 0; cursor: pointer; }
 
-h1, h2, h3, h4 { font-weight: 500; text-wrap: balance; }
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  text-wrap: balance;
+}
+
+h4 { font-weight: 500; text-wrap: balance; }
 p { text-wrap: pretty; }
 
 a { color: inherit; text-decoration: none; }
@@ -191,6 +211,7 @@ a { color: inherit; text-decoration: none; }
 .on-dark .eyebrow { color: var(--on-dark-muted); }
 
 .display {
+  font-family: var(--font-heading);
   font-size: var(--fs-display);
   line-height: 0.98;
   letter-spacing: var(--track-display);
@@ -198,6 +219,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 .h2 {
+  font-family: var(--font-heading);
   font-size: var(--fs-h2);
   line-height: 1.05;
   letter-spacing: var(--track-h2);
@@ -205,6 +227,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 .h3 {
+  font-family: var(--font-heading);
   font-size: var(--fs-h3);
   line-height: 1.2;
   letter-spacing: var(--track-h3);
