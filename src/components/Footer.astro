@@ -104,10 +104,10 @@ const year = new Date().getFullYear();
   .foot { padding-block: clamp(1rem, 3vw, 2.5rem) clamp(1rem, 3vw, 2.5rem); background: var(--paper); }
 
   .foot__card {
-    background: var(--dark);
+    --grow-bg: var(--dark);
+    --pad-x: clamp(2rem, 3.5vw, 3.5rem);
     color: var(--on-dark);
-    border-radius: var(--r-band);
-    padding: clamp(2.5rem, 5vw, 4.5rem) clamp(1.5rem, 3.5vw, 3.5rem);
+    padding: clamp(2.5rem, 5vw, 4.5rem) var(--pad-x);
     display: grid;
     gap: clamp(1.5rem, 3vw, 2.5rem);
   }

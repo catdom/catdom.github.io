@@ -439,8 +439,13 @@ const toneFade = () => {
   const update = () => {
     queued = false;
     const rect = section.getBoundingClientRect();
-    // A third of the section has passed the top of the viewport.
-    const crossed = rect.top <= -rect.height / 3;
+    /* Measured against the viewport, not the section's own height. Keyed to
+       the section, a third of it is a third of a very tall block on a phone,
+       where the list stacks — so the change landed hundreds of pixels of
+       scrolling too late. This fires as the section climbs into view: its top
+       edge reaching 40% up the screen still leaves the hero's ground visible
+       above it, so the continuity reads before the ground turns. */
+    const crossed = rect.top <= window.innerHeight * 0.4;
 
     if (crossed === section.classList.contains('is-dark')) return;
 
@@ -467,7 +472,7 @@ const toneFade = () => {
    threshold fired the moment their top edge appeared at the very bottom of
    the screen — the growth played out where nobody was looking and the panel
    was already settled by the time it was worth reading. This waits until the
-   panel's top has climbed to two thirds of the way up the viewport. */
+   panel's top has climbed a little way up the viewport. */
 
 const growPanels = () => {
   const panels = [...document.querySelectorAll<HTMLElement>('[data-grow]')];
@@ -488,7 +493,7 @@ const growPanels = () => {
     for (const panel of panels) {
       if (panel.classList.contains('is-in')) continue;
       const rect = panel.getBoundingClientRect();
-      if (rect.top <= window.innerHeight * 0.66) panel.classList.add('is-in');
+      if (rect.top <= window.innerHeight * 0.82) panel.classList.add('is-in');
       else pending = true;
     }
 
