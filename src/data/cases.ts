@@ -1,7 +1,11 @@
 import type { L10n } from './types';
 
 export type CaseImage = {
-  /** Relative to `/public/cases/`. Slots render nothing until the file exists. */
+  /**
+   * File name inside `/public/cases/`, WITHOUT the extension — the build
+   * matches by name, so any image format works. A slot with no matching
+   * file renders nothing.
+   */
   src: string;
   alt: L10n;
   caption?: L10n;
@@ -107,7 +111,7 @@ export const cases: CaseStudy[] = [
     },
     images: [
       {
-        src: 'kleinanzeigen-1.png',
+        src: 'kleinanzeigen-1',
         span: 'wide',
         alt: {
           en: 'The Kleinanzeigen app home screen: a greeting, a search field, a row of category icons, a promoted carousel, and stacked rows of listings above the main tab bar.',
@@ -119,7 +123,7 @@ export const cases: CaseStudy[] = [
         },
       },
       {
-        src: 'kleinanzeigen-4.png',
+        src: 'kleinanzeigen-4',
         span: 'wide',
         alt: {
           en: 'Three phone screens showing a messaging flow: the conversation list, a thread with the keyboard open mid-reply, and the same thread with the reply sent.',
@@ -131,7 +135,7 @@ export const cases: CaseStudy[] = [
         },
       },
       {
-        src: 'kleinanzeigen-3.png',
+        src: 'kleinanzeigen-3',
         span: 'wide',
         alt: {
           en: 'Component documentation for buttons, a content switcher and tabs, each annotated with its variants and configurable properties.',
@@ -143,7 +147,7 @@ export const cases: CaseStudy[] = [
         },
       },
       {
-        src: 'kleinanzeigen-5.png',
+        src: 'kleinanzeigen-5',
         span: 'wide',
         alt: {
           en: 'Component documentation for a slider, a number input and a text field, each with usage guidance, variants including error and disabled states, and configurable properties.',
@@ -155,7 +159,7 @@ export const cases: CaseStudy[] = [
         },
       },
       {
-        src: 'kleinanzeigen-2.png',
+        src: 'kleinanzeigen-2',
         span: 'wide',
         alt: {
           en: 'Clear-space specification for the Kleinanzeigen logo, showing the horizontal and stacked lockups each with a 10% margin on every side.',
@@ -246,7 +250,7 @@ export const cases: CaseStudy[] = [
     },
     images: [
       {
-        src: 'fotocasa-2.png',
+        src: 'fotocasa-2',
         span: 'wide',
         alt: {
           en: 'The Fotocasa mobile home screen: a blue header, tabs for buying, renting and sharing, a property-type selector, a location search field, a search button, and a card resuming the last search.',
@@ -258,7 +262,7 @@ export const cases: CaseStudy[] = [
         },
       },
       {
-        src: 'fotocasa-1.png',
+        src: 'fotocasa-1',
         span: 'wide',
         alt: {
           en: 'Three Fotocasa phone screens side by side: the home search, a rental listing with price, size and contact actions, and a map view with clustered property pins over Barcelona.',
@@ -270,7 +274,7 @@ export const cases: CaseStudy[] = [
         },
       },
       {
-        src: 'fotocasa-5.png',
+        src: 'fotocasa-5',
         span: 'wide',
         alt: {
           en: 'A matrix of button specimens grouped into primary, secondary with blue text and secondary with black text, each shown across sizes, icon positions and default, hover, focus and disabled states.',
@@ -282,7 +286,7 @@ export const cases: CaseStudy[] = [
         },
       },
       {
-        src: 'fotocasa-4.png',
+        src: 'fotocasa-4',
         span: 'wide',
         alt: {
           en: 'Text input specimens in three variants — plain, with a country dialling prefix, and with a help icon — each shown in default, hover, focus, filled, disabled and error states.',
@@ -294,7 +298,7 @@ export const cases: CaseStudy[] = [
         },
       },
       {
-        src: 'fotocasa-3.png',
+        src: 'fotocasa-3',
         span: 'wide',
         alt: {
           en: 'Selection components: dropdown menus with a checked item, a location search listing provinces with result counts, and a collapsible checkbox tree of Barcelona districts and neighbourhoods.',
@@ -398,7 +402,7 @@ export const cases: CaseStudy[] = [
     },
     images: [
       {
-        src: 'coches-net-1.png',
+        src: 'coches-net-1',
         span: 'wide',
         alt: {
           en: 'A desktop vehicle search on coches.net: a filter rail with body-type and capacity checkboxes and a price slider, beside a grid of vehicle cards showing fuel, transmission, seats, a daily price and a red rental action.',
@@ -410,7 +414,7 @@ export const cases: CaseStudy[] = [
         },
       },
       {
-        src: 'coches-net-3.png',
+        src: 'coches-net-3',
         span: 'wide',
         alt: {
           en: 'Three coches.net phone screens: the home with search, condition filters and a featured carousel; a vehicle listing; and a screen of related vehicles beneath a video.',
@@ -422,7 +426,7 @@ export const cases: CaseStudy[] = [
         },
       },
       {
-        src: 'coches-net-2.png',
+        src: 'coches-net-2',
         span: 'wide',
         alt: {
           en: 'A vehicle listing on a phone: a photo carousel, the model name and price, a description, specification chips for transmission, year, doors and fuel, colour swatches, and a red primary action.',
@@ -494,7 +498,7 @@ export const cases: CaseStudy[] = [
     },
     images: [
       {
-        src: 'bmw-1.png',
+        src: 'bmw-1',
         span: 'wide',
         alt: {
           en: 'The BMW.es homepage: a full-bleed photograph of a blue saloon on a mountain road, with the navigation bar, the headline “Elige lo que te mueve.”, a call-to-action button and a panel promoting new models.',
@@ -506,7 +510,7 @@ export const cases: CaseStudy[] = [
         },
       },
       {
-        src: 'bmw-2.png',
+        src: 'bmw-2',
         span: 'wide',
         alt: {
           en: 'The same homepage layout shown inside a browser window, this time with a black coupé, demonstrating how the design holds with a different photograph.',
