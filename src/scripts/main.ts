@@ -111,6 +111,8 @@ const headerTone = () => {
       return rect.top <= probe && rect.bottom > probe;
     });
     nav.classList.toggle('is-on-dark', current?.dataset.tone === 'dark');
+    // Past the very top, the bar takes on its translucent band.
+    nav.classList.toggle('is-scrolled', window.scrollY > 8);
   };
 
   const onScroll = () => {

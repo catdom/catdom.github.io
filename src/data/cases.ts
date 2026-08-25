@@ -105,7 +105,68 @@ export const cases: CaseStudy[] = [
         'Colaboración con PMs, equipos de ingeniería y analistas de datos para definir problemas, explorar soluciones y entregar mejoras de producto relevantes.',
       ],
     },
-    images: [],
+    images: [
+      {
+        src: 'kleinanzeigen-1.png',
+        span: 'wide',
+        alt: {
+          en: 'The Kleinanzeigen app home screen: a greeting, a search field, a row of category icons, a promoted carousel, and stacked rows of listings above the main tab bar.',
+          es: 'Pantalla de inicio de la app de Kleinanzeigen: saludo, buscador, fila de iconos de categoría, carrusel destacado y filas de anuncios sobre la barra de pestañas.',
+        },
+        caption: {
+          en: 'The home screen, where category entry points and listing rows share a single scroll.',
+          es: 'La pantalla de inicio, donde las categorías y las filas de anuncios comparten un mismo scroll.',
+        },
+      },
+      {
+        src: 'kleinanzeigen-4.png',
+        span: 'wide',
+        alt: {
+          en: 'Three phone screens showing a messaging flow: the conversation list, a thread with the keyboard open mid-reply, and the same thread with the reply sent.',
+          es: 'Tres pantallas de móvil con un flujo de mensajería: la lista de conversaciones, un hilo con el teclado abierto a media respuesta y el mismo hilo con la respuesta enviada.',
+        },
+        caption: {
+          en: 'A messaging thread followed end to end, one of the flows where clarity mattered most.',
+          es: 'Un hilo de mensajería seguido de principio a fin, uno de los flujos donde la claridad más importaba.',
+        },
+      },
+      {
+        src: 'kleinanzeigen-3.png',
+        span: 'wide',
+        alt: {
+          en: 'Component documentation for buttons, a content switcher and tabs, each annotated with its variants and configurable properties.',
+          es: 'Documentación de componentes para botones, un content switcher y pestañas, cada uno anotado con sus variantes y propiedades configurables.',
+        },
+        caption: {
+          en: 'Buttons and navigation patterns, documented with the variants and properties teams can actually set.',
+          es: 'Botones y patrones de navegación, documentados con las variantes y propiedades que los equipos pueden configurar.',
+        },
+      },
+      {
+        src: 'kleinanzeigen-5.png',
+        span: 'wide',
+        alt: {
+          en: 'Component documentation for a slider, a number input and a text field, each with usage guidance, variants including error and disabled states, and configurable properties.',
+          es: 'Documentación de componentes para un slider, un input numérico y un campo de texto, cada uno con pautas de uso, variantes —incluidos los estados de error y deshabilitado— y propiedades configurables.',
+        },
+        caption: {
+          en: 'Form controls, each with the guidance that keeps teams from re-deciding the same thing.',
+          es: 'Controles de formulario, cada uno con la pauta que evita que los equipos vuelvan a decidir lo mismo.',
+        },
+      },
+      {
+        src: 'kleinanzeigen-2.png',
+        span: 'wide',
+        alt: {
+          en: 'Clear-space specification for the Kleinanzeigen logo, showing the horizontal and stacked lockups each with a 10% margin on every side.',
+          es: 'Especificación del área de respeto del logo de Kleinanzeigen, con las versiones horizontal y apilada, cada una con un margen del 10% por cada lado.',
+        },
+        caption: {
+          en: 'Clear-space rules, defined proportionally so both lockups hold at any size.',
+          es: 'Área de respeto definida en proporción, para que ambas versiones aguanten a cualquier tamaño.',
+        },
+      },
+    ],
   },
   {
     slug: 'fotocasa',
@@ -183,7 +244,68 @@ export const cases: CaseStudy[] = [
         'Trabajé con PMs, leads de ingeniería y stakeholders en España, Francia y Alemania para alinear la visión de producto y elevar la madurez de diseño de la organización.',
       ],
     },
-    images: [],
+    images: [
+      {
+        src: 'fotocasa-2.png',
+        span: 'wide',
+        alt: {
+          en: 'The Fotocasa mobile home screen: a blue header, tabs for buying, renting and sharing, a property-type selector, a location search field, a search button, and a card resuming the last search.',
+          es: 'La home móvil de Fotocasa: cabecera azul, pestañas de comprar, alquilar y compartir, selector de tipo de vivienda, buscador por ubicación, botón de buscar y una tarjeta que retoma la última búsqueda.',
+        },
+        caption: {
+          en: 'The mobile home screen, assembled entirely from shared components.',
+          es: 'La home móvil, montada por completo con componentes compartidos.',
+        },
+      },
+      {
+        src: 'fotocasa-1.png',
+        span: 'wide',
+        alt: {
+          en: 'Three Fotocasa phone screens side by side: the home search, a rental listing with price, size and contact actions, and a map view with clustered property pins over Barcelona.',
+          es: 'Tres pantallas de móvil de Fotocasa: la búsqueda de la home, un anuncio de alquiler con precio, superficie y acciones de contacto, y una vista de mapa con chinchetas agrupadas sobre Barcelona.',
+        },
+        caption: {
+          en: 'Search, listing and map — three very different screens holding one vocabulary.',
+          es: 'Búsqueda, anuncio y mapa: tres pantallas muy distintas sosteniendo un mismo vocabulario.',
+        },
+      },
+      {
+        src: 'fotocasa-5.png',
+        span: 'wide',
+        alt: {
+          en: 'A matrix of button specimens grouped into primary, secondary with blue text and secondary with black text, each shown across sizes, icon positions and default, hover, focus and disabled states.',
+          es: 'Una matriz de botones agrupados en primarios, secundarios con texto azul y secundarios con texto negro, cada uno en varios tamaños, posiciones de icono y estados por defecto, hover, foco y deshabilitado.',
+        },
+        caption: {
+          en: 'Every button the system allows — the point being how few of them there are.',
+          es: 'Todos los botones que permite el sistema; la gracia está en lo pocos que son.',
+        },
+      },
+      {
+        src: 'fotocasa-4.png',
+        span: 'wide',
+        alt: {
+          en: 'Text input specimens in three variants — plain, with a country dialling prefix, and with a help icon — each shown in default, hover, focus, filled, disabled and error states.',
+          es: 'Campos de texto en tres variantes —simple, con prefijo telefónico de país y con icono de ayuda—, cada una en estado por defecto, hover, foco, relleno, deshabilitado y error.',
+        },
+        caption: {
+          en: 'Input states defined once, so error and disabled never get improvised per team.',
+          es: 'Estados definidos una vez, para que error y deshabilitado no se improvisen equipo por equipo.',
+        },
+      },
+      {
+        src: 'fotocasa-3.png',
+        span: 'wide',
+        alt: {
+          en: 'Selection components: dropdown menus with a checked item, a location search listing provinces with result counts, and a collapsible checkbox tree of Barcelona districts and neighbourhoods.',
+          es: 'Componentes de selección: menús desplegables con un elemento marcado, un buscador de ubicaciones con provincias y número de resultados, y un árbol plegable de distritos y barrios de Barcelona.',
+        },
+        caption: {
+          en: 'Location selection, the pattern a property marketplace lives or dies by.',
+          es: 'La selección de ubicación, el patrón del que vive o muere un portal inmobiliario.',
+        },
+      },
+    ],
   },
   {
     slug: 'coches-net',
@@ -274,7 +396,44 @@ export const cases: CaseStudy[] = [
         'Mentoricé a diseñadores y contribuí al crecimiento organizativo mediante contratación, onboarding y coaching.',
       ],
     },
-    images: [],
+    images: [
+      {
+        src: 'coches-net-1.png',
+        span: 'wide',
+        alt: {
+          en: 'A desktop vehicle search on coches.net: a filter rail with body-type and capacity checkboxes and a price slider, beside a grid of vehicle cards showing fuel, transmission, seats, a daily price and a red rental action.',
+          es: 'Una búsqueda de vehículos de escritorio en coches.net: una columna de filtros con casillas de carrocería y capacidad y un slider de precio, junto a una rejilla de tarjetas con combustible, transmisión, plazas, precio por día y una acción de alquiler en rojo.',
+        },
+        caption: {
+          en: 'Search, where filters and results have to stay legible together.',
+          es: 'La búsqueda, donde filtros y resultados tienen que seguir siendo legibles a la vez.',
+        },
+      },
+      {
+        src: 'coches-net-3.png',
+        span: 'wide',
+        alt: {
+          en: 'Three coches.net phone screens: the home with search, condition filters and a featured carousel; a vehicle listing; and a screen of related vehicles beneath a video.',
+          es: 'Tres pantallas de móvil de coches.net: la home con buscador, filtros por estado y un carrusel de destacados; un anuncio de vehículo; y una pantalla de vehículos relacionados bajo un vídeo.',
+        },
+        caption: {
+          en: 'The mobile journey, from browsing to a single vehicle and out again.',
+          es: 'El recorrido móvil, de la exploración a un vehículo concreto y de vuelta.',
+        },
+      },
+      {
+        src: 'coches-net-2.png',
+        span: 'wide',
+        alt: {
+          en: 'A vehicle listing on a phone: a photo carousel, the model name and price, a description, specification chips for transmission, year, doors and fuel, colour swatches, and a red primary action.',
+          es: 'Un anuncio de vehículo en móvil: carrusel de fotos, nombre del modelo y precio, descripción, chips de características para transmisión, año, puertas y combustible, muestras de color y una acción principal en rojo.',
+        },
+        caption: {
+          en: 'The listing detail, where a buyer decides whether to make contact.',
+          es: 'El detalle del anuncio, donde el comprador decide si contacta.',
+        },
+      },
+    ],
   },
   {
     slug: 'bmw',
@@ -333,7 +492,32 @@ export const cases: CaseStudy[] = [
         'Trabajé bajo estándares de marca globales estrictos dentro de un entorno de agencia creativa.',
       ],
     },
-    images: [],
+    images: [
+      {
+        src: 'bmw-1.png',
+        span: 'wide',
+        alt: {
+          en: 'The BMW.es homepage: a full-bleed photograph of a blue saloon on a mountain road, with the navigation bar, the headline “Elige lo que te mueve.”, a call-to-action button and a panel promoting new models.',
+          es: 'La home de BMW.es: fotografía a sangre de una berlina azul en una carretera de montaña, con la barra de navegación, el titular «Elige lo que te mueve.», un botón de llamada a la acción y un panel de nuevos modelos.',
+        },
+        caption: {
+          en: 'The homepage, where a full-bleed image had to carry the brand without crowding out the navigation.',
+          es: 'La home, donde una imagen a sangre tenía que sostener la marca sin comerse la navegación.',
+        },
+      },
+      {
+        src: 'bmw-2.png',
+        span: 'wide',
+        alt: {
+          en: 'The same homepage layout shown inside a browser window, this time with a black coupé, demonstrating how the design holds with a different photograph.',
+          es: 'La misma maquetación de la home dentro de una ventana de navegador, esta vez con un cupé negro, mostrando cómo aguanta el diseño con otra fotografía.',
+        },
+        caption: {
+          en: 'The same layout with a different photograph — the contrast of the panels had to survive both.',
+          es: 'La misma maquetación con otra fotografía: el contraste de los paneles tenía que aguantar en ambas.',
+        },
+      },
+    ],
   },
 ];
 
