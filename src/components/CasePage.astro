@@ -1,4 +1,6 @@
 ---
+import { existsSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import { ui } from '../data/site';
 import { cases, type CaseStudy } from '../data/cases';
 import { langPrefix, type Lang } from '../data/types';
@@ -16,8 +18,21 @@ const labels = {
   es: { problem: 'El problema', solution: 'La solución', highlights: 'Lo más relevante' },
 }[lang];
 
-const wide = study.images.filter((i) => i.span !== 'half');
-const half = study.images.filter((i) => i.span === 'half');
+/* Slots whose file has not been added yet are dropped at build time, so an
+   image can be listed before it exists without leaving a broken <img>. */
+const present = study.images.filter((image) =>
+  existsSync(fileURLToPath(new URL(`../../public/cases/${image.src}`, import.meta.url))),
+);
+
+const wide = present.filter((i) => i.span !== 'half');
+const half = present.filter((i) => i.span === 'half');
+
+/* The first wide image opens the case; the rest are dealt out between the
+   narrative sections so a long set never stacks into a wall of pictures
+   ahead of the text. Any left over trail the last section. */
+const [lead, ...spread] = wide;
+const afterSection = (n: number) => (n < spread.length ? spread[n] : undefined);
+const trailing = spread.slice(study.sections.length);
 ---
 
 <article class="case">
@@ -63,16 +78,14 @@ const half = study.images.filter((i) => i.span === 'half');
     </div>
   </section>
 
-  <!-- Lead image slot ---------------------------------------------------- -->
-  {wide.length > 0 && (
+  <!-- Lead image ---------------------------------------------------------- -->
+  {lead && (
     <section class="case__media" data-tone="light">
       <div class="shell">
-        {wide.map((img) => (
-          <figure class="case__figure" data-reveal>
-            <img src={`/cases/${img.src}`} alt={img.alt[lang]} loading="lazy" decoding="async" />
-            {img.caption && <figcaption>{img.caption[lang]}</figcaption>}
-          </figure>
-        ))}
+        <figure class="case__figure" data-reveal>
+          <img src={`/cases/${lead.src}`} alt={lead.alt[lang]} loading="lazy" decoding="async" />
+          {lead.caption && <figcaption>{lead.caption[lang]}</figcaption>}
+        </figure>
       </div>
     </section>
   )}
@@ -80,15 +93,34 @@ const half = study.images.filter((i) => i.span === 'half');
   <!-- Narrative ---------------------------------------------------------- -->
   <section class="case__body" data-tone="light">
     <div class="shell">
-      {study.sections.map((s) => (
-        <div class="split case__section">
-          <p class="eyebrow" data-reveal>{s.title[lang]}</p>
-          <div class="case__sectionText prose-col">
-            {s.body[lang].map((para, n) => (
-              <p data-reveal style={`--reveal-delay:${n * 80}ms`}>{para}</p>
-            ))}
-          </div>
-        </div>
+      {study.sections.map((s, i) => {
+        const follows = afterSection(i);
+        return (
+          <>
+            <div class="split case__section">
+              <p class="eyebrow" data-reveal>{s.title[lang]}</p>
+              <div class="case__sectionText prose-col">
+                {s.body[lang].map((para, n) => (
+                  <p data-reveal style={`--reveal-delay:${n * 80}ms`}>{para}</p>
+                ))}
+              </div>
+            </div>
+
+            {follows && (
+              <figure class="case__figure case__figure--inline" data-reveal>
+                <img src={`/cases/${follows.src}`} alt={follows.alt[lang]} loading="lazy" decoding="async" />
+                {follows.caption && <figcaption>{follows.caption[lang]}</figcaption>}
+              </figure>
+            )}
+          </>
+        );
+      })}
+
+      {trailing.map((img) => (
+        <figure class="case__figure case__figure--inline" data-reveal>
+          <img src={`/cases/${img.src}`} alt={img.alt[lang]} loading="lazy" decoding="async" />
+          {img.caption && <figcaption>{img.caption[lang]}</figcaption>}
+        </figure>
       ))}
 
       {half.length > 0 && (
@@ -197,6 +229,9 @@ const half = study.images.filter((i) => i.span === 'half');
   .case__media { padding-bottom: clamp(3rem, 6vw, 5rem); }
 
   .case__figure { margin: 0; display: grid; gap: 0.75rem; }
+
+  /* Sits between narrative sections, so it needs the rhythm the sections have. */
+  .case__figure--inline { margin: clamp(2rem, 5vw, 3.5rem) 0; }
 
   .case__figure img {
     width: 100%;
