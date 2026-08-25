@@ -125,12 +125,9 @@ const home = `${langPrefix(lang)}/`;
   .mark {
     flex: none;
     display: block;
-    /* The one place the site uses DM Sans; the face is subset to these four
-       characters. Text rather than outlines, because a rasteriser hints small
-       text and does not hint an equivalent path. */
-    font-family: 'DM Sans', 'DM Sans Placeholder', sans-serif;
+    font-family: var(--font-heading);
     font-size: 1.15rem;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: -0.03em;
     line-height: 1;
   }
