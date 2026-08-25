@@ -17,9 +17,75 @@ const year = new Date().getFullYear();
         <span>{a.note}</span>
       </p>
 
-      <a class="foot__email" href={`mailto:${site.email}`} data-reveal style="--reveal-delay:80ms">
-        {site.email}
-      </a>
+      {
+        site.formspreeId ? (
+          <div class="foot__contact" data-reveal style="--reveal-delay:80ms">
+            <h2 class="foot__formTitle">{ui[lang].formTitle}</h2>
+
+            <form
+              class="cform"
+              data-cform
+              action={`https://formspree.io/f/${site.formspreeId}`}
+              method="POST"
+              novalidate
+              data-msg-required={ui[lang].formRequired}
+              data-msg-bad-email={ui[lang].formBadEmail}
+              data-msg-sending={ui[lang].formSending}
+              data-msg-send={ui[lang].formSend}
+              data-msg-sent={ui[lang].formSent}
+              data-msg-error={ui[lang].formError}
+              data-email={site.email}
+            >
+              <div class="cform__row">
+                <div class="field">
+                  <label for="cf-name">{ui[lang].formName}</label>
+                  <input id="cf-name" name="name" type="text" required autocomplete="name" />
+                  <p class="field__err" data-err-for="cf-name" hidden></p>
+                </div>
+
+                <div class="field">
+                  <label for="cf-email">{ui[lang].formEmail}</label>
+                  <input id="cf-email" name="email" type="email" required autocomplete="email" />
+                  <p class="field__err" data-err-for="cf-email" hidden></p>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="cf-message">{ui[lang].formMessage}</label>
+                <textarea id="cf-message" name="message" rows="4" required></textarea>
+                <p class="field__err" data-err-for="cf-message" hidden></p>
+              </div>
+
+              {/* Formspree drops anything that fills this in. Hidden from
+                  everyone but a bot walking the DOM. */}
+              <input
+                class="honeypot"
+                type="text"
+                name="_gotcha"
+                tabindex="-1"
+                autocomplete="off"
+                aria-hidden="true"
+              />
+
+              <div class="cform__foot">
+                <button class="pill pill--light" type="submit" data-send>
+                  {ui[lang].formSend}
+                </button>
+                <p class="cform__status" data-status role="status" aria-live="polite"></p>
+              </div>
+            </form>
+
+            <p class="foot__orEmail">
+              {ui[lang].formOrEmail}{' '}
+              <a href={`mailto:${site.email}`}>{site.email}</a>
+            </p>
+          </div>
+        ) : (
+          <a class="foot__email" href={`mailto:${site.email}`} data-reveal style="--reveal-delay:80ms">
+            {site.email}
+          </a>
+        )
+      }
 
       <div class="foot__bar">
         <p class="foot__legal">© {year} {site.name} · {ui[lang].rights}</p>
@@ -75,6 +141,114 @@ const year = new Date().getFullYear();
   }
 
   .foot__email:hover { border-color: var(--lavender); color: var(--lavender); }
+
+  /* --- Contact form -------------------------------------------------------- */
+
+  .foot__contact { display: grid; gap: 1.5rem; }
+
+  .foot__formTitle {
+    font-size: clamp(1.6rem, 4.4vw, 2.75rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .cform { display: grid; gap: 1.25rem; max-width: 46rem; }
+
+  .cform__row { display: grid; gap: 1.25rem; }
+
+  @media (min-width: 620px) {
+    .cform__row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  .field { display: grid; gap: 0.5rem; }
+
+  .field label {
+    font-size: var(--fs-small);
+    color: var(--on-dark-muted);
+  }
+
+  .field input,
+  .field textarea {
+    font: inherit;
+    color: var(--on-dark);
+    background: var(--dark-raised);
+    border: 1px solid var(--dark-line);
+    border-radius: var(--r-card);
+    padding: 0.85rem 1rem;
+    width: 100%;
+    /* Below this iOS zooms the page when the field takes focus. */
+    font-size: max(1rem, 16px);
+    transition: border-color var(--dur-fast) var(--ease);
+  }
+
+  .field textarea { resize: vertical; min-height: 7rem; }
+
+  .field input:hover,
+  .field textarea:hover { border-color: var(--on-dark-faint); }
+
+  .field input:focus-visible,
+  .field textarea:focus-visible {
+    border-color: var(--lavender);
+    outline: 2px solid var(--lavender);
+    outline-offset: 1px;
+  }
+
+  .field[data-invalid] input,
+  .field[data-invalid] textarea { border-color: #e88b8b; }
+
+  .field__err {
+    font-size: var(--fs-small);
+    color: #e88b8b;
+    margin: 0;
+  }
+
+  .honeypot { display: none; }
+
+  .cform__foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.5rem;
+  }
+
+  .pill--light {
+    background: var(--lavender);
+    color: var(--ink);
+    border: 1px solid transparent;
+    transition: background var(--dur-fast) var(--ease), opacity var(--dur-fast) var(--ease);
+  }
+
+  .pill--light:hover { background: var(--paper); }
+  .pill--light[disabled] { opacity: 0.55; cursor: default; }
+
+  .cform__status {
+    margin: 0;
+    font-size: var(--fs-small);
+    color: var(--on-dark-muted);
+    /* Holds its line so the button never jumps when a message appears. */
+    min-height: 1.2em;
+  }
+
+  .cform__status a { color: var(--lavender); text-decoration: underline; }
+
+  /* Sent: the form is replaced by its own confirmation. */
+  .cform[data-sent] { display: none; }
+
+  .foot__orEmail {
+    font-size: var(--fs-small);
+    color: var(--on-dark-faint);
+    margin: 0;
+  }
+
+  .foot__orEmail a {
+    color: var(--on-dark-muted);
+    border-bottom: 1px solid var(--dark-line);
+    transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+  }
+
+  .foot__orEmail a:hover { color: var(--on-dark); border-color: var(--on-dark); }
 
   .foot__bar {
     display: flex;
