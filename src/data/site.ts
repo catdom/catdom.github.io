@@ -13,6 +13,14 @@ export const site = {
      Flip to `true` to allow indexing — it drives the robots meta tag,
      robots.txt and whether the sitemap is served. */
   indexable: false,
+
+  /**
+   * ⚑ Formspree form ID — the part after /f/ in the endpoint they give you.
+   * Not a secret: it ships in the HTML of every static site that uses one.
+   * While it is null the footer falls back to the plain email link, so the
+   * page is never left with a form that goes nowhere.
+   */
+  formspreeId: null as string | null,
 } as const;
 
 export const tagline: L10n = {
@@ -52,6 +60,17 @@ export const ui: L10n<Record<string, string>> = {
     skip: 'Skip to content',
     langLabel: 'Language',
     menu: 'Menu',
+    formTitle: 'Send me a message',
+    formName: 'Name',
+    formEmail: 'Email',
+    formMessage: 'Message',
+    formSend: 'Send message',
+    formSending: 'Sending…',
+    formSent: 'Thanks — your message is on its way. I usually reply within a day or two.',
+    formError: 'Something went wrong sending that. You can email me directly instead:',
+    formRequired: 'Please fill in this field.',
+    formBadEmail: 'Please enter a valid email address.',
+    formOrEmail: 'Or email me directly',
   },
   es: {
     contact: 'Hablemos',
@@ -66,5 +85,16 @@ export const ui: L10n<Record<string, string>> = {
     skip: 'Ir al contenido',
     langLabel: 'Idioma',
     menu: 'Menú',
+    formTitle: 'Escríbeme',
+    formName: 'Nombre',
+    formEmail: 'Email',
+    formMessage: 'Mensaje',
+    formSend: 'Enviar mensaje',
+    formSending: 'Enviando…',
+    formSent: 'Gracias, tu mensaje va en camino. Suelo responder en un día o dos.',
+    formError: 'Algo ha fallado al enviarlo. Puedes escribirme directamente a:',
+    formRequired: 'Rellena este campo, por favor.',
+    formBadEmail: 'Introduce una dirección de email válida.',
+    formOrEmail: 'O escríbeme directamente a',
   },
 };

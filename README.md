@@ -85,6 +85,30 @@ images: [
 **Sizes.** Wide slots render up to ~1290px across, half slots up to ~630px.
 Export at 2× (2580px / 1260px wide) and compress.
 
+## Turning on the contact form
+
+The footer shows a plain email link until a Formspree form is configured, so
+the page is never left with a form that goes nowhere.
+
+1. Create a form at [formspree.io](https://formspree.io) and copy the ID — the
+   part after `/f/` in the endpoint it gives you.
+2. Set it in `src/data/site.ts`:
+
+   ```ts
+   formspreeId: 'abcdwxyz',
+   ```
+
+The form (name, email, message) then replaces the email as the footer's
+primary action, with the address still shown beneath it.
+
+It is not a secret — it ships in the HTML of every static site that uses one.
+That does mean anyone can post to the endpoint, so the form carries a honeypot
+field that Formspree drops; turn on their spam filtering as well.
+
+Nothing is requested from Formspree until someone actually submits, so
+ordinary visitors still load the page without touching a third party. Without
+JavaScript the form posts normally to Formspree rather than silently failing.
+
 ## Deploying to `catdom.github.io`
 
 The site is configured for a **user site** at the domain root — no `base` path.

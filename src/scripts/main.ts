@@ -290,8 +290,112 @@ const smoothScroll = () => {
   });
 };
 
+/* --- 6. Contact form ------------------------------------------------------ */
+
+/* Posts to Formspree with fetch so the visitor stays on the page. Without
+   JavaScript the form still submits normally — the action and method are on
+   the element itself — so this only ever improves on a working baseline.
+   Nothing is requested from Formspree until someone actually submits. */
+
+const contactForm = () => {
+  const form = document.querySelector<HTMLFormElement>('[data-cform]');
+  if (!form) return;
+
+  const status = form.querySelector<HTMLElement>('[data-status]');
+  const button = form.querySelector<HTMLButtonElement>('[data-send]');
+  const copy = form.dataset;
+  if (!status || !button) return;
+
+  const fields = [...form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>(
+    'input[required], textarea[required]',
+  )];
+
+  const setError = (field: HTMLInputElement | HTMLTextAreaElement, message: string) => {
+    const wrap = field.closest<HTMLElement>('.field');
+    const note = form.querySelector<HTMLElement>(`[data-err-for="${field.id}"]`);
+    if (!wrap || !note) return;
+
+    if (message) {
+      wrap.setAttribute('data-invalid', '');
+      note.textContent = message;
+      note.hidden = false;
+      field.setAttribute('aria-invalid', 'true');
+      field.setAttribute('aria-describedby', note.id || `err-${field.id}`);
+      if (!note.id) note.id = `err-${field.id}`;
+      return;
+    }
+
+    wrap.removeAttribute('data-invalid');
+    note.hidden = true;
+    note.textContent = '';
+    field.removeAttribute('aria-invalid');
+    field.removeAttribute('aria-describedby');
+  };
+
+  const check = (field: HTMLInputElement | HTMLTextAreaElement) => {
+    const value = field.value.trim();
+    if (!value) return copy.msgRequired ?? '';
+    if (field.type === 'email' && !field.checkValidity()) return copy.msgBadEmail ?? '';
+    return '';
+  };
+
+  fields.forEach((field) => {
+    // Only nag after they have had a go at the field, then keep it live.
+    field.addEventListener('blur', () => setError(field, check(field)));
+    field.addEventListener('input', () => {
+      if (field.closest('.field')?.hasAttribute('data-invalid')) setError(field, check(field));
+    });
+  });
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const problems = fields.map((field) => {
+      const message = check(field);
+      setError(field, message);
+      return message ? field : null;
+    }).filter(Boolean) as (HTMLInputElement | HTMLTextAreaElement)[];
+
+    if (problems.length) {
+      problems[0].focus();
+      return;
+    }
+
+    button.disabled = true;
+    button.textContent = copy.msgSending ?? '';
+    status.textContent = '';
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+      if (!response.ok) throw new Error(String(response.status));
+
+      // Replace the form with its confirmation, and move focus there so it is
+      // announced rather than silently swapped in.
+      form.setAttribute('data-sent', '');
+      status.textContent = copy.msgSent ?? '';
+      status.setAttribute('tabindex', '-1');
+      form.after(status);
+      status.focus();
+    } catch {
+      button.disabled = false;
+      button.textContent = copy.msgSend ?? '';
+      status.innerHTML = '';
+      status.append(copy.msgError ?? '');
+      const link = document.createElement('a');
+      link.href = `mailto:${copy.email ?? ''}`;
+      link.textContent = copy.email ?? '';
+      status.append(' ', link);
+    }
+  });
+};
+
 reveal();
 accordion();
 headerTone();
 mobileMenu();
 smoothScroll();
+contactForm();
