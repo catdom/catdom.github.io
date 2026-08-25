@@ -50,6 +50,11 @@
 
   /* Motion */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  /* --ease is a hard ease-out: 96% of the way in half the time. Right for a
+     hover or a reveal, wrong for a long ambient move, where it reads as a
+     snap. This spreads the motion evenly instead. */
+  --ease-soft: cubic-bezier(0.45, 0, 0.55, 1);
+  --dur-slow: 700ms;
   --dur: 520ms;
   --dur-fast: 240ms;
 }
@@ -301,23 +306,30 @@ a { color: inherit; text-decoration: none; }
   transform: none;
 }
 
-/* A rounded panel enters slightly inset and settles to its full width, so it
-   reads as growing into place rather than appearing. Inset rather than scaled:
-   a transform would stretch the corner radius and soften the type inside. */
+/* A rounded panel enters slightly inset and settles to full width, so it reads
+   as growing into place.
+
+   Clipped rather than laid out: animating margin or padding re-flows
+   everything inside on every frame — the cards visibly changed width and the
+   text re-wrapped, so what moved was the content, not the panel. Clipping
+   moves only the painted edge, so the panel grows and its contents hold
+   still. The radius is carried in the clip so the corners stay round
+   throughout, which a scale would have stretched. */
 [data-grow] {
-  margin-inline: var(--grow-inset, clamp(0.75rem, 3vw, 2.5rem));
-  transition: margin-inline var(--dur-slow, 700ms) var(--ease);
+  --grow-inset: clamp(0.75rem, 3vw, 2.5rem);
+  clip-path: inset(0 var(--grow-inset) round var(--r-band));
+  transition: clip-path var(--dur-slow) var(--ease-soft);
 }
 
-[data-grow].is-in { margin-inline: 0; }
+[data-grow].is-in { clip-path: inset(0 0 round var(--r-band)); }
 
 /* No JS, or reduced motion: show everything immediately. */
 .no-js [data-reveal] { opacity: 1; transform: none; }
-.no-js [data-grow] { margin-inline: 0; }
+.no-js [data-grow] { clip-path: none; }
 
 @media (prefers-reduced-motion: reduce) {
   [data-reveal] { opacity: 1; transform: none; }
-  [data-grow] { margin-inline: 0; transition: none; }
+  [data-grow] { clip-path: none; transition: none; }
 }
 
 .visually-hidden {

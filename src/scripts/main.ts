@@ -3,7 +3,7 @@
 /* --- 1. Reveal on scroll --------------------------------------------------- */
 
 const reveal = () => {
-  const targets = document.querySelectorAll<HTMLElement>('[data-reveal], [data-grow]');
+  const targets = document.querySelectorAll<HTMLElement>('[data-reveal]');
   if (!targets.length) return;
 
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -461,6 +461,54 @@ const toneFade = () => {
   update();
 };
 
+/* --- 9. Panels growing into place --------------------------------------- */
+
+/* The rounded panels are taller than the viewport, so the reveal observer's
+   threshold fired the moment their top edge appeared at the very bottom of
+   the screen — the growth played out where nobody was looking and the panel
+   was already settled by the time it was worth reading. This waits until the
+   panel's top has climbed to two thirds of the way up the viewport. */
+
+const growPanels = () => {
+  const panels = [...document.querySelectorAll<HTMLElement>('[data-grow]')];
+  if (!panels.length) return;
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced) {
+    panels.forEach((el) => el.classList.add('is-in'));
+    return;
+  }
+
+  let queued = false;
+
+  const update = () => {
+    queued = false;
+    let pending = false;
+
+    for (const panel of panels) {
+      if (panel.classList.contains('is-in')) continue;
+      const rect = panel.getBoundingClientRect();
+      if (rect.top <= window.innerHeight * 0.66) panel.classList.add('is-in');
+      else pending = true;
+    }
+
+    if (!pending) {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    }
+  };
+
+  const onScroll = () => {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(update);
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  update();
+};
+
 reveal();
 accordion();
 headerTone();
@@ -468,3 +516,4 @@ smoothScroll();
 contactForm();
 rotatingHeadline();
 toneFade();
+growPanels();
