@@ -310,6 +310,18 @@ const contactForm = () => {
     'input[required], textarea[required]',
   )];
 
+  // The message box starts one line tall and grows with what is typed.
+  const grower = form.querySelector<HTMLTextAreaElement>('[data-autogrow]');
+  const grow = () => {
+    if (!grower) return;
+    grower.style.height = 'auto';
+    grower.style.height = `${grower.scrollHeight}px`;
+  };
+  if (grower) {
+    grower.addEventListener('input', grow);
+    grow();
+  }
+
   const setError = (field: HTMLInputElement | HTMLTextAreaElement, message: string) => {
     const wrap = field.closest<HTMLElement>('.field');
     const note = form.querySelector<HTMLElement>(`[data-err-for="${field.id}"]`);
