@@ -15,7 +15,15 @@ const home = `${langPrefix(lang)}/`;
 
 <header class="nav" data-nav>
   <div class="nav__inner">
-    <a class="mark" href={home} aria-label={site.name}>jcd.</a>
+    <a class="mark" href={home} aria-label={site.name}>
+      {/* The wordmark as outlines rather than live text: identical on every
+          machine, and no swap when the webfont lands. Traced from Geist at
+          600 weight with the same kerning and -0.03em tracking the text
+          version had, so it lands on the same 29.33 x 18.4px box. */}
+      <svg viewBox="0 0 1594 1000" width="29.33" height="18.4" aria-hidden="true" focusable="false">
+        <path fill="currentColor" d="M-3.4 971V871.8H50.4Q78.8 871.8 94 859.5Q109.2 847.2 109.2 812.6V287H237.2V816.6Q237.2 899.4 200 935.2Q162.8 971 73.2 971ZM106.8 215.6V102.4H239.6V215.6Z M569.8 833Q490.2 833 431.3 798.6Q372.4 764.2 339.8 701.3Q307.2 638.4 307.2 554Q307.2 469.6 339.8 407.2Q372.4 344.8 431.3 309.9Q490.2 275 569.8 275Q637.6 275 690.9 298.9Q744.2 322.8 777.6 367.6Q811 412.4 819.2 476.2L686.8 483Q679 432 647.6 405.5Q616.2 379 569.8 379Q508 379 473.8 425.3Q439.6 471.6 439.6 554Q439.6 636.8 473.8 683.1Q508 729.4 569.8 729.4Q616.6 729.4 648.2 702Q679.8 674.6 686.8 618.2L819.2 624.2Q811.4 688 778.4 734.9Q745.4 781.8 692.1 807.4Q638.8 833 569.8 833Z M1068.4 833Q1000.2 833 950.5 798.8Q900.8 764.6 874 702Q847.2 639.4 847.2 554Q847.2 468.6 874.2 406Q901.2 343.4 951.1 309.2Q1001 275 1068.4 275Q1124.2 275 1166.6 298.1Q1209 321.2 1230.6 362.6V111H1358.6V821H1237.4L1234.4 741.8Q1212.4 784.8 1168.4 808.9Q1124.4 833 1068.4 833ZM1107 729.4Q1146.8 729.4 1174.3 709Q1201.8 688.6 1216.2 649.3Q1230.6 610 1230.6 554Q1230.6 496.8 1216.2 457.8Q1201.8 418.8 1174.3 398.7Q1146.8 378.6 1107 378.6Q1048.6 378.6 1014.1 425.5Q979.6 472.4 979.6 554Q979.6 634.2 1014.3 681.8Q1049 729.4 1107 729.4Z M1438.2 821V681.2H1584.4V821Z" />
+      </svg>
+    </a>
 
     <nav class="nav__links" aria-label="Sections">
       {
@@ -125,11 +133,10 @@ const home = `${langPrefix(lang)}/`;
   .mark {
     flex: none;
     display: block;
-    font-size: 1.15rem;
-    font-weight: 600;
-    letter-spacing: -0.03em;
-    line-height: 1;
+    line-height: 0;
   }
+
+  .mark svg { display: block; }
 
   .nav__links {
     display: none;

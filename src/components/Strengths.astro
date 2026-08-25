@@ -13,17 +13,17 @@ const i = strengthsIntro[lang];
 <section class="strengths" id="strengths" data-tone="light">
   <div class="shell">
     <div class="band">
-      <div class="split band__head">
-        <p class="eyebrow" data-reveal>{i.label}</p>
-        <div class="band__headText">
-          <h2 class="h2" data-reveal>{i.heading}</h2>
-          <p class="lead" data-reveal style="--reveal-delay:80ms">{i.body}</p>
-        </div>
-      </div>
-
       <div class="split band__body">
         <div class="band__aside">
-          <a class="pill pill--solid" href={`mailto:${site.email}`} data-reveal>
+          <p class="eyebrow" data-reveal>{i.label}</p>
+          <h2 class="h2" data-reveal style="--reveal-delay:60ms">{i.heading}</h2>
+          <p class="lead" data-reveal style="--reveal-delay:120ms">{i.body}</p>
+          <a
+            class="pill pill--solid band__cta"
+            href={`mailto:${site.email}`}
+            data-reveal
+            style="--reveal-delay:180ms"
+          >
             {ui[lang].contact}
           </a>
         </div>
@@ -53,10 +53,18 @@ const i = strengthsIntro[lang];
     gap: clamp(2.5rem, 4vw, 4rem);
   }
 
-  .band__headText { display: grid; gap: 1rem; }
-  .band__headText .lead { max-width: 46ch; }
+  /* The caption, title and lead now share the left column with the CTA, so
+     the column reads top-down rather than being pinned to the cards' foot. */
+  .band__aside {
+    align-self: start;
+    display: grid;
+    justify-items: start;
+    gap: 1rem;
+  }
 
-  .band__aside { align-self: end; }
+  .band__aside .lead { max-width: 42ch; }
+
+  .band__cta { margin-top: 0.5rem; }
 
   .cards {
     list-style: none;

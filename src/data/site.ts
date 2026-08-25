@@ -70,7 +70,6 @@ export const ui: L10n<Record<string, string>> = {
     formError: 'Something went wrong sending that. You can email me directly instead:',
     formRequired: 'Please fill in this field.',
     formBadEmail: 'Please enter a valid email address.',
-    formOrEmail: 'Or email me directly',
     formSubject: 'New message from your portfolio',
   },
   es: {
@@ -96,7 +95,6 @@ export const ui: L10n<Record<string, string>> = {
     formError: 'Algo ha fallado al enviarlo. Puedes escribirme directamente a:',
     formRequired: 'Rellena este campo, por favor.',
     formBadEmail: 'Introduce una dirección de email válida.',
-    formOrEmail: 'O escríbeme directamente a',
     formSubject: 'Nuevo mensaje desde tu portfolio',
   },
 };
