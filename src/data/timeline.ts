@@ -149,35 +149,3 @@ export const timeline: TimelineEntry[] = [
     },
   },
 ];
-
-export type Education = { school: string; program: L10n; years: string };
-
-export const education: Education[] = [
-  {
-    school: 'Esade',
-    program: { en: 'Leadership Program', es: 'Leadership Program — Liderazgo empresarial' },
-    years: '2020',
-  },
-  {
-    school: 'LIDR.co',
-    program: { en: 'Mentoring Training Program', es: 'Mentoring Training Program' },
-    years: '2023',
-  },
-  {
-    school: 'Agilar',
-    program: { en: 'Lean UX and Agile Process', es: 'Lean UX y proceso Agile' },
-    years: '2017',
-  },
-  {
-    school: 'La Nave Nodriza',
-    program: { en: 'Data Driven Design', es: 'Data Driven Design' },
-    years: '2016',
-  },
-  {
-    school: 'BP Systems Academy',
-    program: { en: 'Web design and development', es: 'Diseño y desarrollo web' },
-    years: '2000 — 2002',
-  },
-];
-
-export const educationLabel = { en: 'Education & training', es: 'Formación' };

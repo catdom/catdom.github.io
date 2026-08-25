@@ -1,6 +1,6 @@
 ---
 import { careerIntro } from '../data/home';
-import { timeline, education, educationLabel } from '../data/timeline';
+import { timeline } from '../data/timeline';
 import { langPrefix, type Lang } from '../data/types';
 import Icon from './Icon.astro';
 
@@ -67,19 +67,6 @@ const more = { en: 'Read the full case', es: 'Ver el caso completo' }[lang];
           </li>
         ))}
       </ul>
-
-      <div class="edu" data-reveal>
-        <p class="eyebrow">{educationLabel[lang]}</p>
-        <ul>
-          {education.map((e) => (
-            <li>
-              <span class="edu__school">{e.school}</span>
-              <span class="edu__program">{e.program[lang]}</span>
-              <span class="edu__years">{e.years}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
     </div>
   </div>
 </section>
@@ -234,30 +221,4 @@ const more = { en: 'Read the full case', es: 'Ver el caso completo' }[lang];
 
   .acc__more:hover { border-color: var(--ink); }
 
-  /* --- Education ---------------------------------------------------------- */
-
-  .edu { margin-top: clamp(2.5rem, 4vw, 4rem); display: grid; gap: 1rem; }
-
-  .edu ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
-
-  .edu li {
-    display: grid;
-    grid-template-columns: minmax(0, auto) minmax(0, 1fr) auto;
-    gap: 0.5rem 1rem;
-    align-items: baseline;
-    font-size: 0.9375rem;
-    padding-block: 0.4rem;
-    border-top: 1px solid #f0eef3;
-  }
-
-  .edu__program { color: var(--ink-muted); }
-  .edu__years { color: var(--ink-faint); font-size: var(--fs-small); font-variant-numeric: tabular-nums; }
-
-  @media (max-width: 560px) {
-    .acc__trigger { grid-template-columns: minmax(0, 1fr) auto; }
-    .acc__range { display: none; }
-    .acc__panelInner { margin-left: 0; }
-    .edu li { grid-template-columns: minmax(0, 1fr) auto; }
-    .edu__program { grid-column: 1 / -1; }
-  }
 </style>

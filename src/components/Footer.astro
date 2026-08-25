@@ -79,10 +79,6 @@ const year = new Date().getFullYear();
               </div>
             </form>
 
-            <p class="foot__orEmail">
-              {ui[lang].formOrEmail}{' '}
-              <a href={`mailto:${site.email}`}>{site.email}</a>
-            </p>
           </div>
         ) : (
           <a class="foot__email" href={`mailto:${site.email}`} data-reveal style="--reveal-delay:80ms">
@@ -101,7 +97,6 @@ const year = new Date().getFullYear();
               <Icon name="arrow-up-right" size={14} />
             </a>
           </li>
-          <li><a href={`mailto:${site.email}`}>Email</a></li>
         </ul>
 
         <a class="foot__top" href="#top">
@@ -256,20 +251,6 @@ const year = new Date().getFullYear();
 
   /* Sent: the form is replaced by its own confirmation. */
   .cform[data-sent] { display: none; }
-
-  .foot__orEmail {
-    font-size: var(--fs-small);
-    color: var(--on-dark-faint);
-    margin: 0;
-  }
-
-  .foot__orEmail a {
-    color: var(--on-dark-muted);
-    border-bottom: 1px solid var(--dark-line);
-    transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
-  }
-
-  .foot__orEmail a:hover { color: var(--on-dark); border-color: var(--on-dark); }
 
   .foot__bar {
     display: flex;
