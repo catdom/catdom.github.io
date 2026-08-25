@@ -1,7 +1,8 @@
 ---
 import { readdirSync } from 'node:fs';
-import { extname } from 'node:path';
+import { extname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { imageSize } from '../lib/imageSize';
 import { ui } from '../data/site';
 import { cases, type CaseStudy } from '../data/cases';
 import { langPrefix, type Lang } from '../data/types';
@@ -47,9 +48,15 @@ const resolve = (name: string) =>
     .filter((file) => stem(file) === stem(name))
     .sort((a, b) => rank(a) - rank(b))[0];
 
+/* Intrinsic dimensions go on the tag so the browser reserves the right space
+   before the bytes arrive, instead of shoving the text down as each one
+   lands. An unreadable header just leaves the attributes off. */
 const present = study.images
-  .map((image) => ({ ...image, file: resolve(image.src) }))
-  .filter((image): image is typeof image & { file: string } => Boolean(image.file));
+  .map((image) => {
+    const file = resolve(image.src);
+    return file ? { ...image, file, size: imageSize(join(CASE_DIR, file)) } : undefined;
+  })
+  .filter((image): image is NonNullable<typeof image> => Boolean(image));
 
 const wide = present.filter((i) => i.span !== 'half');
 const half = present.filter((i) => i.span === 'half');
@@ -110,7 +117,14 @@ const trailing = spread.slice(study.sections.length);
     <section class="case__media" data-tone="light">
       <div class="shell">
         <figure class="case__figure" data-reveal>
-          <img src={`/cases/${lead.file}`} alt={lead.alt[lang]} loading="lazy" decoding="async" />
+          <img
+              src={`/cases/${lead.file}`}
+              alt={lead.alt[lang]}
+              width={lead.size?.width}
+              height={lead.size?.height}
+              loading="lazy"
+              decoding="async"
+            />
           {lead.caption && <figcaption>{lead.caption[lang]}</figcaption>}
         </figure>
       </div>
@@ -135,7 +149,14 @@ const trailing = spread.slice(study.sections.length);
 
             {follows && (
               <figure class="case__figure case__figure--inline" data-reveal>
-                <img src={`/cases/${follows.file}`} alt={follows.alt[lang]} loading="lazy" decoding="async" />
+                <img
+              src={`/cases/${follows.file}`}
+              alt={follows.alt[lang]}
+              width={follows.size?.width}
+              height={follows.size?.height}
+              loading="lazy"
+              decoding="async"
+            />
                 {follows.caption && <figcaption>{follows.caption[lang]}</figcaption>}
               </figure>
             )}
@@ -145,7 +166,14 @@ const trailing = spread.slice(study.sections.length);
 
       {trailing.map((img) => (
         <figure class="case__figure case__figure--inline" data-reveal>
-          <img src={`/cases/${img.file}`} alt={img.alt[lang]} loading="lazy" decoding="async" />
+          <img
+              src={`/cases/${img.file}`}
+              alt={img.alt[lang]}
+              width={img.size?.width}
+              height={img.size?.height}
+              loading="lazy"
+              decoding="async"
+            />
           {img.caption && <figcaption>{img.caption[lang]}</figcaption>}
         </figure>
       ))}
@@ -154,7 +182,14 @@ const trailing = spread.slice(study.sections.length);
         <div class="case__pairMedia">
           {half.map((img) => (
             <figure class="case__figure" data-reveal>
-              <img src={`/cases/${img.file}`} alt={img.alt[lang]} loading="lazy" decoding="async" />
+              <img
+              src={`/cases/${img.file}`}
+              alt={img.alt[lang]}
+              width={img.size?.width}
+              height={img.size?.height}
+              loading="lazy"
+              decoding="async"
+            />
               {img.caption && <figcaption>{img.caption[lang]}</figcaption>}
             </figure>
           ))}
@@ -262,6 +297,9 @@ const trailing = spread.slice(study.sections.length);
 
   .case__figure img {
     width: 100%;
+    /* The width/height attributes give the intrinsic ratio; this keeps them
+       from fixing the rendered height. */
+    height: auto;
     border-radius: var(--r-card);
     background: var(--lavender-soft);
   }
