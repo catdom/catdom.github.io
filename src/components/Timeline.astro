@@ -6,6 +6,11 @@ import Icon from './Icon.astro';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
+
+/* The rail cannot be both narrow and hold "2021 — 2025", so on small screens
+   it shows a compressed form instead: same information, half the width. */
+const shortRange = (range: string) =>
+  range.replace(/^(\d{4})\s*—\s*(\d{2})(\d{2})$/, '$1–$3').replace(/\s*—\s*$/, '–');
 const i = careerIntro[lang];
 const base = langPrefix(lang);
 const more = { en: 'Read the full case', es: 'Ver el caso completo' }[lang];
@@ -31,7 +36,8 @@ const more = { en: 'Read the full case', es: 'Ver el caso completo' }[lang];
                 aria-controls={`panel-${e.id}`}
                 id={`trigger-${e.id}`}
               >
-                <span class="acc__range">{e.range}</span>
+                <span class="acc__range acc__range--full">{e.range}</span>
+                <span class="acc__range acc__range--short">{shortRange(e.range)}</span>
                 <span class="acc__title">
                   <span class="acc__role">{e.role[lang]}</span>
                   <span class="acc__company">{e.company}</span>
@@ -91,8 +97,10 @@ const more = { en: 'Read the full case', es: 'Ver el caso completo' }[lang];
     list-style: none;
     margin: 0;
     padding: 0;
-    --acc-rail: 7.5rem;
-    --acc-gap: clamp(0.75rem, 2vw, 1.75rem);
+    /* The rail only has to hold "2007 — 2016", so on a phone it gives most
+       of its width back to the job title. */
+    --acc-rail: 4.35rem;
+    --acc-gap: clamp(0.6rem, 2vw, 1.75rem);
   }
 
   .acc__item { border-top: 1px solid #e6e3ea; }
@@ -104,6 +112,7 @@ const more = { en: 'Read the full case', es: 'Ver el caso completo' }[lang];
     width: 100%;
     display: grid;
     grid-template-columns: var(--acc-rail) minmax(0, 1fr) auto;
+    grid-template-areas: 'range title sign';
     align-items: start;
     gap: var(--acc-gap);
     padding-block: clamp(1.15rem, 2vw, 1.6rem);
@@ -116,7 +125,9 @@ const more = { en: 'Read the full case', es: 'Ver el caso completo' }[lang];
   .acc:hover .acc__item:not(:hover) .acc__trigger { color: var(--ink-faint); }
 
   .acc__range {
+    grid-area: range;
     font-size: var(--fs-small);
+    font-variant-numeric: tabular-nums;
     font-variant-numeric: tabular-nums;
     color: var(--ink-faint);
     padding-top: 0.45rem;
@@ -124,7 +135,8 @@ const more = { en: 'Read the full case', es: 'Ver el caso completo' }[lang];
     transition: color var(--dur-fast) var(--ease);
   }
 
-  .acc__title { display: grid; gap: 0.15rem; min-width: 0; }
+  .acc__title {
+    grid-area: title; display: grid; gap: 0.15rem; min-width: 0; }
 
   .acc__role {
     font-size: var(--fs-row);
@@ -142,6 +154,7 @@ const more = { en: 'Read the full case', es: 'Ver el caso completo' }[lang];
 
   /* Two crossed bars: the upright one rotates flat, turning + into −. */
   .acc__sign {
+    grid-area: sign;
     position: relative;
     width: 22px;
     height: 22px;
@@ -221,4 +234,29 @@ const more = { en: 'Read the full case', es: 'Ver el caso completo' }[lang];
 
   .acc__more:hover { border-color: var(--ink); }
 
+  /* --- Narrow screens -----------------------------------------------------
+     These sit last on purpose: a media query carries no extra specificity, so
+     anywhere above the base rules they would simply lose to them. */
+
+  @media (max-width: 619px) {
+    /* --fs-row's floor is wide enough to wrap the longest job title, and it
+       does not bend, so the row label gets its own fluid size here. */
+    .acc__role { font-size: clamp(0.8rem, 4.1vw, 1.15rem); }
+  }
+
+  .acc__range--short { display: none; }
+
+  @media (max-width: 619px) {
+    .acc__range--full { display: none; }
+    .acc__range--short { display: block; }
+  }
+
+  /* With the compact range the rail only needs to hold "2021–25". */
+  @media (max-width: 419px) {
+    .acc { --acc-rail: 3.9rem; }
+  }
+
+  @media (min-width: 620px) {
+    .acc { --acc-rail: 7.5rem; }
+  }
 </style>

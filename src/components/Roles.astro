@@ -10,7 +10,7 @@ const i = intro[lang];
 const base = langPrefix(lang);
 ---
 
-<section class="roles on-dark" id="roles" data-tone="dark">
+<section class="roles" id="roles" data-tone="light" data-tonefade>
   <div class="shell split">
     <p class="eyebrow roles__label" data-reveal>{i.label}</p>
 
@@ -43,10 +43,33 @@ const base = langPrefix(lang);
 </section>
 
 <style>
+  /* Opens on the hero's own ground so the two sections read as one surface,
+     then crosses to dark once a third of it has been scrolled past. Both the
+     ground and the ink cross together, or the text would vanish mid-fade. */
   .roles {
+    background: var(--lavender);
+    color: var(--ink);
+    padding-block: var(--section-y);
+    transition:
+      background-color var(--tone-dur) var(--ease),
+      color var(--tone-dur) var(--ease);
+
+    /* Everything inside reads its tones from these, so the two halves need
+       one mapping each rather than a duplicate of every rule. */
+    --tone-dur: 700ms;
+    --row-faint: var(--ink-faint);
+    --row-muted: var(--ink-muted);
+    /* The hover pill has to contrast with the ground it sits on, and on the
+       light half the ground IS the lavender the pill would have used. */
+    --row-fill: var(--paper);
+  }
+
+  :global(.roles.is-dark) {
     background: var(--dark);
     color: var(--on-dark);
-    padding-block: var(--section-y);
+    --row-faint: var(--on-dark-faint);
+    --row-muted: var(--on-dark-muted);
+    --row-fill: var(--lavender);
   }
 
   .roles__label { padding-top: 0.6rem; }
@@ -79,18 +102,18 @@ const base = langPrefix(lang);
 
   .rolerow:hover,
   .rolerow:focus-visible {
-    background: var(--lavender);
+    background: var(--row-fill);
     color: var(--ink);
     outline: none;
   }
 
   /* Siblings recede while one row is hovered. */
-  .rolelist:hover li:not(:hover) .rolerow { color: var(--on-dark-faint); }
+  .rolelist:hover li:not(:hover) .rolerow { color: var(--row-faint); }
 
   .rolerow__num {
     font-size: var(--fs-row);
     letter-spacing: -0.02em;
-    color: var(--on-dark-faint);
+    color: var(--row-faint);
     font-variant-numeric: tabular-nums;
     transition: color var(--dur-fast) var(--ease);
   }
@@ -113,7 +136,7 @@ const base = langPrefix(lang);
 
   .rolerow__role {
     font-size: var(--fs-small);
-    color: var(--on-dark-muted);
+    color: var(--row-muted);
     transition: color var(--dur-fast) var(--ease);
   }
 
@@ -121,7 +144,7 @@ const base = langPrefix(lang);
 
   .rolerow__period {
     font-size: var(--fs-small);
-    color: var(--on-dark-faint);
+    color: var(--row-faint);
     white-space: nowrap;
     transition: color var(--dur-fast) var(--ease);
   }
