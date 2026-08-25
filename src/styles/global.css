@@ -54,6 +54,17 @@
 
 /* --------------------------------------------------------------------------- */
 
+/* Subset to the four characters of the wordmark — that is the only thing on
+   the site set in DM Sans, so the full face would be 94KB for "jcd." */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 100 1000;
+  font-display: swap;
+  src: url('/fonts/dm-sans-mark.woff2') format('woff2');
+  unicode-range: U+002E, U+0063, U+0064, U+006A;
+}
+
 @font-face {
   font-family: 'Geist';
   font-style: normal;
