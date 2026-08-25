@@ -10,8 +10,9 @@ const i = intro[lang];
 const base = langPrefix(lang);
 ---
 
-<section class="roles" id="roles" data-tone="light" data-tonefade>
-  <div class="shell split">
+<section class="roles" id="roles">
+  <div class="shell">
+    <div class="roles__panel split" data-tone="light" data-tonefade>
     <p class="eyebrow roles__label" data-reveal>{i.label}</p>
 
     <div class="roles__main">
@@ -39,6 +40,7 @@ const base = langPrefix(lang);
         ))}
       </ol>
     </div>
+    </div>
   </div>
 </section>
 
@@ -47,33 +49,39 @@ const base = langPrefix(lang);
      then crosses to dark once a third of it has been scrolled past. Both the
      ground and the ink cross together, or the text would vanish mid-fade. */
   .roles {
-    background: var(--lavender);
-    color: var(--ink);
-    padding-block: var(--section-y);
-    /* The ground fades slowly, but the ink must not drift across with it:
-       both pass through the same luminance halfway, and cross-fading them
-       together dropped the text to 1.4:1 for about 120ms — invisible. So the
-       ink switches quickly, timed to the instant the ground reaches the
-       luminance where either colour reads equally well (4.16:1 at 360ms of
-       700). That makes the worst case one brief moment instead of a window. */
-    transition:
-      background-color var(--tone-dur) var(--ease-soft),
-      color 0ms linear 355ms;
+    background: var(--paper);
+    padding-block: clamp(1rem, 3vw, 2.5rem);
+  }
 
-    --tone-dur: var(--dur-slow);
-    /* The hover pill has to contrast with the ground it sits on, and on the
-       light half the ground IS the lavender the pill would have used. */
+  /* A rounded panel like the other two, rather than a full-bleed band. */
+  .roles__panel {
+    --pad-x: clamp(2rem, 3.5vw, 3.5rem);
+    /* The hover pill must contrast with the ground it sits on, and while the
+       panel is light that ground IS the lavender the pill would have used. */
     --row-fill: var(--paper);
+    border-radius: var(--r-band);
+    padding: clamp(3rem, 6vw, 6rem) var(--pad-x);
+    color: var(--ink);
+
+    /* The ground is interpolated from the scroll position, not animated on a
+       timer: in the reference it tracks the finger, and a timed fade fired at
+       a threshold always reads as detached from the scroll. --tone-p runs 0
+       to 1 as the panel arrives, set by the script.
+
+       Only the ink transitions, and briefly. It cannot cross-fade with the
+       ground — both pass through the same luminance and the text disappears —
+       so it cuts at the halfway point instead. */
+    background: color-mix(in oklab, var(--lavender), var(--dark) calc(var(--tone-p, 0) * 100%));
+    transition: color 120ms linear;
+  }
+
+  :global(.roles__panel.is-dark) {
+    color: var(--on-dark);
+    --row-fill: var(--lavender);
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .roles { transition: none; }
-  }
-
-  :global(.roles.is-dark) {
-    background: var(--dark);
-    color: var(--on-dark);
-    --row-fill: var(--lavender);
+    .roles__panel { transition: none; }
   }
 
   .roles__label { padding-top: 0.6rem; }
