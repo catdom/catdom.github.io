@@ -46,9 +46,10 @@ const i = strengthsIntro[lang];
   .strengths { padding-block: clamp(3rem, 6vw, 5rem); background: var(--paper); }
 
   .band {
-    background: var(--lavender);
-    border-radius: var(--r-band);
-    padding: clamp(2.5rem, 5vw, 5rem) clamp(1.25rem, 3.5vw, 3.5rem);
+    /* Painted by the [data-grow] pseudo-element, which is what animates. */
+    --grow-bg: var(--lavender);
+    --pad-x: clamp(2rem, 3.5vw, 3.5rem);
+    padding: clamp(2.5rem, 5vw, 5rem) var(--pad-x);
     display: grid;
     gap: clamp(2.5rem, 4vw, 4rem);
   }
