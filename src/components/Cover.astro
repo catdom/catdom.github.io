@@ -70,18 +70,24 @@ const rollDelay = 120 + h.stem.length * 100;
     margin-top: clamp(1rem, 2.5vw, 2rem);
   }
 
-  /* Each line is a window; the text inside rises out of it on load. */
+  /* Each line is a window; the text inside rises out of it on load.
+
+     At a line-height of 0.92 the line box is shorter than the glyphs, so a
+     descender falls 0.155em below it — measured, on "Design leadership" — and
+     the window that makes the rise work was cutting the tails off every g and
+     y. The padding grows the clip region and the negative margin gives the
+     space straight back, so the lines sit exactly where they did. */
   .cover__line {
     display: block;
     overflow: hidden;
-    /* Descenders would be clipped by the window without a little slack. */
-    padding-bottom: 0.06em;
+    padding-block: 0.24em;
+    margin-block: -0.24em;
   }
 
   .cover__line i {
     display: block;
     font-style: normal;
-    transform: translateY(105%);
+    transform: translateY(135%);
     animation: rise-line 900ms var(--ease) forwards;
     animation-delay: var(--d, 0ms);
   }
@@ -95,7 +101,7 @@ const rollDelay = 120 + h.stem.length * 100;
     grid-area: 1 / 1;
     font-style: normal;
     color: var(--mark);
-    transform: translateY(100%);
+    transform: translateY(135%);
     opacity: 0;
     transition:
       transform 520ms var(--ease),
@@ -103,7 +109,7 @@ const rollDelay = 120 + h.stem.length * 100;
   }
 
   .roll__p.is-on { transform: none; opacity: 1; }
-  .roll__p.is-out { transform: translateY(-100%); opacity: 0; }
+  .roll__p.is-out { transform: translateY(-135%); opacity: 0; }
 
   /* Justify the stack left so a short phrase does not sit centred under a
      long one. */
