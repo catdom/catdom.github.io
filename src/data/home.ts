@@ -19,16 +19,16 @@ export const hero: L10n<{
   to: string;
 }> = {
   en: {
-    eyebrow: 'Design leadership · specification',
-    stem: ['I build the', 'system the'],
-    rotating: ['design runs on.', 'team runs on.', 'business runs on.'],
+    eyebrow: 'Jordi Catalán · Barcelona',
+    stem: ['Design leadership', 'focused on'],
+    rotating: ['UX strategy.', 'design systems.', 'business OKRs.'],
     from: '2002',
     to: '2026',
   },
   es: {
-    eyebrow: 'Liderazgo de diseño · especificación',
-    stem: ['Construyo el', 'sistema que'],
-    rotating: ['sostiene el diseño.', 'sostiene al equipo.', 'sostiene el negocio.'],
+    eyebrow: 'Jordi Catalán · Barcelona',
+    stem: ['Liderazgo de diseño', 'enfocado en'],
+    rotating: ['estrategia UX.', 'sistemas de diseño.', 'OKRs de negocio.'],
     from: '2002',
     to: '2026',
   },
