@@ -1,5 +1,6 @@
 ---
 import { hero, spec } from '../data/home';
+import SystemBoard from './SystemBoard.astro';
 import type { Lang } from '../data/types';
 
 interface Props { lang: Lang }
@@ -33,6 +34,8 @@ const lines = h.lines.map((line) => {
       <span class="dim__line"></span>
       <span class="meta">{h.to}</span>
     </div>
+
+    <SystemBoard lang={lang} />
 
     <dl class="sheet">
       {rows.map((row, n) => (
@@ -120,7 +123,7 @@ const lines = h.lines.map((line) => {
   @keyframes draw { to { transform: scaleX(1); } }
 
   .sheet {
-    margin-top: clamp(1.5rem, 4vw, 2.5rem);
+    margin-top: clamp(2rem, 5vw, 3.5rem);
     border-top: 1px solid var(--rule);
   }
 

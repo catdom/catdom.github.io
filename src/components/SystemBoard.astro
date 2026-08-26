@@ -1,0 +1,732 @@
+---
+import { board } from '../data/home';
+import type { Lang } from '../data/types';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const b = board[lang];
+
+/* The switch is two radios, so the board works with no JavaScript at all and
+   reads to assistive tech as what it is: a two-option choice. Both inputs sit
+   before everything they style, since the reveal is a sibling selector.
+
+   Every annotation is anchored to an edge or a percentage of the component it
+   measures — never to a hand-guessed offset — so a change of font, language or
+   column width moves the dimension line with the thing it describes. */
+---
+
+<section class="board" aria-label={b.label}>
+  <input class="visually-hidden board__radio" type="radio" name="ds-mode" id="ds-design" checked />
+  <input class="visually-hidden board__radio" type="radio" name="ds-mode" id="ds-specs" />
+
+  <div class="board__bar">
+    <p class="meta board__label">{b.label}</p>
+    <p class="meta board__legend">{b.legend}</p>
+    <div class="seg" role="group">
+      <label class="seg__opt" for="ds-design">{b.design}</label>
+      <label class="seg__opt" for="ds-specs">{b.specs}</label>
+    </div>
+  </div>
+
+  <div class="board__grid">
+    <!-- Buttons ------------------------------------------------------------ -->
+    <div class="cell">
+      <p class="meta cell__name">Button</p>
+      <div class="cell__body">
+        <div class="an an--fit" style="display:flex;align-items:center;gap:12px">
+          <button class="ds-btn" type="button" data-box>Publish</button>
+          <button class="ds-btn ds-btn--ghost" type="button">Cancel</button>
+          <span class="dm dm--v dm--left" style="--h:100%"><i>40</i></span>
+          <span class="dm dm--h dm--under" style="--l:0;--w:16px"><i>16</i></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Text field --------------------------------------------------------- -->
+    <div class="cell">
+      <p class="meta cell__name">Text field</p>
+      <div class="cell__body">
+        <label class="ds-lab" for="ds-mail">Work email</label>
+        <div class="an">
+          <div class="ds-field" data-box><span>jordi@studio.com</span></div>
+          <span class="dm dm--v dm--left" style="--h:100%"><i>44</i></span>
+          <span class="cl cl--right" style="--t:10px"><i>r 8</i></span>
+        </div>
+        <p class="ds-help">We only use it to reply.</p>
+      </div>
+    </div>
+
+    <!-- Dropdown ----------------------------------------------------------- -->
+    <div class="cell">
+      <p class="meta cell__name">Dropdown</p>
+      <div class="cell__body">
+        <div class="an">
+          <div class="ds-field ds-field--trigger" data-box>
+            <span>Design Ops</span>
+            <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><path d="M4 6.5L8 10.5L12 6.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="ds-menu" data-box>
+            <span class="ds-menu__item">UX Strategy</span>
+            <span class="ds-menu__item is-on">Design Ops<svg viewBox="0 0 16 16" width="11" height="11" aria-hidden="true" focusable="false"><path d="M3.5 8.5l3 3 6-6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="ds-menu__item">Design Systems</span>
+          </div>
+          <span class="dm dm--v dm--left" style="--t:0;--h:44px"><i>44</i></span>
+          <span class="dm dm--v dm--right" style="--t:44px;--h:4px"><i>4</i></span>
+          <span class="dm dm--v dm--left" style="--t:52px;--h:34px"><i>34</i></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Radio group -------------------------------------------------------- -->
+    <div class="cell">
+      <p class="meta cell__name">Radio group</p>
+      <div class="cell__body">
+        <div class="an an--fit ds-stack">
+          <span class="ds-choice"><i class="ds-radio is-on"></i>Remote</span>
+          <span class="ds-choice"><i class="ds-radio"></i>Hybrid</span>
+          <span class="ds-choice"><i class="ds-radio"></i>On site</span>
+          <span class="dm dm--h dm--over" style="--l:0;--w:18px"><i>18</i></span>
+          <span class="dm dm--v dm--right" style="--t:19px;--h:12px"><i>12</i></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Checkbox + switch -------------------------------------------------- -->
+    <div class="cell">
+      <p class="meta cell__name">Checkbox &amp; switch</p>
+      <div class="cell__body">
+        <div class="an an--fit ds-stack">
+          <span class="ds-choice"><i class="ds-check is-on"><svg viewBox="0 0 16 16" width="10" height="10" aria-hidden="true" focusable="false"><path d="M3.5 8.5l3 3 6-6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></i>Send me the deck</span>
+          <span class="ds-choice"><i class="ds-check"></i>Subscribe</span>
+          <span class="ds-choice"><i class="ds-switch is-on"></i>Notifications</span>
+          <span class="dm dm--h dm--over" style="--l:0;--w:16px"><i>16</i></span>
+          <span class="dm dm--h dm--under" style="--l:0;--w:40px"><i>40</i></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card --------------------------------------------------------------- -->
+    <div class="cell">
+      <p class="meta cell__name">Card</p>
+      <div class="cell__body">
+        <div class="an">
+          <div class="ds-card" data-box>
+            <span class="ds-badge">Design system</span>
+            <h4 class="ds-card__title">SUI, seven brands</h4>
+            <p class="ds-card__text">One foundation, local freedom. Tokens, components and the governance that kept it adopted.</p>
+            <div class="ds-card__foot">
+              <span class="ds-meta">2021 &mdash; 2025</span>
+              <span class="ds-link">Read <svg viewBox="0 0 16 16" width="10" height="10" aria-hidden="true" focusable="false"><path d="M4 12L12 4M12 4H5.5M12 4v6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </div>
+          </div>
+          <span class="dm dm--h dm--over" style="--l:0;--w:20px"><i>20</i></span>
+          <span class="cl cl--right" style="--t:8px"><i>r 12</i></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tags --------------------------------------------------------------- -->
+    <div class="cell">
+      <p class="meta cell__name">Tag</p>
+      <div class="cell__body">
+        <div class="an an--fit" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <span class="ds-badge" data-box>Tokens</span>
+          <span class="ds-badge ds-badge--solid">Adopted</span>
+          <span class="dm dm--v dm--left" style="--h:24px"><i>24</i></span>
+          <span class="dm dm--h dm--under" style="--l:0;--w:10px"><i>10</i></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs --------------------------------------------------------------- -->
+    <div class="cell">
+      <p class="meta cell__name">Tabs</p>
+      <div class="cell__body">
+        <div class="an ds-tabs">
+          <span class="ds-tab is-on">Overview</span>
+          <span class="ds-tab">Tokens</span>
+          <span class="ds-tab">Usage</span>
+          <span class="dm dm--v dm--right" style="--t:auto;--b:2px;--h:10px"><i>10</i></span>
+          <span class="cl cl--left" style="--t:calc(100% - 2px)"><i>2</i></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slider ------------------------------------------------------------- -->
+    <div class="cell">
+      <p class="meta cell__name">Slider</p>
+      <div class="cell__body">
+        <div class="an" style="display:flex;align-items:center;gap:12px">
+          <span class="ds-slider__track"><span class="ds-slider__fill"></span><span class="ds-slider__knob"></span></span>
+          <span class="ds-meta">64%</span>
+          <span class="dm dm--h dm--over" style="--l:0;--w:64%"><i>64%</i></span>
+          <span class="dm dm--h dm--under" style="--l:calc(64% - 8px);--w:16px"><i>16</i></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notice ------------------------------------------------------------- -->
+    <div class="cell">
+      <p class="meta cell__name">Notice</p>
+      <div class="cell__body">
+        <div class="an">
+          <div class="ds-note" data-box>
+            <span class="ds-note__dot"></span>
+            <span>Two components share a name. Rename one before publishing.</span>
+          </div>
+          <span class="dm dm--h dm--over" style="--l:0;--w:12px"><i>12</i></span>
+          <span class="cl cl--right" style="--t:10px"><i>r 8</i></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- List row ----------------------------------------------------------- -->
+    <div class="cell">
+      <p class="meta cell__name">List row</p>
+      <div class="cell__body">
+        <div class="an" style="display:flex;align-items:center;gap:12px">
+          <span class="ds-avatar">JC</span>
+          <span class="ds-row__text"><b>Jordi Catal&aacute;n</b><span class="ds-meta">Design Ops</span></span>
+          <span class="dm dm--h dm--over" style="--l:0;--w:36px"><i>36</i></span>
+          <span class="dm dm--h dm--under" style="--l:36px;--w:12px"><i>12</i></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Table -------------------------------------------------------------- -->
+    <div class="cell">
+      <p class="meta cell__name">Table</p>
+      <div class="cell__body">
+        <div class="an">
+          <div class="ds-table" data-box>
+            <span class="ds-table__r ds-table__r--head"><span>Component</span><span>Use</span></span>
+            <span class="ds-table__r"><span>Button</span><span>412</span></span>
+            <span class="ds-table__r"><span>Field</span><span>287</span></span>
+          </div>
+          <span class="dm dm--v dm--left" style="--t:0;--h:32px"><i>32</i></span>
+          <span class="dm dm--v dm--left" style="--t:33px;--h:36px"><i>36</i></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="meta board__hint">{b.hint}</p>
+</section>
+
+<style>
+  /* =====================================================================
+     The board. The site's thesis, shown rather than claimed: a component
+     library that can be read as design or as specification.
+
+     Every number in an annotation is the number the CSS actually sets, so
+     the spec view is true rather than decorative.
+     ===================================================================== */
+
+  .board {
+    margin-top: clamp(1.5rem, 4vw, 2.5rem);
+    border: 1px solid var(--rule);
+    background: var(--panel);
+  }
+
+  .board__bar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem 1.25rem;
+    flex-wrap: wrap;
+    padding: 0.85rem clamp(0.85rem, 2vw, 1.25rem);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .board__label { color: var(--ink); }
+
+  /* The unit legend only means something once the numbers are on screen. */
+  .board__legend { opacity: 0; transition: opacity var(--dur-fast) var(--ease); }
+
+  .seg {
+    margin-left: auto;
+    display: flex;
+    padding: 3px;
+    gap: 2px;
+    border: 1px solid var(--rule);
+    border-radius: var(--r-pill);
+    background: var(--paper);
+  }
+
+  .seg__opt {
+    display: flex;
+    align-items: center;
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--r-pill);
+    font-size: var(--fs-meta);
+    letter-spacing: var(--track-meta);
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--ink-3);
+    cursor: pointer;
+    transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+  }
+
+  .seg__opt:hover { color: var(--ink); }
+
+  /* Twelve uniform cells divide exactly by 4, 3 and 2 columns, so no empty
+     grid area is ever left showing the gap colour. */
+  .board__grid {
+    display: grid;
+    gap: 1px;
+    background: var(--rule-2);
+  }
+
+  @media (min-width: 560px) { .board__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 900px) { .board__grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 1200px) { .board__grid { grid-template-columns: repeat(4, 1fr); } }
+
+  .cell {
+    background: var(--panel);
+    padding: clamp(1.25rem, 2vw, 1.75rem) clamp(1rem, 1.6vw, 1.5rem);
+    display: grid;
+    gap: 1.25rem;
+    align-content: start;
+  }
+
+  .cell__name { color: var(--ink-3); }
+
+  /* The body reserves the margins the dimension lines hang in: a left rail
+     for heights, a right rail for callout labels, and slack above and below
+     for the horizontal dimensions. Reserved in both modes, so nothing moves
+     when the switch is thrown. */
+  .cell__body {
+    display: grid;
+    gap: 0.4rem;
+    padding: 22px 52px 26px 30px;
+  }
+
+  /* The anchor for every annotation in a cell: it hugs the component it wraps,
+     so a dimension line set to 100% measures the component itself. */
+  .an { position: relative; width: 100%; }
+  .an--fit { width: max-content; max-width: 100%; justify-self: start; }
+
+  /* --- The components themselves ---------------------------------------- */
+
+  .ds-btn {
+    height: 40px;
+    padding-inline: 16px;
+    border-radius: 999px;
+    background: var(--mark);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .ds-btn--ghost {
+    background: transparent;
+    color: var(--ink);
+    box-shadow: inset 0 0 0 1px var(--rule);
+    padding-inline: 12px;
+  }
+
+  .ds-lab { font-size: 12px; font-weight: 500; color: var(--ink-2); }
+
+  .ds-field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    height: 44px;
+    padding-inline: 14px;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    background: var(--paper);
+    font-size: 14px;
+  }
+
+  .ds-field span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  .ds-help { font-size: 11px; color: var(--ink-3); }
+
+  .ds-menu {
+    margin-top: 4px;
+    padding: 4px;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    background: var(--panel);
+    display: grid;
+  }
+
+  .ds-menu__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    height: 34px;
+    padding-inline: 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    color: var(--ink-2);
+  }
+
+  .ds-menu__item.is-on { background: var(--paper); color: var(--mark); font-weight: 500; }
+
+  .ds-stack { display: grid; gap: 12px; }
+
+  .ds-choice { display: flex; align-items: center; gap: 10px; font-size: 13px; line-height: 19px; }
+
+  .ds-radio {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    flex: none;
+  }
+
+  /* The inner dot is a ring, so it needs no extra element. */
+  .ds-radio.is-on {
+    border-color: var(--mark);
+    box-shadow: inset 0 0 0 4px var(--panel), inset 0 0 0 9px var(--mark);
+  }
+
+  .ds-check {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+  }
+
+  .ds-check.is-on { background: var(--mark); border-color: var(--mark); }
+
+  .ds-switch {
+    width: 40px;
+    height: 22px;
+    border-radius: 999px;
+    background: var(--rule);
+    flex: none;
+    position: relative;
+  }
+
+  .ds-switch::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--panel);
+  }
+
+  .ds-switch.is-on { background: var(--mark); }
+  .ds-switch.is-on::after { left: 21px; }
+
+  .ds-card {
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    padding: 20px;
+    background: var(--paper);
+    display: grid;
+    gap: 8px;
+    justify-items: start;
+  }
+
+  .ds-card__title { font-size: 16px; font-weight: 500; letter-spacing: -0.02em; }
+  .ds-card__text { font-size: 13px; color: var(--ink-2); }
+
+  .ds-card__foot {
+    margin-top: 4px;
+    padding-top: 12px;
+    border-top: 1px solid var(--rule-2);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .ds-meta { font-size: 11px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+
+  .ds-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--mark);
+  }
+
+  .ds-badge {
+    display: inline-flex;
+    align-items: center;
+    height: 24px;
+    padding-inline: 10px;
+    border-radius: 999px;
+    border: 1px solid var(--rule);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ink-2);
+    white-space: nowrap;
+  }
+
+  .ds-badge--solid { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+
+  .ds-tabs { display: flex; gap: 24px; border-bottom: 1px solid var(--rule-2); }
+
+  .ds-tab {
+    padding-bottom: 10px;
+    font-size: 13px;
+    line-height: 1;
+    color: var(--ink-3);
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    white-space: nowrap;
+  }
+
+  .ds-tab.is-on { color: var(--ink); border-bottom-color: var(--mark); font-weight: 500; }
+
+  .ds-slider__track {
+    position: relative;
+    flex: 1;
+    height: 4px;
+    border-radius: 999px;
+    background: var(--rule);
+  }
+
+  .ds-slider__fill {
+    position: absolute;
+    inset: 0 36% 0 0;
+    border-radius: 999px;
+    background: var(--mark);
+  }
+
+  .ds-slider__knob {
+    position: absolute;
+    top: 50%;
+    left: 64%;
+    width: 16px;
+    height: 16px;
+    margin: -8px 0 0 -8px;
+    border-radius: 50%;
+    background: var(--panel);
+    box-shadow: 0 0 0 1px var(--mark);
+  }
+
+  .ds-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px;
+    border: 1px solid var(--rule);
+    border-left: 2px solid var(--mark);
+    border-radius: 8px;
+    background: var(--paper);
+    font-size: 13px;
+    color: var(--ink-2);
+  }
+
+  .ds-note__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--mark);
+    flex: none;
+    margin-top: 5px;
+  }
+
+  .ds-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+  }
+
+  .ds-row__text { display: grid; gap: 2px; font-size: 13px; min-width: 0; }
+  .ds-row__text b { font-weight: 500; }
+
+  .ds-table { border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; }
+
+  .ds-table__r {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    height: 36px;
+    padding-inline: 12px;
+    font-size: 12px;
+    border-top: 1px solid var(--rule-2);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .ds-table__r--head {
+    height: 32px;
+    border-top: 0;
+    background: var(--paper);
+    color: var(--ink-3);
+    font-weight: 500;
+  }
+
+  /* --- Annotations ------------------------------------------------------- */
+
+  /* Two primitives carry every measurement: a dimension line with end ticks,
+     and a callout with a leader. Both are hidden until the switch says Specs,
+     and neither takes pointer events, so the board reads the same either way. */
+  .dm,
+  .cl {
+    position: absolute;
+    color: var(--mark);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--dur-fast) var(--ease);
+  }
+
+  .dm i,
+  .cl i {
+    position: absolute;
+    font-style: normal;
+    font-size: 0.625rem;
+    line-height: 1;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    font-variant-numeric: tabular-nums;
+    background: var(--panel);
+    padding: 1px 3px;
+    white-space: nowrap;
+  }
+
+  /* Horizontal: a width. Anchored to the component's left edge by --l. */
+  .dm--h {
+    left: var(--l, 0);
+    width: var(--w, 100%);
+    height: 1px;
+    background: currentColor;
+  }
+
+  .dm--h::before,
+  .dm--h::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    width: 1px;
+    height: 7px;
+    background: currentColor;
+  }
+
+  .dm--h::before { left: 0; }
+  .dm--h::after { right: 0; }
+
+  /* Above the component, label above the line; below it, label below — so a
+     dimension never prints its number on top of the thing it measures. */
+  .dm--over { top: -12px; }
+  .dm--over i { left: 50%; bottom: 4px; transform: translateX(-50%); }
+  .dm--under { top: calc(100% + 12px); }
+  .dm--under i { left: 50%; top: 4px; transform: translateX(-50%); }
+
+  /* Vertical: a height. --h 100% measures the whole component. */
+  .dm--v {
+    top: var(--t, 0);
+    bottom: var(--b, auto);
+    width: 1px;
+    height: var(--h, 100%);
+    background: currentColor;
+  }
+
+  .dm--v::before,
+  .dm--v::after {
+    content: '';
+    position: absolute;
+    left: -3px;
+    width: 7px;
+    height: 1px;
+    background: currentColor;
+  }
+
+  .dm--v::before { top: 0; }
+  .dm--v::after { bottom: 0; }
+
+  .dm--left { left: -18px; }
+  .dm--left i { top: 50%; right: 6px; transform: translateY(-50%); }
+  .dm--right { right: -18px; }
+  .dm--right i { top: 50%; left: 6px; transform: translateY(-50%); }
+
+  /* Callout: a leader off the component's right edge, for radii and borders. */
+  .cl {
+    left: 100%;
+    top: var(--t, 0);
+    width: 14px;
+    height: 1px;
+    background: currentColor;
+  }
+
+  .cl::before {
+    content: '';
+    position: absolute;
+    left: -1px;
+    top: -1.5px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  .cl--right i { left: 18px; top: 50%; transform: translateY(-50%); }
+
+  /* Mirrored, for a detail that sits at the component's left edge. */
+  .cl--left { left: auto; right: 100%; }
+  .cl--left::before { left: auto; right: -1px; }
+  .cl--left i { right: 18px; top: 50%; transform: translateY(-50%); }
+
+  /* --- The switch -------------------------------------------------------- */
+
+  /* Sibling selectors, so the whole thing runs on CSS. The inputs are the
+     first children of .board for exactly this reason. */
+  #ds-design:checked ~ .board__bar .seg__opt[for='ds-design'],
+  #ds-specs:checked ~ .board__bar .seg__opt[for='ds-specs'] {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  #ds-specs:checked ~ .board__bar .board__legend { opacity: 1; }
+
+  #ds-specs:checked ~ .board__grid .dm,
+  #ds-specs:checked ~ .board__grid .cl { opacity: 1; }
+
+  /* In Specs the components' own boxes are drawn, the way a redline does. */
+  #ds-specs:checked ~ .board__grid [data-box] {
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--mark) 40%, transparent);
+  }
+
+  #ds-specs:checked ~ .board__hint { opacity: 0; }
+
+  /* Keyboard focus lands on the radio, which is off-screen — so the label it
+     controls has to show the ring on its behalf. */
+  #ds-design.board__radio:focus-visible ~ .board__bar .seg__opt[for='ds-design'],
+  #ds-specs.board__radio:focus-visible ~ .board__bar .seg__opt[for='ds-specs'] {
+    outline: 2px solid var(--mark);
+    outline-offset: 2px;
+  }
+
+  .board__hint {
+    padding: 0.85rem clamp(0.85rem, 2vw, 1.25rem);
+    border-top: 1px solid var(--rule);
+    transition: opacity var(--dur-fast) var(--ease);
+  }
+
+  /* Phones: the bar stacks and the switch leads its own line. */
+  @media (max-width: 559px) {
+    .board__bar { align-items: flex-start; }
+    .seg { margin-left: 0; }
+  }
+</style>

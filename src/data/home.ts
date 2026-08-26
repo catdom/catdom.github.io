@@ -44,6 +44,30 @@ export const spec: L10n<{ term: string; value: string; strong?: string }[]> = {
   ],
 };
 
+/** Labels for the design-system board and its Design / Specs switch. */
+export const board: L10n<{
+  label: string;
+  design: string;
+  specs: string;
+  legend: string;
+  hint: string;
+}> = {
+  en: {
+    label: 'Component library',
+    design: 'Design',
+    specs: 'Specs',
+    legend: 'All measurements in px',
+    hint: 'Switch to Specs to see the measurements',
+  },
+  es: {
+    label: 'Librería de componentes',
+    design: 'Diseño',
+    specs: 'Medidas',
+    legend: 'Medidas en px',
+    hint: 'Cambia a Medidas para ver las cotas',
+  },
+};
+
 /** The brands the work reached, for the marquee. Order is the reading rhythm. */
 export const brands = [
   'Kleinanzeigen',
