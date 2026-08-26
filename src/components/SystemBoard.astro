@@ -10,9 +10,15 @@ const b = board[lang];
    reads to assistive tech as what it is: a two-option choice. Both inputs sit
    before everything they style, since the reveal is a sibling selector.
 
-   Every annotation is anchored to an edge or a percentage of the component it
+   Components are grouped six to a board rather than one per cell: a cell with
+   two or three related components reads as a library page instead of a mostly
+   empty box, and it keeps the whole thing to a third of the height in one
+   column on a phone.
+
+   Every dimension is anchored to an edge or a percentage of the component it
    measures — never to a hand-guessed offset — so a change of font, language or
-   column width moves the dimension line with the thing it describes. */
+   column width moves the line with the thing it describes. Every label names
+   the property it measures; the key at the foot of the board decodes them. */
 ---
 
 <section class="board" aria-label={b.label}>
@@ -21,45 +27,51 @@ const b = board[lang];
 
   <div class="board__bar">
     <p class="meta board__label">{b.label}</p>
-    <p class="meta board__legend">{b.legend}</p>
     <div class="seg" role="group">
       <label class="seg__opt" for="ds-design">{b.design}</label>
       <label class="seg__opt" for="ds-specs">{b.specs}</label>
     </div>
   </div>
 
-  <div class="board__grid">
-    <!-- Buttons ------------------------------------------------------------ -->
+  <div class="board__grid" tabindex="0" role="group" aria-label={b.label}>
+    <!-- Actions & navigation ------------------------------------------------------ -->
     <div class="cell">
-      <p class="meta cell__name">Button</p>
+      <p class="meta cell__name">Button, tag &amp; tabs</p>
       <div class="cell__body">
         <div class="an an--fit" style="display:flex;align-items:center;gap:12px">
           <button class="ds-btn" type="button" data-box>Publish</button>
           <button class="ds-btn ds-btn--ghost" type="button">Cancel</button>
-          <span class="dm dm--v dm--left" style="--h:100%"><i>40</i></span>
-          <span class="dm dm--h dm--under" style="--l:0;--w:16px"><i>16</i></span>
+          <span class="dm dm--v dm--left" style="--h:100%"><i>H 40</i></span>
+          <span class="dm dm--h dm--under" style="--l:0;--w:16px"><i>P 16</i></span>
+          <span class="cl cl--right" style="--t:8px"><i>R 999</i></span>
+        </div>
+        <div class="an an--fit" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <span class="ds-badge" data-box>Tokens</span>
+          <span class="ds-badge ds-badge--solid">Adopted</span>
+          <span class="dm dm--v dm--left" style="--h:24px"><i>H 24</i></span>
+          <span class="dm dm--h dm--under" style="--l:0;--w:10px"><i>P 10</i></span>
+        </div>
+        <div class="an ds-tabs">
+          <span class="ds-tab is-on">Overview</span>
+          <span class="ds-tab">Tokens</span>
+          <span class="ds-tab">Usage</span>
+          <span class="dm dm--v dm--right" style="--t:auto;--b:2px;--h:10px"><i>P 10</i></span>
+          <span class="cl cl--left" style="--t:calc(100% - 2px)"><i>B 2</i></span>
         </div>
       </div>
     </div>
 
-    <!-- Text field --------------------------------------------------------- -->
+    <!-- Fields ------------------------------------------------------------- -->
     <div class="cell">
-      <p class="meta cell__name">Text field</p>
+      <p class="meta cell__name">Text field &amp; dropdown</p>
       <div class="cell__body">
-        <label class="ds-lab" for="ds-mail">Work email</label>
         <div class="an">
+          <label class="ds-lab" for="ds-mail">Work email</label>
           <div class="ds-field" data-box><span>jordi@studio.com</span></div>
-          <span class="dm dm--v dm--left" style="--h:100%"><i>44</i></span>
-          <span class="cl cl--right" style="--t:10px"><i>r 8</i></span>
+          <span class="cl cl--right" style="--t:calc(100% - 22px)"><i>R 8</i></span>
+          <span class="cl cl--left" style="--t:calc(100% - 22px)"><i>T 14</i></span>
+          <span class="dm dm--h dm--under" style="--l:0;--w:16px"><i>P 16</i></span>
         </div>
-        <p class="ds-help">We only use it to reply.</p>
-      </div>
-    </div>
-
-    <!-- Dropdown ----------------------------------------------------------- -->
-    <div class="cell">
-      <p class="meta cell__name">Dropdown</p>
-      <div class="cell__body">
         <div class="an">
           <div class="ds-field ds-field--trigger" data-box>
             <span>Design Ops</span>
@@ -70,37 +82,29 @@ const b = board[lang];
             <span class="ds-menu__item is-on">Design Ops<svg viewBox="0 0 16 16" width="11" height="11" aria-hidden="true" focusable="false"><path d="M3.5 8.5l3 3 6-6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             <span class="ds-menu__item">Design Systems</span>
           </div>
-          <span class="dm dm--v dm--left" style="--t:0;--h:44px"><i>44</i></span>
-          <span class="dm dm--v dm--right" style="--t:44px;--h:4px"><i>4</i></span>
-          <span class="dm dm--v dm--left" style="--t:52px;--h:34px"><i>34</i></span>
+          <span class="dm dm--v dm--left" style="--t:0;--h:44px"><i>H 44</i></span>
+          <span class="dm dm--v dm--right" style="--t:44px;--h:4px"><i>G 4</i></span>
+          <span class="dm dm--v dm--left" style="--t:53px;--h:34px"><i>H 34</i></span>
         </div>
       </div>
     </div>
 
-    <!-- Radio group -------------------------------------------------------- -->
+    <!-- Selection ---------------------------------------------------------- -->
     <div class="cell">
-      <p class="meta cell__name">Radio group</p>
+      <p class="meta cell__name">Radio, checkbox &amp; switch</p>
       <div class="cell__body">
         <div class="an an--fit ds-stack">
           <span class="ds-choice"><i class="ds-radio is-on"></i>Remote</span>
           <span class="ds-choice"><i class="ds-radio"></i>Hybrid</span>
-          <span class="ds-choice"><i class="ds-radio"></i>On site</span>
-          <span class="dm dm--h dm--over" style="--l:0;--w:18px"><i>18</i></span>
-          <span class="dm dm--v dm--right" style="--t:19px;--h:12px"><i>12</i></span>
+          <span class="dm dm--h dm--over" style="--l:0;--w:18px"><i>W 18</i></span>
+          <span class="dm dm--v dm--right" style="--t:19px;--h:12px"><i>G 12</i></span>
         </div>
-      </div>
-    </div>
-
-    <!-- Checkbox + switch -------------------------------------------------- -->
-    <div class="cell">
-      <p class="meta cell__name">Checkbox &amp; switch</p>
-      <div class="cell__body">
         <div class="an an--fit ds-stack">
           <span class="ds-choice"><i class="ds-check is-on"><svg viewBox="0 0 16 16" width="10" height="10" aria-hidden="true" focusable="false"><path d="M3.5 8.5l3 3 6-6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></i>Send me the deck</span>
-          <span class="ds-choice"><i class="ds-check"></i>Subscribe</span>
           <span class="ds-choice"><i class="ds-switch is-on"></i>Notifications</span>
-          <span class="dm dm--h dm--over" style="--l:0;--w:16px"><i>16</i></span>
-          <span class="dm dm--h dm--under" style="--l:0;--w:40px"><i>40</i></span>
+          <span class="dm dm--h dm--over" style="--l:0;--w:16px"><i>W 16</i></span>
+          <span class="dm dm--v dm--right" style="--t:auto;--b:0;--h:22px"><i>H 22</i></span>
+          <span class="dm dm--h dm--under" style="--l:0;--w:40px"><i>W 40</i></span>
         </div>
       </div>
     </div>
@@ -119,83 +123,37 @@ const b = board[lang];
               <span class="ds-link">Read <svg viewBox="0 0 16 16" width="10" height="10" aria-hidden="true" focusable="false"><path d="M4 12L12 4M12 4H5.5M12 4v6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </div>
           </div>
-          <span class="dm dm--h dm--over" style="--l:0;--w:20px"><i>20</i></span>
-          <span class="cl cl--right" style="--t:8px"><i>r 12</i></span>
+          <span class="dm dm--h dm--over" style="--l:0;--w:20px"><i>P 20</i></span>
+          <span class="cl cl--right" style="--t:8px"><i>R 12</i></span>
+          <span class="dm dm--v dm--left" style="--t:44px;--h:8px"><i>G 8</i></span>
+          <span class="cl cl--right" style="--t:calc(100% - 40px)"><i>B 1</i></span>
         </div>
       </div>
     </div>
 
-    <!-- Tags --------------------------------------------------------------- -->
+    <!-- Input --------------------------------------------------------------- -->
     <div class="cell">
-      <p class="meta cell__name">Tag</p>
-      <div class="cell__body">
-        <div class="an an--fit" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-          <span class="ds-badge" data-box>Tokens</span>
-          <span class="ds-badge ds-badge--solid">Adopted</span>
-          <span class="dm dm--v dm--left" style="--h:24px"><i>24</i></span>
-          <span class="dm dm--h dm--under" style="--l:0;--w:10px"><i>10</i></span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Tabs --------------------------------------------------------------- -->
-    <div class="cell">
-      <p class="meta cell__name">Tabs</p>
-      <div class="cell__body">
-        <div class="an ds-tabs">
-          <span class="ds-tab is-on">Overview</span>
-          <span class="ds-tab">Tokens</span>
-          <span class="ds-tab">Usage</span>
-          <span class="dm dm--v dm--right" style="--t:auto;--b:2px;--h:10px"><i>10</i></span>
-          <span class="cl cl--left" style="--t:calc(100% - 2px)"><i>2</i></span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Slider ------------------------------------------------------------- -->
-    <div class="cell">
-      <p class="meta cell__name">Slider</p>
+      <p class="meta cell__name">Slider &amp; list row</p>
       <div class="cell__body">
         <div class="an" style="display:flex;align-items:center;gap:12px">
           <span class="ds-slider__track"><span class="ds-slider__fill"></span><span class="ds-slider__knob"></span></span>
           <span class="ds-meta">64%</span>
-          <span class="dm dm--h dm--over" style="--l:0;--w:64%"><i>64%</i></span>
-          <span class="dm dm--h dm--under" style="--l:calc(64% - 8px);--w:16px"><i>16</i></span>
+          <span class="dm dm--h dm--over" style="--l:0;--w:64%"><i>W 64%</i></span>
+          <span class="dm dm--h dm--under" style="--l:calc(64% - 8px);--w:16px"><i>W 16</i></span>
+          <span class="cl cl--left" style="--t:50%"><i>H 4</i></span>
         </div>
-      </div>
-    </div>
-
-    <!-- Notice ------------------------------------------------------------- -->
-    <div class="cell">
-      <p class="meta cell__name">Notice</p>
-      <div class="cell__body">
-        <div class="an">
-          <div class="ds-note" data-box>
-            <span class="ds-note__dot"></span>
-            <span>Two components share a name. Rename one before publishing.</span>
-          </div>
-          <span class="dm dm--h dm--over" style="--l:0;--w:12px"><i>12</i></span>
-          <span class="cl cl--right" style="--t:10px"><i>r 8</i></span>
-        </div>
-      </div>
-    </div>
-
-    <!-- List row ----------------------------------------------------------- -->
-    <div class="cell">
-      <p class="meta cell__name">List row</p>
-      <div class="cell__body">
-        <div class="an" style="display:flex;align-items:center;gap:12px">
+        <div class="an an--fit" style="display:flex;align-items:center;gap:12px">
           <span class="ds-avatar">JC</span>
           <span class="ds-row__text"><b>Jordi Catal&aacute;n</b><span class="ds-meta">Design Ops</span></span>
-          <span class="dm dm--h dm--over" style="--l:0;--w:36px"><i>36</i></span>
-          <span class="dm dm--h dm--under" style="--l:36px;--w:12px"><i>12</i></span>
+          <span class="dm dm--h dm--over" style="--l:0;--w:36px"><i>W 36</i></span>
+          <span class="cl cl--right" style="--t:50%"><i>T 13</i></span>
         </div>
       </div>
     </div>
 
-    <!-- Table -------------------------------------------------------------- -->
+    <!-- Data --------------------------------------------------------------- -->
     <div class="cell">
-      <p class="meta cell__name">Table</p>
+      <p class="meta cell__name">Table &amp; notice</p>
       <div class="cell__body">
         <div class="an">
           <div class="ds-table" data-box>
@@ -203,14 +161,34 @@ const b = board[lang];
             <span class="ds-table__r"><span>Button</span><span>412</span></span>
             <span class="ds-table__r"><span>Field</span><span>287</span></span>
           </div>
-          <span class="dm dm--v dm--left" style="--t:0;--h:32px"><i>32</i></span>
-          <span class="dm dm--v dm--left" style="--t:33px;--h:36px"><i>36</i></span>
+          <span class="dm dm--v dm--left" style="--t:0;--h:32px"><i>H 32</i></span>
+          <span class="dm dm--v dm--left" style="--t:33px;--h:36px"><i>H 36</i></span>
+          <span class="cl cl--right" style="--t:8px"><i>R 8</i></span>
+        </div>
+        <div class="an">
+          <div class="ds-note" data-box>
+            <span class="ds-note__dot"></span>
+            <span>Two components share a name. Rename one before publishing.</span>
+          </div>
+          <span class="dm dm--h dm--over" style="--l:0;--w:12px"><i>P 12</i></span>
+          <span class="cl cl--left" style="--t:50%"><i>B 2</i></span>
         </div>
       </div>
     </div>
   </div>
 
-  <p class="meta board__hint">{b.hint}</p>
+  <!-- The foot carries the key and the scales the board is actually built on,
+       so the numbers above resolve to a system rather than floating free. -->
+  <div class="board__foot">
+    <p class="meta board__hint">{b.hint}</p>
+    <dl class="strip">
+      <div><dt class="meta">{b.key}</dt><dd class="meta" set:html={b.keyValue}></dd></div>
+      <div><dt class="meta">{b.space}</dt><dd class="meta">4 &middot; 8 &middot; 10 &middot; 12 &middot; 16 &middot; 20 &middot; 24</dd></div>
+      <div><dt class="meta">{b.radius}</dt><dd class="meta">4 &middot; 6 &middot; 8 &middot; 12 &middot; 999</dd></div>
+      <div><dt class="meta">{b.type}</dt><dd class="meta">11 &middot; 12 &middot; 13 &middot; 14 &middot; 16</dd></div>
+      <div><dt class="meta">{b.legend}</dt><dd class="meta">{b.unitsValue}</dd></div>
+    </dl>
+  </div>
 </section>
 
 <style>
@@ -233,14 +211,11 @@ const b = board[lang];
     align-items: center;
     gap: 0.75rem 1.25rem;
     flex-wrap: wrap;
-    padding: 0.85rem clamp(0.85rem, 2vw, 1.25rem);
+    padding: 0.75rem clamp(0.85rem, 2vw, 1.25rem);
     border-bottom: 1px solid var(--rule);
   }
 
   .board__label { color: var(--ink); }
-
-  /* The unit legend only means something once the numbers are on screen. */
-  .board__legend { opacity: 0; transition: opacity var(--dur-fast) var(--ease); }
 
   .seg {
     margin-left: auto;
@@ -268,23 +243,22 @@ const b = board[lang];
 
   .seg__opt:hover { color: var(--ink); }
 
-  /* Twelve uniform cells divide exactly by 4, 3 and 2 columns, so no empty
-     grid area is ever left showing the gap colour. */
+  /* Six cells divide exactly by 3, 2 and 1, so no empty grid area is ever
+     left showing the gap colour. */
   .board__grid {
     display: grid;
     gap: 1px;
     background: var(--rule-2);
   }
 
-  @media (min-width: 560px) { .board__grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 900px) { .board__grid { grid-template-columns: repeat(3, 1fr); } }
-  @media (min-width: 1200px) { .board__grid { grid-template-columns: repeat(4, 1fr); } }
+  @media (min-width: 620px) { .board__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1080px) { .board__grid { grid-template-columns: repeat(3, 1fr); } }
 
   .cell {
     background: var(--panel);
-    padding: clamp(1.25rem, 2vw, 1.75rem) clamp(1rem, 1.6vw, 1.5rem);
+    padding: clamp(1rem, 2vw, 1.5rem) clamp(0.85rem, 1.6vw, 1.25rem);
     display: grid;
-    gap: 1.25rem;
+    gap: 0.9rem;
     align-content: start;
   }
 
@@ -293,15 +267,16 @@ const b = board[lang];
   /* The body reserves the margins the dimension lines hang in: a left rail
      for heights, a right rail for callout labels, and slack above and below
      for the horizontal dimensions. Reserved in both modes, so nothing moves
-     when the switch is thrown. */
+     when the switch is thrown. The row gap has to clear a dimension hanging
+     under one component and another hanging over the next. */
   .cell__body {
     display: grid;
-    gap: 0.4rem;
-    padding: 22px 52px 26px 30px;
+    gap: 42px;
+    padding: 20px 60px 24px 42px;
   }
 
-  /* The anchor for every annotation in a cell: it hugs the component it wraps,
-     so a dimension line set to 100% measures the component itself. */
+  /* The anchor for every annotation: it hugs the component it wraps, so a
+     dimension line set to 100% measures the component itself. */
   .an { position: relative; width: 100%; }
   .an--fit { width: max-content; max-width: 100%; justify-self: start; }
 
@@ -323,10 +298,9 @@ const b = board[lang];
     background: transparent;
     color: var(--ink);
     box-shadow: inset 0 0 0 1px var(--rule);
-    padding-inline: 12px;
   }
 
-  .ds-lab { font-size: 12px; font-weight: 500; color: var(--ink-2); }
+  .ds-lab { font-size: 12px; font-weight: 500; color: var(--ink-2); margin-bottom: 8px; }
 
   .ds-field {
     display: flex;
@@ -334,7 +308,7 @@ const b = board[lang];
     justify-content: space-between;
     gap: 8px;
     height: 44px;
-    padding-inline: 14px;
+    padding-inline: 16px;
     border: 1px solid var(--rule);
     border-radius: 8px;
     background: var(--paper);
@@ -342,8 +316,6 @@ const b = board[lang];
   }
 
   .ds-field span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-  .ds-help { font-size: 11px; color: var(--ink-3); }
 
   .ds-menu {
     margin-top: 4px;
@@ -629,12 +601,14 @@ const b = board[lang];
 
   /* Above the component, label above the line; below it, label below — so a
      dimension never prints its number on top of the thing it measures. */
-  .dm--over { top: -12px; }
+  .dm--over { top: -11px; }
   .dm--over i { left: 50%; bottom: 4px; transform: translateX(-50%); }
-  .dm--under { top: calc(100% + 12px); }
+  .dm--under { top: calc(100% + 11px); }
   .dm--under i { left: 50%; top: 4px; transform: translateX(-50%); }
 
-  /* Vertical: a height. --h 100% measures the whole component. */
+  /* Vertical: a height. --h 100% measures the whole component. Top and bottom
+     must not both be auto, or the line falls to its static position — below
+     the component instead of beside it. */
   .dm--v {
     top: var(--t, 0);
     bottom: var(--b, auto);
@@ -656,16 +630,16 @@ const b = board[lang];
   .dm--v::before { top: 0; }
   .dm--v::after { bottom: 0; }
 
-  .dm--left { left: -18px; }
+  .dm--left { left: -16px; }
   .dm--left i { top: 50%; right: 6px; transform: translateY(-50%); }
-  .dm--right { right: -18px; }
+  .dm--right { right: -16px; }
   .dm--right i { top: 50%; left: 6px; transform: translateY(-50%); }
 
-  /* Callout: a leader off the component's right edge, for radii and borders. */
+  /* Callout: a leader off an edge, for radii and border widths. */
   .cl {
     left: 100%;
     top: var(--t, 0);
-    width: 14px;
+    width: 12px;
     height: 1px;
     background: currentColor;
   }
@@ -681,12 +655,38 @@ const b = board[lang];
     background: currentColor;
   }
 
-  .cl--right i { left: 18px; top: 50%; transform: translateY(-50%); }
+  .cl--right i { left: 16px; top: 50%; transform: translateY(-50%); }
 
   /* Mirrored, for a detail that sits at the component's left edge. */
   .cl--left { left: auto; right: 100%; }
   .cl--left::before { left: auto; right: -1px; }
-  .cl--left i { right: 18px; top: 50%; transform: translateY(-50%); }
+  .cl--left i { right: 16px; top: 50%; transform: translateY(-50%); }
+
+  /* --- The foot: key and scales ------------------------------------------ */
+
+  .board__foot {
+    padding: 0.75rem clamp(0.85rem, 2vw, 1.25rem);
+    border-top: 1px solid var(--rule);
+    display: grid;
+  }
+
+  /* Both live in the same grid cell, so swapping them changes no height and
+     nothing below the board moves when the switch is thrown. */
+  .board__hint,
+  .strip { grid-area: 1 / 1; transition: opacity var(--dur-fast) var(--ease); }
+
+  .strip {
+    margin: 0;
+    opacity: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.75rem;
+    align-items: baseline;
+  }
+
+  .strip > div { display: flex; align-items: baseline; gap: 0.5rem; }
+  .strip dt { color: var(--ink); }
+  .strip dd { margin: 0; color: var(--ink-3); }
 
   /* --- The switch -------------------------------------------------------- */
 
@@ -698,8 +698,6 @@ const b = board[lang];
     color: var(--paper);
   }
 
-  #ds-specs:checked ~ .board__bar .board__legend { opacity: 1; }
-
   #ds-specs:checked ~ .board__grid .dm,
   #ds-specs:checked ~ .board__grid .cl { opacity: 1; }
 
@@ -708,7 +706,8 @@ const b = board[lang];
     box-shadow: 0 0 0 1px color-mix(in srgb, var(--mark) 40%, transparent);
   }
 
-  #ds-specs:checked ~ .board__hint { opacity: 0; }
+  #ds-specs:checked ~ .board__foot .board__hint { opacity: 0; }
+  #ds-specs:checked ~ .board__foot .strip { opacity: 1; }
 
   /* Keyboard focus lands on the radio, which is off-screen — so the label it
      controls has to show the ring on its behalf. */
@@ -718,15 +717,38 @@ const b = board[lang];
     outline-offset: 2px;
   }
 
-  .board__hint {
-    padding: 0.85rem clamp(0.85rem, 2vw, 1.25rem);
-    border-top: 1px solid var(--rule);
-    transition: opacity var(--dur-fast) var(--ease);
-  }
+  /* Phones. Six cells stacked in one column ran to nearly 2000px, which is no
+     way to open a page — so the library becomes a snapped horizontal scroller
+     instead. One cell at a time, the next one peeking as the affordance, and
+     the whole board back to roughly the height of a single card.
 
-  /* Phones: the bar stacks and the switch leads its own line. */
-  @media (max-width: 559px) {
+     The scroller is contained: overscroll-behavior stops a swipe chaining to
+     the page, and the region is focusable so a keyboard can pan it too. */
+  @media (max-width: 619px) {
     .board__bar { align-items: flex-start; }
     .seg { margin-left: 0; }
+
+    .board__grid {
+      grid-auto-flow: column;
+      grid-auto-columns: 90%;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+
+    .board__grid::-webkit-scrollbar { display: none; }
+
+    .cell {
+      scroll-snap-align: start;
+      grid-template-rows: auto 1fr;
+      align-content: stretch;
+    }
+
+    .cell__body { align-content: center; }
+
+    /* The left rail has to clear a label like "H 40" at its 16px offset. */
+    .cell__body { gap: 34px; padding: 18px 52px 22px 44px; }
+
   }
 </style>

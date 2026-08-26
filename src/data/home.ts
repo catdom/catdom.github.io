@@ -50,21 +50,39 @@ export const board: L10n<{
   design: string;
   specs: string;
   legend: string;
+  unitsValue: string;
   hint: string;
+  key: string;
+  keyValue: string;
+  space: string;
+  radius: string;
+  type: string;
 }> = {
   en: {
     label: 'Component library',
     design: 'Design',
     specs: 'Specs',
-    legend: 'All measurements in px',
+    legend: 'Units',
+    unitsValue: 'px',
     hint: 'Switch to Specs to see the measurements',
+    key: 'Key',
+    keyValue: 'H height &middot; W width &middot; P padding &middot; G gap &middot; R radius &middot; B border &middot; T type',
+    space: 'Space',
+    radius: 'Radius',
+    type: 'Type',
   },
   es: {
     label: 'Librería de componentes',
     design: 'Diseño',
     specs: 'Medidas',
-    legend: 'Medidas en px',
+    legend: 'Unidades',
+    unitsValue: 'px',
     hint: 'Cambia a Medidas para ver las cotas',
+    key: 'Leyenda',
+    keyValue: 'H alto &middot; W ancho &middot; P padding &middot; G gap &middot; R radio &middot; B borde &middot; T tipo',
+    space: 'Espaciado',
+    radius: 'Radios',
+    type: 'Tipografía',
   },
 };
 
