@@ -36,7 +36,7 @@ const b = board[lang];
   <div class="board__grid" tabindex="0" role="group" aria-label={b.label}>
     <!-- Actions & navigation ------------------------------------------------------ -->
     <div class="cell">
-      <p class="meta cell__name">Button, tag &amp; tabs</p>
+      <p class="meta cell__name"><b>C-01</b> Button, tag &amp; tabs</p>
       <div class="cell__body">
         <div class="an an--fit" style="display:flex;align-items:center;gap:12px">
           <button class="ds-btn" type="button" data-box>Publish</button>
@@ -44,6 +44,7 @@ const b = board[lang];
           <span class="dm dm--v dm--left" style="--h:100%"><i>H 40</i></span>
           <span class="dm dm--h dm--under" style="--l:0;--w:16px"><i>P 16</i></span>
           <span class="cl cl--right" style="--t:8px"><i>R 999</i></span>
+          <span class="cl cl--right" style="--t:calc(100% - 8px)"><i><em style="--c:var(--mark)"></em>mark</i></span>
         </div>
         <div class="an an--fit" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
           <span class="ds-badge" data-box>Tokens</span>
@@ -63,7 +64,7 @@ const b = board[lang];
 
     <!-- Fields ------------------------------------------------------------- -->
     <div class="cell">
-      <p class="meta cell__name">Text field &amp; dropdown</p>
+      <p class="meta cell__name"><b>C-02</b> Text field &amp; dropdown</p>
       <div class="cell__body">
         <div class="an">
           <label class="ds-lab" for="ds-mail">Work email</label>
@@ -91,7 +92,7 @@ const b = board[lang];
 
     <!-- Selection ---------------------------------------------------------- -->
     <div class="cell">
-      <p class="meta cell__name">Radio, checkbox &amp; switch</p>
+      <p class="meta cell__name"><b>C-03</b> Radio, checkbox &amp; switch</p>
       <div class="cell__body">
         <div class="an an--fit ds-stack">
           <span class="ds-choice"><i class="ds-radio is-on"></i>Remote</span>
@@ -111,7 +112,7 @@ const b = board[lang];
 
     <!-- Card --------------------------------------------------------------- -->
     <div class="cell">
-      <p class="meta cell__name">Card</p>
+      <p class="meta cell__name"><b>C-04</b> Card</p>
       <div class="cell__body">
         <div class="an">
           <div class="ds-card" data-box>
@@ -125,6 +126,7 @@ const b = board[lang];
           </div>
           <span class="dm dm--h dm--over" style="--l:0;--w:20px"><i>P 20</i></span>
           <span class="cl cl--right" style="--t:8px"><i>R 12</i></span>
+          <span class="cl cl--right" style="--t:calc(100% - 24px)"><i><em style="--c:var(--paper)"></em>paper</i></span>
           <span class="dm dm--v dm--left" style="--t:44px;--h:8px"><i>G 8</i></span>
           <span class="cl cl--right" style="--t:calc(100% - 40px)"><i>B 1</i></span>
         </div>
@@ -133,7 +135,7 @@ const b = board[lang];
 
     <!-- Input --------------------------------------------------------------- -->
     <div class="cell">
-      <p class="meta cell__name">Slider &amp; list row</p>
+      <p class="meta cell__name"><b>C-05</b> Slider &amp; list row</p>
       <div class="cell__body">
         <div class="an" style="display:flex;align-items:center;gap:12px">
           <span class="ds-slider__track"><span class="ds-slider__fill"></span><span class="ds-slider__knob"></span></span>
@@ -153,7 +155,7 @@ const b = board[lang];
 
     <!-- Data --------------------------------------------------------------- -->
     <div class="cell">
-      <p class="meta cell__name">Table &amp; notice</p>
+      <p class="meta cell__name"><b>C-06</b> Table &amp; notice</p>
       <div class="cell__body">
         <div class="an">
           <div class="ds-table" data-box>
@@ -175,6 +177,134 @@ const b = board[lang];
         </div>
       </div>
     </div>
+
+    <!-- Navigation --------------------------------------------------------- -->
+    <div class="cell">
+      <p class="meta cell__name"><b>C-07</b> Breadcrumb &amp; pagination</p>
+      <div class="cell__body">
+        <div class="an an--fit ds-crumb">
+          <span>Systems</span>
+          <s class="an">/<span class="dm dm--h dm--over" style="--l:-8px;--w:8px"><i>G 8</i></span></s>
+          <span>Tokens</span>
+          <s>/</s>
+          <b>Spacing</b>
+          <span class="cl cl--right" style="--t:50%"><i>T 12</i></span>
+        </div>
+        <div class="an an--fit ds-pager">
+          <span class="ds-pager__b">&#8249;</span>
+          <span class="an an--fit" style="display:flex"><span class="ds-pager__b is-on">1</span><span class="dm dm--h dm--under" style="--w:100%"><i>W 32</i></span></span>
+          <span class="ds-pager__b">2</span>
+          <span class="ds-pager__b">3</span>
+          <span class="ds-pager__b">&#8250;</span>
+          <span class="dm dm--v dm--left" style="--h:100%"><i>H 32</i></span>
+          <span class="cl cl--right" style="--t:50%"><i>R 6</i></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search & segmented ------------------------------------------------- -->
+    <div class="cell">
+      <p class="meta cell__name"><b>C-08</b> Search &amp; segmented</p>
+      <div class="cell__body">
+        <div class="an">
+          <div class="ds-search" data-box>
+            <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="7" cy="7" r="4.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 10.5L14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <span>Search components</span>
+          </div>
+          <span class="dm dm--v dm--left" style="--h:100%"><i>H 40</i></span>
+          <span class="dm dm--h dm--under" style="--l:0;--w:12px"><i>P 12</i></span>
+          <span class="cl cl--right" style="--t:50%"><i><em style="--c:var(--rule)"></em>rule</i></span>
+        </div>
+        <div class="an an--fit">
+          <div class="ds-seg" data-box>
+            <span class="ds-seg__o is-on">Light</span>
+            <span class="ds-seg__o">Dark</span>
+          </div>
+          <span class="dm dm--v dm--left" style="--h:100%"><i>H 36</i></span>
+          <span class="dm dm--h dm--under" style="--l:0;--w:3px"><i>P 3</i></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stepper & progress ------------------------------------------------- -->
+    <div class="cell">
+      <p class="meta cell__name"><b>C-09</b> Stepper &amp; progress</p>
+      <div class="cell__body">
+        <div class="an an--fit ds-steps">
+          <span class="ds-step is-done">1</span>
+          <span class="ds-step__line an"><span class="dm dm--h dm--over" style="--w:100%"><i>W 24</i></span></span>
+          <span class="ds-step is-on">2</span>
+          <span class="ds-step__line"></span>
+          <span class="ds-step">3</span>
+          <span class="dm dm--v dm--left" style="--h:100%"><i>H 24</i></span>
+        </div>
+        <div class="an">
+          <span class="ds-prog"><span class="ds-prog__fill"></span></span>
+          <span class="dm dm--h dm--over" style="--l:0;--w:40%"><i>W 40%</i></span>
+          <span class="cl cl--left" style="--t:50%"><i>H 6</i></span>
+          <span class="cl cl--right" style="--t:50%"><i>R 999</i></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tooltip & toast ---------------------------------------------------- -->
+    <div class="cell">
+      <p class="meta cell__name"><b>C-10</b> Tooltip &amp; toast</p>
+      <div class="cell__body">
+        <div class="an an--fit ds-tipwrap">
+          <span class="ds-tip">Tokens only</span>
+          <span class="ds-badge">Hover</span>
+          <span class="dm dm--h dm--over" style="--l:0;--w:8px"><i>P 8</i></span>
+          <span class="cl cl--right" style="--t:12px"><i>R 6</i></span>
+        </div>
+        <div class="an ds-toast" data-box>
+          <span>Component published</span>
+          <b>Undo</b>
+          <span class="dm dm--v dm--left" style="--h:100%"><i>H 48</i></span>
+          <span class="cl cl--right" style="--t:50%"><i><em style="--c:var(--ink)"></em>ink</i></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -------------------------------------------------------------- -->
+    <div class="cell">
+      <p class="meta cell__name"><b>C-11</b> Modal</p>
+      <div class="cell__body">
+        <div class="an">
+          <div class="ds-modal" data-box>
+            <h4 class="ds-modal__t">Publish to seven brands?</h4>
+            <p class="ds-modal__b">Every consumer picks this up on their next build.</p>
+            <div class="ds-modal__f">
+              <button class="ds-btn ds-btn--ghost ds-btn--sm" type="button">Cancel</button>
+              <button class="ds-btn ds-btn--sm" type="button">Publish</button>
+            </div>
+          </div>
+          <span class="dm dm--h dm--over" style="--l:0;--w:20px"><i>P 20</i></span>
+          <span class="cl cl--right" style="--t:8px"><i>R 12</i></span>
+          <span class="dm dm--v dm--left" style="--t:44px;--h:16px"><i>G 16</i></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Avatars & skeleton -------------------------------------------------- -->
+    <div class="cell">
+      <p class="meta cell__name"><b>C-12</b> Avatar stack &amp; skeleton</p>
+      <div class="cell__body">
+        <div class="an an--fit ds-stack-a">
+          <span class="ds-av an">JC<span class="dm dm--h dm--over" style="--w:100%"><i>W 28</i></span></span>
+          <span class="ds-av">MR</span>
+          <span class="ds-av">AL</span>
+          <span class="ds-av ds-av--more">+4</span>
+          <span class="dm dm--h dm--under" style="--l:20px;--w:8px"><i>G -8</i></span>
+        </div>
+        <div class="an ds-skel">
+          <span class="ds-skel__l an" style="width:100%"><span class="cl cl--right" style="--t:50%"><i>H 12</i></span></span>
+          <span class="ds-skel__l" style="width:64%"></span>
+          <span class="dm dm--v dm--left" style="--t:20px;--h:8px"><i>G 8</i></span>
+          <span class="cl cl--right" style="--t:calc(100% - 6px)"><i><em style="--c:var(--rule-2)"></em>rule-2</i></span>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- The foot carries the key and the scales the board is actually built on,
@@ -183,9 +313,17 @@ const b = board[lang];
     <p class="meta board__hint">{b.hint}</p>
     <dl class="strip">
       <div><dt class="meta">{b.key}</dt><dd class="meta" set:html={b.keyValue}></dd></div>
-      <div><dt class="meta">{b.space}</dt><dd class="meta">4 &middot; 8 &middot; 10 &middot; 12 &middot; 16 &middot; 20 &middot; 24</dd></div>
-      <div><dt class="meta">{b.radius}</dt><dd class="meta">4 &middot; 6 &middot; 8 &middot; 12 &middot; 999</dd></div>
-      <div><dt class="meta">{b.type}</dt><dd class="meta">11 &middot; 12 &middot; 13 &middot; 14 &middot; 16</dd></div>
+      <div><dt class="meta">{b.space}</dt><dd class="meta"><span>4<b>space-1</b></span><span>8<b>space-2</b></span><span>12<b>space-3</b></span><span>16<b>space-4</b></span><span>20<b>space-5</b></span><span>24<b>space-6</b></span></dd></div>
+      <div><dt class="meta">{b.radius}</dt><dd class="meta"><span>4<b>xs</b></span><span>6<b>sm</b></span><span>8<b>md</b></span><span>12<b>lg</b></span><span>999<b>full</b></span></dd></div>
+      <div><dt class="meta">{b.type}</dt><dd class="meta"><span>11<b>xs</b></span><span>12<b>sm</b></span><span>13<b>base</b></span><span>14<b>md</b></span><span>16<b>lg</b></span></dd></div>
+      <div><dt class="meta">{b.colour}</dt><dd class="meta swatches">
+        <span><em style="--c:var(--ink)"></em>ink</span>
+        <span><em style="--c:var(--ink-2)"></em>ink-2</span>
+        <span><em style="--c:var(--ink-3)"></em>ink-3</span>
+        <span><em style="--c:var(--mark)"></em>mark</span>
+        <span><em style="--c:var(--rule)"></em>rule</span>
+        <span><em style="--c:var(--paper)"></em>paper</span>
+      </dd></div>
       <div><dt class="meta">{b.legend}</dt><dd class="meta">{b.unitsValue}</dd></div>
     </dl>
   </div>
@@ -243,8 +381,8 @@ const b = board[lang];
 
   .seg__opt:hover { color: var(--ink); }
 
-  /* Six cells divide exactly by 3, 2 and 1, so no empty grid area is ever
-     left showing the gap colour. */
+  /* Twelve cells divide exactly by 4, 3, 2 and 1, so whatever the column
+     count no empty grid area is left showing the gap colour. */
   .board__grid {
     display: grid;
     gap: 1px;
@@ -252,7 +390,8 @@ const b = board[lang];
   }
 
   @media (min-width: 620px) { .board__grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1080px) { .board__grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 1000px) { .board__grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 1320px) { .board__grid { grid-template-columns: repeat(4, 1fr); } }
 
   .cell {
     background: var(--panel);
@@ -276,7 +415,11 @@ const b = board[lang];
   }
 
   /* The anchor for every annotation: it hugs the component it wraps, so a
-     dimension line set to 100% measures the component itself. */
+     dimension line set to 100% measures the component itself.
+
+     It must never carry a border of its own: a percentage on an absolutely
+     positioned child resolves against the padding box, so a bordered anchor
+     makes every 100% line come up two pixels short of the number it prints. */
   .an { position: relative; width: 100%; }
   .an--fit { width: max-content; max-width: 100%; justify-self: start; }
 
@@ -550,6 +693,177 @@ const b = board[lang];
     font-weight: 500;
   }
 
+
+  /* --- C-07 to C-12 ------------------------------------------------------ */
+
+  .ds-crumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--ink-3);
+  }
+
+  .ds-crumb s { text-decoration: none; width: 4px; text-align: center; }
+  .ds-crumb b { color: var(--ink); font-weight: 500; }
+
+  .ds-pager { display: flex; align-items: center; gap: 4px; }
+
+  .ds-pager__b {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: var(--ink-2);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .ds-pager__b.is-on { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+
+  .ds-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 40px;
+    padding-inline: 12px;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    background: var(--paper);
+    font-size: 13px;
+    color: var(--ink-3);
+  }
+
+  .ds-search svg { flex: none; color: var(--ink-3); }
+  .ds-search span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  .ds-seg {
+    display: flex;
+    gap: 2px;
+    padding: 3px;
+    height: 36px;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    background: var(--paper);
+  }
+
+  .ds-seg__o {
+    display: flex;
+    align-items: center;
+    padding-inline: 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    color: var(--ink-3);
+    white-space: nowrap;
+  }
+
+  .ds-seg__o.is-on { background: var(--panel); color: var(--ink); font-weight: 500; }
+
+  .ds-steps { display: flex; align-items: center; gap: 0; }
+
+  .ds-step {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ink-3);
+    flex: none;
+  }
+
+  .ds-step.is-done { background: var(--mark); border-color: var(--mark); color: #fff; }
+  .ds-step.is-on { border-color: var(--mark); color: var(--mark); }
+
+  .ds-step__line { width: 24px; height: 1px; background: var(--rule); flex: none; }
+
+  .ds-prog { display: block; height: 6px; border-radius: 999px; background: var(--rule); }
+  .ds-prog__fill { display: block; width: 40%; height: 100%; border-radius: 999px; background: var(--mark); }
+
+  /* The tooltip sits above its trigger, with a tail cut from the same square. */
+  .ds-tipwrap { display: grid; gap: 8px; justify-items: start; }
+
+  .ds-tip {
+    position: relative;
+    padding: 8px 10px;
+    border-radius: 6px;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .ds-tip::after {
+    content: '';
+    position: absolute;
+    left: 14px;
+    bottom: -3px;
+    width: 8px;
+    height: 8px;
+    background: var(--ink);
+    transform: rotate(45deg);
+    border-radius: 1px;
+  }
+
+  .ds-toast {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    height: 48px;
+    padding-inline: 16px;
+    border-radius: 8px;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 13px;
+  }
+
+  .ds-toast b { color: var(--paper); font-weight: 500; font-size: 12px; white-space: nowrap; }
+
+  .ds-modal {
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    padding: 20px;
+    background: var(--panel);
+    display: grid;
+    gap: 8px;
+  }
+
+  .ds-modal__t { font-size: 15px; font-weight: 500; letter-spacing: -0.015em; }
+  .ds-modal__b { font-size: 12px; color: var(--ink-2); }
+  .ds-modal__f { margin-top: 8px; display: flex; gap: 8px; flex-wrap: wrap; }
+
+  .ds-btn--sm { height: 32px; padding-inline: 12px; font-size: 12px; }
+
+  .ds-stack-a { display: flex; align-items: center; }
+
+  .ds-av {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 10px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    box-shadow: 0 0 0 2px var(--panel);
+  }
+
+  .ds-av + .ds-av { margin-left: -8px; }
+  .ds-av--more { background: var(--rule); color: var(--ink-2); }
+
+  .ds-skel { display: grid; gap: 8px; }
+  .ds-skel__l { height: 12px; border-radius: 4px; background: var(--rule-2); }
+
   /* --- Annotations ------------------------------------------------------- */
 
   /* Two primitives carry every measurement: a dimension line with end ticks,
@@ -686,7 +1000,31 @@ const b = board[lang];
 
   .strip > div { display: flex; align-items: baseline; gap: 0.5rem; }
   .strip dt { color: var(--ink); }
-  .strip dd { margin: 0; color: var(--ink-3); }
+  .strip dd { margin: 0; color: var(--ink-3); display: flex; flex-wrap: wrap; gap: 0.2rem 0.75rem; }
+
+  /* A value and the token that names it, read as one unit. */
+  .strip dd > span { display: inline-flex; align-items: baseline; gap: 0.3rem; }
+  .strip dd b { color: var(--ink-2); font-weight: 500; text-transform: none; letter-spacing: 0.04em; }
+
+  /* Colour tokens carry their own sample, outlined so paper stays visible. */
+  .strip em,
+  .cl i em {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 2px;
+    background: var(--c);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ink) 25%, transparent);
+    flex: none;
+  }
+
+  .swatches > span { gap: 0.35rem; }
+
+  .cl i {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
 
   /* --- The switch -------------------------------------------------------- */
 
@@ -749,6 +1087,20 @@ const b = board[lang];
 
     /* The left rail has to clear a label like "H 40" at its 16px offset. */
     .cell__body { gap: 34px; padding: 18px 52px 22px 44px; }
+
+    /* Seven wrapped lines of legend ate a third of the board. It becomes a
+       single swipeable row instead — the same gesture as the cells above it. */
+    .strip {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scrollbar-width: none;
+      gap: 0 1.5rem;
+    }
+
+    .strip::-webkit-scrollbar { display: none; }
+    .strip > div { flex: none; }
+    .strip dd { flex-wrap: nowrap; white-space: nowrap; }
 
   }
 </style>

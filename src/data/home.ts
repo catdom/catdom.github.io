@@ -57,6 +57,7 @@ export const board: L10n<{
   space: string;
   radius: string;
   type: string;
+  colour: string;
 }> = {
   en: {
     label: 'Component library',
@@ -70,6 +71,7 @@ export const board: L10n<{
     space: 'Space',
     radius: 'Radius',
     type: 'Type',
+    colour: 'Colour',
   },
   es: {
     label: 'Librería de componentes',
@@ -83,6 +85,7 @@ export const board: L10n<{
     space: 'Espaciado',
     radius: 'Radios',
     type: 'Tipografía',
+    colour: 'Color',
   },
 };
 
