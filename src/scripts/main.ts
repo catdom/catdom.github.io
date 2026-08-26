@@ -178,6 +178,79 @@ const smoothScroll = () => {
 };
 
 
+/* --- 4. Rotating headline -------------------------------------------------- */
+
+/* Swaps the tail of the headline on a fixed beat: the phrase on screen leaves
+   through the top as the next rises from below. Every phrase is already in the
+   markup, so this only moves classes around — with no script the first one
+   stays put and the headline still reads.
+
+   It stops when it cannot be seen: reduced motion, a background tab, or the
+   hero scrolled away. A headline animating to nobody is just battery. */
+
+const HOLD = 2600;
+
+const rotatingHeadline = () => {
+  const roll = document.querySelector<HTMLElement>('[data-roll]');
+  if (!roll) return;
+
+  const phrases = Array.from(roll.querySelectorAll<HTMLElement>('.roll__p'));
+  if (phrases.length < 2) return;
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  let current = phrases.findIndex((p) => p.classList.contains('is-on'));
+  if (current < 0) current = 0;
+
+  let timer: number | undefined;
+  let onScreen = true;
+
+  const step = () => {
+    const next = (current + 1) % phrases.length;
+    const leaving = phrases[current];
+
+    leaving.classList.remove('is-on');
+    leaving.classList.add('is-out');
+    phrases[next].classList.add('is-on');
+
+    // Clear the outgoing phrase's exit state once it is out of sight, so it
+    // comes back from below rather than dropping in from above.
+    window.setTimeout(() => leaving.classList.remove('is-out'), 560);
+
+    current = next;
+  };
+
+  const start = () => {
+    if (timer !== undefined || !onScreen || document.hidden) return;
+    timer = window.setInterval(step, HOLD);
+  };
+
+  const stop = () => {
+    if (timer === undefined) return;
+    window.clearInterval(timer);
+    timer = undefined;
+  };
+
+  document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          onScreen = entry.isIntersecting;
+          onScreen ? start() : stop();
+        }
+      },
+      { threshold: 0 },
+    );
+    io.observe(roll);
+  }
+
+  // Let the load animation land before the first swap.
+  window.setTimeout(start, 1400);
+};
+
 reveal();
 headerBand();
 smoothScroll();
+rotatingHeadline();

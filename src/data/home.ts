@@ -1,28 +1,34 @@
 import type { L10n } from './types';
 
 /**
- * The headline is set line by line so each one can rise into place from behind
- * the line above it. Keep the breaks — they are the composition, not a wrap.
+ * The headline reads "<stem> <rotating phrase>", set line by line so each one
+ * can rise into place from behind the one above it, with the last line cycling
+ * through the three payoffs.
+ *
+ * Keep the stem's breaks — they are the composition, not a wrap. And keep every
+ * rotating phrase a similar length: they are stacked in one grid cell, so the
+ * line takes the width of the longest, and a much longer one would open a hole
+ * beside the shorter ones.
  */
 export const hero: L10n<{
   eyebrow: string;
-  lines: string[];
-  /** Rendered inside the last line, in the mark colour. */
-  markWord: string;
+  stem: string[];
+  /** Cycled in place, in the mark colour. */
+  rotating: string[];
   from: string;
   to: string;
 }> = {
   en: {
     eyebrow: 'Design leadership · specification',
-    lines: ['I build the', 'system the', 'design runs on.'],
-    markWord: 'runs on',
+    stem: ['I build the', 'system the'],
+    rotating: ['design runs on.', 'team runs on.', 'business runs on.'],
     from: '2002',
     to: '2026',
   },
   es: {
     eyebrow: 'Liderazgo de diseño · especificación',
-    lines: ['Construyo el', 'sistema sobre', 'el que corre el diseño.'],
-    markWord: 'corre el diseño',
+    stem: ['Construyo el', 'sistema que'],
+    rotating: ['sostiene el diseño.', 'sostiene al equipo.', 'sostiene el negocio.'],
     from: '2002',
     to: '2026',
   },

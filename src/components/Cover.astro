@@ -8,14 +8,8 @@ const { lang } = Astro.props;
 const h = hero[lang];
 const rows = spec[lang];
 
-/* The mark word is highlighted inside its line, so the line is split around it
-   rather than being stored twice. */
-const lines = h.lines.map((line) => {
-  const at = line.indexOf(h.markWord);
-  return at === -1
-    ? { before: line, mark: '', after: '' }
-    : { before: line.slice(0, at), mark: h.markWord, after: line.slice(at + h.markWord.length) };
-});
+/* The stem's last line is the one that rolls, so it takes the last delay. */
+const rollDelay = 120 + h.stem.length * 100;
 ---
 
 <header class="cover">
@@ -23,9 +17,22 @@ const lines = h.lines.map((line) => {
     <p class="meta cover__eyebrow">{h.eyebrow}</p>
 
     <h1 class="display cover__h1">
-      {lines.map((line, n) => (
-        <span class="cover__line"><i style={`--d:${120 + n * 100}ms`}>{line.before}<em>{line.mark}</em>{line.after}</i></span>
+      {h.stem.map((line, n) => (
+        <span class="cover__line"><i style={`--d:${120 + n * 100}ms`}>{line}</i></span>
       ))}
+
+      <!-- Every phrase ships in the markup, stacked in one grid cell: the line
+           keeps the width of the longest and nothing below it moves as they
+           swap, and with no JavaScript the first one simply stays. -->
+      <span class="cover__line">
+        <i style={`--d:${rollDelay}ms`}>
+          <span class="roll" data-roll>
+            {h.rotating.map((phrase, n) => (
+              <em class:list={['roll__p', { 'is-on': n === 0 }]}>{phrase}</em>
+            ))}
+          </span>
+        </i>
+      </span>
     </h1>
 
     <!-- A dimension line, the way a drawing states an extent. -->
@@ -79,10 +86,28 @@ const lines = h.lines.map((line) => {
     animation-delay: var(--d, 0ms);
   }
 
-  .cover__h1 em {
+  /* The rolling tail. All phrases occupy the same cell, so the block below the
+     headline never moves; the line is clipped by .cover__line, which is what
+     makes a phrase leave through the top and the next arrive from below. */
+  .roll { display: grid; }
+
+  .roll__p {
+    grid-area: 1 / 1;
     font-style: normal;
     color: var(--mark);
+    transform: translateY(100%);
+    opacity: 0;
+    transition:
+      transform 520ms var(--ease),
+      opacity 300ms var(--ease);
   }
+
+  .roll__p.is-on { transform: none; opacity: 1; }
+  .roll__p.is-out { transform: translateY(-100%); opacity: 0; }
+
+  /* Justify the stack left so a short phrase does not sit centred under a
+     long one. */
+  .roll { justify-items: start; }
 
   @keyframes rise-line { to { transform: none; } }
   @keyframes fade { to { opacity: 1; } }
@@ -148,5 +173,8 @@ const lines = h.lines.map((line) => {
     .cover__eyebrow { opacity: 1; animation: none; }
     .cover__line i { transform: none; animation: none; }
     .dim__line { transform: none; animation: none; }
+    /* The rotation is stopped in script too; this keeps the first phrase
+       placed rather than transitioned into place. */
+    .roll__p { transition: none; }
   }
 </style>
