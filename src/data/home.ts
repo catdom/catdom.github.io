@@ -1,71 +1,99 @@
 import type { L10n } from './types';
 
 /**
- * The headline reads "<stem> <rotating phrase>", with the phrases cycling in
- * place. Keep every phrase a similar length — a much longer one makes the
- * line wrap and the block below it jump.
+ * The headline is set line by line so each one can rise into place from behind
+ * the line above it. Keep the breaks — they are the composition, not a wrap.
  */
 export const hero: L10n<{
   eyebrow: string;
-  stem: string[];
-  rotating: string[];
-  body: string;
+  lines: string[];
+  /** Rendered inside the last line, in the mark colour. */
+  markWord: string;
+  from: string;
+  to: string;
 }> = {
   en: {
-    eyebrow: "Hey, I'm Jordi Catalán",
-    stem: ['Design leadership', 'focused on'],
-    rotating: ['UX strategy.', 'design systems.', 'business outcomes.'],
-    body: 'Fifteen years turning design into a system: UX strategy, design operations and design systems for marketplaces used by millions.',
+    eyebrow: 'Design leadership · specification',
+    lines: ['I build the', 'system the', 'design runs on.'],
+    markWord: 'runs on',
+    from: '2002',
+    to: '2026',
   },
   es: {
-    eyebrow: 'Hola, soy Jordi Catalán',
-    stem: ['Liderazgo de diseño', 'enfocado en'],
-    rotating: ['estrategia UX.', 'sistemas de diseño.', 'resultados de negocio.'],
-    body: 'Quince años convirtiendo el diseño en sistema: estrategia UX, design operations y design systems para marketplaces de millones de usuarios.',
+    eyebrow: 'Liderazgo de diseño · especificación',
+    lines: ['Construyo el', 'sistema sobre', 'el que corre el diseño.'],
+    markWord: 'corre el diseño',
+    from: '2002',
+    to: '2026',
   },
 };
 
-export const intro: L10n<{ label: string; heading: string; body: string[] }> = {
-  en: {
-    label: 'About, since 2007',
-    heading: 'Jordi Catalán is a design leader based in Barcelona.',
-    body: [
-      'I have led teams, scaled design practices and shipped product improvements across high-traffic marketplaces — Fotocasa, Habitaclia, Kleinanzeigen and coches.net. I build and evolve design systems, define UX strategy for complex platforms, and make multi-disciplinary teams work better together.',
-      'My background as a developer keeps me technical and pragmatic. My years in UX leadership and design operations let me connect strategy with execution in a way that is clear, scalable and aligned with the business.',
-    ],
-  },
-  es: {
-    label: 'Sobre mí, desde 2007',
-    heading: 'Jordi Catalán es un design leader afincado en Barcelona.',
-    body: [
-      'He liderado equipos, escalado prácticas de diseño y entregado mejoras de producto en marketplaces de alto tráfico — Fotocasa, Habitaclia, Kleinanzeigen y coches.net. Construyo y hago evolucionar design systems, defino estrategia UX para plataformas complejas y consigo que equipos multidisciplinares trabajen mejor juntos.',
-      'Mi origen como desarrollador me mantiene técnico y pragmático. Mis años en liderazgo de UX y design operations me permiten conectar estrategia y ejecución de forma clara, escalable y alineada con el negocio.',
-    ],
-  },
+/** The four rows of the cover sheet, read as a specification. */
+export const spec: L10n<{ term: string; value: string; strong?: string }[]> = {
+  en: [
+    { term: 'Discipline', value: 'UX strategy, design operations, design systems' },
+    { term: 'Current', strong: 'Senior Product Design', value: ', Kleinanzeigen — since March 2025' },
+    { term: 'Domain', value: 'High-traffic marketplaces. Spain, France, Germany.' },
+    { term: 'Origin', value: 'Front-end developer, 2002–2016. Still reads the diff.' },
+  ],
+  es: [
+    { term: 'Disciplina', value: 'Estrategia UX, design operations, design systems' },
+    { term: 'Actual', strong: 'Senior Product Design', value: ', Kleinanzeigen — desde marzo de 2025' },
+    { term: 'Ámbito', value: 'Marketplaces de alto tráfico. España, Francia, Alemania.' },
+    { term: 'Origen', value: 'Desarrollador front-end, 2002–2016. Sigue leyendo el diff.' },
+  ],
 };
+
+/** The brands the work reached, for the marquee. Order is the reading rhythm. */
+export const brands = [
+  'Kleinanzeigen',
+  'Fotocasa',
+  'Habitaclia',
+  'coches.net',
+  'Milanuncios',
+  'InfoJobs',
+  'Leboncoin',
+  'BMW.es',
+];
 
 export const strengthsIntro: L10n<{ label: string; heading: string; body: string }> = {
   en: {
-    label: 'What I do',
-    heading: 'Where I add value',
-    body: 'Four things I am consistently brought in to do — and the reason teams keep me close to both strategy and delivery.',
+    label: '01 · Capability',
+    heading: 'Four things I am brought in to do',
+    body: 'Each one is a system, not a deliverable — which is why they outlast me.',
   },
   es: {
-    label: 'Qué hago',
-    heading: 'Dónde aporto valor',
-    body: 'Cuatro cosas para las que me llaman de forma recurrente — y la razón por la que los equipos me quieren cerca de la estrategia y de la entrega.',
+    label: '01 · Capacidades',
+    heading: 'Cuatro cosas para las que me llaman',
+    body: 'Cada una es un sistema, no un entregable — por eso siguen ahí cuando yo ya no estoy.',
   },
 };
 
 export const careerIntro: L10n<{ label: string; heading: string; body: string }> = {
   en: {
-    label: 'Career',
-    heading: 'The full path',
-    body: 'From front-end developer to Head of UX. Open any role to see what the job actually involved.',
+    label: '02 · Where',
+    heading: 'Where it was built',
+    body: 'Twenty-four years, five employers, one continuous problem: how design holds together as everything around it multiplies.',
   },
   es: {
-    label: 'Trayectoria',
-    heading: 'El recorrido completo',
-    body: 'De desarrollador front-end a Head of UX. Abre cualquier puesto para ver en qué consistió realmente.',
+    label: '02 · Dónde',
+    heading: 'Dónde se construyó',
+    body: 'Veinticuatro años, cinco empresas, un mismo problema de fondo: cómo mantener el diseño coherente mientras todo a su alrededor se multiplica.',
   },
+};
+
+/** The measured record, shown as a four-up row of figures. */
+export const figures: L10n<{ value: string; label: string }[]> = {
+  en: [
+    { value: '15+', label: 'Years in the discipline' },
+    { value: '2 → 8', label: 'UX team, grown and kept' },
+    { value: '7', label: 'Brands on one system' },
+    { value: '3', label: 'Markets aligned' },
+  ],
+  es: [
+    { value: '15+', label: 'Años en la disciplina' },
+    { value: '2 → 8', label: 'Equipo de UX, crecido y retenido' },
+    { value: '7', label: 'Marcas sobre un sistema' },
+    { value: '3', label: 'Mercados alineados' },
+  ],
 };

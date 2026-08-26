@@ -42,10 +42,12 @@ const home = `${langPrefix(lang)}/`;
         }
       </div>
 
-      <a class="pill pill--solid nav__cta" href={`${home}#contact`}>{ui[lang].contact}</a>
+      <!-- Contact is LinkedIn: the site has no form and no mailto. -->
+      <a class="pill pill--solid nav__cta" href={site.linkedin} rel="me noopener" target="_blank">
+        {ui[lang].contact}
+      </a>
     </div>
   </div>
-
 </header>
 
 <style>
@@ -53,37 +55,26 @@ const home = `${langPrefix(lang)}/`;
     position: fixed;
     inset: 0 0 auto 0;
     z-index: 50;
-    /* Sits over both light and dark sections; the tone is swapped by JS. */
     color: var(--ink);
-    transition:
-      color var(--dur) var(--ease),
-      background-color var(--dur) var(--ease),
-      border-color var(--dur) var(--ease);
-    /* Declared transparent up front so the border can transition in rather
-       than appearing the instant the class lands. */
     background-color: transparent;
     border-bottom: 1px solid transparent;
+    transition:
+      background-color var(--dur) var(--ease),
+      border-color var(--dur) var(--ease);
   }
 
-  /* Once the page has moved, the bar earns a translucent band the width of
-     the viewport. The tone follows the section underneath. */
+  /* Once the page has moved, the bar earns a band the width of the viewport. */
   :global(.nav.is-scrolled) {
-    background-color: color-mix(in srgb, var(--paper) 72%, transparent);
-    border-bottom-color: var(--lavender-line);
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
+    background-color: color-mix(in srgb, var(--paper) 82%, transparent);
+    border-bottom-color: var(--rule);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
   }
-
-  :global(.nav.is-scrolled.is-on-dark) {
-    background-color: color-mix(in srgb, var(--dark) 68%, transparent);
-    border-bottom-color: var(--dark-line);
-  }
-
 
   .nav__inner {
     max-width: var(--maxw);
     margin-inline: auto;
-    padding: clamp(0.9rem, 1.6vw, 1.4rem) var(--gutter);
+    padding: clamp(0.8rem, 1.4vw, 1.2rem) var(--gutter);
     display: flex;
     align-items: center;
     gap: 1.5rem;
@@ -92,7 +83,6 @@ const home = `${langPrefix(lang)}/`;
   .mark {
     flex: none;
     display: block;
-    font-family: var(--font-heading);
     font-size: 1.15rem;
     font-weight: 700;
     letter-spacing: -0.03em;
@@ -103,20 +93,20 @@ const home = `${langPrefix(lang)}/`;
     display: none;
     margin-left: auto;
     gap: clamp(1rem, 2vw, 2rem);
-    font-size: 0.9375rem;
+    font-size: var(--fs-meta);
+    letter-spacing: var(--track-meta);
+    text-transform: uppercase;
+    font-weight: 500;
   }
 
-  .nav__links a {
-    position: relative;
-    padding-block: 0.15rem;
-  }
+  .nav__links a { position: relative; padding-block: 0.15rem; }
 
   .nav__links a::after {
     content: '';
     position: absolute;
     inset: auto 0 0 0;
     height: 1px;
-    background: currentColor;
+    background: var(--mark);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform var(--dur-fast) var(--ease);
@@ -136,41 +126,44 @@ const home = `${langPrefix(lang)}/`;
     align-items: center;
     gap: 2px;
     padding: 3px;
-    border: 1px solid currentColor;
+    border: 1px solid var(--rule);
     border-radius: var(--r-pill);
-    opacity: 0.55;
-    transition: opacity var(--dur-fast) var(--ease);
   }
-
-  .lang:hover { opacity: 1; }
 
   .lang__opt {
     padding: 0.25rem 0.55rem;
     border-radius: var(--r-pill);
-    font-size: 0.75rem;
+    font-size: 0.6875rem;
+    font-weight: 500;
     line-height: 1;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.06em;
+    color: var(--ink-3);
   }
 
-  /* The active language reads as a filled chip in either tone. */
-  .lang__opt.is-on {
-    background: color-mix(in oklab, currentColor 14%, transparent);
-    font-weight: 500;
-  }
+  .lang__opt.is-on { background: var(--ink); color: var(--paper); }
 
   @media (min-width: 860px) {
     .nav__links { display: flex; }
     .nav__right { margin-left: 0; }
   }
 
-  /* Tone swap driven by which section is under the header — and forced while
-     the dark menu sheet is open, or the bar would sit dark-on-dark. */
-  :global(.nav.is-on-dark) { color: var(--on-dark); }
+  /* Touch: the wordmark and the language chips are the two smallest controls
+     on the bar. Grow their hit areas to a thumb without redrawing them — the
+     wordmark borrows the padding back with a negative margin so the bar keeps
+     its height, and the chips simply get taller, matching the CTA. */
+  @media (pointer: coarse) {
+    .mark {
+      padding: 0.85rem 0.4rem;
+      margin: -0.85rem -0.4rem;
+    }
 
-  :global(.nav.is-on-dark) .pill--solid {
-    background: var(--lavender);
-    color: var(--ink);
+    .nav__cta { padding-block: 0.8rem; }
+
+    .lang__opt {
+      display: flex;
+      align-items: center;
+      min-height: 38px;
+      padding-inline: 0.85rem;
+    }
   }
-
-  :global(.nav.is-on-dark) .pill--solid:hover { background: var(--paper); }
 </style>

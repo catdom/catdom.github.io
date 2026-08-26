@@ -3,7 +3,6 @@ import type { L10n } from './types';
 export const site = {
   name: 'Jordi Catalán',
   initials: 'JC',
-  email: 'jcdcata@gmail.com',
   linkedin: 'https://www.linkedin.com/in/jordicatalan',
   location: 'Barcelona',
   /** Drives canonical URLs, OG tags and the sitemap. */
@@ -13,14 +12,6 @@ export const site = {
      Flip to `true` to allow indexing — it drives the robots meta tag,
      robots.txt and whether the sitemap is served. */
   indexable: false,
-
-  /**
-   * ⚑ Formspree form ID — the part after /f/ in the endpoint they give you.
-   * Not a secret: it ships in the HTML of every static site that uses one.
-   * While it is null the footer falls back to the plain email link, so the
-   * page is never left with a form that goes nowhere.
-   */
-  formspreeId: 'xgawjnzk' as string | null,
 } as const;
 
 export const tagline: L10n = {
@@ -35,66 +26,54 @@ export const availability: L10n<{ badge: string; note: string }> = {
 
 export const nav: L10n<{ label: string; href: string }[]> = {
   en: [
-    { label: 'Roles', href: '#roles' },
-    { label: 'Strengths', href: '#strengths' },
-    { label: 'Career', href: '#career' },
+    { label: 'Capability', href: '#capability' },
+    { label: 'Where', href: '#where' },
   ],
   es: [
-    { label: 'Puestos', href: '#roles' },
-    { label: 'Fortalezas', href: '#strengths' },
-    { label: 'Trayectoria', href: '#career' },
+    { label: 'Capacidades', href: '#capability' },
+    { label: 'Dónde', href: '#where' },
   ],
 };
 
 export const ui: L10n<Record<string, string>> = {
   en: {
     contact: 'Get in touch',
+    contactOn: 'on LinkedIn',
     scroll: 'Scroll down',
     backToTop: 'Back to top',
     backHome: 'Back to home',
     rights: 'All rights reserved',
     nextCase: 'Next role',
+    viewCase: 'View case',
     role: 'Role',
     period: 'Period',
     company: 'Company',
     skip: 'Skip to content',
     langLabel: 'Language',
-    menu: 'Menu',
-    formTitle: 'Send me a message',
-    formName: 'Name',
-    formEmail: 'Email',
-    formMessage: 'Message',
-    formSend: 'Send message',
-    formSending: 'Sending…',
-    formSent: 'Thanks — your message is on its way. I usually reply within a day or two.',
-    formError: 'Something went wrong sending that. Please try again in a moment.',
-    formRequired: 'Please fill in this field.',
-    formBadEmail: 'Please enter a valid email address.',
-    formSubject: 'New message from your portfolio',
+    contactLabel: '03 · Contact',
+    contactHeading: 'Start a conversation',
+    contactNote: 'Open to design leadership roles',
+    brandsLabel: 'Brands the system reached',
+    figuresLabel: 'The measure of it',
   },
   es: {
     contact: 'Hablemos',
+    contactOn: 'en LinkedIn',
     scroll: 'Desliza',
     backToTop: 'Volver arriba',
     backHome: 'Volver al inicio',
     rights: 'Todos los derechos reservados',
     nextCase: 'Siguiente puesto',
+    viewCase: 'Ver caso',
     role: 'Puesto',
     period: 'Periodo',
     company: 'Empresa',
     skip: 'Ir al contenido',
     langLabel: 'Idioma',
-    menu: 'Menú',
-    formTitle: 'Escríbeme',
-    formName: 'Nombre',
-    formEmail: 'Email',
-    formMessage: 'Mensaje',
-    formSend: 'Enviar mensaje',
-    formSending: 'Enviando…',
-    formSent: 'Gracias, tu mensaje va en camino. Suelo responder en un día o dos.',
-    formError: 'Algo ha fallado al enviarlo. Vuelve a intentarlo en un momento.',
-    formRequired: 'Rellena este campo, por favor.',
-    formBadEmail: 'Introduce una dirección de email válida.',
-    formSubject: 'Nuevo mensaje desde tu portfolio',
+    contactLabel: '03 · Contacto',
+    contactHeading: 'Empecemos una conversación',
+    contactNote: 'Abierto a posiciones de liderazgo de diseño',
+    brandsLabel: 'Marcas alcanzadas por el sistema',
+    figuresLabel: 'La medida de todo esto',
   },
 };

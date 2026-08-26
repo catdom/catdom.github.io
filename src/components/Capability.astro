@@ -1,0 +1,61 @@
+---
+import { strengthsIntro } from '../data/home';
+import { strengths } from '../data/strengths';
+import type { Lang } from '../data/types';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const i = strengthsIntro[lang];
+---
+
+<section class="cap" id="capability">
+  <div class="shell">
+    <div class="rows cap__head">
+      <p class="meta">{i.label}</p>
+      <div>
+        <h2 class="h2" data-reveal>{i.heading}</h2>
+        <p class="lead cap__note" data-reveal style="--reveal-delay:80ms">{i.body}</p>
+      </div>
+    </div>
+
+    <div class="parts">
+      {strengths.map((s, n) => (
+        <article class="rows part" data-reveal style={`--reveal-delay:${n * 70}ms`}>
+          <p class="meta meta--mark">{s.id}</p>
+          <div class="part__body">
+            <h3 class="h3">{s.title[lang]}</h3>
+            <p>{s.body[lang]}</p>
+          </div>
+          <p class="meta part__value">{s.value[lang]}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .cap { padding-block: var(--section-y); }
+
+  .cap__head {
+    padding-bottom: clamp(1.5rem, 3.5vw, 2.5rem);
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .cap__note { margin-top: 0.75rem; max-width: 54ch; }
+
+  .part {
+    padding-block: clamp(1.5rem, 3.5vw, 2.5rem);
+    border-bottom: 1px solid var(--rule-2);
+  }
+
+  .part__body { display: grid; gap: 0.5rem; }
+  .part__body p { color: var(--ink-2); max-width: 54ch; font-size: var(--fs-small); }
+
+  .part__value { color: var(--ink-3); }
+
+  /* On wide screens the value hangs to the right of the text, flush with the
+     column edge, the way a dimension is called out on a drawing. */
+  @media (min-width: 900px) {
+    .part__value { text-align: right; }
+  }
+</style>

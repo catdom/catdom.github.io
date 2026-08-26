@@ -36,82 +36,19 @@ const reveal = () => {
   });
 };
 
-/* --- 2. Accordion ---------------------------------------------------------- */
+/* --- 2. Header band -------------------------------------------------------- */
 
-const DURATION = 420;
-const EASE = 'cubic-bezier(0.22, 1, 0.36, 1)';
+/* The bar is transparent over the cover and takes on a translucent band with a
+   hairline once the page has moved. One class, driven by scroll position. */
 
-const setPanel = (panel: HTMLElement, open: boolean) => {
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (reduced) {
-    panel.hidden = !open;
-    return;
-  }
-
-  panel.hidden = false;
-  const target = open ? panel.scrollHeight : 0;
-  const from = open ? 0 : panel.scrollHeight;
-
-  const animation = panel.animate(
-    [{ height: `${from}px` }, { height: `${target}px` }],
-    { duration: DURATION, easing: EASE },
-  );
-
-  animation.onfinish = () => {
-    panel.style.height = '';
-    panel.hidden = !open;
-  };
-};
-
-const accordion = () => {
-  const list = document.querySelector<HTMLElement>('[data-acc]');
-  if (!list) return;
-
-  const triggers = list.querySelectorAll<HTMLButtonElement>('.acc__trigger');
-
-  triggers.forEach((trigger) => {
-    const panel = document.getElementById(trigger.getAttribute('aria-controls') ?? '');
-    if (!panel) return;
-
-    trigger.addEventListener('click', () => {
-      const open = trigger.getAttribute('aria-expanded') === 'true';
-
-      // One panel at a time, like the reference.
-      if (!open) {
-        triggers.forEach((other) => {
-          if (other === trigger || other.getAttribute('aria-expanded') !== 'true') return;
-          const otherPanel = document.getElementById(other.getAttribute('aria-controls') ?? '');
-          other.setAttribute('aria-expanded', 'false');
-          if (otherPanel) setPanel(otherPanel, false);
-        });
-      }
-
-      trigger.setAttribute('aria-expanded', String(!open));
-      setPanel(panel, !open);
-    });
-  });
-};
-
-/* --- 3. Header tone ------------------------------------------------------- */
-
-const headerTone = () => {
+const headerBand = () => {
   const nav = document.querySelector<HTMLElement>('[data-nav]');
-  const sections = Array.from(document.querySelectorAll<HTMLElement>('[data-tone]'));
-  if (!nav || !sections.length) return;
+  if (!nav) return;
 
   let queued = false;
 
   const update = () => {
     queued = false;
-    // Sample just below the header's own centre line.
-    const probe = nav.offsetHeight * 0.6;
-    const current = sections.find((section) => {
-      const rect = section.getBoundingClientRect();
-      return rect.top <= probe && rect.bottom > probe;
-    });
-    nav.classList.toggle('is-on-dark', current?.dataset.tone === 'dark');
-    // Past the very top, the bar takes on its translucent band.
     nav.classList.toggle('is-scrolled', window.scrollY > 8);
   };
 
@@ -123,12 +60,10 @@ const headerTone = () => {
 
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll, { passive: true });
-  // The tone-fade section changes its own data-tone mid-scroll.
-  nav.addEventListener('tonecheck', onScroll);
   update();
 };
 
-/* --- 5. Eased scrolling ---------------------------------------------------- */
+/* --- 3. Eased scrolling ---------------------------------------------------- */
 
 /* Wheel input moves a target, and the real scroll position chases it each
    frame. Native scroll position is what actually changes — no transformed
@@ -242,245 +177,7 @@ const smoothScroll = () => {
   });
 };
 
-/* --- 6. Contact form ------------------------------------------------------ */
-
-/* Posts to Formspree with fetch so the visitor stays on the page. Without
-   JavaScript the form still submits normally — the action and method are on
-   the element itself — so this only ever improves on a working baseline.
-   Nothing is requested from Formspree until someone actually submits. */
-
-const contactForm = () => {
-  const form = document.querySelector<HTMLFormElement>('[data-cform]');
-  if (!form) return;
-
-  const status = form.querySelector<HTMLElement>('[data-status]');
-  const button = form.querySelector<HTMLButtonElement>('[data-send]');
-  const copy = form.dataset;
-  if (!status || !button) return;
-
-  const fields = [...form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>(
-    'input[required], textarea[required]',
-  )];
-
-  const setError = (field: HTMLInputElement | HTMLTextAreaElement, message: string) => {
-    const wrap = field.closest<HTMLElement>('.field');
-    const note = form.querySelector<HTMLElement>(`[data-err-for="${field.id}"]`);
-    if (!wrap || !note) return;
-
-    if (message) {
-      wrap.setAttribute('data-invalid', '');
-      note.textContent = message;
-      note.hidden = false;
-      field.setAttribute('aria-invalid', 'true');
-      field.setAttribute('aria-describedby', note.id || `err-${field.id}`);
-      if (!note.id) note.id = `err-${field.id}`;
-      return;
-    }
-
-    wrap.removeAttribute('data-invalid');
-    note.hidden = true;
-    note.textContent = '';
-    field.removeAttribute('aria-invalid');
-    field.removeAttribute('aria-describedby');
-  };
-
-  const check = (field: HTMLInputElement | HTMLTextAreaElement) => {
-    const value = field.value.trim();
-    if (!value) return copy.msgRequired ?? '';
-    if (field.type === 'email' && !field.checkValidity()) return copy.msgBadEmail ?? '';
-    return '';
-  };
-
-  /* Validation runs on submit only. Checking on blur meant a message could
-     appear the moment focus left a field, shifting everything below it while
-     the visitor was still filling the form in. Once a field has been flagged,
-     typing in it clears its own message. */
-  fields.forEach((field) => {
-    field.addEventListener('input', () => {
-      if (field.closest('.field')?.hasAttribute('data-invalid')) setError(field, check(field));
-    });
-  });
-
-  form.addEventListener('submit', async (event) => {
-    event.preventDefault();
-
-    const problems = fields.map((field) => {
-      const message = check(field);
-      setError(field, message);
-      return message ? field : null;
-    }).filter(Boolean) as (HTMLInputElement | HTMLTextAreaElement)[];
-
-    if (problems.length) {
-      problems[0].focus();
-      return;
-    }
-
-    button.disabled = true;
-    button.textContent = copy.msgSending ?? '';
-    status.textContent = '';
-
-    try {
-      const response = await fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { Accept: 'application/json' },
-      });
-      if (!response.ok) throw new Error(String(response.status));
-
-      // Replace the form with its confirmation, and move focus there so it is
-      // announced rather than silently swapped in.
-      form.setAttribute('data-sent', '');
-      status.textContent = copy.msgSent ?? '';
-      status.setAttribute('tabindex', '-1');
-      form.after(status);
-      status.focus();
-    } catch {
-      button.disabled = false;
-      button.textContent = copy.msgSend ?? '';
-      status.textContent = copy.msgError ?? '';
-    }
-  });
-};
-
-/* --- 7. Rotating headline ------------------------------------------------- */
-
-/* Swaps the tail of the headline on a fixed beat: 2s on screen, then the
-   outgoing phrase leaves through the top as the next arrives from below.
-   Every phrase is already in the markup, so without this the first one just
-   sits there and the headline still reads correctly. */
-
-const HOLD = 2000;
-const ROLL = 260;
-
-const rotatingHeadline = () => {
-  const rotator = document.querySelector<HTMLElement>('[data-rotator]');
-  if (!rotator) return;
-
-  const phrases = [...rotator.querySelectorAll<HTMLElement>('[data-phrase]')];
-  if (phrases.length < 2) return;
-
-  rotator.setAttribute('data-ready', '');
-  rotator.style.setProperty('--roll', `${ROLL}ms`);
-
-  // A screen reader should hear the headline once, not every two seconds.
-  rotator.setAttribute('aria-live', 'off');
-  phrases.forEach((phrase, i) => {
-    if (i === 0) phrase.setAttribute('data-in', '');
-    else phrase.setAttribute('aria-hidden', 'true');
-  });
-
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let at = 0;
-  let timer: ReturnType<typeof setTimeout> | undefined;
-
-  const step = () => {
-    const current = phrases[at];
-    at = (at + 1) % phrases.length;
-    const next = phrases[at];
-
-    current.removeAttribute('data-in');
-    current.setAttribute('data-out', '');
-    current.setAttribute('aria-hidden', 'true');
-
-    next.removeAttribute('data-out');
-    next.setAttribute('data-in', '');
-    next.removeAttribute('aria-hidden');
-
-    // Park the outgoing phrase back below the line, ready for its next turn,
-    // once it is out of sight.
-    setTimeout(() => current.removeAttribute('data-out'), ROLL);
-
-    timer = setTimeout(step, HOLD);
-  };
-
-  const start = () => {
-    if (timer || reduced.matches) return;
-    timer = setTimeout(step, HOLD);
-  };
-
-  const stop = () => {
-    clearTimeout(timer);
-    timer = undefined;
-  };
-
-  // Nothing to animate in a background tab, and nothing to animate once the
-  // headline has scrolled away.
-  document.addEventListener('visibilitychange', () => {
-    document.hidden ? stop() : start();
-  });
-
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(
-      ([entry]) => (entry.isIntersecting && !document.hidden ? start() : stop()),
-      { threshold: 0 },
-    ).observe(rotator);
-  } else {
-    start();
-  }
-
-  reduced.addEventListener('change', () => (reduced.matches ? stop() : start()));
-};
-
-/* --- 8. Tone, driven by scroll -------------------------------------------- */
-
-/* The panel below the hero opens on the hero's own ground and turns dark as it
-   arrives. The colour is interpolated from the scroll position rather than
-   animated on a timer — in the reference it tracks the finger, and a timed
-   fade that fires at a threshold always reads as detached from the scroll.
-   The ink cannot cross-fade with the ground (both pass through the same
-   luminance and the text disappears), so it cuts at the halfway point. */
-
-const toneScroll = () => {
-  const panel = document.querySelector<HTMLElement>('[data-tonefade]');
-  if (!panel) return;
-
-  const nav = document.querySelector<HTMLElement>('[data-nav]');
-  let queued = false;
-  let last = -1;
-
-  const update = () => {
-    queued = false;
-    const rect = panel.getBoundingClientRect();
-    const vh = window.innerHeight;
-
-    /* Starts as the panel's top edge rises past three quarters of the screen
-       and completes over the next 55% of a viewport of scrolling, so it is
-       done about when the panel has settled into view. */
-    const start = vh * 0.75;
-    const span = vh * 0.55;
-    const raw = (start - rect.top) / span;
-    const p = Math.min(1, Math.max(0, raw));
-    // Eased so the ends settle rather than clipping abruptly.
-    const eased = p * p * (3 - 2 * p);
-
-    if (Math.abs(eased - last) > 0.002) {
-      panel.style.setProperty('--tone-p', eased.toFixed(3));
-      last = eased;
-    }
-
-    const dark = eased >= 0.5;
-    if (dark !== panel.classList.contains('is-dark')) {
-      panel.classList.toggle('is-dark', dark);
-      panel.dataset.tone = dark ? 'dark' : 'light';
-      nav?.dispatchEvent(new Event('tonecheck'));
-    }
-  };
-
-  const onScroll = () => {
-    if (queued) return;
-    queued = true;
-    requestAnimationFrame(update);
-  };
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll, { passive: true });
-  update();
-};
 
 reveal();
-accordion();
-headerTone();
+headerBand();
 smoothScroll();
-contactForm();
-rotatingHeadline();
-toneScroll();

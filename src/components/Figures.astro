@@ -1,0 +1,55 @@
+---
+import { figures } from '../data/home';
+import { ui } from '../data/site';
+import type { Lang } from '../data/types';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+---
+
+<section class="figs-wrap" aria-label={ui[lang].figuresLabel}>
+  <div class="shell">
+    <p class="meta figs__label">{ui[lang].figuresLabel}</p>
+    <div class="figs">
+      {figures[lang].map((f, n) => (
+        <div class="fig" data-reveal style={`--reveal-delay:${n * 70}ms`}>
+          <b>{f.value}</b>
+          <span class="meta">{f.label}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .figs-wrap { padding-bottom: var(--section-y); }
+
+  .figs__label { display: block; margin-bottom: 1rem; }
+
+  /* Hairline cells: one background showing through 1px gaps, so the rules
+     never double up where two cells meet. */
+  .figs {
+    display: grid;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+
+  @media (min-width: 620px) { .figs { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1000px) { .figs { grid-template-columns: repeat(4, 1fr); } }
+
+  .fig {
+    background: var(--panel);
+    padding: clamp(1.25rem, 2.5vw, 2rem);
+    display: grid;
+    gap: 0.4rem;
+  }
+
+  .fig b {
+    font-size: var(--fs-fig);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+</style>

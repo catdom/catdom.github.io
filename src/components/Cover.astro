@@ -1,0 +1,149 @@
+---
+import { hero, spec } from '../data/home';
+import type { Lang } from '../data/types';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const h = hero[lang];
+const rows = spec[lang];
+
+/* The mark word is highlighted inside its line, so the line is split around it
+   rather than being stored twice. */
+const lines = h.lines.map((line) => {
+  const at = line.indexOf(h.markWord);
+  return at === -1
+    ? { before: line, mark: '', after: '' }
+    : { before: line.slice(0, at), mark: h.markWord, after: line.slice(at + h.markWord.length) };
+});
+---
+
+<header class="cover">
+  <div class="shell">
+    <p class="meta cover__eyebrow">{h.eyebrow}</p>
+
+    <h1 class="display cover__h1">
+      {lines.map((line, n) => (
+        <span class="cover__line"><i style={`--d:${120 + n * 100}ms`}>{line.before}<em>{line.mark}</em>{line.after}</i></span>
+      ))}
+    </h1>
+
+    <!-- A dimension line, the way a drawing states an extent. -->
+    <div class="dim" aria-label={`${h.from} — ${h.to}`}>
+      <span class="meta">{h.from}</span>
+      <span class="dim__line"></span>
+      <span class="meta">{h.to}</span>
+    </div>
+
+    <dl class="sheet">
+      {rows.map((row, n) => (
+        <div class="sheet__row" data-reveal style={`--reveal-delay:${380 + n * 60}ms`}>
+          <dt class="meta">{row.term}</dt>
+          <dd>{row.strong ? <b>{row.strong}</b> : null}{row.value}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</header>
+
+<style>
+  .cover {
+    padding-block: clamp(7rem, 16vh, 11rem) clamp(2.5rem, 6vw, 4.5rem);
+  }
+
+  .cover__eyebrow {
+    display: block;
+    opacity: 0;
+    animation: fade 700ms var(--ease) 60ms forwards;
+  }
+
+  .cover__h1 {
+    margin-top: clamp(1rem, 2.5vw, 2rem);
+  }
+
+  /* Each line is a window; the text inside rises out of it on load. */
+  .cover__line {
+    display: block;
+    overflow: hidden;
+    /* Descenders would be clipped by the window without a little slack. */
+    padding-bottom: 0.06em;
+  }
+
+  .cover__line i {
+    display: block;
+    font-style: normal;
+    transform: translateY(105%);
+    animation: rise-line 900ms var(--ease) forwards;
+    animation-delay: var(--d, 0ms);
+  }
+
+  .cover__h1 em {
+    font-style: normal;
+    color: var(--mark);
+  }
+
+  @keyframes rise-line { to { transform: none; } }
+  @keyframes fade { to { opacity: 1; } }
+
+  .dim {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-top: clamp(1.5rem, 4vw, 2.5rem);
+    padding-block: 0.75rem;
+  }
+
+  .dim__line {
+    flex: 1;
+    height: 1px;
+    background: var(--mark);
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: draw 1200ms var(--ease) 620ms forwards;
+    position: relative;
+  }
+
+  /* Arrow heads, drawn as rotated hairlines rather than shipped as an icon. */
+  .dim__line::before,
+  .dim__line::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 6px;
+    height: 6px;
+    border-top: 1px solid var(--mark);
+    border-right: 1px solid var(--mark);
+  }
+
+  .dim__line::before { left: 0; transform: translateY(-50%) rotate(-135deg); }
+  .dim__line::after { right: 0; transform: translateY(-50%) rotate(45deg); }
+
+  @keyframes draw { to { transform: scaleX(1); } }
+
+  .sheet {
+    margin-top: clamp(1.5rem, 4vw, 2.5rem);
+    border-top: 1px solid var(--rule);
+  }
+
+  .sheet__row {
+    display: grid;
+    gap: 0.15rem 2rem;
+    padding-block: 0.85rem;
+    border-bottom: 1px solid var(--rule-2);
+  }
+
+  .sheet__row dt { padding-top: 0.3rem; }
+  .sheet__row dd { font-size: var(--fs-small); }
+  .sheet__row b { font-weight: 600; }
+
+  @media (min-width: 700px) {
+    .sheet__row { grid-template-columns: var(--rail) minmax(0, 1fr); align-items: baseline; }
+    .sheet__row dt { padding-top: 0; }
+  }
+
+  /* Reduced motion: everything is simply already in place. */
+  @media (prefers-reduced-motion: reduce) {
+    .cover__eyebrow { opacity: 1; animation: none; }
+    .cover__line i { transform: none; animation: none; }
+    .dim__line { transform: none; animation: none; }
+  }
+</style>

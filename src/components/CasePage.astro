@@ -71,27 +71,27 @@ const trailing = spread.slice(study.sections.length);
 
 <article class="case">
   <!-- Masthead --------------------------------------------------------- -->
-  <header class="case__top on-dark" data-tone="dark">
+  <header class="case__top">
     <div class="shell">
-      <a class="case__back" href={`${base}/#roles`}>
-        <Icon name="arrow-left" size={16} />
+      <a class="case__back meta" href={`${base}/#where`}>
+        <Icon name="arrow-left" size={14} />
         {ui[lang].backHome}
       </a>
 
-      <p class="eyebrow case__company" data-reveal>{study.company}</p>
+      <p class="meta meta--mark case__company" data-reveal>{study.company}</p>
       <h1 class="h2 case__title" data-reveal style="--reveal-delay:60ms">{study.tagline[lang]}</h1>
 
       <dl class="case__meta" data-reveal style="--reveal-delay:140ms">
         <div>
-          <dt>{ui[lang].role}</dt>
+          <dt class="meta">{ui[lang].role}</dt>
           <dd>{study.role[lang]}</dd>
         </div>
         <div>
-          <dt>{ui[lang].period}</dt>
+          <dt class="meta">{ui[lang].period}</dt>
           <dd>{study.period[lang]}</dd>
         </div>
         <div>
-          <dt>{ui[lang].company}</dt>
+          <dt class="meta">{ui[lang].company}</dt>
           <dd>{study.company}</dd>
         </div>
       </dl>
@@ -99,14 +99,14 @@ const trailing = spread.slice(study.sections.length);
   </header>
 
   <!-- Problem / solution ------------------------------------------------ -->
-  <section class="case__pair" data-tone="light">
+  <section class="case__pair">
     <div class="shell case__pairGrid">
       <div class="case__pairCol" data-reveal>
-        <p class="eyebrow">{labels.problem}</p>
+        <p class="meta">{labels.problem}</p>
         <p class="case__pairText">{study.problem[lang]}</p>
       </div>
       <div class="case__pairCol" data-reveal style="--reveal-delay:90ms">
-        <p class="eyebrow">{labels.solution}</p>
+        <p class="meta">{labels.solution}</p>
         <p class="case__pairText">{study.solution[lang]}</p>
       </div>
     </div>
@@ -114,7 +114,7 @@ const trailing = spread.slice(study.sections.length);
 
   <!-- Lead image ---------------------------------------------------------- -->
   {lead && (
-    <section class="case__media" data-tone="light">
+    <section class="case__media">
       <div class="shell">
         <figure class="case__figure" data-reveal>
           <img
@@ -132,14 +132,14 @@ const trailing = spread.slice(study.sections.length);
   )}
 
   <!-- Narrative ---------------------------------------------------------- -->
-  <section class="case__body" data-tone="light">
+  <section class="case__body">
     <div class="shell">
       {study.sections.map((s, i) => {
         const follows = afterSection(i);
         return (
           <>
-            <div class="split case__section">
-              <p class="eyebrow" data-reveal>{s.title[lang]}</p>
+            <div class="rows case__section">
+              <p class="meta" data-reveal>{s.title[lang]}</p>
               <div class="case__sectionText prose-col">
                 {s.body[lang].map((para, n) => (
                   <p data-reveal style={`--reveal-delay:${n * 80}ms`}>{para}</p>
@@ -196,8 +196,8 @@ const trailing = spread.slice(study.sections.length);
         </div>
       )}
 
-      <div class="split case__section">
-        <p class="eyebrow" data-reveal>{labels.highlights}</p>
+      <div class="rows case__section">
+        <p class="meta" data-reveal>{labels.highlights}</p>
         <ul class="case__wins prose-col">
           {study.achievements[lang].map((a, n) => (
             <li data-reveal style={`--reveal-delay:${Math.min(n, 4) * 70}ms`}>{a}</li>
@@ -208,10 +208,10 @@ const trailing = spread.slice(study.sections.length);
   </section>
 
   <!-- Next --------------------------------------------------------------- -->
-  <section class="case__next" data-tone="light">
+  <section class="case__next">
     <div class="shell">
       <a class="nextcard" href={`${base}/work/${next.slug}/`}>
-        <span class="eyebrow">{ui[lang].nextCase}</span>
+        <span class="meta">{ui[lang].nextCase}</span>
         <span class="nextcard__row">
           <span class="h2 nextcard__name">{next.company}</span>
           <Icon name="arrow-up-right" size={28} class="nextcard__arrow" />
@@ -223,74 +223,73 @@ const trailing = spread.slice(study.sections.length);
 </article>
 
 <style>
+  /* --- Masthead ------------------------------------------------------------ */
+
+  /* The case opens on the same paper as the home page and states its facts
+     before it shows anything, the way a drawing carries a title block. */
   .case__top {
-    background: var(--dark);
-    color: var(--on-dark);
-    padding-block: clamp(7rem, 12vw, 10rem) clamp(3rem, 6vw, 5rem);
-    display: grid;
-    gap: 0;
+    padding-block: clamp(6.5rem, 12vw, 9rem) clamp(2rem, 4vw, 3rem);
+    border-bottom: 1px solid var(--ink);
   }
 
-  .case__top > .shell { display: grid; gap: clamp(1.25rem, 2.5vw, 2rem); }
+  .case__top > .shell { display: grid; gap: clamp(1.1rem, 2.2vw, 1.75rem); }
 
   .case__back {
     justify-self: start;
     display: inline-flex;
     align-items: center;
     gap: 0.45rem;
-    font-size: var(--fs-small);
-    color: var(--on-dark-muted);
     transition: color var(--dur-fast) var(--ease);
   }
 
-  .case__back:hover { color: var(--on-dark); }
+  .case__back:hover { color: var(--ink); }
+
+  /* Touch: the back link is a single line of metadata — pad the hit area. */
+  @media (pointer: coarse) {
+    .case__back {
+      padding-block: 0.8rem;
+      margin-block: -0.8rem;
+    }
+  }
 
   .case__title { max-width: 22ch; }
 
   .case__meta {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
-    gap: 1.25rem 2rem;
+    gap: 1rem 2rem;
     margin: 0;
-    padding-top: clamp(1rem, 2vw, 2rem);
-    border-top: 1px solid var(--dark-line);
+    padding-top: clamp(0.75rem, 2vw, 1.5rem);
+    border-top: 1px solid var(--rule);
     max-width: 780px;
   }
 
-  .case__meta dt {
-    font-size: var(--fs-small);
-    color: var(--on-dark-faint);
-    margin-bottom: 0.3rem;
-  }
-
-  .case__meta dd { margin: 0; font-size: 0.9375rem; }
+  .case__meta dt { margin-bottom: 0.3rem; }
+  .case__meta dd { margin: 0; font-size: var(--fs-small); }
 
   /* --- Problem / solution -------------------------------------------------- */
 
   .case__pair { padding-block: var(--section-y); }
 
-  .case__pairGrid {
-    display: grid;
-    gap: clamp(2rem, 4vw, 4rem);
-  }
+  .case__pairGrid { display: grid; gap: clamp(2rem, 4vw, 4rem); }
 
   @media (min-width: 820px) {
     .case__pairGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
 
-  .case__pairCol { display: grid; gap: 1rem; align-content: start; }
+  .case__pairCol { display: grid; gap: 0.85rem; align-content: start; }
 
   .case__pairText {
     font-size: var(--fs-lead);
-    line-height: 1.55;
+    line-height: 1.6;
     max-width: 48ch;
   }
 
   /* --- Media --------------------------------------------------------------- */
 
-  .case__media { padding-bottom: clamp(3rem, 6vw, 5rem); }
+  .case__media { padding-bottom: clamp(2.5rem, 5vw, 4rem); }
 
-  .case__figure { margin: 0; display: grid; gap: 0.75rem; }
+  .case__figure { margin: 0; display: grid; gap: 0.7rem; }
 
   /* Sits between narrative sections, so it needs the rhythm the sections have. */
   .case__figure--inline { margin: clamp(2rem, 5vw, 3.5rem) 0; }
@@ -300,13 +299,15 @@ const trailing = spread.slice(study.sections.length);
     /* The width/height attributes give the intrinsic ratio; this keeps them
        from fixing the rendered height. */
     height: auto;
-    border-radius: var(--r-card);
-    background: var(--lavender-soft);
+    border: 1px solid var(--rule);
+    background: var(--panel);
   }
 
   .case__figure figcaption {
-    font-size: var(--fs-small);
-    color: var(--ink-faint);
+    font-size: var(--fs-meta);
+    letter-spacing: var(--track-meta);
+    text-transform: uppercase;
+    color: var(--ink-3);
   }
 
   .case__pairMedia {
@@ -323,27 +324,29 @@ const trailing = spread.slice(study.sections.length);
 
   .case__body { padding-bottom: var(--section-y); }
 
-  .case__section { padding-block: clamp(2rem, 4vw, 3.25rem); }
-  .case__section + .case__section { border-top: 1px solid #eeecf1; }
+  .case__section { padding-block: clamp(1.75rem, 3.5vw, 2.75rem); }
+  .case__section + .case__section { border-top: 1px solid var(--rule-2); }
 
-  .case__sectionText { display: grid; gap: 1.15rem; color: var(--ink-muted); }
+  .case__sectionText { display: grid; gap: 1.1rem; color: var(--ink-2); }
+  .case__sectionText p { font-size: var(--fs-body); }
 
-  .case__wins { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.85rem; }
+  .case__wins { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.8rem; }
 
   .case__wins li {
     position: relative;
     padding-left: 1.6rem;
-    color: var(--ink-muted);
+    color: var(--ink-2);
   }
 
+  /* A hairline dash instead of a bullet — the same rule the page is drawn in. */
   .case__wins li::before {
     content: '';
     position: absolute;
     left: 0;
-    top: 0.55em;
+    top: 0.6em;
     width: 10px;
     height: 1px;
-    background: var(--ink-faint);
+    background: var(--mark);
   }
 
   /* --- Next ---------------------------------------------------------------- */
@@ -352,14 +355,14 @@ const trailing = spread.slice(study.sections.length);
 
   .nextcard {
     display: grid;
-    gap: 0.6rem;
-    background: var(--lavender);
-    border-radius: var(--r-band);
-    padding: clamp(2rem, 4vw, 3.5rem);
-    transition: background var(--dur) var(--ease);
+    gap: 0.5rem;
+    border: 1px solid var(--rule);
+    background: var(--panel);
+    padding: clamp(1.75rem, 4vw, 3rem);
+    transition: border-color var(--dur-fast) var(--ease);
   }
 
-  .nextcard:hover { background: var(--lavender-soft); }
+  .nextcard:hover { border-color: var(--ink); }
 
   .nextcard__row {
     display: flex;
@@ -368,12 +371,14 @@ const trailing = spread.slice(study.sections.length);
     gap: 1rem;
   }
 
+  .nextcard:hover .nextcard__name { color: var(--mark); }
+
   .nextcard__arrow {
     flex: none;
-    transition: transform var(--dur) var(--ease);
+    transition: transform var(--dur-fast) var(--ease);
   }
 
   .nextcard:hover .nextcard__arrow { transform: translate(4px, -4px); }
 
-  .nextcard__role { font-size: var(--fs-small); color: var(--ink-muted); }
+  .nextcard__role { font-size: var(--fs-small); color: var(--ink-2); }
 </style>

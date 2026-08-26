@@ -1,9 +1,10 @@
 ---
 import Nav from './Nav.astro';
-import Hero from './Hero.astro';
-import Roles from './Roles.astro';
-import Strengths from './Strengths.astro';
-import Timeline from './Timeline.astro';
+import Cover from './Cover.astro';
+import Marquee from './Marquee.astro';
+import Capability from './Capability.astro';
+import Where from './Where.astro';
+import Figures from './Figures.astro';
 import Footer from './Footer.astro';
 import type { Lang } from '../data/types';
 
@@ -13,9 +14,10 @@ const { lang } = Astro.props;
 
 <Nav lang={lang} path="" />
 <main id="main">
-  <Hero lang={lang} />
-  <Roles lang={lang} />
-  <Strengths lang={lang} />
-  <Timeline lang={lang} />
+  <Cover lang={lang} />
+  <Marquee lang={lang} />
+  <Capability lang={lang} />
+  <Where lang={lang} />
+  <Figures lang={lang} />
 </main>
 <Footer lang={lang} />

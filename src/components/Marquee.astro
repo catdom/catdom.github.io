@@ -1,0 +1,67 @@
+---
+import { brands } from '../data/home';
+import { ui } from '../data/site';
+import type { Lang } from '../data/types';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+
+/* The list is rendered twice so the strip can loop by translating exactly
+   half its width — any other amount would visibly jump at the seam. */
+const run = [...brands, ...brands];
+---
+
+<section class="belt" aria-label={ui[lang].brandsLabel}>
+  <div class="belt__run">
+    {run.map((brand, n) => (
+      <span aria-hidden={n >= brands.length ? 'true' : undefined}>{brand}</span>
+    ))}
+  </div>
+</section>
+
+<style>
+  .belt {
+    border-block: 1px solid var(--rule);
+    padding-block: clamp(0.9rem, 2vw, 1.4rem);
+    overflow: hidden;
+    background: var(--paper);
+  }
+
+  .belt__run {
+    display: flex;
+    width: max-content;
+    animation: belt 42s linear infinite;
+  }
+
+  /* Reading a name is a reason to stop the strip. */
+  .belt:hover .belt__run,
+  .belt:focus-within .belt__run { animation-play-state: paused; }
+
+  .belt__run span {
+    display: flex;
+    align-items: center;
+    font-size: clamp(1.1rem, 2.6vw, 1.9rem);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    color: var(--ink-2);
+    white-space: nowrap;
+    padding-inline: clamp(1rem, 2.5vw, 2.25rem);
+  }
+
+  /* A blue rule between names, drawn rather than typed. */
+  .belt__run span::after {
+    content: '';
+    width: 5px;
+    height: 5px;
+    margin-left: clamp(2rem, 5vw, 4.5rem);
+    border-radius: 50%;
+    background: var(--mark);
+    flex: none;
+  }
+
+  @keyframes belt { to { transform: translateX(-50%); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .belt__run { animation: none; }
+  }
+</style>

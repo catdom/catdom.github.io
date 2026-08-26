@@ -1,0 +1,115 @@
+---
+import { careerIntro } from '../data/home';
+import { timeline } from '../data/timeline';
+import { ui } from '../data/site';
+import { langPrefix, type Lang } from '../data/types';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const i = careerIntro[lang];
+const base = langPrefix(lang);
+---
+
+<section class="where" id="where">
+  <div class="shell">
+    <div class="rows where__head">
+      <p class="meta">{i.label}</p>
+      <div>
+        <h2 class="h2" data-reveal>{i.heading}</h2>
+        <p class="lead where__note" data-reveal style="--reveal-delay:80ms">{i.body}</p>
+      </div>
+    </div>
+
+    <!-- Hovering one row dims the rest, so the list reads one entry at a time. -->
+    <ol class="roles">
+      {timeline.map((entry, n) => {
+        const href = entry.caseSlug ? `${base}/work/${entry.caseSlug}/` : undefined;
+        const Row = href ? 'a' : 'div';
+        return (
+          <li class="role" data-reveal style={`--reveal-delay:${n * 60}ms`}>
+            <Row class:list={['role__inner', 'rows', { 'is-link': href }]} href={href}>
+              <p class="meta role__yr">{entry.range}</p>
+              <div class="role__main">
+                <h3 class="role__co">{entry.company}</h3>
+                <p class="meta role__role">{entry.role[lang]}</p>
+              </div>
+              <div class="role__aside">
+                {entry.summary[lang].map((line) => <p>{line}</p>)}
+                {href && (
+                  <span class="meta meta--mark role__cta">
+                    {ui[lang].viewCase}
+                    <svg viewBox="0 0 16 16" width="11" height="11" aria-hidden="true" focusable="false">
+                      <path d="M4 12L12 4M12 4H5.5M12 4v6.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                )}
+              </div>
+            </Row>
+          </li>
+        );
+      })}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .where { padding-block: var(--section-y); }
+
+  .where__head {
+    padding-bottom: clamp(1.5rem, 3.5vw, 2.5rem);
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .where__note { margin-top: 0.75rem; max-width: 52ch; }
+
+  .roles { list-style: none; padding: 0; margin: 0; }
+
+  .role { border-bottom: 1px solid var(--rule-2); }
+
+  .role__inner {
+    padding-block: clamp(1.5rem, 3.5vw, 2.75rem);
+    transition: opacity var(--dur-fast) var(--ease);
+  }
+
+  /* Dim the siblings, not the hovered row. Pointer-only: on a touch screen
+     there is no hover to resolve and every row would sit dimmed mid-tap. */
+  @media (hover: hover) and (pointer: fine) {
+    .roles:hover .role__inner { opacity: 0.4; }
+    .roles .role__inner:hover,
+    .roles .role__inner:focus-visible { opacity: 1; }
+  }
+
+  .role__yr { color: var(--ink-3); }
+
+  .role__main { display: grid; gap: 0.3rem; }
+
+  .role__co {
+    font-size: var(--fs-row);
+    line-height: 1;
+    letter-spacing: -0.035em;
+    font-weight: 500;
+  }
+
+  .role__role { color: var(--ink-2); }
+
+  .role__aside { display: grid; gap: 0.5rem; align-content: start; }
+  .role__aside p { font-size: var(--fs-small); color: var(--ink-2); }
+
+  .role__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    justify-self: start;
+  }
+
+  .role__cta svg { transition: transform var(--dur-fast) var(--ease); }
+
+  .is-link:hover .role__co { color: var(--mark); }
+  .is-link:hover .role__cta svg { transform: translate(2px, -2px); }
+
+  /* Mobile: the year and role sit tight above the name, the summary below. */
+  @media (max-width: 899px) {
+    .role__inner { gap: 0.5rem; }
+    .role__aside { margin-top: 0.35rem; }
+  }
+</style>

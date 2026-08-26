@@ -25,7 +25,6 @@ const personLd = {
   '@type': 'Person',
   name: site.name,
   jobTitle: 'Head of UX & Design Operations',
-  email: site.email,
   url: site.origin,
   sameAs: [site.linkedin],
   address: { '@type': 'PostalAddress', addressLocality: site.location, addressCountry: 'ES' },
@@ -47,7 +46,7 @@ const personLd = {
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link
       rel="preload"
-      href="/fonts/geist-latin.woff2"
+      href="/fonts/dm-sans-latin.woff2"
       as="font"
       type="font/woff2"
       crossorigin
@@ -60,7 +59,7 @@ const personLd = {
     <meta property="og:locale" content={lang === 'en' ? 'en_GB' : 'es_ES'} />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <meta name="theme-color" content="#190a1d" />
+    <meta name="theme-color" content="#f6f6f3" />
 
     <script is:inline>
       document.documentElement.classList.remove('no-js');
@@ -69,6 +68,14 @@ const personLd = {
   </head>
   <body>
     <a class="skip-link" href="#main">{ui[lang].skip}</a>
+
+    <!-- The rig: twelve hairline columns behind the page. Decoration only. -->
+    <div class="rig" aria-hidden="true">
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
+    </div>
+
     <slot />
 
     <script>
