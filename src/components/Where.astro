@@ -34,7 +34,7 @@ const base = langPrefix(lang);
                 <p class="meta role__role">{entry.role[lang]}</p>
               </div>
               <div class="role__aside">
-                {entry.summary[lang].map((line) => <p>{line}</p>)}
+                <p>{entry.summary[lang]}</p>
                 {href && (
                   <span class="meta meta--mark role__cta">
                     {ui[lang].viewCase}
