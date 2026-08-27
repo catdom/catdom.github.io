@@ -1,0 +1,21 @@
+---
+/**
+ * The tag. Same contract as Button: defined once as .tag in global.css and
+ * consumed by both the site and the reference board, which redlines it.
+ */
+interface Props {
+  variant?: 'outline' | 'solid';
+  as?: 'span' | 'button';
+  class?: string;
+  [key: string]: unknown;
+}
+
+const { variant = 'outline', as = 'span', class: extra, ...rest } = Astro.props as Props;
+
+const Tag = as;
+const classes = ['tag', variant === 'solid' && 'tag--solid', extra];
+
+if (as === 'button' && rest.type === undefined) rest.type = 'button';
+---
+
+<Tag class:list={classes} {...rest}><slot /></Tag>

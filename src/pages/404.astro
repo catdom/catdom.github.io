@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import Button from '../components/ui/Button.astro';
 ---
 
 <Layout lang="en" title="Not found — Jordi Catalán" description="This page does not exist.">
@@ -10,7 +11,7 @@ import Footer from '../components/Footer.astro';
     <div class="shell">
       <p class="meta meta--mark">404</p>
       <h1 class="h2">This page doesn’t exist.</h1>
-      <a class="pill pill--ghost" href="/">Back to home</a>
+      <Button as="a" variant="ghost" href="/">Back to home</Button>
     </div>
   </main>
   <Footer lang="en" />

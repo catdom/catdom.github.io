@@ -1,6 +1,7 @@
 ---
 import { site, nav, ui } from '../data/site';
 import { LANGS, langPrefix, type Lang } from '../data/types';
+import Button from './ui/Button.astro';
 
 interface Props {
   lang: Lang;
@@ -46,9 +47,9 @@ const href = (to: string) => (to.startsWith('#') ? to : `${langPrefix(lang)}${to
       </div>
 
       <!-- Contact is LinkedIn: the site has no form and no mailto. -->
-      <a class="pill pill--solid nav__cta" href={site.linkedin} rel="me noopener" target="_blank">
+      <Button as="a" class="nav__cta" href={site.linkedin} rel="me noopener" target="_blank">
         {ui[lang].contact}
-      </a>
+      </Button>
     </div>
   </div>
 </header>
@@ -160,7 +161,7 @@ const href = (to: string) => (to.startsWith('#') ? to : `${langPrefix(lang)}${to
       margin: -0.85rem -0.4rem;
     }
 
-    .nav__cta { padding-block: 0.8rem; }
+    .nav__cta { height: 44px; }
 
     .lang__opt {
       display: flex;

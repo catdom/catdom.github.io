@@ -89,6 +89,7 @@ export const board: L10n<{
   radius: string;
   type: string;
   colour: string;
+  shared: string;
 }> = {
   en: {
     label: 'Component library',
@@ -104,6 +105,7 @@ export const board: L10n<{
     radius: 'Radius',
     type: 'Type',
     colour: 'Colour',
+    shared: 'Site component',
   },
   es: {
     label: 'Librería de componentes',
@@ -119,6 +121,7 @@ export const board: L10n<{
     radius: 'Radios',
     type: 'Tipografía',
     colour: 'Color',
+    shared: 'Componente del site',
   },
 };
 

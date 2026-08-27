@@ -1,0 +1,38 @@
+---
+/**
+ * The button. One definition (.btn in global.css), consumed by the site's
+ * header CTA, the 404 page and every button on the reference board — so the
+ * board's redlines measure the real thing rather than a lookalike.
+ *
+ * `as` covers the three elements a pill legitimately is here: a link, a real
+ * button, and the <summary> that opens the board's dialog and accordion.
+ */
+interface Props {
+  variant?: 'solid' | 'ghost';
+  size?: 'md' | 'sm';
+  as?: 'a' | 'button' | 'summary';
+  class?: string;
+  [key: string]: unknown;
+}
+
+const {
+  variant = 'solid',
+  size = 'md',
+  as = 'button',
+  class: extra,
+  ...rest
+} = Astro.props as Props;
+
+const Tag = as;
+const classes = [
+  'btn',
+  variant === 'ghost' && 'btn--ghost',
+  size === 'sm' && 'btn--sm',
+  extra,
+];
+
+/* A <button> with no type submits the form it happens to sit in. */
+if (as === 'button' && rest.type === undefined) rest.type = 'button';
+---
+
+<Tag class:list={classes} {...rest}><slot /></Tag>

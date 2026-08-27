@@ -1,6 +1,8 @@
 ---
 import { board } from '../data/home';
 import type { Lang } from '../data/types';
+import Button from './ui/Button.astro';
+import Tag from './ui/Tag.astro';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -37,30 +39,30 @@ const b = board[lang];
   <div class="board__grid" tabindex="0" role="group" aria-label={b.label}>
     <!-- C-01 Button ------------------------------------------------------- -->
     <div class="cell">
-      <p class="meta cell__name"><b>C-01</b> Button</p>
+      <p class="meta cell__name"><b>C-01</b> Button<span class="cell__used">{b.shared}</span></p>
       <p class="meta cell__states">default &middot; hover &middot; active &middot; focus &middot; disabled</p>
       <div class="cell__body">
         <div class="an an--fit row" style="gap:12px;flex-wrap:wrap">
-          <button class="ds-btn" type="button" data-box>Publish</button>
-          <button class="ds-btn ds-btn--ghost" type="button">Cancel</button>
+          <Button data-box>Publish</Button>
+          <Button variant="ghost">Cancel</Button>
           <span class="dm dm--v dm--left" style="--h:40px"><i>H 40</i></span>
           <span class="dm dm--h dm--under" style="--l:0;--w:16px"><i>P 16</i></span>
           <span class="cl cl--right" style="--t:8px"><i>R 999</i></span>
         </div>
         <div class="an an--fit">
-          <button class="ds-btn ds-btn--ghost" type="button" disabled>Archived</button>
+          <Button variant="ghost" disabled>Archived</Button>
         </div>
       </div>
     </div>
 
     <!-- C-02 Tag & chip --------------------------------------------------- -->
     <div class="cell">
-      <p class="meta cell__name"><b>C-02</b> Tag &amp; chip</p>
+      <p class="meta cell__name"><b>C-02</b> Tag &amp; chip<span class="cell__used">{b.shared}</span></p>
       <p class="meta cell__states">default &middot; hover &middot; focus &middot; removable</p>
       <div class="cell__body">
         <div class="an an--fit row" style="gap:8px;flex-wrap:wrap">
-          <span class="ds-badge" data-box>Tokens</span>
-          <span class="ds-badge ds-badge--solid">Adopted</span>
+          <Tag data-box>Tokens</Tag>
+          <Tag variant="solid">Adopted</Tag>
           <span class="dm dm--v dm--left" style="--h:24px"><i>H 24</i></span>
           <span class="dm dm--h dm--under" style="--l:0;--w:10px"><i>P 10</i></span>
         </div>
@@ -249,7 +251,7 @@ const b = board[lang];
       <div class="cell__body">
         <div class="an">
           <a class="ds-card" href="#c-11" data-box>
-            <span class="ds-badge">Design system</span>
+            <Tag>Design system</Tag>
             <h4 class="ds-card__title">SUI, seven brands</h4>
             <p class="ds-card__text">One foundation, local freedom. Tokens, components and the governance that kept it adopted.</p>
             <span class="ds-card__foot">
@@ -306,7 +308,7 @@ const b = board[lang];
       <p class="meta cell__states">hidden &middot; shown &middot; hover &middot; focus &middot; dismissed</p>
       <div class="cell__body">
         <div class="an an--fit ds-tipwrap">
-          <button class="ds-badge ds-tip__trigger" type="button">Hover me<span class="ds-tip" role="tooltip">Tokens only</span></button>
+          <Tag as="button" class="ds-tip__trigger">Hover me<span class="ds-tip" role="tooltip">Tokens only</span></Tag>
           <span class="cl cl--right" style="--t:50%"><i>R 6</i></span>
         </div>
         <div class="an">
@@ -332,13 +334,13 @@ const b = board[lang];
       <div class="cell__body">
         <div class="an">
           <details class="ds-dialog" open>
-            <summary class="ds-btn ds-btn--ghost ds-btn--sm">Open dialog</summary>
+            <Button as="summary" variant="ghost" size="sm">Open dialog</Button>
             <div class="ds-modal" data-box>
               <h4 class="ds-modal__t">Publish to seven brands?</h4>
               <p class="ds-modal__b">Every consumer picks this up on their next build.</p>
               <div class="ds-modal__f">
-                <button class="ds-btn ds-btn--ghost ds-btn--sm" type="button">Cancel</button>
-                <button class="ds-btn ds-btn--sm" type="button">Publish</button>
+                <Button variant="ghost" size="sm">Cancel</Button>
+                <Button size="sm">Publish</Button>
               </div>
             </div>
           </details>
@@ -400,7 +402,7 @@ const b = board[lang];
         <div class="an ds-empty" data-box>
           <span class="ds-spin" aria-hidden="true"></span>
           <p>No components match that filter.</p>
-          <button class="ds-btn ds-btn--ghost ds-btn--sm" type="button">Clear filter</button>
+          <Button variant="ghost" size="sm">Clear filter</Button>
           <span class="cl cl--right" style="--t:20px"><i>R 8</i></span>
         </div>
         <div class="an ds-skel">
@@ -532,6 +534,18 @@ const b = board[lang];
 
   .cell__name { color: var(--ink-3); }
   .cell__name b { color: var(--spec); font-weight: 500; }
+  /* The two cells that are not a demonstration: these are the site's own
+     components — .btn and .tag in global.css, rendered here through the same
+     ui/Button.astro and ui/Tag.astro the header CTA and the 404 page use. */
+  .cell__used {
+    margin-left: 8px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: color-mix(in srgb, var(--mark) 10%, transparent);
+    color: var(--mark);
+    letter-spacing: 0.08em;
+  }
+
   .cell__states { color: var(--ink-3); opacity: 0.75; font-size: 0.5625rem; }
 
   /* The body reserves the margins the dimension lines hang in: a left rail
@@ -562,7 +576,6 @@ const b = board[lang];
      state sticks after a tap and the component lies about what it is doing. */
   .cell :focus-visible { outline: 2px solid var(--mark); outline-offset: 2px; }
 
-  .ds-btn,
   .ds-chip,
   .ds-chip__x,
   .ds-tab,
@@ -586,64 +599,8 @@ const b = board[lang];
       transform var(--dur-fast) var(--ease);
   }
 
-  /* --- C-01 Button ------------------------------------------------------- */
-
-  .ds-btn {
-    height: 40px;
-    padding-inline: 16px;
-    border-radius: 999px;
-    border: 0;
-    background: var(--mark);
-    color: #fff;
-    font: inherit;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1;
-    white-space: nowrap;
-    cursor: pointer;
-  }
-
-  .ds-btn--ghost {
-    background: transparent;
-    color: var(--ink);
-    box-shadow: inset 0 0 0 1px var(--rule);
-  }
-
-  .ds-btn--sm { height: 32px; padding-inline: 12px; font-size: 12px; }
-
-  @media (hover: hover) {
-    .ds-btn:hover { background: color-mix(in srgb, var(--mark) 84%, #000); }
-    .ds-btn--ghost:hover { background: var(--paper); box-shadow: inset 0 0 0 1px var(--ink); }
-  }
-
-  .ds-btn:active { transform: translateY(1px); }
-
-  .ds-btn:disabled {
-    cursor: not-allowed;
-    background: transparent;
-    color: var(--ink-3);
-    box-shadow: inset 0 0 0 1px var(--rule-2);
-    transform: none;
-  }
-
-  /* --- C-02 Tag & chip --------------------------------------------------- */
-
-  .ds-badge {
-    display: inline-flex;
-    align-items: center;
-    height: 24px;
-    padding-inline: 10px;
-    border-radius: 999px;
-    border: 1px solid var(--rule);
-    background: transparent;
-    font: inherit;
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--ink-2);
-    white-space: nowrap;
-  }
-
-  .ds-badge--solid { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+  /* C-01 Button and C-02 Tag are .btn / .tag in global.css: the board draws
+     the site's own pieces, so only the chip below is board-local. */
 
   .ds-chip {
     display: inline-flex;
@@ -1255,7 +1212,7 @@ const b = board[lang];
 
   /* --- C-15 Modal -------------------------------------------------------- */
 
-  .ds-dialog summary { list-style: none; display: inline-flex; cursor: pointer; }
+  .ds-dialog summary { list-style: none; cursor: pointer; }
   .ds-dialog summary::-webkit-details-marker { display: none; }
 
   .ds-modal {
