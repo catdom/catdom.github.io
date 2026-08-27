@@ -73,11 +73,6 @@ const trailing = spread.slice(study.sections.length);
   <!-- Masthead --------------------------------------------------------- -->
   <header class="case__top">
     <div class="shell">
-      <a class="case__back meta" href={`${base}/#where`}>
-        <Icon name="arrow-left" size={14} />
-        {ui[lang].backHome}
-      </a>
-
       <p class="meta meta--mark case__company" data-reveal>{study.company}</p>
       <h1 class="h2 case__title" data-reveal style="--reveal-delay:60ms">{study.tagline[lang]}</h1>
 
@@ -233,24 +228,6 @@ const trailing = spread.slice(study.sections.length);
   }
 
   .case__top > .shell { display: grid; gap: clamp(1.1rem, 2.2vw, 1.75rem); }
-
-  .case__back {
-    justify-self: start;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    transition: color var(--dur-fast) var(--ease);
-  }
-
-  .case__back:hover { color: var(--ink); }
-
-  /* Touch: the back link is a single line of metadata — pad the hit area. */
-  @media (pointer: coarse) {
-    .case__back {
-      padding-block: 0.8rem;
-      margin-block: -0.8rem;
-    }
-  }
 
   .case__title { max-width: 22ch; }
 
