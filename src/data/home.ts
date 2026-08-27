@@ -158,17 +158,23 @@ export const careerIntro: L10n<{ label: string; heading: string; body: string }>
 };
 
 /** The measured record, shown as a four-up row of figures. */
+/**
+ * The measured record. Every figure here traces to a date or a claim already
+ * on the page — the 2002 the dimension line starts at, the five employers the
+ * Where intro counts, the 2 → 8 in PT-04, the three countries in PT-02. None
+ * of them is an estimate.
+ */
 export const figures: L10n<{ value: string; label: string }[]> = {
   en: [
-    { value: '15+', label: 'Years in the discipline' },
-    { value: '2 → 8', label: 'UX team, grown and kept' },
-    { value: '7', label: 'Brands on one system' },
-    { value: '3', label: 'Markets aligned' },
+    { value: '24', label: 'Years building for the web' },
+    { value: '19', label: 'Of them inside marketplaces' },
+    { value: '×4', label: 'UX team, two designers to eight' },
+    { value: '3', label: 'Countries, one way of working' },
   ],
   es: [
-    { value: '15+', label: 'Años en la disciplina' },
-    { value: '2 → 8', label: 'Equipo de UX, crecido y retenido' },
-    { value: '7', label: 'Marcas sobre un sistema' },
-    { value: '3', label: 'Mercados alineados' },
+    { value: '24', label: 'Años construyendo para la web' },
+    { value: '19', label: 'De ellos en marketplaces' },
+    { value: '×4', label: 'Equipo de UX, de dos a ocho' },
+    { value: '3', label: 'Países, una forma de trabajar' },
   ],
 };
