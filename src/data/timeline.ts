@@ -68,15 +68,15 @@ export const timeline: TimelineEntry[] = [
   },
   {
     id: 'herraiz-soto',
-    company: 'Herraiz Soto — BMW.es',
+    company: 'Herraiz Soto — BMW',
     role: { en: 'Web Design & Development', es: 'Diseño y desarrollo web' },
     period: { en: 'Jan 2005 — Nov 2007', es: 'Ene 2005 — Nov 2007' },
     range: '2005 — 2007',
     location: { en: 'Barcelona', es: 'Barcelona' },
     caseSlug: 'bmw',
     summary: {
-      en: 'Designed and built layouts and site structures for BMW.es, one of the agency\'s main accounts, to strict global brand standards and alongside creative, technical and client-facing teams.',
-      es: 'Diseñé y construí layouts y estructuras de site para BMW.es, una de las cuentas principales de la agencia, bajo estándares de marca globales estrictos y junto a equipos creativos, técnicos y de cliente.',
+      en: 'Designed and built layouts and site structures for BMW, one of the agency\'s main accounts, to strict global brand standards and alongside creative, technical and client-facing teams.',
+      es: 'Diseñé y construí layouts y estructuras de site para BMW, una de las cuentas principales de la agencia, bajo estándares de marca globales estrictos y junto a equipos creativos, técnicos y de cliente.',
     },
   },
   {

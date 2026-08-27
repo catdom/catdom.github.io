@@ -441,7 +441,7 @@ export const cases: CaseStudy[] = [
   },
   {
     slug: 'bmw',
-    company: 'BMW.es',
+    company: 'BMW',
     featured: true,
     role: { en: 'Web Designer & Developer — Herraiz Soto', es: 'Web Designer & Developer — Herraiz Soto' },
     period: { en: 'Jan 2005 — Nov 2007', es: 'Ene 2005 — Nov 2007' },
@@ -455,18 +455,18 @@ export const cases: CaseStudy[] = [
       es: 'En aquel momento, los sites corporativos de automoción tenían que equilibrar una expresión de marca potente con exigencias digitales crecientes. Mantener consistencia visual, rendimiento y compatibilidad entre navegadores era complicado en un entorno con actualizaciones de contenido frecuentes y restricciones técnicas importantes.',
     },
     solution: {
-      en: 'BMW.es addressed these challenges through careful front-end implementation and structured web layouts that respected brand guidelines while ensuring technical reliability. By focusing on clean markup, consistency, and accurate visual execution, the website maintained a strong brand presence and a stable user experience across devices and browsers.',
-      es: 'BMW.es abordó estos retos con una implementación front-end cuidadosa y layouts estructurados que respetaban las guías de marca garantizando fiabilidad técnica. Con foco en markup limpio, consistencia y ejecución visual precisa, el site mantuvo una presencia de marca fuerte y una experiencia estable entre dispositivos y navegadores.',
+      en: 'BMW addressed these challenges through careful front-end implementation and structured web layouts that respected brand guidelines while ensuring technical reliability. By focusing on clean markup, consistency, and accurate visual execution, the website maintained a strong brand presence and a stable user experience across devices and browsers.',
+      es: 'BMW abordó estos retos con una implementación front-end cuidadosa y layouts estructurados que respetaban las guías de marca garantizando fiabilidad técnica. Con foco en markup limpio, consistencia y ejecución visual precisa, el site mantuvo una presencia de marca fuerte y una experiencia estable entre dispositivos y navegadores.',
     },
     sections: [
       {
         title: { en: 'Context', es: 'Contexto' },
         body: {
           en: [
-            'My work on BMW.es took place within a creative advertising agency environment at Herraiz Soto in Barcelona, where BMW was one of the main accounts. This context combined brand-driven creativity with real production needs, requiring close collaboration between creative, technical, and client-facing teams. The role was strongly hands-on, focused on translating creative concepts into functional, production-ready web experiences for the Spanish market.',
+            'My work on BMW took place within a creative advertising agency environment at Herraiz Soto in Barcelona, where BMW was one of the main accounts. This context combined brand-driven creativity with real production needs, requiring close collaboration between creative, technical, and client-facing teams. The role was strongly hands-on, focused on translating creative concepts into functional, production-ready web experiences for the Spanish market.',
           ],
           es: [
-            'Mi trabajo en BMW.es se desarrolló en el entorno de una agencia creativa, Herraiz Soto en Barcelona, donde BMW era una de las cuentas principales. Ese contexto combinaba creatividad de marca con necesidades reales de producción, exigiendo colaboración estrecha entre equipos creativos, técnicos y de cliente. El rol era muy hands-on, centrado en traducir conceptos creativos en experiencias web funcionales y listas para producción para el mercado español.',
+            'Mi trabajo en BMW se desarrolló en el entorno de una agencia creativa, Herraiz Soto en Barcelona, donde BMW era una de las cuentas principales. Ese contexto combinaba creatividad de marca con necesidades reales de producción, exigiendo colaboración estrecha entre equipos creativos, técnicos y de cliente. El rol era muy hands-on, centrado en traducir conceptos creativos en experiencias web funcionales y listas para producción para el mercado español.',
           ],
         },
       },
@@ -474,11 +474,11 @@ export const cases: CaseStudy[] = [
         title: { en: 'The work', es: 'El trabajo' },
         body: {
           en: [
-            'The work involved designing and building web layouts, developing site structures, and implementing creative concepts across BMW.es. Particular attention was given to accurately translating visual designs into clean, maintainable front-end code, ensuring consistency across browsers and devices while respecting BMW’s strict brand standards.',
+            'The work involved designing and building web layouts, developing site structures, and implementing creative concepts across BMW. Particular attention was given to accurately translating visual designs into clean, maintainable front-end code, ensuring consistency across browsers and devices while respecting BMW’s strict brand standards.',
             'The result was a series of digital experiences that supported BMW’s brand presence in Spain, combining strong visual identity with reliable execution. While the scope was primarily executional, the work demanded a high level of attention to detail, responsiveness, and quality control, contributing to a consistent and polished digital presence for a global brand.',
           ],
           es: [
-            'El trabajo consistió en diseñar y construir layouts web, desarrollar estructuras de site e implementar conceptos creativos en BMW.es. Se prestó especial atención a traducir con precisión los diseños visuales en código front-end limpio y mantenible, asegurando consistencia entre navegadores y dispositivos y respetando los estrictos estándares de marca de BMW.',
+            'El trabajo consistió en diseñar y construir layouts web, desarrollar estructuras de site e implementar conceptos creativos en BMW. Se prestó especial atención a traducir con precisión los diseños visuales en código front-end limpio y mantenible, asegurando consistencia entre navegadores y dispositivos y respetando los estrictos estándares de marca de BMW.',
             'El resultado fue una serie de experiencias digitales que apoyaron la presencia de marca de BMW en España, combinando una identidad visual fuerte con una ejecución fiable. Aunque el alcance era principalmente de ejecución, el trabajo exigía un alto nivel de atención al detalle, capacidad de respuesta y control de calidad, contribuyendo a una presencia digital consistente y cuidada para una marca global.',
           ],
         },
@@ -486,12 +486,12 @@ export const cases: CaseStudy[] = [
     ],
     achievements: {
       en: [
-        'Designed and built web layouts and site structures across BMW.es for the Spanish market.',
+        'Designed and built web layouts and site structures across BMW for the Spanish market.',
         'Translated creative concepts into clean, maintainable, cross-browser front-end code.',
         'Worked to strict global brand standards inside a creative agency environment.',
       ],
       es: [
-        'Diseñé y construí layouts y estructuras de site en BMW.es para el mercado español.',
+        'Diseñé y construí layouts y estructuras de site en BMW para el mercado español.',
         'Traduje conceptos creativos en código front-end limpio, mantenible y compatible entre navegadores.',
         'Trabajé bajo estándares de marca globales estrictos dentro de un entorno de agencia creativa.',
       ],
@@ -501,8 +501,8 @@ export const cases: CaseStudy[] = [
         src: 'bmw-1',
         span: 'wide',
         alt: {
-          en: 'The BMW.es homepage: a full-bleed photograph of a blue saloon on a mountain road, with the navigation bar, the headline “Elige lo que te mueve.”, a call-to-action button and a panel promoting new models.',
-          es: 'La home de BMW.es: fotografía a sangre de una berlina azul en una carretera de montaña, con la barra de navegación, el titular «Elige lo que te mueve.», un botón de llamada a la acción y un panel de nuevos modelos.',
+          en: 'The BMW homepage: a full-bleed photograph of a blue saloon on a mountain road, with the navigation bar, the headline “Elige lo que te mueve.”, a call-to-action button and a panel promoting new models.',
+          es: 'La home de BMW: fotografía a sangre de una berlina azul en una carretera de montaña, con la barra de navegación, el titular «Elige lo que te mueve.», un botón de llamada a la acción y un panel de nuevos modelos.',
         },
         caption: {
           en: 'The homepage, where a full-bleed image had to carry the brand without crowding out the navigation.',

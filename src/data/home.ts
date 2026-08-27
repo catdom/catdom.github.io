@@ -34,19 +34,29 @@ export const hero: L10n<{
   },
 };
 
-/** The four rows of the cover sheet, read as a specification. */
-export const spec: L10n<{ term: string; value: string; strong?: string }[]> = {
+/** The cover sheet: what the discipline is, and where it is practised. */
+export const spec: L10n<{ term: string; value: string }[]> = {
   en: [
-    { term: 'Discipline', value: 'UX strategy, design operations, design systems' },
-    { term: 'Current', strong: 'Senior Product Design', value: ', Kleinanzeigen — since March 2025' },
-    { term: 'Domain', value: 'High-traffic marketplaces. Spain, France, Germany.' },
-    { term: 'Origin', value: 'Front-end developer, 2002–2016. Still reads the diff.' },
+    {
+      term: 'Discipline',
+      value:
+        'UX strategy, design operations and design systems — the practice of keeping design coherent as teams, brands and markets multiply.',
+    },
+    {
+      term: 'Domain',
+      value: 'High-traffic marketplaces. Spain, France, Germany.',
+    },
   ],
   es: [
-    { term: 'Disciplina', value: 'Estrategia UX, design operations, design systems' },
-    { term: 'Actual', strong: 'Senior Product Design', value: ', Kleinanzeigen — desde marzo de 2025' },
-    { term: 'Ámbito', value: 'Marketplaces de alto tráfico. España, Francia, Alemania.' },
-    { term: 'Origen', value: 'Desarrollador front-end, 2002–2016. Sigue leyendo el diff.' },
+    {
+      term: 'Disciplina',
+      value:
+        'Estrategia UX, design operations y design systems — la práctica de mantener el diseño coherente mientras equipos, marcas y mercados se multiplican.',
+    },
+    {
+      term: 'Ámbito',
+      value: 'Marketplaces de alto tráfico. España, Francia, Alemania.',
+    },
   ],
 };
 
@@ -104,7 +114,7 @@ export const brands = [
   'Milanuncios',
   'InfoJobs',
   'Leboncoin',
-  'BMW.es',
+  'BMW',
 ];
 
 export const strengthsIntro: L10n<{ label: string; heading: string; body: string }> = {
