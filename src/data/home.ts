@@ -78,6 +78,7 @@ export const spec: L10n<{ term: string; value: string }[]> = {
 export const board: L10n<{
   label: string;
   design: string;
+  live: string;
   specs: string;
   legend: string;
   unitsValue: string;
@@ -92,6 +93,7 @@ export const board: L10n<{
   en: {
     label: 'Component library',
     design: 'Design',
+    live: 'Live components — hover, focus and click them',
     specs: 'Specs',
     legend: 'Units',
     unitsValue: 'px',
@@ -106,6 +108,7 @@ export const board: L10n<{
   es: {
     label: 'Librería de componentes',
     design: 'Diseño',
+    live: 'Componentes vivos — pásales el cursor, enfócalos y púlsalos',
     specs: 'Medidas',
     legend: 'Unidades',
     unitsValue: 'px',
