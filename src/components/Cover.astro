@@ -1,6 +1,5 @@
 ---
 import { hero, spec } from '../data/home';
-import SystemBoard from './SystemBoard.astro';
 import type { Lang } from '../data/types';
 
 interface Props { lang: Lang }
@@ -13,6 +12,10 @@ const rollDelay = 120 + h.stem.length * 100;
 ---
 
 <header class="cover">
+  <!-- The background figure. Decoration only: it carries no meaning, takes no
+       pointer events and is hidden from assistive tech. -->
+  <canvas class="cover__field" data-field aria-hidden="true"></canvas>
+
   <div class="shell">
     <p class="meta cover__eyebrow">{h.eyebrow}</p>
 
@@ -42,8 +45,6 @@ const rollDelay = 120 + h.stem.length * 100;
       <span class="meta">{h.to}</span>
     </div>
 
-    <SystemBoard lang={lang} />
-
     <dl class="sheet">
       {rows.map((row, n) => (
         <div class="sheet__row" data-reveal style={`--reveal-delay:${380 + n * 60}ms`}>
@@ -57,8 +58,31 @@ const rollDelay = 120 + h.stem.length * 100;
 
 <style>
   .cover {
+    position: relative;
     padding-block: clamp(7rem, 16vh, 11rem) clamp(2.5rem, 6vw, 4.5rem);
   }
+
+  .cover__field {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    -webkit-mask-image: radial-gradient(
+      78% 68% at var(--fx, 72%) var(--fy, 46%),
+      #000 38%,
+      transparent 100%
+    );
+    mask-image: radial-gradient(
+      78% 68% at var(--fx, 72%) var(--fy, 46%),
+      #000 38%,
+      transparent 100%
+    );
+  }
+
+  /* The claim sits over the figure, never under it. */
+  .cover > .shell { position: relative; z-index: 1; }
 
   .cover__eyebrow {
     display: block;

@@ -11,6 +11,9 @@ interface Props {
 }
 const { lang, path = '', anchors = true } = Astro.props;
 const home = `${langPrefix(lang)}/`;
+
+/* Anchor items belong to the home page; page items take the language prefix. */
+const href = (to: string) => (to.startsWith('#') ? to : `${langPrefix(lang)}${to}`);
 ---
 
 <header class="nav" data-nav>
@@ -20,7 +23,7 @@ const home = `${langPrefix(lang)}/`;
     <nav class="nav__links" aria-label="Sections">
       {
         anchors
-          ? nav[lang].map((item) => <a href={item.href}>{item.label}</a>)
+          ? nav[lang].map((item) => <a href={href(item.href)}>{item.label}</a>)
           : <a href={home}>{ui[lang].backHome}</a>
       }
     </nav>

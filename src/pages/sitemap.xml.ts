@@ -5,6 +5,7 @@ import { LANGS, langPrefix } from '../data/types';
 
 const urls = LANGS.flatMap((lang) => [
   `${site.origin}${langPrefix(lang)}/`,
+  `${site.origin}${langPrefix(lang)}/design-system/`,
   ...cases.map((c) => `${site.origin}${langPrefix(lang)}/work/${c.slug}/`),
 ]);
 

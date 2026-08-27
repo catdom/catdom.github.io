@@ -1,5 +1,7 @@
 /* Client behaviour. No framework, no dependencies. */
 
+import { heroField } from './field';
+
 /* --- 1. Reveal on scroll --------------------------------------------------- */
 
 const reveal = () => {
@@ -254,3 +256,4 @@ reveal();
 headerBand();
 smoothScroll();
 rotatingHeadline();
+heroField();

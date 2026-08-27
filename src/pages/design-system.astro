@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import DesignSystemPage from '../components/DesignSystemPage.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  lang="en"
+  path="/design-system"
+  title="Component library — Jordi Catalán"
+  description="The design system this site is built on, readable as design or as specification: components, tokens and every measurement."
+>
+  <Nav lang="en" path="/design-system" anchors={false} />
+  <main id="main">
+    <DesignSystemPage lang="en" />
+  </main>
+  <Footer lang="en" />
+</Layout>

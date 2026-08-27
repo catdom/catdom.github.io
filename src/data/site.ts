@@ -28,10 +28,12 @@ export const nav: L10n<{ label: string; href: string }[]> = {
   en: [
     { label: 'Capability', href: '#capability' },
     { label: 'Where', href: '#where' },
+    { label: 'Design system', href: '/design-system/' },
   ],
   es: [
     { label: 'Capacidades', href: '#capability' },
     { label: 'Dónde', href: '#where' },
+    { label: 'Design system', href: '/design-system/' },
   ],
 };
 
@@ -50,6 +52,9 @@ export const ui: L10n<Record<string, string>> = {
     company: 'Company',
     skip: 'Skip to content',
     langLabel: 'Language',
+    dsLabel: 'A · Reference',
+    dsTitle: 'The component library',
+    dsBody: 'The system this site is built on, drawn twice: as design, and as the specification a team builds from. Every number is the number the CSS sets.',
     contactLabel: '03 · Contact',
     contactHeading: 'Start a conversation',
     contactNote: 'Open to design leadership roles',
@@ -70,6 +75,9 @@ export const ui: L10n<Record<string, string>> = {
     company: 'Empresa',
     skip: 'Ir al contenido',
     langLabel: 'Idioma',
+    dsLabel: 'A · Referencia',
+    dsTitle: 'La librería de componentes',
+    dsBody: 'El sistema sobre el que está construido este site, dibujado dos veces: como diseño y como la especificación desde la que trabaja un equipo. Cada número es el número que pone el CSS.',
     contactLabel: '03 · Contacto',
     contactHeading: 'Empecemos una conversación',
     contactNote: 'Abierto a posiciones de liderazgo de diseño',

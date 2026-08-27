@@ -1,0 +1,35 @@
+---
+import SystemBoard from './SystemBoard.astro';
+import { ui } from '../data/site';
+import type { Lang } from '../data/types';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const u = ui[lang];
+---
+
+<article class="ds">
+  <div class="shell">
+    <div class="rows ds__head">
+      <p class="meta">{u.dsLabel}</p>
+      <div>
+        <h1 class="h2" data-reveal>{u.dsTitle}</h1>
+        <p class="lead ds__note" data-reveal style="--reveal-delay:80ms">{u.dsBody}</p>
+      </div>
+    </div>
+
+    <SystemBoard lang={lang} />
+  </div>
+</article>
+
+<style>
+  .ds { padding-block: clamp(6.5rem, 12vw, 9rem) var(--section-y); }
+
+  .ds__head {
+    padding-bottom: clamp(1.5rem, 3.5vw, 2.5rem);
+    border-bottom: 1px solid var(--ink);
+    margin-bottom: clamp(1.5rem, 3.5vw, 2.5rem);
+  }
+
+  .ds__note { margin-top: 0.75rem; max-width: 54ch; }
+</style>
