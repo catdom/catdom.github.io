@@ -12,12 +12,12 @@ const i = strengthsIntro[lang];
 <section class="cap" id="capability">
   <div class="shell">
     <div class="head cap__head">
-      <p class="meta meta--mark">{i.label}</p>
+      <div class="titled">
+        <p class="meta meta--mark">{i.label}</p>
+        <div class="rule rule--under" data-reveal aria-hidden="true"></div>
+      </div>
       <div>
-        <div class="titled">
-          <h2 class="h2" data-reveal>{i.heading}</h2>
-          <div class="rule rule--under" data-reveal style="--reveal-delay:120ms" aria-hidden="true"></div>
-        </div>
+        <h2 class="h2" data-reveal>{i.heading}</h2>
         <p class="lead cap__note" data-reveal style="--reveal-delay:80ms">{i.body}</p>
       </div>
     </div>
@@ -25,8 +25,8 @@ const i = strengthsIntro[lang];
     <div class="parts">
       {strengths.map((s, n) => (
         <article class="part" data-reveal style={`--reveal-delay:${n * 70}ms`}>
-          <p class="meta meta--mark part__id">{s.id}</p>
           <CapabilityIcon id={s.id} class="part__icon" />
+          <p class="meta meta--mark part__id">{s.id}</p>
           <h3 class="h3 part__title">{s.title[lang]}</h3>
           <p class="part__text">{s.body[lang]}</p>
           <p class="meta part__value">{s.value[lang]}</p>
@@ -62,7 +62,9 @@ const i = strengthsIntro[lang];
     /* The text row takes the slack, so the outcome sits on the floor of every
        card in a row however long the paragraph above it runs. */
     grid-template-rows: auto auto auto 1fr auto;
-    gap: 0.55rem;
+    /* No row gap: the card's rhythm is set by each element's own margin, so
+       the 24px between the name and everything above it is exactly 24px. */
+    gap: 0;
     position: relative;
     background: var(--panel);
     --card-pad: clamp(1.35rem, 2.4vw, 1.75rem);
@@ -86,13 +88,12 @@ const i = strengthsIntro[lang];
     .part:nth-child(even) { --left-rule: 0 0 0 0 transparent; }
   }
 
-  /* The mark sits between the part number and the name, on the card's own
-     left edge: an icon, not a picture, so it takes the accent solid. */
-  .part__icon { margin: 0.35rem 0 0.55rem; }
-
-  .part__id { margin-bottom: 0; }
+  /* The mark opens the card, on its own left edge: an icon, not a picture,
+     so it takes the accent solid. */
+  .part__icon { margin-bottom: 0.6rem; }
 
   .part__text {
+    margin-top: 0.6rem;
     color: var(--ink-2);
     font-size: var(--fs-body);
     line-height: 1.5;
@@ -128,6 +129,10 @@ const i = strengthsIntro[lang];
     .part:hover .part__title { color: var(--mark); }
   }
 
-  .part__title { transition: color var(--dur-fast) var(--ease); }
+  .part__title {
+    margin-top: 24px;
+    font-weight: 700;
+    transition: color var(--dur-fast) var(--ease);
+  }
 
 </style>

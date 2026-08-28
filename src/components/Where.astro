@@ -13,12 +13,12 @@ const base = langPrefix(lang);
 <section class="where" id="where">
   <div class="shell">
     <div class="head where__head">
-      <p class="meta meta--mark">{i.label}</p>
+      <div class="titled">
+        <p class="meta meta--mark">{i.label}</p>
+        <div class="rule rule--under" data-reveal aria-hidden="true"></div>
+      </div>
       <div>
-        <div class="titled">
-          <h2 class="h2" data-reveal>{i.heading}</h2>
-          <div class="rule rule--under" data-reveal style="--reveal-delay:120ms" aria-hidden="true"></div>
-        </div>
+        <h2 class="h2" data-reveal>{i.heading}</h2>
         <p class="lead where__note" data-reveal style="--reveal-delay:80ms">{i.body}</p>
       </div>
     </div>
@@ -67,7 +67,29 @@ const base = langPrefix(lang);
 
   .roles { list-style: none; padding: 0; margin: 0; }
 
-  .role { border-bottom: 1px solid var(--rule-2); }
+  .role {
+    position: relative;
+    border-bottom: 1px solid var(--rule-2);
+  }
+
+  /* On hover the row's own rule is drawn over in the accent, from the left and
+     on the same curve as the section rules: the page has one way of drawing a
+     line, and this is it. */
+  .role::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 -1px 0;
+    height: 1px;
+    background: var(--mark);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1100ms var(--ease);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .role:hover::after,
+    .role:focus-within::after { transform: scaleX(1); }
+  }
 
   .role__inner {
     padding-block: clamp(1.5rem, 3.5vw, 2.75rem);
@@ -95,7 +117,7 @@ const base = langPrefix(lang);
 
   .role__role { color: var(--ink-2); }
 
-  .role__aside { display: grid; gap: 0.5rem; align-content: start; }
+  .role__aside { display: grid; gap: 0; align-content: start; }
   .role__aside p { color: var(--ink-2); max-width: 80ch; }
 
   .role__cta {
@@ -103,6 +125,7 @@ const base = langPrefix(lang);
     align-items: center;
     gap: 0.4rem;
     justify-self: start;
+    margin-top: 0.65rem;
   }
 
   .role__cta svg { transition: transform var(--dur-fast) var(--ease); }

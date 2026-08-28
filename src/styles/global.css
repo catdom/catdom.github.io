@@ -302,7 +302,9 @@ a { color: inherit; text-decoration: none; }
   gap: 0.9rem;
 }
 
-.head > div { display: grid; gap: 0.75rem; }
+/* The head's content block stacks; .titled is not that block — it is the
+   caption and its rule, and it must not pick up this gap. */
+.head > div:not(.titled) { display: grid; gap: 0.75rem; }
 
 .prose-col { max-width: 62ch; }
 
@@ -453,12 +455,12 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* A hairline in the accent that draws itself from the left as its section
-   arrives, sized to the heading above it: the section underlines itself on the
-   way in. It carries no meaning — it is the drawing's rule, not a heading — so
-   it stays out of the accessibility tree.
+   arrives, sized to the caption above it: the section underlines its own name
+   on the way in. It carries no meaning — it is the drawing's rule, not a
+   heading — so it stays out of the accessibility tree.
 
-   The width comes from .titled, which shrinks to the heading and nothing else,
-   so a lead paragraph underneath cannot stretch the line past the title. */
+   The width comes from .titled, which shrinks to the caption and nothing else,
+   so nothing below can stretch the line past it. */
 .rule {
   height: 1px;
   background: var(--mark);
@@ -476,7 +478,13 @@ a { color: inherit; text-decoration: none; }
 [data-reveal].rule.is-in,
 .rule.is-in { transform: scaleX(1); }
 
-.titled { width: fit-content; max-width: 100%; }
+/* Block, explicitly: .titled is a div inside .head, which lays its own divs
+   out as grids — inheriting that would add the head's row gap to the 24px. */
+.titled {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+}
 
 .rule--under { margin-top: 24px; }
 

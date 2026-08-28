@@ -11,12 +11,12 @@ const u = ui[lang];
 <article class="ds">
   <div class="shell">
     <div class="head ds__head">
-      <p class="meta meta--mark">{u.dsLabel}</p>
+      <div class="titled">
+        <p class="meta meta--mark">{u.dsLabel}</p>
+        <div class="rule rule--under" data-reveal aria-hidden="true"></div>
+      </div>
       <div>
-        <div class="titled">
-          <h1 class="h2" data-reveal>{u.dsTitle}</h1>
-          <div class="rule rule--under" data-reveal style="--reveal-delay:120ms" aria-hidden="true"></div>
-        </div>
+        <h1 class="h2" data-reveal>{u.dsTitle}</h1>
         <p class="lead ds__note" data-reveal style="--reveal-delay:80ms">{u.dsBody}</p>
       </div>
     </div>
