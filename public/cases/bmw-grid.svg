@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" width="1200" height="620" role="img">
+<rect width="1200" height="620" fill="#fffffd"/>
+<text x="48" y="46" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.08em" fill="#6f6d66">BRAND STANDARDS, AS A LAYOUT</text>
+<text x="48" y="82" font-family="'DM Sans', ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="22" font-weight="500" fill="#100f0d">Twelve columns nobody was allowed to move</text>
+<rect x="120" y="132" width="960" height="372" rx="0" fill="#f6f6f3" stroke="#dcdbd3" stroke-width="1"/>
+<rect x="120" y="132" width="65.33333333333333" height="372" rx="0" fill="#eceaf6" stroke="none" stroke-width="1"/>
+<rect x="201.33333333333331" y="132" width="65.33333333333333" height="372" rx="0" fill="#eceaf6" stroke="none" stroke-width="1"/>
+<rect x="282.66666666666663" y="132" width="65.33333333333333" height="372" rx="0" fill="#eceaf6" stroke="none" stroke-width="1"/>
+<rect x="364" y="132" width="65.33333333333333" height="372" rx="0" fill="#eceaf6" stroke="none" stroke-width="1"/>
+<rect x="445.3333333333333" y="132" width="65.33333333333333" height="372" rx="0" fill="#eceaf6" stroke="none" stroke-width="1"/>
+<rect x="526.6666666666666" y="132" width="65.33333333333333" height="372" rx="0" fill="#eceaf6" stroke="none" stroke-width="1"/>
+<rect x="608" y="132" width="65.33333333333333" height="372" rx="0" fill="#eceaf6" stroke="none" stroke-width="1"/>
+<rect x="689.3333333333333" y="132" width="65.33333333333333" height="372" rx="0" fill="#eceaf6" stroke="none" stroke-width="1"/>
+<rect x="770.6666666666666" y="132" width="65.33333333333333" height="372" rx="0" fill="#eceaf6" stroke="none" stroke-width="1"/>
+<rect x="852" y="132" width="65.33333333333333" height="372" rx="0" fill="#eceaf6" stroke="none" stroke-width="1"/>
+<rect x="933.3333333333333" y="132" width="65.33333333333333" height="372" rx="0" fill="#eceaf6" stroke="none" stroke-width="1"/>
+<rect x="1014.6666666666666" y="132" width="65.33333333333333" height="372" rx="0" fill="#eceaf6" stroke="none" stroke-width="1"/>
+<rect x="120" y="160" width="960" height="56" rx="0" fill="rgba(255,255,253,0.88)" stroke="#dcdbd3" stroke-width="1"/>
+<text x="136" y="194" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.08em" fill="#6f6d66">MASTHEAD · FIXED HEIGHT</text>
+<rect x="120" y="236" width="634.6666666666666" height="164" rx="0" fill="rgba(255,255,253,0.88)" stroke="#dcdbd3" stroke-width="1"/>
+<text x="136" y="270" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.08em" fill="#6f6d66">HERO · 8 COLUMNS</text>
+<rect x="770.6666666666666" y="236" width="309.3333333333333" height="164" rx="0" fill="rgba(255,255,253,0.88)" stroke="#dcdbd3" stroke-width="1"/>
+<text x="786.6666666666666" y="270" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.08em" fill="#6f6d66">ASIDE · 4</text>
+<rect x="120" y="420" width="309.3333333333333" height="64" rx="0" fill="rgba(255,255,253,0.88)" stroke="#dcdbd3" stroke-width="1"/>
+<text x="136" y="458" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.08em" fill="#6f6d66">MODULE 1</text>
+<rect x="445.3333333333333" y="420" width="309.3333333333333" height="64" rx="0" fill="rgba(255,255,253,0.88)" stroke="#dcdbd3" stroke-width="1"/>
+<text x="461.3333333333333" y="458" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.08em" fill="#6f6d66">MODULE 2</text>
+<rect x="770.6666666666666" y="420" width="309.3333333333333" height="64" rx="0" fill="rgba(255,255,253,0.88)" stroke="#dcdbd3" stroke-width="1"/>
+<text x="786.6666666666666" y="458" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.08em" fill="#6f6d66">MODULE 3</text>
+<path d="M120 544L185.33333333333331 544" stroke="#cb008e" stroke-width="1"/>
+<path d="M120 540L120 548" stroke="#cb008e" stroke-width="1"/>
+<path d="M185.33333333333331 540L185.33333333333331 548" stroke="#cb008e" stroke-width="1"/>
+<text x="152.66666666666666" y="536" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.08em" fill="#cb008e" text-anchor="middle">COL 65</text>
+<path d="M201.33333333333331 544L266.66666666666663 544" stroke="#cb008e" stroke-width="1"/>
+<path d="M201.33333333333331 540L201.33333333333331 548" stroke="#cb008e" stroke-width="1"/>
+<path d="M266.66666666666663 540L266.66666666666663 548" stroke="#cb008e" stroke-width="1"/>
+<text x="233.99999999999997" y="536" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.08em" fill="#cb008e" text-anchor="middle">COL 65</text>
+<path d="M120 590L1080 590" stroke="#cb008e" stroke-width="1"/>
+<path d="M120 586L120 594" stroke="#cb008e" stroke-width="1"/>
+<path d="M1080 586L1080 594" stroke="#cb008e" stroke-width="1"/>
+<text x="600" y="582" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.08em" fill="#cb008e" text-anchor="middle">CONTENT 960</text>
+<text x="1152" y="46" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.08em" fill="#6f6d66" text-anchor="end">THE SAME GRID, EVERY PAGE, EVERY MARKET</text>
+</svg>

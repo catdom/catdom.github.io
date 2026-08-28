@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="1200" height="600" role="img">
+<rect width="1200" height="600" fill="#fffffd"/>
+<text x="48" y="46" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.08em" fill="#6f6d66">BEFORE / AFTER · ONE PATTERN</text>
+<text x="48" y="82" font-family="'DM Sans', ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="22" font-weight="500" fill="#100f0d">Four flows, four versions of the same row</text>
+<text x="48" y="138" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.08em" fill="#55534c">Search results</text>
+<rect x="48" y="150" width="276" height="130" rx="0" fill="#f6f6f3" stroke="#dcdbd3" stroke-width="1"/>
+<rect x="60" y="162" width="56" height="56" rx="0" fill="#e9e8e1" stroke="none" stroke-width="1"/>
+<rect x="128" y="166" width="120" height="8" rx="0" fill="#dcdbd3" stroke="none" stroke-width="1"/>
+<rect x="128" y="184" width="80" height="8" rx="0" fill="#e9e8e1" stroke="none" stroke-width="1"/>
+<text x="60" y="264" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="0.08em" fill="#100f0d">1.240 €</text>
+<text x="316" y="272" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.08em" fill="#cb008e" text-anchor="end">V1</text>
+<text x="336" y="138" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.08em" fill="#55534c">Saved items</text>
+<rect x="336" y="150" width="276" height="130" rx="0" fill="#f6f6f3" stroke="#dcdbd3" stroke-width="1"/>
+<rect x="352" y="166" width="64" height="64" rx="6" fill="#e9e8e1" stroke="none" stroke-width="1"/>
+<rect x="428" y="170" width="120" height="8" rx="0" fill="#dcdbd3" stroke="none" stroke-width="1"/>
+<rect x="428" y="188" width="80" height="8" rx="0" fill="#e9e8e1" stroke="none" stroke-width="1"/>
+<text x="428" y="264" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="0.08em" fill="#100f0d">1.240 €</text>
+<text x="604" y="272" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.08em" fill="#cb008e" text-anchor="end">V2</text>
+<text x="624" y="138" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.08em" fill="#55534c">Category browse</text>
+<rect x="624" y="150" width="276" height="130" rx="0" fill="#f6f6f3" stroke="#dcdbd3" stroke-width="1"/>
+<rect x="634" y="160" width="48" height="48" rx="2" fill="#e9e8e1" stroke="none" stroke-width="1"/>
+<rect x="694" y="164" width="120" height="8" rx="0" fill="#dcdbd3" stroke="none" stroke-width="1"/>
+<rect x="694" y="182" width="80" height="8" rx="0" fill="#e9e8e1" stroke="none" stroke-width="1"/>
+<text x="634" y="254" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="0.08em" fill="#100f0d">1.240 €</text>
+<text x="892" y="272" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.08em" fill="#cb008e" text-anchor="end">V3</text>
+<text x="912" y="138" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.08em" fill="#55534c">Seller profile</text>
+<rect x="912" y="150" width="276" height="130" rx="0" fill="#f6f6f3" stroke="#dcdbd3" stroke-width="1"/>
+<rect x="926" y="164" width="60" height="60" rx="12" fill="#e9e8e1" stroke="none" stroke-width="1"/>
+<rect x="998" y="168" width="120" height="8" rx="0" fill="#dcdbd3" stroke="none" stroke-width="1"/>
+<rect x="998" y="186" width="80" height="8" rx="0" fill="#e9e8e1" stroke="none" stroke-width="1"/>
+<text x="998" y="258" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="0.08em" fill="#100f0d">1.240 €</text>
+<text x="1180" y="272" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.08em" fill="#cb008e" text-anchor="end">V4</text>
+<path d="M48 300L1188 300" stroke="#cb008e" stroke-width="1"/>
+<path d="M48 296L48 304" stroke="#cb008e" stroke-width="1"/>
+<path d="M1188 296L1188 304" stroke="#cb008e" stroke-width="1"/>
+<text x="618" y="292" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.08em" fill="#cb008e" text-anchor="middle">FOUR TEAMS, FOUR ROWS</text>
+<text x="48" y="372" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.08em" fill="#6f6d66">AFTER</text>
+<rect x="48" y="386" width="276" height="130" rx="0" fill="#f6f6f3" stroke="#1f3fd8" stroke-width="1"/>
+<rect x="62" y="400" width="56" height="56" rx="4" fill="#c9d1f5" stroke="none" stroke-width="1"/>
+<rect x="130" y="404" width="120" height="8" rx="0" fill="#dcdbd3" stroke="none" stroke-width="1"/>
+<rect x="130" y="422" width="80" height="8" rx="0" fill="#e9e8e1" stroke="none" stroke-width="1"/>
+<text x="62" y="486" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="0.08em" fill="#100f0d">1.240 €</text>
+<text x="316" y="508" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.08em" fill="#1f3fd8" text-anchor="end">row/listing</text>
+<rect x="336" y="386" width="276" height="130" rx="0" fill="#f6f6f3" stroke="#1f3fd8" stroke-width="1"/>
+<rect x="350" y="400" width="56" height="56" rx="4" fill="#c9d1f5" stroke="none" stroke-width="1"/>
+<rect x="418" y="404" width="120" height="8" rx="0" fill="#dcdbd3" stroke="none" stroke-width="1"/>
+<rect x="418" y="422" width="80" height="8" rx="0" fill="#e9e8e1" stroke="none" stroke-width="1"/>
+<text x="350" y="486" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="0.08em" fill="#100f0d">1.240 €</text>
+<text x="604" y="508" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.08em" fill="#1f3fd8" text-anchor="end">row/listing</text>
+<rect x="624" y="386" width="276" height="130" rx="0" fill="#f6f6f3" stroke="#1f3fd8" stroke-width="1"/>
+<rect x="638" y="400" width="56" height="56" rx="4" fill="#c9d1f5" stroke="none" stroke-width="1"/>
+<rect x="706" y="404" width="120" height="8" rx="0" fill="#dcdbd3" stroke="none" stroke-width="1"/>
+<rect x="706" y="422" width="80" height="8" rx="0" fill="#e9e8e1" stroke="none" stroke-width="1"/>
+<text x="638" y="486" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="0.08em" fill="#100f0d">1.240 €</text>
+<text x="892" y="508" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.08em" fill="#1f3fd8" text-anchor="end">row/listing</text>
+<rect x="912" y="386" width="276" height="130" rx="0" fill="#f6f6f3" stroke="#1f3fd8" stroke-width="1"/>
+<rect x="926" y="400" width="56" height="56" rx="4" fill="#c9d1f5" stroke="none" stroke-width="1"/>
+<rect x="994" y="404" width="120" height="8" rx="0" fill="#dcdbd3" stroke="none" stroke-width="1"/>
+<rect x="994" y="422" width="80" height="8" rx="0" fill="#e9e8e1" stroke="none" stroke-width="1"/>
+<text x="926" y="486" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="0.08em" fill="#100f0d">1.240 €</text>
+<text x="1180" y="508" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.08em" fill="#1f3fd8" text-anchor="end">row/listing</text>
+<text x="48" y="570" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.08em" fill="#6f6d66">ONE COMPONENT, FOUR SURFACES, ONE THING TO FIX WHEN IT IS WRONG</text>
+</svg>

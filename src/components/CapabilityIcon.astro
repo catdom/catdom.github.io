@@ -56,5 +56,9 @@ const box = BOXES[id] ?? '0 0 256 256';
   .cap-icon {
     display: block;
     color: var(--mark);
+    /* The gap under the mark lives here rather than on the card: the parent's
+       scoped styles do not reach this element, since it renders inside a
+       conditional. */
+    margin-bottom: 5px;
   }
 </style>

@@ -123,6 +123,18 @@ export const cases: CaseStudy[] = [
         },
       },
       {
+        src: 'kleinanzeigen-pattern',
+        span: 'wide',
+        alt: {
+          en: 'A diagram: the same listing row drawn four slightly different ways across four flows, then the one shared row used in all four.',
+          es: 'Un diagrama: la misma fila de anuncio dibujada de cuatro formas ligeramente distintas en cuatro flujos, y despu\u00e9s la fila \u00fanica compartida usada en los cuatro.',
+        },
+        caption: {
+          en: 'The listing row before and after: four near-identical variants, then one component with four uses.',
+          es: 'La fila de anuncio antes y despu\u00e9s: cuatro variantes casi id\u00e9nticas, y luego un componente con cuatro usos.',
+        },
+      },
+      {
         src: 'kleinanzeigen-4',
         span: 'wide',
         alt: {
@@ -259,6 +271,18 @@ export const cases: CaseStudy[] = [
         caption: {
           en: 'The mobile home screen, assembled entirely from shared components.',
           es: 'La home móvil, montada por completo con componentes compartidos.',
+        },
+      },
+      {
+        src: 'fotocasa-tokens',
+        span: 'wide',
+        alt: {
+          en: 'A diagram: five design tokens resolving to different values for Fotocasa and Habitaclia, and the same button rendered in each brand.',
+          es: 'Un diagrama: cinco design tokens resolviendo a valores distintos para Fotocasa y Habitaclia, y el mismo bot\u00f3n renderizado en cada marca.',
+        },
+        caption: {
+          en: 'How a token resolves: the system fixes the geometry, each brand keeps its colour and its radius.',
+          es: 'C\u00f3mo resuelve un token: el sistema fija la geometr\u00eda y cada marca conserva su color y su radio.',
         },
       },
       {
@@ -414,6 +438,30 @@ export const cases: CaseStudy[] = [
         },
       },
       {
+        src: 'coches-net-csat',
+        span: 'wide',
+        alt: {
+          en: 'A diagram: CSAT scores for four key flows as bars, with the lowest one feeding a quarterly objective and its three key results.',
+          es: 'Un diagrama: los CSAT de cuatro flujos clave en barras, con el m\u00e1s bajo alimentando un objetivo trimestral y sus tres key results.',
+        },
+        caption: {
+          en: 'Satisfaction as a number the plan can act on: the worst-scoring flow becomes the quarter\u2019s objective.',
+          es: 'La satisfacci\u00f3n como un n\u00famero sobre el que se puede planificar: el flujo con peor nota se convierte en el objetivo del trimestre.',
+        },
+      },
+      {
+        src: 'coches-net-team',
+        span: 'wide',
+        alt: {
+          en: 'A skill matrix: eight designers down the side, six disciplines across the top, each cell filled to the depth that person works at.',
+          es: 'Una matriz de competencias: ocho dise\u00f1adores en vertical, seis disciplinas en horizontal, cada celda rellena hasta la profundidad a la que trabaja esa persona.',
+        },
+        caption: {
+          en: 'The team as it was hired: T-shaped profiles, deliberately overlapping so no discipline had a single point of failure.',
+          es: 'El equipo tal y como se contrat\u00f3: perfiles en T, solapados a prop\u00f3sito para que ninguna disciplina dependiera de una sola persona.',
+        },
+      },
+      {
         src: 'coches-net-3',
         span: 'wide',
         alt: {
@@ -507,6 +555,18 @@ export const cases: CaseStudy[] = [
         caption: {
           en: 'The homepage, where a full-bleed image had to carry the brand without crowding out the navigation.',
           es: 'La home, donde una imagen a sangre tenía que sostener la marca sin comerse la navegación.',
+        },
+      },
+      {
+        src: 'bmw-grid',
+        span: 'wide',
+        alt: {
+          en: 'A diagram: a twelve-column grid with a masthead, an eight-column hero, a four-column aside and three modules sitting on it, with column and content widths called out.',
+          es: 'Un diagrama: una ret\u00edcula de doce columnas con cabecera, un hero de ocho columnas, un lateral de cuatro y tres m\u00f3dulos encima, con las medidas de columna y de contenido acotadas.',
+        },
+        caption: {
+          en: 'The grid the brand book prescribed, and the page assembled on top of it.',
+          es: 'La ret\u00edcula que prescrib\u00eda el manual de marca, y la p\u00e1gina montada encima.',
         },
       },
       {

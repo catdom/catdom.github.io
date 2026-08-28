@@ -90,10 +90,14 @@ const i = strengthsIntro[lang];
 
   /* The mark opens the card, on its own left edge: an icon, not a picture,
      so it takes the accent solid. */
-  .part__icon { margin-bottom: 0.6rem; }
+  /* The card's vertical rhythm is set in ink, not in boxes: these margins are
+     chosen so the visible gaps match the design — 10px under the mark, 38px
+     over the name, 17px under it — once each line's own leading is taken off.
+     Changing a font size or a line-height changes what these should be. */
+  /* The gap under the mark is set in CapabilityIcon, which owns that element. */
 
   .part__text {
-    margin-top: 0.6rem;
+    margin-top: 10px;
     color: var(--ink-2);
     font-size: var(--fs-body);
     line-height: 1.5;
@@ -104,7 +108,7 @@ const i = strengthsIntro[lang];
      calls out a dimension under the part it belongs to. */
   .part__value {
     margin-top: auto;
-    padding-top: 0.9rem;
+    padding-top: 24px;
     color: var(--ink-3);
   }
 
@@ -113,7 +117,7 @@ const i = strengthsIntro[lang];
     display: block;
     width: 1.75rem;
     height: 1px;
-    margin-bottom: 0.7rem;
+    margin-bottom: 12px;
     background: var(--rule);
     transition: width var(--dur) var(--ease), background-color var(--dur) var(--ease);
   }
@@ -130,7 +134,7 @@ const i = strengthsIntro[lang];
   }
 
   .part__title {
-    margin-top: 24px;
+    margin-top: 28px;
     font-weight: 700;
     transition: color var(--dur-fast) var(--ease);
   }
