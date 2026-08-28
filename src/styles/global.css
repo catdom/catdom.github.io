@@ -452,11 +452,34 @@ a { color: inherit; text-decoration: none; }
   transform: none;
 }
 
+/* The page's one separator: a hairline in the accent that draws itself from
+   the left as its section arrives. Every section opens with one, so the rule
+   between two sections belongs to the one below it. It carries no meaning —
+   it is the drawing's rule, not a heading — so it stays out of the tree. */
+.rule {
+  height: 1px;
+  background: var(--mark);
+  transform-origin: left;
+}
+
+[data-reveal].rule,
+.rule {
+  opacity: 1;
+  transform: scaleX(0);
+  transition: transform 1100ms var(--ease);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+[data-reveal].rule.is-in,
+.rule.is-in { transform: scaleX(1); }
+
 /* No JS, or reduced motion: show everything immediately. */
 .no-js [data-reveal] { opacity: 1; transform: none; }
+.no-js .rule, .no-js [data-reveal].rule { transform: scaleX(1); }
 
 @media (prefers-reduced-motion: reduce) {
   [data-reveal] { opacity: 1; transform: none; }
+  .rule, [data-reveal].rule { transform: scaleX(1); transition: none; }
 }
 
 .visually-hidden {

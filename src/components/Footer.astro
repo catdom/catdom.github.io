@@ -10,7 +10,8 @@ const year = new Date().getFullYear();
 
 <footer class="foot" id="contact">
   <div class="shell">
-    <p class="meta">{u.contactLabel}</p>
+    <div class="rule" data-reveal aria-hidden="true"></div>
+    <p class="meta meta--mark foot__label">{u.contactLabel}</p>
 
     <!-- LinkedIn is the only contact route on the site: there is no form and
          no mailto anywhere. -->
@@ -37,10 +38,9 @@ const year = new Date().getFullYear();
 </footer>
 
 <style>
-  .foot {
-    padding-block: clamp(4rem, 12vw, 8rem) clamp(2rem, 5vw, 3rem);
-    border-top: 1px solid var(--ink);
-  }
+  .foot { padding-block: 0 clamp(2rem, 5vw, 3rem); }
+
+  .foot__label { display: block; margin-top: clamp(4rem, 12vw, 8rem); }
 
   .foot__cta {
     display: inline-flex;

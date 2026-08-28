@@ -9,7 +9,8 @@ const { lang } = Astro.props;
 
 <section class="figs-wrap" aria-label={ui[lang].figuresLabel}>
   <div class="shell">
-    <p class="meta figs__label">{ui[lang].figuresLabel}</p>
+    <div class="rule" data-reveal aria-hidden="true"></div>
+    <p class="meta meta--mark figs__label">{ui[lang].figuresLabel}</p>
     <div class="figs">
       {figures[lang].map((f, n) => (
         <div class="fig" data-reveal style={`--reveal-delay:${n * 70}ms`}>
@@ -24,7 +25,7 @@ const { lang } = Astro.props;
 <style>
   .figs-wrap { padding-bottom: var(--section-y); }
 
-  .figs__label { display: block; margin-bottom: 1rem; }
+  .figs__label { display: block; margin: clamp(2rem, 5vw, 3rem) 0 1rem; }
 
   /* Hairline cells: one background showing through 1px gaps, so the rules
      never double up where two cells meet. */

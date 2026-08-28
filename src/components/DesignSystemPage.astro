@@ -10,8 +10,9 @@ const u = ui[lang];
 
 <article class="ds">
   <div class="shell">
+    <div class="rule" data-reveal aria-hidden="true"></div>
     <div class="head ds__head">
-      <p class="meta">{u.dsLabel}</p>
+      <p class="meta meta--mark">{u.dsLabel}</p>
       <div>
         <h1 class="h2" data-reveal>{u.dsTitle}</h1>
         <p class="lead ds__note" data-reveal style="--reveal-delay:80ms">{u.dsBody}</p>
@@ -27,7 +28,7 @@ const u = ui[lang];
 
   .ds__head {
     padding-bottom: clamp(1.5rem, 3.5vw, 2.5rem);
-    border-bottom: 1px solid var(--ink);
+    border-bottom: 1px solid var(--rule);
     margin-bottom: clamp(1.5rem, 3.5vw, 2.5rem);
   }
 

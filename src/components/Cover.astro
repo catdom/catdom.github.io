@@ -39,12 +39,9 @@ const rollDelay = 120 + h.stem.length * 100;
       </span>
     </h1>
 
-    <!-- A dimension line, the way a drawing states an extent. -->
-    <div class="dim" aria-label={`${h.from} — ${h.to}`}>
-      <span class="meta">{h.from}</span>
-      <span class="dim__line"></span>
-      <span class="meta">{h.to}</span>
-    </div>
+    <!-- The first of the page's rules. Decoration: it separates, it does not
+         say anything, so it is hidden from assistive tech. -->
+    <div class="rule rule--hero" data-reveal style="--reveal-delay:520ms" aria-hidden="true"></div>
 
     <dl class="sheet">
       {rows.map((row, n) => (
@@ -178,40 +175,7 @@ const rollDelay = 120 + h.stem.length * 100;
   @keyframes rise-line { to { transform: none; } }
   @keyframes fade { to { opacity: 1; } }
 
-  .dim {
-    display: flex;
-    align-items: center;
-    gap: 0.85rem;
-    margin-top: clamp(1.5rem, 4vw, 2.5rem);
-    padding-block: 0.75rem;
-  }
-
-  .dim__line {
-    flex: 1;
-    height: 1px;
-    background: var(--mark);
-    transform: scaleX(0);
-    transform-origin: left;
-    animation: draw 1200ms var(--ease) 620ms forwards;
-    position: relative;
-  }
-
-  /* Arrow heads, drawn as rotated hairlines rather than shipped as an icon. */
-  .dim__line::before,
-  .dim__line::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    width: 6px;
-    height: 6px;
-    border-top: 1px solid var(--mark);
-    border-right: 1px solid var(--mark);
-  }
-
-  .dim__line::before { left: 0; transform: translateY(-50%) rotate(-135deg); }
-  .dim__line::after { right: 0; transform: translateY(-50%) rotate(45deg); }
-
-  @keyframes draw { to { transform: scaleX(1); } }
+  .rule--hero { margin-top: clamp(1.5rem, 4vw, 2.5rem); }
 
   /* The two facts, drawn as two panels of a spec sheet rather than as two
      paragraphs: an indexed head above a hairline, the sentence, and then the
@@ -321,7 +285,6 @@ const rollDelay = 120 + h.stem.length * 100;
   @media (prefers-reduced-motion: reduce) {
     .cover__eyebrow { opacity: 1; animation: none; }
     .cover__line i { transform: none; animation: none; }
-    .dim__line { transform: none; animation: none; }
     /* The rotation is stopped in script too; this keeps the first phrase
        placed rather than transitioned into place. */
     .roll__p { transition: none; }

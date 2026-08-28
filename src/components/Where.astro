@@ -12,8 +12,9 @@ const base = langPrefix(lang);
 
 <section class="where" id="where">
   <div class="shell">
+    <div class="rule" data-reveal aria-hidden="true"></div>
     <div class="head where__head">
-      <p class="meta">{i.label}</p>
+      <p class="meta meta--mark">{i.label}</p>
       <div>
         <h2 class="h2" data-reveal>{i.heading}</h2>
         <p class="lead where__note" data-reveal style="--reveal-delay:80ms">{i.body}</p>
@@ -57,7 +58,7 @@ const base = langPrefix(lang);
 
   .where__head {
     padding-bottom: clamp(1.5rem, 3.5vw, 2.5rem);
-    border-bottom: 1px solid var(--ink);
+    border-bottom: 1px solid var(--rule);
   }
 
   .where__note { max-width: 52ch; }

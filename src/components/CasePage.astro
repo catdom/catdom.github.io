@@ -78,15 +78,15 @@ const trailing = spread.slice(study.sections.length);
 
       <dl class="case__meta" data-reveal style="--reveal-delay:140ms">
         <div>
-          <dt class="meta">{ui[lang].role}</dt>
+          <dt class="meta meta--mark">{ui[lang].role}</dt>
           <dd>{study.role[lang]}</dd>
         </div>
         <div>
-          <dt class="meta">{ui[lang].period}</dt>
+          <dt class="meta meta--mark">{ui[lang].period}</dt>
           <dd>{study.period[lang]}</dd>
         </div>
         <div>
-          <dt class="meta">{ui[lang].company}</dt>
+          <dt class="meta meta--mark">{ui[lang].company}</dt>
           <dd>{study.company}</dd>
         </div>
       </dl>
@@ -97,11 +97,11 @@ const trailing = spread.slice(study.sections.length);
   <section class="case__pair">
     <div class="shell case__pairGrid">
       <div class="case__pairCol" data-reveal>
-        <p class="meta">{labels.problem}</p>
+        <p class="meta meta--mark">{labels.problem}</p>
         <p class="case__pairText">{study.problem[lang]}</p>
       </div>
       <div class="case__pairCol" data-reveal style="--reveal-delay:90ms">
-        <p class="meta">{labels.solution}</p>
+        <p class="meta meta--mark">{labels.solution}</p>
         <p class="case__pairText">{study.solution[lang]}</p>
       </div>
     </div>
@@ -134,7 +134,7 @@ const trailing = spread.slice(study.sections.length);
         return (
           <>
             <div class="rows case__section">
-              <p class="meta" data-reveal>{s.title[lang]}</p>
+              <p class="meta meta--mark" data-reveal>{s.title[lang]}</p>
               <div class="case__sectionText prose-col">
                 {s.body[lang].map((para, n) => (
                   <p data-reveal style={`--reveal-delay:${n * 80}ms`}>{para}</p>
@@ -192,7 +192,7 @@ const trailing = spread.slice(study.sections.length);
       )}
 
       <div class="rows case__section">
-        <p class="meta" data-reveal>{labels.highlights}</p>
+        <p class="meta meta--mark" data-reveal>{labels.highlights}</p>
         <ul class="case__wins prose-col">
           {study.achievements[lang].map((a, n) => (
             <li data-reveal style={`--reveal-delay:${Math.min(n, 4) * 70}ms`}>{a}</li>
@@ -206,7 +206,7 @@ const trailing = spread.slice(study.sections.length);
   <section class="case__next">
     <div class="shell">
       <a class="nextcard" href={`${base}/work/${next.slug}/`}>
-        <span class="meta">{ui[lang].nextCase}</span>
+        <span class="meta meta--mark">{ui[lang].nextCase}</span>
         <span class="nextcard__row">
           <span class="h2 nextcard__name">{next.company}</span>
           <Icon name="arrow-up-right" size={28} class="nextcard__arrow" />
