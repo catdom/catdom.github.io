@@ -39,7 +39,7 @@ export const strengths: Strength[] = [
   },
   {
     id: 'PT-04',
-    title: { en: 'Team leadership & growth', es: 'Liderazgo y desarrollo de equipo' },
+    title: { en: 'Team Leadership', es: 'Liderazgo de equipo' },
     value: { en: '2 → 8 people', es: '2 → 8 personas' },
     body: {
       en: 'Hiring, onboarding, mentoring and career paths. I have grown a UX team from two designers to a multidisciplinary group of eight, using T-shaped profiles and a skill matrix to keep depth and versatility in balance.',
