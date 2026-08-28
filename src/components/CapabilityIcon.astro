@@ -1,0 +1,60 @@
+---
+/**
+ * The four capability marks, as supplied: one silhouette each, solid in the
+ * accent. Inline rather than four files, so they take the colour from the
+ * cascade and cost no request. Decorative — the title beside them says the
+ * same thing — so they stay out of the accessibility tree.
+ */
+interface Props {
+  /** PT-01 … PT-04. */
+  id: string;
+  class?: string;
+}
+
+const { id, class: extra } = Astro.props as Props;
+
+const PATHS: Record<string, string> = {
+  /* A burst: every arm pointing at one centre. */
+  'PT-01':
+    'M 152 70.059 L 201.539 20.519 L 235.48 54.461 L 185.941 104 L 256 104 L 256 152 L 185.941 152 L 235.48 201.539 L 201.539 235.48 L 152 185.941 L 152 256 L 104 256 L 104 185.941 L 54.46 235.48 L 20.52 201.539 L 70.059 152 L 0 152 L 0 104 L 70.059 104 L 20.519 54.46 L 54.461 20.52 L 104 70.059 L 104 0 L 152 0 Z',
+  /* Four quadrants: the figure is the seam between them. */
+  'PT-02':
+    'M 100 136 C 111.046 136 120 144.954 120 156 L 120 256 L 100 256 C 44.772 256 0 211.228 0 156 L 0 136 Z M 256 256 L 136 256 L 136 156 C 136 144.954 144.954 136 156 136 L 256 136 Z M 120 100 C 120 111.046 111.046 120 100 120 L 0 120 L 0 100 C 0 44.772 44.772 0 100 0 L 120 0 Z M 156 0 C 211.228 0 256 44.772 256 100 L 256 120 L 156 120 C 144.954 120 136 111.046 136 100 L 136 0 Z',
+  /* A matrix: one cell, repeated, meeting its neighbours exactly. */
+  'PT-03':
+    'M 0 226.017 C 17.21 226.545 31 240.661 31 258 L 0 258 Z M 85 226 C 102.673 226 117 240.327 117 258 L 53 258 C 53 240.327 67.327 226 85 226 Z M 171 226 C 188.673 226 203 240.327 203 258 L 139 258 C 139 240.327 153.327 226 171 226 Z M 257 258 L 225 258 C 225 240.327 239.327 226 257 226 Z M 85 140 C 102.673 140 117 154.327 117 172 C 117 189.673 102.673 204 85 204 C 67.327 204 53 189.673 53 172 C 53 154.327 67.327 140 85 140 Z M 171 140 C 188.673 140 203 154.327 203 172 C 203 189.673 188.673 204 171 204 C 153.327 204 139 189.673 139 172 C 139 154.327 153.327 140 171 140 Z M 257 204 C 239.327 204 225 189.673 225 172 C 225 154.327 239.327 140 257 140 Z M 0 140.017 C 17.21 140.545 31 154.661 31 172 C 31 189.339 17.21 203.454 0 203.982 Z M 85 54 C 102.673 54 117 68.327 117 86 C 117 103.673 102.673 118 85 118 C 67.327 118 53 103.673 53 86 C 53 68.327 67.327 54 85 54 Z M 171 54 C 188.673 54 203 68.327 203 86 C 203 103.673 188.673 118 171 118 C 153.327 118 139 103.673 139 86 C 139 68.327 153.327 54 171 54 Z M 257 118 C 239.327 118 225 103.673 225 86 C 225 68.327 239.327 54 257 54 Z M 0 54.017 C 17.21 54.545 31 68.662 31 86 C 31 103.339 17.21 117.454 0 117.982 Z M 117 0 C 117 17.673 102.673 32 85 32 C 67.327 32 53 17.673 53 0 Z M 202.982 0 C 202.454 17.21 188.339 31 171 31 C 153.661 31 139.546 17.21 139.018 0 Z M 257 31 C 239.661 31 225.546 17.21 225.018 0 L 257 0 Z M 30.982 0 C 30.464 16.878 16.878 30.464 0 30.982 L 0 0 Z',
+  /* Four petals: one centre opening out. */
+  'PT-04':
+    'M 78 0 C 105.614 0 128 22.386 128 50 C 128 22.386 150.386 0 178 0 L 256 0 L 256 78 C 256 105.614 233.614 128 206 128 C 233.614 128 256 150.386 256 178 L 256 256 L 178 256 C 150.386 256 128 233.614 128 206 C 128 233.614 105.614 256 78 256 L 0 256 L 0 178 C 0 150.386 22.386 128 50 128 C 22.386 128 0 105.614 0 78 L 0 0 Z',
+};
+
+/* The matrix is drawn a couple of units past the 256 square it shares with the
+   others, so it gets its own box rather than losing its bottom row. */
+const BOXES: Record<string, string> = { 'PT-03': '0 0 257 258' };
+
+const d = PATHS[id];
+const box = BOXES[id] ?? '0 0 256 256';
+---
+
+{
+  d && (
+    <svg
+      class:list={['cap-icon', extra]}
+      viewBox={box}
+      width="64"
+      height="64"
+      fill="currentColor"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path d={d} />
+    </svg>
+  )
+}
+
+<style>
+  .cap-icon {
+    display: block;
+    color: var(--mark);
+  }
+</style>

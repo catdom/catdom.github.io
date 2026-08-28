@@ -2,6 +2,7 @@
 import { strengthsIntro } from '../data/home';
 import { strengths } from '../data/strengths';
 import type { Lang } from '../data/types';
+import CapabilityIcon from './CapabilityIcon.astro';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -24,10 +25,8 @@ const i = strengthsIntro[lang];
     <div class="parts">
       {strengths.map((s, n) => (
         <article class="part" data-reveal style={`--reveal-delay:${n * 70}ms`}>
-          <figure class="part__plate">
-            <img src={s.figure} alt={s.figureAlt[lang]} width="640" height="150" loading="lazy" />
-          </figure>
           <p class="meta meta--mark part__id">{s.id}</p>
+          <CapabilityIcon id={s.id} class="part__icon" />
           <h3 class="h3 part__title">{s.title[lang]}</h3>
           <p class="part__text">{s.body[lang]}</p>
           <p class="meta part__value">{s.value[lang]}</p>
@@ -87,27 +86,11 @@ const i = strengthsIntro[lang];
     .part:nth-child(even) { --left-rule: 0 0 0 0 transparent; }
   }
 
-  /* The plate bleeds to the card's edges: it is the card's ground, not a
-     picture pinned inside it. */
-  .part__plate {
-    /* Bleeds to the card's edges but stops 1px short of them, so the hairlines
-       that draw the card still read through the band. */
-    margin: calc(-1 * var(--card-pad)) calc(1px - var(--card-pad)) 0.6rem;
-    padding: 0;
-    overflow: hidden;
-    background: linear-gradient(180deg, #f2f2ee 0%, var(--panel) 100%);
-    border-bottom: 1px solid var(--rule-2);
-  }
+  /* The mark sits between the part number and the name, on the card's own
+     left edge: an icon, not a picture, so it takes the accent solid. */
+  .part__icon { margin: 0.35rem 0 0.55rem; }
 
-  .part__plate img {
-    display: block;
-    width: 100%;
-    height: clamp(96px, 12vw, 148px);
-    object-fit: cover;
-    transition: transform 900ms var(--ease), opacity 400ms var(--ease);
-  }
-
-  .part__id { margin-bottom: 0.15rem; }
+  .part__id { margin-bottom: 0; }
 
   .part__text {
     color: var(--ink-2);
@@ -140,7 +123,6 @@ const i = strengthsIntro[lang];
      takes the mark and the rule under the outcome runs the width of the card.
      Nothing moves and no edge changes colour. */
   @media (hover: hover) and (pointer: fine) {
-    .part:hover .part__plate img { transform: scale(1.06) translateY(-2%); }
     .part:hover .part__value::before { width: 100%; background: var(--mark); }
     .part:hover .part__value { color: var(--ink-2); }
     .part:hover .part__title { color: var(--mark); }
