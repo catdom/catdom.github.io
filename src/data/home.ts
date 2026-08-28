@@ -49,6 +49,57 @@ export const hero: L10n<{
 };
 
 /** The cover sheet: what the discipline is, and where it is practised. */
+/* The switch and the legend on the reference board. */
+export const board: L10n<{
+  label: string;
+  design: string;
+  live: string;
+  specs: string;
+  legend: string;
+  unitsValue: string;
+  hint: string;
+  key: string;
+  keyValue: string;
+  space: string;
+  radius: string;
+  type: string;
+  colour: string;
+  shared: string;
+}> = {
+  en: {
+    label: 'Component library',
+    design: 'Design',
+    live: 'Live components — hover, focus and click them',
+    specs: 'Specs',
+    legend: 'Units',
+    unitsValue: 'px',
+    hint: 'Switch to Specs to see the measurements',
+    key: 'Key',
+    keyValue: 'H height &middot; W width &middot; P padding &middot; G gap &middot; R radius &middot; B border &middot; T type',
+    space: 'Space',
+    radius: 'Radius',
+    type: 'Type',
+    colour: 'Colour',
+    shared: 'In use on this site',
+  },
+  es: {
+    label: 'Librería de componentes',
+    design: 'Diseño',
+    live: 'Componentes vivos — pásales el cursor, enfócalos y púlsalos',
+    specs: 'Medidas',
+    legend: 'Unidades',
+    unitsValue: 'px',
+    hint: 'Cambia a Medidas para ver las cotas',
+    key: 'Leyenda',
+    keyValue: 'H alto &middot; W ancho &middot; P padding &middot; G gap &middot; R radio &middot; B borde &middot; T tipo',
+    space: 'Espaciado',
+    radius: 'Radios',
+    type: 'Tipografía',
+    colour: 'Color',
+    shared: 'En uso en este site',
+  },
+};
+
 /** The brands the work reached, for the marquee. Order is the reading rhythm. */
 export const brands = [
   'Kleinanzeigen',
