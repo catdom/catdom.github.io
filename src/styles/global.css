@@ -452,10 +452,13 @@ a { color: inherit; text-decoration: none; }
   transform: none;
 }
 
-/* The page's one separator: a hairline in the accent that draws itself from
-   the left as its section arrives. Every section opens with one, so the rule
-   between two sections belongs to the one below it. It carries no meaning —
-   it is the drawing's rule, not a heading — so it stays out of the tree. */
+/* A hairline in the accent that draws itself from the left as its section
+   arrives, sized to the heading above it: the section underlines itself on the
+   way in. It carries no meaning — it is the drawing's rule, not a heading — so
+   it stays out of the accessibility tree.
+
+   The width comes from .titled, which shrinks to the heading and nothing else,
+   so a lead paragraph underneath cannot stretch the line past the title. */
 .rule {
   height: 1px;
   background: var(--mark);
@@ -472,6 +475,10 @@ a { color: inherit; text-decoration: none; }
 
 [data-reveal].rule.is-in,
 .rule.is-in { transform: scaleX(1); }
+
+.titled { width: fit-content; max-width: 100%; }
+
+.rule--under { margin-top: 24px; }
 
 /* No JS, or reduced motion: show everything immediately. */
 .no-js [data-reveal] { opacity: 1; transform: none; }

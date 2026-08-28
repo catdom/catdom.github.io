@@ -12,11 +12,13 @@ const base = langPrefix(lang);
 
 <section class="where" id="where">
   <div class="shell">
-    <div class="rule" data-reveal aria-hidden="true"></div>
     <div class="head where__head">
       <p class="meta meta--mark">{i.label}</p>
       <div>
-        <h2 class="h2" data-reveal>{i.heading}</h2>
+        <div class="titled">
+          <h2 class="h2" data-reveal>{i.heading}</h2>
+          <div class="rule rule--under" data-reveal style="--reveal-delay:120ms" aria-hidden="true"></div>
+        </div>
         <p class="lead where__note" data-reveal style="--reveal-delay:80ms">{i.body}</p>
       </div>
     </div>

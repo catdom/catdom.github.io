@@ -9,7 +9,6 @@ const { lang } = Astro.props;
 
 <section class="figs-wrap" aria-label={ui[lang].figuresLabel}>
   <div class="shell">
-    <div class="rule" data-reveal aria-hidden="true"></div>
     <p class="meta meta--mark figs__label">{ui[lang].figuresLabel}</p>
     <div class="figs">
       {figures[lang].map((f, n) => (

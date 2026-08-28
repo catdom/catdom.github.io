@@ -39,9 +39,6 @@ const rollDelay = 120 + h.stem.length * 100;
       </span>
     </h1>
 
-    <!-- The first of the page's rules. Decoration: it separates, it does not
-         say anything, so it is hidden from assistive tech. -->
-    <div class="rule rule--hero" data-reveal style="--reveal-delay:520ms" aria-hidden="true"></div>
 
     <dl class="sheet">
       {rows.map((row, n) => (
@@ -175,13 +172,11 @@ const rollDelay = 120 + h.stem.length * 100;
   @keyframes rise-line { to { transform: none; } }
   @keyframes fade { to { opacity: 1; } }
 
-  .rule--hero { margin-top: clamp(1.5rem, 4vw, 2.5rem); }
-
   /* The two facts, drawn as two panels of a spec sheet rather than as two
      paragraphs: an indexed head above a hairline, the sentence, and then the
      evidence — the three practices as tags, the three markets as a legend. */
   .sheet {
-    margin-top: clamp(2.25rem, 5vw, 3.5rem);
+    margin-top: clamp(2.75rem, 6vw, 4.5rem);
     display: grid;
     gap: 0;
     border-top: 1px solid var(--rule);
