@@ -13,10 +13,7 @@ const base = langPrefix(lang);
 <section class="where" id="where">
   <div class="shell">
     <div class="head where__head">
-      <div class="titled">
-        <p class="meta meta--mark">{i.label}</p>
-        <div class="rule rule--under" data-reveal aria-hidden="true"></div>
-      </div>
+      <p class="meta meta--mark">{i.label}</p>
       <div>
         <h2 class="h2" data-reveal>{i.heading}</h2>
         <p class="lead where__note" data-reveal style="--reveal-delay:80ms">{i.body}</p>
@@ -65,11 +62,14 @@ const base = langPrefix(lang);
 
   .where__note { max-width: 52ch; }
 
-  .roles { list-style: none; padding: 0; margin: 0; }
+  .roles { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
 
+  /* Each role is its own card: white ground, one hairline all the way round,
+     and the bottom edge drawn over in the accent on hover. */
   .role {
     position: relative;
-    border-bottom: 1px solid var(--rule-2);
+    background: var(--panel);
+    border: 1px solid var(--rule-2);
   }
 
   /* On hover the row's own rule is drawn over in the accent, from the left and
@@ -78,7 +78,7 @@ const base = langPrefix(lang);
   .role::after {
     content: '';
     position: absolute;
-    inset: auto 0 -1px 0;
+    inset: auto -1px -1px -1px;
     height: 1px;
     background: var(--mark);
     transform: scaleX(0);
@@ -92,7 +92,7 @@ const base = langPrefix(lang);
   }
 
   .role__inner {
-    padding-block: clamp(1.5rem, 3.5vw, 2.75rem);
+    padding: clamp(1.35rem, 2.8vw, 2rem) clamp(1.35rem, 2.4vw, 1.75rem);
     transition: opacity var(--dur-fast) var(--ease);
   }
 

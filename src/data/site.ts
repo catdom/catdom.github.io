@@ -40,6 +40,7 @@ export const nav: L10n<{ label: string; href: string }[]> = {
 export const ui: L10n<Record<string, string>> = {
   en: {
     contact: 'Let\u2019s talk',
+    linkedin: 'LinkedIn',
     contactOn: 'on LinkedIn',
     scroll: 'Scroll down',
     backToTop: 'Back to top',
@@ -56,13 +57,14 @@ export const ui: L10n<Record<string, string>> = {
     dsTitle: 'The parts, drawn to spec',
     dsBody: 'The system this site runs on, drawn twice \u2014 once as design, once as the spec a team would build from. Every number here is the number the CSS actually sets. The button and the tag are not lookalikes either: they are the very ones in the header and under the claim.',
     contactLabel: '03 · Contact',
-    contactHeading: 'Tell me what you\u2019re building',
+    contactHeading: 'Work together',
     contactNote: 'Listening to design leadership roles',
     brandsLabel: 'Where the work ended up',
     figuresLabel: 'The short version, in numbers',
   },
   es: {
     contact: 'Hablemos',
+    linkedin: 'LinkedIn',
     contactOn: 'en LinkedIn',
     scroll: 'Desliza',
     backToTop: 'Volver arriba',
@@ -79,7 +81,7 @@ export const ui: L10n<Record<string, string>> = {
     dsTitle: 'Las piezas, dibujadas a medida',
     dsBody: 'El sistema sobre el que corre este site, dibujado dos veces: una como diseño y otra como la especificación desde la que construiría un equipo. Cada número de aquí es el que pone el CSS de verdad. Y el botón y la etiqueta tampoco se parecen: son exactamente los de la cabecera y los de debajo del claim.',
     contactLabel: '03 · Contacto',
-    contactHeading: 'Cuéntame qué estás construyendo',
+    contactHeading: 'Trabajemos juntos',
     contactNote: 'Escuchando posiciones de liderazgo de diseño',
     brandsLabel: 'Dónde acabó el trabajo',
     figuresLabel: 'La versión corta, en cifras',

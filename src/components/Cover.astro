@@ -1,12 +1,10 @@
 ---
-import { hero, spec } from '../data/home';
+import { hero } from '../data/home';
 import type { Lang } from '../data/types';
-import Tag from './ui/Tag.astro';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const h = hero[lang];
-const rows = spec[lang];
 
 /* The stem's last line is the one that rolls, so it takes the last delay. */
 const rollDelay = 120 + h.stem.length * 100;
@@ -40,41 +38,6 @@ const rollDelay = 120 + h.stem.length * 100;
     </h1>
 
 
-    <dl class="sheet">
-      {rows.map((row, n) => (
-        <div class="sheet__row" data-reveal style={`--reveal-delay:${380 + n * 90}ms`}>
-          <dt class="sheet__head">
-            <span class="sheet__i">{row.index}</span>
-            <span class="meta">{row.term}</span>
-          </dt>
-
-          <dd class="sheet__body">
-            <p class="sheet__text">{row.body}</p>
-
-            {row.tags && (
-              <ul class="sheet__tags">
-                {row.tags.map((t) => (
-                  <li><Tag>{t}</Tag></li>
-                ))}
-              </ul>
-            )}
-
-            {/* The markets, drawn as a legend: the code carries the weight and
-                the country names it, the way a map key does. */}
-            {row.markets && (
-              <ul class="sheet__markets">
-                {row.markets.map((m) => (
-                  <li class="market">
-                    <b class="market__code">{m.code}</b>
-                    <span class="meta market__name">{m.name}</span>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </dd>
-        </div>
-      ))}
-    </dl>
   </div>
 </header>
 
@@ -171,110 +134,6 @@ const rollDelay = 120 + h.stem.length * 100;
 
   @keyframes rise-line { to { transform: none; } }
   @keyframes fade { to { opacity: 1; } }
-
-  /* The two facts, drawn as two panels of a spec sheet rather than as two
-     paragraphs: an indexed head above a hairline, the sentence, and then the
-     evidence — the three practices as tags, the three markets as a legend. */
-  .sheet {
-    margin-top: clamp(2.75rem, 6vw, 4.5rem);
-    display: grid;
-    gap: 0;
-    border-top: 1px solid var(--rule);
-  }
-
-  .sheet__row {
-    display: grid;
-    align-content: start;
-    gap: 0.9rem;
-    padding: 1.15rem 0 1.35rem;
-    border-bottom: 1px solid var(--rule-2);
-  }
-
-  .sheet__head {
-    display: flex;
-    align-items: baseline;
-    gap: 0.6rem;
-  }
-
-  .sheet__i {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: var(--track-meta);
-    color: var(--mark);
-    font-variant-numeric: tabular-nums;
-  }
-
-  .sheet__body { margin: 0; display: grid; gap: 0.9rem; }
-
-  .sheet__text {
-    font-size: var(--fs-body);
-    line-height: 1.5;
-    color: var(--ink-2);
-    max-width: 34ch;
-    text-wrap: pretty;
-  }
-
-  .sheet__tags {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-  }
-
-  .sheet__markets {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: stretch;
-  }
-
-  /* One hairline between codes, none on the ends: the rule belongs to the gap,
-     so it is drawn as a left border on every item after the first. */
-  .market {
-    display: grid;
-    gap: 0.1rem;
-    padding-inline: 1.1rem;
-  }
-
-  .market:first-child { padding-left: 0; }
-  .market + .market { border-left: 1px solid var(--rule); }
-
-  .market__code {
-    font-size: clamp(1.35rem, 2.2vw, 1.75rem);
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    line-height: 1;
-  }
-
-  .market__name { color: var(--ink-3); }
-
-  /* The panels sit on the rig: four columns each of the eight behind them,
-     six each of the twelve, and the space between them is padding inside the
-     left panel rather than a gap, so both left edges land on a hairline. */
-  @media (min-width: 700px) {
-    .sheet {
-      grid-template-columns: repeat(8, minmax(0, 1fr));
-      column-gap: 0;
-    }
-
-    /* Both panels sit under the same top rule and over the same bottom one, so
-       the pair reads as one band however unevenly they fill. */
-    .sheet__row {
-      grid-column: span 4;
-      padding-block: 1.35rem 1.6rem;
-      padding-right: var(--col-pad);
-    }
-  }
-
-  @media (min-width: 1100px) {
-    .sheet { grid-template-columns: repeat(12, minmax(0, 1fr)); }
-    .sheet__row { grid-column: span 6; }
-  }
 
   /* Reduced motion: everything is simply already in place. */
   @media (prefers-reduced-motion: reduce) {

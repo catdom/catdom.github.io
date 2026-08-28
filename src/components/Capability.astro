@@ -12,10 +12,7 @@ const i = strengthsIntro[lang];
 <section class="cap" id="capability">
   <div class="shell">
     <div class="head cap__head">
-      <div class="titled">
-        <p class="meta meta--mark">{i.label}</p>
-        <div class="rule rule--under" data-reveal aria-hidden="true"></div>
-      </div>
+      <p class="meta meta--mark">{i.label}</p>
       <div>
         <h2 class="h2" data-reveal>{i.heading}</h2>
         <p class="lead cap__note" data-reveal style="--reveal-delay:80ms">{i.body}</p>
@@ -37,17 +34,29 @@ const i = strengthsIntro[lang];
 </section>
 
 <style>
-  .cap { padding-block: var(--section-y); }
+  /* The section takes the accent full-bleed; the cards keep their own white
+     ground, so only the head changes voice. White on the mark measures 7.6:1,
+     and the note at 80% white still clears AA at 5.4:1. */
+  .cap {
+    padding-block: var(--section-y);
+    background: var(--mark);
+    color: #ffffff;
+  }
+
+  /* Only the head changes voice: the cards keep their own ground and their
+     own ink, so the metadata inside them must not be turned white. */
+  .cap__head .meta { color: rgba(255, 255, 255, 0.75); }
+  .cap__head .h2 { color: #ffffff; }
 
   /* The rule the cards hang from is the same hairline that draws them, not the
      heavier ink rule the other section heads use: it is the top edge of the
      first row of boxes, so it has to match their other three sides. */
   .cap__head {
     padding-bottom: clamp(1.5rem, 3.5vw, 2.5rem);
-    border-bottom: 1px solid var(--rule);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.28);
   }
 
-  .cap__note { max-width: 54ch; }
+  .cap__note { max-width: 54ch; color: rgba(255, 255, 255, 0.8); }
 
   /* Four cards, tiled on the rig: one column, then two of the eight behind
      them, then three of the twelve. The hairlines are inset shadows rather
@@ -74,6 +83,7 @@ const i = strengthsIntro[lang];
        neighbours ever stack two rules into one 2px line. */
     --left-rule: inset 1px 0 0 var(--rule);
     box-shadow: var(--left-rule), inset -1px -1px 0 var(--rule);
+    color: var(--ink);
   }
 
   @media (min-width: 700px) {
@@ -119,24 +129,13 @@ const i = strengthsIntro[lang];
     height: 1px;
     margin-bottom: 12px;
     background: var(--rule);
-    transition: width var(--dur) var(--ease), background-color var(--dur) var(--ease);
   }
 
   /* Hover is the only state a card has, and it stays inside the drawing: the
      rule under the value runs out and takes the mark's colour. */
-  /* Hover, on a card that is already white and keeps its hairlines: the title
-     takes the mark and the rule under the outcome runs the width of the card.
-     Nothing moves and no edge changes colour. */
-  @media (hover: hover) and (pointer: fine) {
-    .part:hover .part__value::before { width: 100%; background: var(--mark); }
-    .part:hover .part__value { color: var(--ink-2); }
-    .part:hover .part__title { color: var(--mark); }
-  }
-
   .part__title {
     margin-top: 28px;
     font-weight: 700;
-    transition: color var(--dur-fast) var(--ease);
   }
 
 </style>
