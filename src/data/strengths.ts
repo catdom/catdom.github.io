@@ -7,43 +7,55 @@ export type Strength = {
   body: L10n;
   /** The measured outcome, hung in the right-hand column of the row. */
   value: L10n;
+  /** The plate drawn for this capability — the hero's figure, re-cut. */
+  figure: string;
+  /** What the figure is doing, for anyone who cannot see it. */
+  figureAlt: L10n;
 };
 
 export const strengths: Strength[] = [
   {
     id: 'PT-01',
+    figure: '/figures/pt-01.svg',
+    figureAlt: { en: 'Contour rings tightening on a single centre', es: 'Curvas de nivel cerrándose sobre un único centro' },
     title: { en: 'UX Strategy', es: 'Estrategia UX' },
     value: { en: 'CSAT → OKR', es: 'CSAT → OKR' },
     body: {
-      en: 'Turning user research and data into a direction teams can act on. I define UX vision, map journeys, and tie experience quality to metrics the business already tracks — CSATs mapped to key flows, folded into company OKRs.',
-      es: 'Convertir investigación y datos en una dirección accionable. Defino la visión de UX, mapeo journeys y conecto la calidad de la experiencia con métricas que el negocio ya sigue — CSATs mapeados a flujos clave, integrados en los OKRs de compañía.',
+      en: 'Turn research and data into a direction a team can actually act on — and tie it to the metrics the business already watches.',
+      es: 'Convierto investigación y datos en una dirección con la que un equipo puede trabajar, atada a las métricas que el negocio ya mira.',
     },
   },
   {
     id: 'PT-02',
+    figure: '/figures/pt-02.svg',
+    figureAlt: { en: 'Two contour fields running into one another', es: 'Dos campos de curvas encontrándose' },
     title: { en: 'Design Operations', es: 'Design Operations' },
     value: { en: '3 countries', es: '3 países' },
     body: {
-      en: 'Reducing friction between design, product and engineering. Workflows, rituals, governance and documentation that make delivery predictable — so designers spend their time designing instead of negotiating process.',
-      es: 'Reducir la fricción entre diseño, producto e ingeniería. Flujos, rituales, gobernanza y documentación que hacen la entrega predecible — para que los diseñadores diseñen en vez de negociar procesos.',
+      en: 'Take the friction out from between design, product and engineering, so designers spend their day designing instead of negotiating process.',
+      es: 'Quito la fricción entre diseño, producto e ingeniería para que los diseñadores diseñen en vez de negociar procesos.',
     },
   },
   {
     id: 'PT-03',
+    figure: '/figures/pt-03.svg',
+    figureAlt: { en: 'Contour rings stepped at an even interval', es: 'Curvas de nivel a intervalo constante' },
     title: { en: 'Design Systems', es: 'Design Systems' },
     value: { en: '7 brands', es: '7 marcas' },
     body: {
-      en: 'Building systems teams actually adopt. Multi-brand components, design tokens, clear ownership and simple governance — grown incrementally rather than shipped as a big-bang framework nobody uses.',
-      es: 'Construir sistemas que los equipos adoptan de verdad. Componentes multimarca, design tokens, ownership claro y gobernanza simple — creciendo de forma incremental en vez de lanzar un framework enorme que nadie usa.',
+      en: 'Build multi-brand systems teams adopt on their own, grown piece by piece instead of shipped as a framework nobody asked for.',
+      es: 'Construyo sistemas multimarca que los equipos adoptan solos, creciendo pieza a pieza en vez de lanzando un framework que nadie pidió.',
     },
   },
   {
     id: 'PT-04',
+    figure: '/figures/pt-04.svg',
+    figureAlt: { en: 'One field breaking into four smaller centres', es: 'Un campo que se abre en cuatro centros' },
     title: { en: 'Team Leadership', es: 'Liderazgo de equipo' },
     value: { en: '2 → 8 people', es: '2 → 8 personas' },
     body: {
-      en: 'Hiring, onboarding, mentoring and career paths. I have grown a UX team from two designers to a multidisciplinary group of eight, using T-shaped profiles and a skill matrix to keep depth and versatility in balance.',
-      es: 'Contratación, onboarding, mentoring y planes de carrera. He hecho crecer un equipo de UX de dos diseñadores a un grupo multidisciplinar de ocho, con perfiles en T y una matriz de competencias para equilibrar profundidad y versatilidad.',
+      en: 'Hire, mentor and grow designers — a UX team from two people to a multidisciplinary eight, with room for each of them to get better.',
+      es: 'Contrato, acompaño y hago crecer diseñadores: de dos personas a un equipo multidisciplinar de ocho, con sitio para que cada una mejore.',
     },
   },
 ];

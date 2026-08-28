@@ -1,0 +1,450 @@
+<meta charset="utf-8">
+<title>Where, on Blue</title>
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap">
+
+<style>
+  /* ---------------------------------------------------------------------
+     A proposal, not a page: the career section moved onto the accent, with
+     the site's own three faces and its own drawing language — hairlines,
+     dimension callouts, tabular years.
+
+     The one idea the site does not have yet: the list is also a chart. Each
+     role carries an extent bar positioned on a single 2005 → 2026 axis, so
+     the shape of the career is visible before a word of it is read.
+  --------------------------------------------------------------------- */
+  :root {
+    --mark: #1f3fd8;
+    --mark-deep: #17309f;
+    --paper: #f6f6f3;
+    --ink: #100f0d;
+    --on-mark: #ffffff;
+    --on-mark-2: rgba(255, 255, 255, 0.62);
+    --on-mark-3: rgba(255, 255, 255, 0.42);
+    --rule-on-mark: rgba(255, 255, 255, 0.22);
+    --rig-on-mark: rgba(255, 255, 255, 0.1);
+
+    --font-display: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-body: 'Geist', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', Consolas, Menlo, monospace;
+
+    --gutter: clamp(1.25rem, 4vw, 3.5rem);
+    --maxw: 1440px;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  * { box-sizing: border-box; margin: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* --- The blue plate ---------------------------------------------------- */
+
+  .plate {
+    position: relative;
+    background: var(--mark);
+    color: var(--on-mark);
+    padding-block: clamp(3.5rem, 8vw, 6.5rem);
+    overflow: hidden;
+  }
+
+  /* The rig survives onto the accent: same twelve columns, drawn in white. */
+  .rig {
+    position: absolute;
+    inset: 0;
+    max-width: var(--maxw);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    pointer-events: none;
+  }
+
+  .rig span { border-left: 1px solid var(--rig-on-mark); }
+  .rig span:last-child { border-right: 1px solid var(--rig-on-mark); }
+  .rig span:nth-child(n + 5) { display: none; }
+
+  @media (min-width: 700px) {
+    .rig { grid-template-columns: repeat(8, 1fr); }
+    .rig span:nth-child(n + 5) { display: block; }
+    .rig span:nth-child(n + 9) { display: none; }
+  }
+
+  @media (min-width: 1100px) {
+    .rig { grid-template-columns: repeat(12, 1fr); }
+    .rig span:nth-child(n + 9) { display: block; }
+  }
+
+  .shell {
+    position: relative;
+    max-width: var(--maxw);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  /* --- Head -------------------------------------------------------------- */
+
+  .head {
+    display: grid;
+    gap: 1rem;
+    padding-bottom: clamp(2rem, 4vw, 3rem);
+  }
+
+  .head__label { color: var(--on-mark-2); }
+
+  .head h2 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.85rem, 4.6vw, 3.6rem);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    max-width: 16ch;
+  }
+
+  .head__note { color: var(--on-mark-2); max-width: 46ch; }
+
+  @media (min-width: 1100px) {
+    .head {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      align-items: end;
+      column-gap: 0;
+    }
+
+    .head__label { grid-column: 1 / -1; }
+    .head h2 { grid-column: span 7; padding-right: 2rem; }
+    .head__note { grid-column: span 5; text-align: right; margin-left: auto; }
+  }
+
+  /* --- The axis ---------------------------------------------------------- */
+
+  /* One scale for the whole list: 2005 on the left, 2026 on the right. Every
+     bar below is positioned against it, so the rows are a chart as well as a
+     list. */
+  .axis {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.85rem;
+    color: var(--on-mark-2);
+    padding-bottom: 0.75rem;
+  }
+
+  .axis__line {
+    position: relative;
+    height: 1px;
+    background: var(--rule-on-mark);
+  }
+
+  .axis__tick {
+    position: absolute;
+    top: -4px;
+    width: 1px;
+    height: 9px;
+    background: var(--rule-on-mark);
+  }
+
+  /* --- Rows -------------------------------------------------------------- */
+
+  .roles { list-style: none; padding: 0; border-top: 1px solid var(--rule-on-mark); }
+
+  .role {
+    display: grid;
+    gap: 0.75rem;
+    padding-block: clamp(1.1rem, 2.4vw, 1.6rem);
+    border-bottom: 1px solid var(--rule-on-mark);
+    transition: background var(--ease) 320ms;
+  }
+
+  .role__top {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: baseline;
+    gap: 0.9rem;
+  }
+
+  .role__n {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 26px;
+    height: 20px;
+    border: 1px solid var(--rule-on-mark);
+    color: var(--on-mark-2);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .role__co {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.5rem, 4.4vw, 2.6rem);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    color: var(--on-mark-3);
+    transition: color 320ms var(--ease);
+  }
+
+  .role__yr { color: var(--on-mark-2); }
+
+  .role__bar {
+    position: relative;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.18);
+  }
+
+  /* The bar's span is the role's span, read off the axis above it. */
+  .role__bar i {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: var(--from);
+    right: calc(100% - var(--to));
+    background: rgba(255, 255, 255, 0.78);
+    transition: background 320ms var(--ease);
+  }
+
+  .role__body {
+    display: grid;
+    gap: 0.5rem;
+    max-width: 62ch;
+    color: var(--on-mark-2);
+  }
+
+  .role__body p { font-size: 15px; }
+
+  .role__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--on-mark);
+    text-decoration: none;
+  }
+
+  .role__cta svg { transition: transform 240ms var(--ease); }
+  .role__cta:hover svg { transform: translate(2px, -2px); }
+
+  /* Wide: the name and the bar share one line, the summary opens beside them
+     only for the row you are on — one row speaks at a time. */
+  @media (min-width: 900px) {
+    .role {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      align-items: start;
+      gap: 0 0;
+    }
+
+    .role__top { grid-column: span 5; padding-right: 2rem; }
+    .role__meta { grid-column: span 3; padding-right: 2rem; display: grid; gap: 0.6rem; }
+    .role__body {
+      grid-column: span 4;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 320ms var(--ease), transform 320ms var(--ease);
+    }
+
+    .roles:hover .role__co { color: var(--on-mark-3); }
+    .roles:hover .role__bar i { background: rgba(255, 255, 255, 0.4); }
+
+    .role:hover,
+    .role:focus-within { background: var(--mark-deep); }
+
+    .role:hover .role__co,
+    .role:focus-within .role__co { color: var(--on-mark); }
+
+    .role:hover .role__bar i,
+    .role:focus-within .role__bar i { background: var(--on-mark); }
+
+    .role:hover .role__body,
+    .role:focus-within .role__body { opacity: 1; transform: none; }
+
+    /* Nothing is hidden from a keyboard or a reader — only faded. */
+    .role__body { visibility: visible; }
+  }
+
+  @media (max-width: 899px) {
+    .role__co { color: var(--on-mark); }
+    .role__meta { display: grid; gap: 0.6rem; }
+  }
+
+  /* --- Foot -------------------------------------------------------------- */
+
+  .foot {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 2.5rem;
+    padding-top: 1.25rem;
+    color: var(--on-mark-2);
+  }
+
+  /* --- Notes on the proposal (on paper, outside the plate) --------------- */
+
+  .note {
+    max-width: var(--maxw);
+    margin-inline: auto;
+    padding: clamp(2rem, 5vw, 3.5rem) var(--gutter);
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .note h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.25rem;
+    letter-spacing: -0.02em;
+  }
+
+  .note ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 0.6rem; }
+  .note li { color: #55534c; max-width: 70ch; }
+  .note b { color: var(--ink); font-weight: 500; }
+
+  .hint {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6f6d66;
+  }
+</style>
+
+<section class="plate">
+  <div class="rig" aria-hidden="true">
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+  </div>
+
+  <div class="shell">
+    <div class="head">
+      <p class="meta head__label">02 / Where it was built</p>
+      <h2>Twenty-one years on one continuous problem.</h2>
+      <p class="head__note">Four employers, two marketplaces groups and one question that never changed: how design holds together as everything around it multiplies.</p>
+    </div>
+
+    <div class="axis meta">
+      <span>2005</span>
+      <span class="axis__line">
+        <i class="axis__tick" style="left:9.5%"></i>
+        <i class="axis__tick" style="left:52.4%"></i>
+        <i class="axis__tick" style="left:76.2%"></i>
+        <i class="axis__tick" style="left:95.2%"></i>
+      </span>
+      <span>2026</span>
+    </div>
+
+    <ol class="roles">
+      <li class="role">
+        <div class="role__top">
+          <span class="role__n">01</span>
+          <h3 class="role__co">Kleinanzeigen</h3>
+        </div>
+        <div class="role__meta">
+          <p class="meta role__yr">2025 — &nbsp;·&nbsp; Senior Product Design</p>
+          <span class="role__bar"><i style="--from:95.2%;--to:100%"></i></span>
+        </div>
+        <div class="role__body">
+          <p>End-to-end design for one of Europe’s largest classifieds marketplaces, with a systems mindset applied at scale.</p>
+          <a class="role__cta meta" href="#">View case
+            <svg viewBox="0 0 16 16" width="11" height="11" aria-hidden="true"><path d="M4 12L12 4M12 4H5.5M12 4v6.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </li>
+
+      <li class="role">
+        <div class="role__top">
+          <span class="role__n">02</span>
+          <h3 class="role__co">Fotocasa &amp; Habitaclia</h3>
+        </div>
+        <div class="role__meta">
+          <p class="meta role__yr">2021 — 2025 &nbsp;·&nbsp; Design Ops &amp; Systems</p>
+          <span class="role__bar"><i style="--from:76.2%;--to:95.2%"></i></span>
+        </div>
+        <div class="role__body">
+          <p>Led Design Operations for two marketplaces and built the multi-brand system product teams still run on.</p>
+          <a class="role__cta meta" href="#">View case
+            <svg viewBox="0 0 16 16" width="11" height="11" aria-hidden="true"><path d="M4 12L12 4M12 4H5.5M12 4v6.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </li>
+
+      <li class="role">
+        <div class="role__top">
+          <span class="role__n">03</span>
+          <h3 class="role__co">coches.net</h3>
+        </div>
+        <div class="role__meta">
+          <p class="meta role__yr">2016 — 2021 &nbsp;·&nbsp; Head of User Experience</p>
+          <span class="role__bar"><i style="--from:52.4%;--to:76.2%"></i></span>
+        </div>
+        <div class="role__body">
+          <p>Led UX for one of Spain’s largest automotive marketplaces, growing the team from two designers to eight.</p>
+          <a class="role__cta meta" href="#">View case
+            <svg viewBox="0 0 16 16" width="11" height="11" aria-hidden="true"><path d="M4 12L12 4M12 4H5.5M12 4v6.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </li>
+
+      <li class="role">
+        <div class="role__top">
+          <span class="role__n">04</span>
+          <h3 class="role__co">coches.net</h3>
+        </div>
+        <div class="role__meta">
+          <p class="meta role__yr">2007 — 2016 &nbsp;·&nbsp; UX &amp; Web Development</p>
+          <span class="role__bar"><i style="--from:9.5%;--to:52.4%"></i></span>
+        </div>
+        <div class="role__body">
+          <p>Front-end development and UX in the same role, building UI components teams kept using long after.</p>
+        </div>
+      </li>
+
+      <li class="role">
+        <div class="role__top">
+          <span class="role__n">05</span>
+          <h3 class="role__co">Herraiz Soto — BMW</h3>
+        </div>
+        <div class="role__meta">
+          <p class="meta role__yr">2005 — 2007 &nbsp;·&nbsp; Web Design &amp; Development</p>
+          <span class="role__bar"><i style="--from:0%;--to:9.5%"></i></span>
+        </div>
+        <div class="role__body">
+          <p>Layouts and site structures for BMW, to strict global brand standards.</p>
+          <a class="role__cta meta" href="#">View case
+            <svg viewBox="0 0 16 16" width="11" height="11" aria-hidden="true"><path d="M4 12L12 4M12 4H5.5M12 4v6.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </li>
+    </ol>
+
+    <div class="foot meta">
+      <span>Barcelona · Spain</span>
+      <span>Marketplaces · ES / FR / DE</span>
+      <span style="margin-left:auto">Hover a row to open it</span>
+    </div>
+  </div>
+</section>
+
+<div class="note">
+  <p class="hint">What this borrows, and what it does not</p>
+  <h3>The list is also a chart.</h3>
+  <ul>
+    <li><b>Taken from the reference:</b> the accent plate, the numbered rows, the idea that only the active row is fully lit while the rest sit back.</li>
+    <li><b>Not taken:</b> the vertical spine with the names hung to its right. Here the spine is horizontal, because the section's subject is time — a single 2005 → 2026 axis at the top, with a bar under each role positioned on it. The shape of the career is legible before a word is read: nine years at one company, then four, then four.</li>
+    <li><b>Kept from the site:</b> the twelve-column rig, drawn in white so the grid crosses onto the blue; the mono metadata voice; DM Sans for the names; Geist for the prose; the dimension callouts as boxed numbers.</li>
+    <li><b>Interaction:</b> hovering or tabbing a row deepens its ground, brings its name to full white, fills its bar and opens the summary beside it. On a phone every row is open and the bars stay — no hover, no hidden content.</li>
+  </ul>
+</div>

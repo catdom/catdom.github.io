@@ -43,16 +43,16 @@ export const cases: CaseStudy[] = [
     period: { en: 'Mar 2025 — Present', es: 'Mar 2025 — Actualidad' },
     years: '2025',
     tagline: {
-      en: 'A large-scale marketplace connecting millions of users to buy and sell locally across multiple categories.',
-      es: 'Un marketplace de gran escala que conecta a millones de usuarios para comprar y vender en local a través de múltiples categorías.',
+      en: 'One of Europe\u2019s biggest classifieds marketplaces \u2014 millions of people buying and selling to their neighbours, in just about every category you can think of.',
+      es: 'Uno de los mayores marketplaces de clasificados de Europa: millones de personas comprando y vendiendo a sus vecinos, en casi cualquier categor\u00eda que se te ocurra.',
     },
     problem: {
-      en: 'As the marketplace grew, users found it harder to discover relevant listings, trust interactions, and complete key flows smoothly. Small inconsistencies across the product added friction and reduced confidence, especially at scale.',
-      es: 'A medida que el marketplace crecía, a los usuarios les costaba más descubrir anuncios relevantes, confiar en las interacciones y completar los flujos clave con fluidez. Pequeñas inconsistencias a lo largo del producto añadían fricción y restaban confianza, especialmente a escala.',
+      en: 'The bigger the marketplace got, the harder it became to find the right listing, trust the person on the other side and get through a flow without stumbling. None of it was one big broken thing \u2014 it was a hundred small inconsistencies, and at this scale small things get paid for in confidence.',
+      es: 'Cuanto m\u00e1s crec\u00eda el marketplace, m\u00e1s costaba encontrar el anuncio adecuado, fiarte de quien est\u00e1 al otro lado y terminar un flujo sin tropezar. No hab\u00eda una cosa grande rota: hab\u00eda cien peque\u00f1as inconsistencias, y a esta escala lo peque\u00f1o se paga en confianza.',
     },
     solution: {
-      en: 'We focused on improving trust and consistency across key user flows by aligning teams around shared patterns and system-driven solutions. This helped users navigate more confidently while giving teams clearer foundations to build on.',
-      es: 'Nos centramos en mejorar la confianza y la consistencia en los flujos clave alineando a los equipos alrededor de patrones compartidos y soluciones basadas en sistema. Esto ayudó a los usuarios a navegar con más seguridad y dio a los equipos unos cimientos más claros sobre los que construir.',
+      en: 'We went after trust and consistency in the flows that carry the most traffic, and we did it by getting teams onto shared patterns instead of asking each of them to solve the same problem again. People navigate with more confidence; teams start from firmer ground.',
+      es: 'Fuimos a por la confianza y la consistencia en los flujos con m\u00e1s tr\u00e1fico, y lo hicimos poniendo a los equipos sobre patrones compartidos en vez de pedirle a cada uno que resolviera otra vez lo mismo. La gente navega con m\u00e1s seguridad; los equipos parten de un suelo m\u00e1s firme.',
     },
     sections: [
       {
@@ -180,16 +180,16 @@ export const cases: CaseStudy[] = [
     period: { en: 'Nov 2021 — May 2025', es: 'Nov 2021 — May 2025' },
     years: '2021',
     tagline: {
-      en: 'SUI — a multi-brand design system enabling consistent and scalable digital experiences across marketplaces.',
-      es: 'SUI — un design system multimarca que permite experiencias digitales consistentes y escalables entre marketplaces.',
+      en: 'SUI \u2014 the multi-brand design system that let several marketplaces ship consistently without all ending up looking the same.',
+      es: 'SUI: el sistema de dise\u00f1o multimarca que permiti\u00f3 a varios marketplaces publicar de forma coherente sin acabar todos iguales.',
     },
     problem: {
-      en: 'As digital marketplaces grew across brands and products, maintaining consistency and quality became increasingly difficult. Teams were working with duplicated components and slightly different patterns, which led to inconsistent user experiences and slower delivery. In a multi-brand and international context, this lack of shared foundations also made collaboration harder: design decisions were re-discussed, maintenance costs increased, and scaling product development became more complex than necessary.',
-      es: 'A medida que los marketplaces digitales crecían entre marcas y productos, mantener la consistencia y la calidad se volvió cada vez más difícil. Los equipos trabajaban con componentes duplicados y patrones ligeramente distintos, lo que producía experiencias inconsistentes y entregas más lentas. En un contexto multimarca e internacional, esa falta de cimientos compartidos también dificultaba la colaboración: las decisiones de diseño se rediscutían, los costes de mantenimiento subían y escalar el desarrollo de producto era más complejo de lo necesario.',
+      en: 'As the brands and the products multiplied, so did the copies. Teams kept rebuilding the same component slightly differently, which showed up outside as an inconsistent experience and inside as slower delivery. Multiply that by several brands and three countries and it stops being a nuisance and becomes a tax.',
+      es: 'A medida que se multiplicaban marcas y productos, se multiplicaban las copias. Cada equipo reconstru\u00eda el mismo componente un poco distinto, y eso se ve\u00eda fuera como una experiencia inconsistente y dentro como entregas m\u00e1s lentas. Multipl\u00edcalo por varias marcas y tres pa\u00edses y deja de ser una molestia para convertirse en un impuesto.',
     },
     solution: {
-      en: 'SUI was created as a centralized, multi-brand design system to provide a shared foundation for design and product teams. The goal was not to make all brands look the same, but to define common patterns, components, and guidelines that could adapt to each brand’s identity. Through shared tooling, documentation, and governance, SUI helped teams work more efficiently while delivering consistent experiences across brands and regions.',
-      es: 'SUI se creó como un design system multimarca y centralizado para dar unos cimientos compartidos a los equipos de diseño y producto. El objetivo no era que todas las marcas se vieran iguales, sino definir patrones, componentes y guías comunes capaces de adaptarse a la identidad de cada marca. Con herramientas, documentación y gobernanza compartidas, SUI ayudó a los equipos a trabajar de forma más eficiente entregando experiencias consistentes entre marcas y regiones.',
+      en: 'SUI gave design and product one shared foundation. The point was never to make the brands identical \u2014 it was to agree on the patterns, components and rules underneath and let each brand keep its own face on top. Shared tooling, documentation people actually read, and governance light enough that nobody routed around it.',
+      es: 'SUI le dio a dise\u00f1o y producto unos cimientos comunes. El objetivo nunca fue que las marcas se parecieran: fue acordar los patrones, los componentes y las reglas de debajo, y dejar que cada marca mantuviera su cara encima. Herramientas compartidas, documentaci\u00f3n que la gente lee de verdad y una gobernanza lo bastante ligera como para que nadie la esquivara.',
     },
     sections: [
       {
@@ -319,16 +319,16 @@ export const cases: CaseStudy[] = [
     period: { en: 'Nov 2007 — Nov 2021', es: 'Nov 2007 — Nov 2021' },
     years: '2007',
     tagline: {
-      en: 'A leading automotive marketplace evolving its user experience through research, culture, and scale.',
-      es: 'Un marketplace de automoción líder que hizo evolucionar su experiencia de usuario a través de investigación, cultura y escala.',
+      en: 'One of Spain\u2019s biggest car marketplaces, growing up: research as a habit, UX as a team, quality as a number.',
+      es: 'Uno de los mayores marketplaces de coches de Espa\u00f1a, haci\u00e9ndose mayor: la investigaci\u00f3n como h\u00e1bito, UX como equipo y la calidad como n\u00famero.',
     },
     problem: {
-      en: 'As a high-traffic automotive marketplace matured, user expectations increased while product complexity continued to grow. Legacy workflows, limited research practices, and a small UX team made it difficult to consistently understand user needs and measure experience quality across critical journeys. Without shared metrics, clear UX strategy, or scalable team structures, aligning user satisfaction with business goals became increasingly challenging.',
-      es: 'A medida que maduraba un marketplace de automoción de alto tráfico, las expectativas de los usuarios subían mientras la complejidad del producto seguía creciendo. Flujos heredados, prácticas de investigación limitadas y un equipo de UX pequeño dificultaban entender de forma consistente las necesidades de usuario y medir la calidad de la experiencia en los journeys críticos. Sin métricas compartidas, estrategia de UX clara ni estructuras de equipo escalables, alinear la satisfacción de usuario con los objetivos de negocio era cada vez más difícil.',
+      en: 'The product kept getting more complex and people kept expecting more of it, but the means to understand them had not kept up: legacy workflows, research that happened when there was room for it, and a UX team of two. Nobody could say, with evidence, whether the experience was getting better.',
+      es: 'El producto se volv\u00eda m\u00e1s complejo y la gente esperaba m\u00e1s de \u00e9l, pero los medios para entenderla no hab\u00edan crecido igual: flujos heredados, investigaci\u00f3n cuando hab\u00eda hueco y un equipo de UX de dos personas. Nadie pod\u00eda decir, con pruebas, si la experiencia estaba mejorando.',
     },
     solution: {
-      en: 'Coches.net addressed these challenges by establishing UX as a strategic discipline embedded across the organization. Through structured research practices, user-centered metrics, and a clear UX strategy, the platform evolved towards measurable, outcome-driven experiences. By scaling the UX team, defining roles and growth paths, and aligning UX initiatives with company OKRs, user satisfaction became a core driver of product and business decisions.',
-      es: 'Coches.net abordó estos retos estableciendo UX como una disciplina estratégica integrada en toda la organización. Mediante prácticas de investigación estructuradas, métricas centradas en el usuario y una estrategia de UX clara, la plataforma evolucionó hacia experiencias medibles y orientadas a resultados. Al escalar el equipo de UX, definir roles y planes de crecimiento y alinear las iniciativas de UX con los OKRs de compañía, la satisfacción de usuario pasó a ser un motor central de las decisiones de producto y negocio.',
+      en: 'We made UX a discipline the company plans with, not a service it calls at the end. Research on a rhythm, a UX strategy anyone could repeat back to you, and satisfaction turned into a measured outcome \u2014 CSATs mapped to the key journeys and folded into company OKRs. The team went from two to eight along the way.',
+      es: 'Convertimos UX en una disciplina con la que la compa\u00f1\u00eda planifica, no en un servicio al que llama al final. Investigaci\u00f3n con ritmo, una estrategia de UX que cualquiera pod\u00eda repetirte y la satisfacci\u00f3n convertida en resultado medible: CSATs mapeados a los journeys clave y metidos en los OKRs de compa\u00f1\u00eda. Por el camino, el equipo pas\u00f3 de dos a ocho.',
     },
     sections: [
       {
@@ -447,16 +447,16 @@ export const cases: CaseStudy[] = [
     period: { en: 'Jan 2005 — Nov 2007', es: 'Ene 2005 — Nov 2007' },
     years: '2005',
     tagline: {
-      en: 'A corporate automotive website focused on performance, brand, and digital presence.',
-      es: 'Un site corporativo de automoción centrado en rendimiento, marca y presencia digital.',
+      en: 'A corporate site for BMW, built back when brand standards were strict and browsers were not.',
+      es: 'Un site corporativo para BMW, construido cuando los est\u00e1ndares de marca eran estrictos y los navegadores no.',
     },
     problem: {
-      en: 'At the time, corporate automotive websites needed to balance strong brand expression with growing digital demands. Maintaining visual consistency, performance, and cross-browser compatibility was challenging in an environment where content updates were frequent and technical constraints were significant.',
-      es: 'En aquel momento, los sites corporativos de automoción tenían que equilibrar una expresión de marca potente con exigencias digitales crecientes. Mantener consistencia visual, rendimiento y compatibilidad entre navegadores era complicado en un entorno con actualizaciones de contenido frecuentes y restricciones técnicas importantes.',
+      en: 'A corporate car site had to look exactly like the brand book said, change constantly, and still work in the browsers of the day. Those three pulled in different directions, and the brand book never lost.',
+      es: 'Un site corporativo de coches ten\u00eda que verse exactamente como dec\u00eda el manual de marca, cambiar constantemente y adem\u00e1s funcionar en los navegadores de la \u00e9poca. Las tres cosas tiraban en direcciones distintas, y el manual de marca no perd\u00eda nunca.',
     },
     solution: {
-      en: 'BMW addressed these challenges through careful front-end implementation and structured web layouts that respected brand guidelines while ensuring technical reliability. By focusing on clean markup, consistency, and accurate visual execution, the website maintained a strong brand presence and a stable user experience across devices and browsers.',
-      es: 'BMW abordó estos retos con una implementación front-end cuidadosa y layouts estructurados que respetaban las guías de marca garantizando fiabilidad técnica. Con foco en markup limpio, consistencia y ejecución visual precisa, el site mantuvo una presencia de marca fuerte y una experiencia estable entre dispositivos y navegadores.',
+      en: 'Clean markup, layouts built so the content could change without breaking them, and visual execution accurate enough to pass brand review first time. Nothing clever \u2014 just careful, which in that context was the entire job.',
+      es: 'Markup limpio, layouts construidos para que el contenido pudiera cambiar sin romperlos y una ejecuci\u00f3n visual lo bastante precisa como para pasar la revisi\u00f3n de marca a la primera. Nada ingenioso: cuidadoso, que en ese contexto era todo el trabajo.',
     },
     sections: [
       {

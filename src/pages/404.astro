@@ -5,13 +5,14 @@ import Footer from '../components/Footer.astro';
 import Button from '../components/ui/Button.astro';
 ---
 
-<Layout lang="en" title="Not found — Jordi Catalán" description="This page does not exist.">
+<Layout lang="en" title="Not found — Jordi Catalán" description="There is nothing at this address.">
   <Nav lang="en" anchors={false} />
   <main id="main" class="nf">
     <div class="shell">
       <p class="meta meta--mark">404</p>
-      <h1 class="h2">This page doesn’t exist.</h1>
-      <Button as="a" variant="ghost" href="/">Back to home</Button>
+      <h1 class="h2">There is nothing at this address.</h1>
+      <p class="lead nf__note">Either the link is wrong or I moved something without leaving a note. Both are on me.</p>
+      <Button as="a" variant="ghost" href="/">Back to the start</Button>
     </div>
   </main>
   <Footer lang="en" />
@@ -20,4 +21,5 @@ import Button from '../components/ui/Button.astro';
 <style>
   .nf { padding-block: clamp(9rem, 18vw, 14rem) var(--section-y); }
   .nf .shell { display: grid; gap: 1.25rem; justify-items: start; }
+  .nf__note { max-width: 46ch; }
 </style>

@@ -21,6 +21,9 @@ const i = strengthsIntro[lang];
     <div class="parts">
       {strengths.map((s, n) => (
         <article class="part" data-reveal style={`--reveal-delay:${n * 70}ms`}>
+          <figure class="part__plate">
+            <img src={s.figure} alt={s.figureAlt[lang]} width="640" height="260" loading="lazy" />
+          </figure>
           <p class="meta meta--mark part__id">{s.id}</p>
           <h3 class="h3 part__title">{s.title[lang]}</h3>
           <p class="part__text">{s.body[lang]}</p>
@@ -56,11 +59,12 @@ const i = strengthsIntro[lang];
     display: grid;
     /* The text row takes the slack, so the outcome sits on the floor of every
        card in a row however long the paragraph above it runs. */
-    grid-template-rows: auto auto 1fr auto;
+    grid-template-rows: auto auto auto 1fr auto;
     gap: 0.55rem;
     position: relative;
     background: var(--panel);
-    padding: clamp(1.35rem, 2.4vw, 1.75rem);
+    --card-pad: clamp(1.35rem, 2.4vw, 1.75rem);
+    padding: var(--card-pad);
     /* Every card draws its own right and bottom edge; only the one that opens
        a row draws a left edge, so the strip is closed on both sides and no two
        neighbours ever stack two rules into one 2px line. */
@@ -76,8 +80,28 @@ const i = strengthsIntro[lang];
 
   @media (min-width: 1100px) {
     .parts { grid-template-columns: repeat(12, minmax(0, 1fr)); }
-    .part { grid-column: span 3; }
-    .part:not(:first-child) { --left-rule: 0 0 0 0 transparent; }
+    .part { grid-column: span 6; }
+    .part:nth-child(even) { --left-rule: 0 0 0 0 transparent; }
+  }
+
+  /* The plate bleeds to the card's edges: it is the card's ground, not a
+     picture pinned inside it. */
+  .part__plate {
+    /* Bleeds to the card's edges but stops 1px short of them, so the hairlines
+       that draw the card still read through the band. */
+    margin: calc(-1 * var(--card-pad)) calc(1px - var(--card-pad)) 0.6rem;
+    padding: 0;
+    overflow: hidden;
+    background: linear-gradient(180deg, #f2f2ee 0%, var(--panel) 100%);
+    border-bottom: 1px solid var(--rule-2);
+  }
+
+  .part__plate img {
+    display: block;
+    width: 100%;
+    height: clamp(96px, 12vw, 148px);
+    object-fit: cover;
+    transition: transform 900ms var(--ease), opacity 400ms var(--ease);
   }
 
   .part__id { margin-bottom: 0.15rem; }
@@ -113,6 +137,7 @@ const i = strengthsIntro[lang];
      takes the mark and the rule under the outcome runs the width of the card.
      Nothing moves and no edge changes colour. */
   @media (hover: hover) and (pointer: fine) {
+    .part:hover .part__plate img { transform: scale(1.06) translateY(-2%); }
     .part:hover .part__value::before { width: 100%; background: var(--mark); }
     .part:hover .part__value { color: var(--ink-2); }
     .part:hover .part__title { color: var(--mark); }

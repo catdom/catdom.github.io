@@ -24,8 +24,8 @@ export const timeline: TimelineEntry[] = [
     location: { en: 'Barcelona', es: 'Barcelona' },
     caseSlug: 'kleinanzeigen',
     summary: {
-      en: 'End-to-end design for one of Europe\'s largest classifieds marketplaces, with a systems mindset applied at scale: consistency, less design debt and cross-team alignment on the flows that carry the most traffic.',
-      es: 'Diseño end-to-end para uno de los mayores marketplaces de clasificados de Europa, con mentalidad de sistemas aplicada a escala: consistencia, menos deuda de diseño y alineación entre equipos en los flujos de más tráfico.',
+      en: 'End-to-end design on one of Europe\'s biggest classifieds marketplaces. The job is scale: keeping the busiest flows consistent, paying down design debt and getting teams to agree on the same thing.',
+      es: 'Diseño end-to-end en uno de los mayores marketplaces de clasificados de Europa. El trabajo aquí es la escala: mantener coherentes los flujos con más tráfico, bajar deuda de diseño y conseguir que los equipos se pongan de acuerdo.',
     },
   },
   {
@@ -37,8 +37,8 @@ export const timeline: TimelineEntry[] = [
     location: { en: 'Barcelona', es: 'Barcelona' },
     caseSlug: 'fotocasa',
     summary: {
-      en: 'Led Design Operations for two marketplaces and built the multi-brand system product teams still run on — tokens, documentation and governance — aligning leads in Spain, France and Germany on one way of working without slowing local teams down.',
-      es: 'Lideré Design Operations para dos marketplaces y construí el sistema multimarca que siguen usando los equipos de producto — tokens, documentación y gobernanza — alineando España, Francia y Alemania en una forma de trabajar sin frenar a los equipos locales.',
+      en: 'I ran Design Operations across two marketplaces and built the multi-brand system their product teams still work in \u2014 tokens, documentation, governance \u2014 and got the leads in Spain, France and Germany onto one way of working without slowing any of them down.',
+      es: 'Llev\u00e9 Design Operations en dos marketplaces y constru\u00ed el sistema multimarca en el que sus equipos de producto siguen trabajando \u2014tokens, documentaci\u00f3n, gobernanza\u2014 y puse de acuerdo a los responsables de Espa\u00f1a, Francia y Alemania en una forma de trabajar sin frenar a ninguno.',
     },
   },
   {
@@ -50,8 +50,8 @@ export const timeline: TimelineEntry[] = [
     location: { en: 'Barcelona', es: 'Barcelona' },
     caseSlug: 'coches-net',
     summary: {
-      en: 'Led UX for one of Spain\'s largest automotive marketplaces, growing the team from two designers to eight and making research the input and satisfaction a measured outcome — CSATs mapped to key flows, folded into company OKRs.',
-      es: 'Lideré UX en uno de los mayores marketplaces de automoción de España, creciendo el equipo de dos diseñadores a ocho y convirtiendo la satisfacción en resultado medible: CSATs mapeados a flujos clave e integrados en los OKRs de compañía.',
+      en: 'I led UX at one of Spain\u2019s biggest car marketplaces and grew the team from two designers to eight. Satisfaction stopped being a feeling: CSATs mapped to the key flows and folded into the company\u2019s OKRs.',
+      es: 'Lider\u00e9 UX en uno de los mayores marketplaces de automoci\u00f3n de Espa\u00f1a y llev\u00e9 el equipo de dos dise\u00f1adores a ocho. La satisfacci\u00f3n dej\u00f3 de ser una sensaci\u00f3n: CSATs mapeados a los flujos clave y metidos en los OKRs de compa\u00f1\u00eda.',
     },
   },
   {
@@ -62,8 +62,8 @@ export const timeline: TimelineEntry[] = [
     range: '2007 — 2016',
     location: { en: 'Barcelona', es: 'Barcelona' },
     summary: {
-      en: 'Front-end development and UX in the same role, designing and implementing UI components and frameworks that product teams kept using long after I moved on.',
-      es: 'Desarrollo front-end y UX en el mismo puesto, diseñando e implementando componentes de UI y frameworks que los equipos de producto siguieron usando mucho después.',
+      en: 'UX and front-end in the same pair of hands, building UI components and frameworks that product teams kept using long after I had moved on.',
+      es: 'UX y front-end en las mismas manos, construyendo componentes de UI y frameworks que los equipos de producto siguieron usando mucho despu\u00e9s de que yo me fuera.',
     },
   },
   {
@@ -75,8 +75,8 @@ export const timeline: TimelineEntry[] = [
     location: { en: 'Barcelona', es: 'Barcelona' },
     caseSlug: 'bmw',
     summary: {
-      en: 'Designed and built layouts and site structures for BMW, one of the agency\'s main accounts, to strict global brand standards and alongside creative, technical and client-facing teams.',
-      es: 'Diseñé y construí layouts y estructuras de site para BMW, una de las cuentas principales de la agencia, bajo estándares de marca globales estrictos y junto a equipos creativos, técnicos y de cliente.',
+      en: 'Layouts and site structures for BMW, one of the agency\u2019s biggest accounts, under brand standards that left no room to improvise \u2014 and always shoulder to shoulder with creatives, developers and the client.',
+      es: 'Layouts y estructuras de site para BMW, una de las cuentas grandes de la agencia, bajo unos est\u00e1ndares de marca que no dejaban margen para improvisar \u2014 y siempre codo con codo con creativos, desarrolladores y cliente.',
     },
   },
 ];

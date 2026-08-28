@@ -63,13 +63,13 @@ export const spec: L10n<{
     {
       index: '01',
       term: 'Discipline',
-      body: 'Keeping design coherent as teams, brands and markets multiply.',
+      body: 'Keeping design coherent while the teams, the brands and the markets keep multiplying.',
       tags: ['UX strategy', 'Design operations', 'Design systems'],
     },
     {
       index: '02',
       term: 'Domain',
-      body: 'High-traffic marketplaces, at national scale.',
+      body: 'Marketplaces with a lot of traffic on them, at national scale.',
       markets: [
         { code: 'ES', name: 'Spain' },
         { code: 'FR', name: 'France' },
@@ -81,13 +81,13 @@ export const spec: L10n<{
     {
       index: '01',
       term: 'Disciplina',
-      body: 'Mantener el diseño coherente mientras equipos, marcas y mercados se multiplican.',
+      body: 'Mantener el diseño coherente mientras los equipos, las marcas y los mercados no paran de multiplicarse.',
       tags: ['Estrategia UX', 'Design operations', 'Design systems'],
     },
     {
       index: '02',
       term: 'Ámbito',
-      body: 'Marketplaces de alto tráfico, a escala nacional.',
+      body: 'Marketplaces con mucho tráfico encima, a escala nacional.',
       markets: [
         { code: 'ES', name: 'España' },
         { code: 'FR', name: 'Francia' },
@@ -164,25 +164,25 @@ export const strengthsIntro: L10n<{ label: string; heading: string; body: string
   en: {
     label: '01 · Capability',
     heading: 'Four disciplines I lead',
-    body: 'Each one is a system, not a deliverable — which is why they outlast me.',
+    body: 'None of them is a deliverable. They are all systems, which is the only reason they are still running in places I left years ago.',
   },
   es: {
     label: '01 · Capacidades',
     heading: 'Cuatro disciplinas que lidero',
-    body: 'Cada una es un sistema, no un entregable — por eso siguen ahí cuando yo ya no estoy.',
+    body: 'Ninguna es un entregable. Todas son sistemas, y por eso siguen funcionando en sitios de los que me fui hace años.',
   },
 };
 
 export const careerIntro: L10n<{ label: string; heading: string; body: string }> = {
   en: {
     label: '02 · Where',
-    heading: 'Where it was built',
-    body: 'Twenty-four years, four employers, one continuous problem: how design holds together as everything around it multiplies.',
+    heading: 'Where it all got built',
+    body: 'Twenty-four years and four employers, and honestly the same question the whole way through: how do you keep design coherent when the teams, the brands and the markets keep multiplying?',
   },
   es: {
     label: '02 · Dónde',
-    heading: 'Dónde se construyó',
-    body: 'Veinticuatro años, cuatro empresas, un mismo problema de fondo: cómo mantener el diseño coherente mientras todo a su alrededor se multiplica.',
+    heading: 'Dónde se construyó todo esto',
+    body: 'Veinticuatro años y cuatro empresas, y sinceramente la misma pregunta todo el rato: cómo mantienes el diseño coherente cuando los equipos, las marcas y los mercados no paran de multiplicarse.',
   },
 };
 
@@ -195,15 +195,15 @@ export const careerIntro: L10n<{ label: string; heading: string; body: string }>
  */
 export const figures: L10n<{ value: string; label: string }[]> = {
   en: [
-    { value: '24', label: 'Years building for the web' },
-    { value: '19', label: 'Of them inside marketplaces' },
-    { value: '×4', label: 'UX team, two designers to eight' },
-    { value: '3', label: 'Countries, one way of working' },
+    { value: '24', label: 'Years building things for the web' },
+    { value: '19', label: 'Of them spent inside marketplaces' },
+    { value: '×4', label: 'The UX team I grew, two to eight' },
+    { value: '3', label: 'Countries working the same way' },
   ],
   es: [
-    { value: '24', label: 'Años construyendo para la web' },
-    { value: '19', label: 'De ellos en marketplaces' },
-    { value: '×4', label: 'Equipo de UX, de dos a ocho' },
-    { value: '3', label: 'Países, una forma de trabajar' },
+    { value: '24', label: 'Años construyendo cosas para la web' },
+    { value: '19', label: 'De ellos dentro de marketplaces' },
+    { value: '×4', label: 'El equipo de UX que hice crecer, de dos a ocho' },
+    { value: '3', label: 'Países trabajando de la misma manera' },
   ],
 };

@@ -1,14 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <!-- No background: the triangle sits on whatever the browser's tab strip is,
-       and follows the viewer's colour scheme. An SVG favicon carries its own
-       media query, so this needs no second file. -->
-  <style>
-    path { fill: #100a16; stroke: #100a16; }
-    @media (prefers-color-scheme: dark) {
-      path { fill: #f2f0fa; stroke: #f2f0fa; }
-    }
-  </style>
-  <!-- Drawn inset and stroked with a round join, which rounds the three
-       corners without hand-built arcs. -->
-  <path d="M16 9 25 23 7 23Z" stroke-width="4" stroke-linejoin="round"/>
+  <!-- The wordmark is "jcd." and at 16px the only part of it that survives is
+       the full stop. So the favicon is the accent square with that stop in it:
+       one shape, one colour, legible at tab size, the same in both schemes. -->
+  <rect width="32" height="32" rx="7" fill="#1f3fd8"/>
+  <circle cx="16" cy="21" r="4.4" fill="#ffffff"/>
+  <path d="M16 7.5v6" stroke="#ffffff" stroke-width="4.4" stroke-linecap="round"/>
 </svg>

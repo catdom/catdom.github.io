@@ -19,7 +19,12 @@ const href = (to: string) => (to.startsWith('#') ? to : `${langPrefix(lang)}${to
 
 <header class="nav" data-nav>
   <div class="nav__inner">
-    <a class="mark" href={home} aria-label={site.name}>jcd.</a>
+    <!-- The wordmark opens on hover: the stop turns to the accent and the
+         current year unrolls out of it. Decoration, so it is hidden from
+         assistive tech and the link keeps its own label. -->
+    <a class="mark" href={home} aria-label={site.name}>
+      <span>jcd</span><span class="mark__dot">.</span><span class="mark__yr" aria-hidden="true">2026</span>
+    </a>
 
     <nav class="nav__links" aria-label="Sections">
       {
@@ -86,7 +91,8 @@ const href = (to: string) => (to.startsWith('#') ? to : `${langPrefix(lang)}${to
 
   .mark {
     flex: none;
-    display: block;
+    display: inline-flex;
+    align-items: baseline;
     font-size: 1.15rem;
     font-weight: 700;
     letter-spacing: -0.03em;
@@ -118,6 +124,43 @@ const href = (to: string) => (to.startsWith('#') ? to : `${langPrefix(lang)}${to
   }
 
   .nav__links a:hover::after { transform: scaleX(1); }
+
+  .mark__dot { transition: color var(--dur-fast) var(--ease); }
+
+  /* Unrolls rather than fades in: the year is wiped open from the stop, which
+     is also where the favicon's shape comes from. */
+  .mark__yr {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--mark);
+    max-width: 0;
+    margin-left: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    clip-path: inset(0 100% 0 0);
+    transition:
+      max-width 420ms var(--ease),
+      margin-left 420ms var(--ease),
+      clip-path 420ms var(--ease);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .mark:hover .mark__dot,
+    .mark:focus-visible .mark__dot { color: var(--mark); }
+
+    .mark:hover .mark__yr,
+    .mark:focus-visible .mark__yr {
+      max-width: 6ch;
+      margin-left: 0.45rem;
+      clip-path: inset(0 0 0 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mark__yr { transition: none; }
+  }
 
   .nav__right {
     margin-left: auto;
