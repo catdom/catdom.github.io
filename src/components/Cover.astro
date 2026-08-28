@@ -133,8 +133,15 @@ const rollDelay = 120 + h.stem.length * 100;
   .cover__line {
     display: block;
     overflow: hidden;
-    padding-block: 0.24em;
-    margin-block: -0.24em;
+    /* Measured, not guessed: at this size the ink starts 0.10em below the top
+       of the line box and the descenders fall 0.10em past its bottom. So the
+       window opens 0.04em above the type — enough for an accented cap, not
+       enough to show the rotating phrase still travelling through the line
+       above — and closes 0.17em below it, which clears every g, y and ñ. */
+    padding-top: 0.04em;
+    padding-bottom: 0.17em;
+    margin-top: -0.04em;
+    margin-bottom: -0.17em;
   }
 
   .cover__line i {
@@ -286,15 +293,27 @@ const rollDelay = 120 + h.stem.length * 100;
 
   .market__name { color: var(--ink-3); }
 
+  /* The panels sit on the rig: four columns each of the eight behind them,
+     six each of the twelve, and the space between them is padding inside the
+     left panel rather than a gap, so both left edges land on a hairline. */
   @media (min-width: 700px) {
     .sheet {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      column-gap: clamp(2rem, 5vw, 5rem);
+      grid-template-columns: repeat(8, minmax(0, 1fr));
+      column-gap: 0;
     }
 
     /* Both panels sit under the same top rule and over the same bottom one, so
        the pair reads as one band however unevenly they fill. */
-    .sheet__row { padding-block: 1.35rem 1.6rem; }
+    .sheet__row {
+      grid-column: span 4;
+      padding-block: 1.35rem 1.6rem;
+      padding-right: var(--col-pad);
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .sheet { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+    .sheet__row { grid-column: span 6; }
   }
 
   /* Reduced motion: everything is simply already in place. */

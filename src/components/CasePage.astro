@@ -231,14 +231,26 @@ const trailing = spread.slice(study.sections.length);
 
   .case__title { max-width: 22ch; }
 
+  /* On the rig, like every other column on the site: two of the four narrow
+     columns, two of eight, three of twelve — so each fact starts on a line. */
   .case__meta {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
-    gap: 1rem 2rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem 0;
     margin: 0;
     padding-top: clamp(0.75rem, 2vw, 1.5rem);
     border-top: 1px solid var(--rule);
-    max-width: 780px;
+  }
+
+  .case__meta > div { grid-column: span 2; padding-right: var(--col-pad); }
+
+  @media (min-width: 700px) {
+    .case__meta { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+  }
+
+  @media (min-width: 1100px) {
+    .case__meta { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+    .case__meta > div { grid-column: span 3; }
   }
 
   .case__meta dt { margin-bottom: 0.3rem; }
@@ -248,10 +260,16 @@ const trailing = spread.slice(study.sections.length);
 
   .case__pair { padding-block: var(--section-y); }
 
-  .case__pairGrid { display: grid; gap: clamp(2rem, 4vw, 4rem); }
+  .case__pairGrid { display: grid; gap: clamp(2rem, 4vw, 4rem) 0; }
 
   @media (min-width: 820px) {
-    .case__pairGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .case__pairGrid { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+    .case__pairCol { grid-column: span 4; padding-right: var(--col-pad); }
+  }
+
+  @media (min-width: 1100px) {
+    .case__pairGrid { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+    .case__pairCol { grid-column: span 6; }
   }
 
   .case__pairCol { display: grid; gap: 0.85rem; align-content: start; }
@@ -295,6 +313,14 @@ const trailing = spread.slice(study.sections.length);
 
   @media (min-width: 720px) {
     .case__pairMedia { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  /* Two figures side by side land on the half line at every rig width, so the
+     pair only needs its gap taken from inside the left one. */
+  @media (min-width: 1100px) {
+    .case__pairMedia { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 0; }
+    .case__pairMedia > * { grid-column: span 6; }
+    .case__pairMedia > :first-child { padding-right: var(--col-pad); }
   }
 
   /* --- Narrative ----------------------------------------------------------- */

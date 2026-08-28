@@ -61,6 +61,10 @@ const year = new Date().getFullYear();
     border-bottom-color: var(--mark);
   }
 
+  /* The two metadata rows sit on the rig like everything else: three columns
+     of the twelve for each fact, so the footer keeps the page's column edges
+     right down to the last line. Below the rig's own breakpoint they simply
+     wrap. */
   .foot__meta {
     display: flex;
     flex-wrap: wrap;
@@ -79,7 +83,29 @@ const year = new Date().getFullYear();
     border-top: 1px solid var(--rule-2);
   }
 
-  .foot__top { margin-left: auto; }
+  @media (min-width: 700px) {
+    .foot__meta,
+    .foot__base {
+      display: grid;
+      grid-template-columns: repeat(8, minmax(0, 1fr));
+      gap: 0.5rem 0;
+    }
+
+    .foot__meta > *,
+    .foot__base > * { grid-column: span 3; padding-right: var(--col-pad); }
+    .foot__meta > :first-child,
+    .foot__base > :first-child { grid-column: span 2; }
+  }
+
+  @media (min-width: 1100px) {
+    .foot__meta,
+    .foot__base { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+
+    .foot__meta > *,
+    .foot__base > * { grid-column: span 4; }
+  }
+
+  .foot__top { margin-left: auto; justify-self: end; padding-right: 0; }
   .foot__top:hover { color: var(--ink); }
 
   /* Touch: 'back to top' is a 18px-tall line of metadata. Pad the hit area

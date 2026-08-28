@@ -146,9 +146,26 @@ const href = (to: string) => (to.startsWith('#') ? to : `${langPrefix(lang)}${to
 
   .lang__opt.is-on { background: var(--ink); color: var(--paper); }
 
+  /* Wide enough for the links: the bar takes the rig's own columns, so the
+     wordmark, the links and the right cluster start and end on drawn lines
+     instead of wherever flex left them. */
   @media (min-width: 860px) {
-    .nav__links { display: flex; }
-    .nav__right { margin-left: 0; }
+    .nav__inner {
+      display: grid;
+      grid-template-columns: repeat(8, minmax(0, 1fr));
+      column-gap: 0;
+      align-items: center;
+    }
+
+    .mark { grid-column: span 2; }
+    .nav__links { display: flex; grid-column: span 4; margin-left: 0; }
+    .nav__right { grid-column: span 2; margin-left: 0; justify-content: flex-end; }
+  }
+
+  @media (min-width: 1100px) {
+    .nav__inner { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+    .nav__links { grid-column: span 7; }
+    .nav__right { grid-column: span 3; }
   }
 
   /* Touch: the wordmark and the language chips are the two smallest controls

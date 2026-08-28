@@ -113,8 +113,23 @@ const base = langPrefix(lang);
      proportions. */
   @media (min-width: 900px) {
     .role__inner {
-      grid-template-columns: var(--rail) minmax(0, clamp(20rem, 36vw, 28rem)) minmax(0, 1fr);
+      /* On the rig: two columns for the year, three for the employer and three
+         for the summary — and twelve-wide, 2 / 4 / 6. The employer's column is
+         sized by the longest name on the page ("Fotocasa & Habitaclia"), which
+         has to hold one line at every width above 900. */
+      grid-template-columns: repeat(8, minmax(0, 1fr));
     }
+
+    .role__inner > * { padding-right: var(--col-pad); }
+    .role__yr { grid-column: span 2; }
+    .role__main { grid-column: span 3; }
+    .role__aside { grid-column: span 3; }
+  }
+
+  @media (min-width: 1100px) {
+    .role__inner { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+    .role__main { grid-column: span 4; }
+    .role__aside { grid-column: span 6; }
   }
 
   /* Mobile: the year and role sit tight above the name, the summary below. */
