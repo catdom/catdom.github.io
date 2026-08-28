@@ -79,16 +79,4 @@ export const timeline: TimelineEntry[] = [
       es: 'Diseñé y construí layouts y estructuras de site para BMW, una de las cuentas principales de la agencia, bajo estándares de marca globales estrictos y junto a equipos creativos, técnicos y de cliente.',
     },
   },
-  {
-    id: 'freelance',
-    company: 'Freelance',
-    role: { en: 'Web Design & Development', es: 'Diseño y desarrollo web' },
-    period: { en: 'Jan 2002 — Jan 2007', es: 'Ene 2002 — Ene 2007' },
-    range: '2002 — 2007',
-    location: { en: 'Barcelona', es: 'Barcelona' },
-    summary: {
-      en: 'Independent design and front-end development for a range of clients — the technical grounding that still shapes how I lead design today.',
-      es: 'Diseño y desarrollo front-end independiente para distintos clientes — la base técnica que todavía hoy marca mi forma de liderar diseño.',
-    },
-  },
 ];
