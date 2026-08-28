@@ -17,7 +17,7 @@ export const strengths: Strength[] = [
   {
     id: 'PT-01',
     figure: '/figures/pt-01.svg',
-    figureAlt: { en: 'Nested triangles converging on a point', es: 'Triángulos encajados convergiendo en un punto' },
+    figureAlt: { en: 'Nested bursts, every arm pointing at one centre', es: 'Estrellas encajadas, cada punta hacia un mismo centro' },
     title: { en: 'UX Strategy', es: 'Estrategia UX' },
     value: { en: 'CSAT → OKR', es: 'CSAT → OKR' },
     body: {
@@ -28,7 +28,7 @@ export const strengths: Strength[] = [
   {
     id: 'PT-02',
     figure: '/figures/pt-02.svg',
-    figureAlt: { en: 'Two fields of squares overlapping', es: 'Dos campos de cuadrados solapándose' },
+    figureAlt: { en: 'Two nested figures made entirely of the seams between four parts', es: 'Dos figuras encajadas hechas solo de las juntas entre cuatro partes' },
     title: { en: 'Design Operations', es: 'Design Operations' },
     value: { en: '3 countries', es: '3 países' },
     body: {
@@ -39,7 +39,7 @@ export const strengths: Strength[] = [
   {
     id: 'PT-03',
     figure: '/figures/pt-03.svg',
-    figureAlt: { en: 'A hexagon tiling, the same cell repeated', es: 'Un teselado de hexágonos, la misma celda repetida' },
+    figureAlt: { en: 'One matrix of cells, repeated across the band', es: 'Una matriz de celdas, repetida a lo ancho' },
     title: { en: 'Design Systems', es: 'Design Systems' },
     value: { en: '7 brands', es: '7 marcas' },
     body: {
@@ -50,7 +50,7 @@ export const strengths: Strength[] = [
   {
     id: 'PT-04',
     figure: '/figures/pt-04.svg',
-    figureAlt: { en: 'Circles multiplying and growing across the band', es: 'Círculos que se multiplican y crecen a lo ancho' },
+    figureAlt: { en: 'Four-petal figures opening out from one centre', es: 'Figuras de cuatro pétalos abriéndose desde un centro' },
     title: { en: 'Team Leadership', es: 'Liderazgo de equipo' },
     value: { en: '2 → 8 people', es: '2 → 8 personas' },
     body: {

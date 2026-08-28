@@ -25,7 +25,7 @@ const i = strengthsIntro[lang];
       {strengths.map((s, n) => (
         <article class="part" data-reveal style={`--reveal-delay:${n * 70}ms`}>
           <figure class="part__plate">
-            <img src={s.figure} alt={s.figureAlt[lang]} width="640" height="260" loading="lazy" />
+            <img src={s.figure} alt={s.figureAlt[lang]} width="640" height="150" loading="lazy" />
           </figure>
           <p class="meta meta--mark part__id">{s.id}</p>
           <h3 class="h3 part__title">{s.title[lang]}</h3>
