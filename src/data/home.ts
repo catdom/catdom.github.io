@@ -163,12 +163,12 @@ export const brands = [
 export const strengthsIntro: L10n<{ label: string; heading: string; body: string }> = {
   en: {
     label: '01 · Capability',
-    heading: 'Four things I am brought in to do',
+    heading: 'Four disciplines I lead',
     body: 'Each one is a system, not a deliverable — which is why they outlast me.',
   },
   es: {
     label: '01 · Capacidades',
-    heading: 'Cuatro cosas para las que me llaman',
+    heading: 'Cuatro disciplinas que lidero',
     body: 'Cada una es un sistema, no un entregable — por eso siguen ahí cuando yo ya no estoy.',
   },
 };

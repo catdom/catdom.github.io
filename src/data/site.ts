@@ -58,8 +58,8 @@ export const ui: L10n<Record<string, string>> = {
     contactLabel: '03 · Contact',
     contactHeading: 'Start a conversation',
     contactNote: 'Open to design leadership roles',
-    brandsLabel: 'Brands the system reached',
-    figuresLabel: 'The measure of it',
+    brandsLabel: 'Brands the work reached',
+    figuresLabel: 'The record, in numbers',
   },
   es: {
     contact: 'Hablemos',
@@ -81,7 +81,7 @@ export const ui: L10n<Record<string, string>> = {
     contactLabel: '03 · Contacto',
     contactHeading: 'Empecemos una conversación',
     contactNote: 'Abierto a posiciones de liderazgo de diseño',
-    brandsLabel: 'Marcas alcanzadas por el sistema',
-    figuresLabel: 'La medida de todo esto',
+    brandsLabel: 'Marcas donde ha llegado el trabajo',
+    figuresLabel: 'El registro, en cifras',
   },
 };
