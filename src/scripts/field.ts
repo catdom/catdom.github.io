@@ -10,9 +10,14 @@
    little depth — and it swells the side of each ring nearest the cursor. With
    no pointer the sines carry it alone, which is what a phone sees. */
 
-const RINGS = 13;
-const SEGMENTS = 110;
+const RINGS = 22;
+const SEGMENTS = 120;
 const LERP = 0.045;
+
+/* Every fifth ring is drawn as an index contour: heavier and in full mark,
+   the way a topographic plate numbers one line in five. That is what gives the
+   figure a reading rhythm instead of an even grey. */
+const INDEX_EVERY = 5;
 
 export const heroField = () => {
   const canvas = document.querySelector<HTMLCanvasElement>('[data-field]');
@@ -68,11 +73,10 @@ export const heroField = () => {
     const pointerAngle = Math.atan2(easedY, easedX);
     const pointerPull = Math.min(1, Math.hypot(easedX, easedY));
 
-    ctx.lineWidth = 1;
-
     for (let ring = 0; ring < RINGS; ring += 1) {
       const depth = ring / (RINGS - 1);
-      const base = unit * (0.1 + depth * (wide ? 0.34 : 0.27));
+      const base = unit * (0.08 + depth * (wide ? 0.4 : 0.3));
+      const index = ring % INDEX_EVERY === 0;
 
       // Outer rings drift further, which reads as depth rather than as a slide.
       const driftX = easedX * unit * 0.05 * (0.35 + depth);
@@ -99,9 +103,17 @@ export const heroField = () => {
         else ctx.lineTo(x, y);
       }
 
-      // Fades outward, so the figure has a centre without having an edge.
-      const top = wide ? 0.16 : 0.11;
-      ctx.strokeStyle = `rgba(31, 63, 216, ${top - depth * (wide ? 0.1 : 0.07)})`;
+      /* Fades outward, so the figure has a centre without having an edge, and
+         swells with the cursor: the closer the pointer, the more the mark shows.
+         The claim sits to the left of the centre on a wide screen, which is why
+         a phone — where the figure sits under the type — keeps the lower ceiling. */
+      const top = wide ? 0.34 : 0.16;
+      const floor = wide ? 0.1 : 0.06;
+      const fade = top - depth * (top - floor);
+      const alpha = fade * (index ? 1 : 0.45) * (1 + 0.35 * pointerPull);
+
+      ctx.lineWidth = index ? 1.4 : 1;
+      ctx.strokeStyle = `rgba(31, 63, 216, ${alpha.toFixed(3)})`;
       ctx.stroke();
     }
   };

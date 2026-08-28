@@ -97,7 +97,8 @@ const href = (to: string) => (to.startsWith('#') ? to : `${langPrefix(lang)}${to
     display: none;
     margin-left: auto;
     gap: clamp(1rem, 2vw, 2rem);
-    font-size: var(--fs-meta);
+    font-family: var(--font-mono);
+    font-size: 11px;
     letter-spacing: var(--track-meta);
     text-transform: uppercase;
     font-weight: 500;
@@ -137,7 +138,8 @@ const href = (to: string) => (to.startsWith('#') ? to : `${langPrefix(lang)}${to
   .lang__opt {
     padding: 0.25rem 0.55rem;
     border-radius: var(--r-pill);
-    font-size: 0.6875rem;
+    font-family: var(--font-mono);
+    font-size: 11px;
     font-weight: 500;
     line-height: 1;
     letter-spacing: 0.06em;
