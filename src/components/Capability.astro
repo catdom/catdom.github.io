@@ -20,12 +20,10 @@ const i = strengthsIntro[lang];
 
     <div class="parts">
       {strengths.map((s, n) => (
-        <article class="rows part" data-reveal style={`--reveal-delay:${n * 70}ms`}>
-          <p class="meta meta--mark">{s.id}</p>
-          <div class="part__body">
-            <h3 class="h3">{s.title[lang]}</h3>
-            <p>{s.body[lang]}</p>
-          </div>
+        <article class="part" data-reveal style={`--reveal-delay:${n * 70}ms`}>
+          <p class="meta meta--mark part__id">{s.id}</p>
+          <h3 class="h3 part__title">{s.title[lang]}</h3>
+          <p class="part__text">{s.body[lang]}</p>
           <p class="meta part__value">{s.value[lang]}</p>
         </article>
       ))}
@@ -43,19 +41,67 @@ const i = strengthsIntro[lang];
 
   .cap__note { margin-top: 0.75rem; max-width: 54ch; }
 
+  /* Four cards, tiled on the rig: one column, then two of the eight behind
+     them, then three of the twelve. The hairlines are inset shadows rather
+     than gaps or borders, so a card edge lands exactly on a drawn line and
+     two neighbours never double the rule between them. */
+  .parts { display: grid; gap: 0; }
+
   .part {
-    padding-block: clamp(1.5rem, 3.5vw, 2.5rem);
-    border-bottom: 1px solid var(--rule-2);
+    display: grid;
+    /* The text row takes the slack, so the outcome sits on the floor of every
+       card in a row however long the paragraph above it runs. */
+    grid-template-rows: auto auto 1fr auto;
+    gap: 0.55rem;
+    position: relative;
+    padding: clamp(1.35rem, 2.6vw, 1.9rem) var(--col-pad) clamp(1.5rem, 3vw, 2rem) 0;
+    box-shadow: inset 0 -1px 0 var(--rule);
   }
 
-  .part__body { display: grid; gap: 0.5rem; }
-  .part__body p { color: var(--ink-2); max-width: 54ch; font-size: var(--fs-small); }
-
-  .part__value { color: var(--ink-3); }
-
-  /* On wide screens the value hangs to the right of the text, flush with the
-     column edge, the way a dimension is called out on a drawing. */
-  @media (min-width: 900px) {
-    .part__value { text-align: right; }
+  @media (min-width: 700px) {
+    .parts { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+    .part { grid-column: span 4; box-shadow: inset -1px -1px 0 var(--rule); }
   }
+
+  @media (min-width: 1100px) {
+    .parts { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+    .part { grid-column: span 3; }
+  }
+
+  .part__id { margin-bottom: 0.15rem; }
+
+  .part__text {
+    color: var(--ink-2);
+    font-size: var(--fs-small);
+    line-height: 1.5;
+    text-wrap: pretty;
+  }
+
+  /* The measured outcome closes the card, on its own rule, the way a drawing
+     calls out a dimension under the part it belongs to. */
+  .part__value {
+    margin-top: auto;
+    padding-top: 0.9rem;
+    color: var(--ink-3);
+  }
+
+  .part__value::before {
+    content: '';
+    display: block;
+    width: 1.75rem;
+    height: 1px;
+    margin-bottom: 0.7rem;
+    background: var(--rule);
+    transition: width var(--dur) var(--ease), background-color var(--dur) var(--ease);
+  }
+
+  /* Hover is the only state a card has, and it stays inside the drawing: the
+     rule under the value runs out and takes the mark's colour. */
+  @media (hover: hover) and (pointer: fine) {
+    .part { transition: background-color var(--dur-fast) var(--ease); }
+    .part:hover { background: var(--panel); }
+    .part:hover .part__value::before { width: 100%; background: var(--mark); }
+    .part:hover .part__value { color: var(--ink-2); }
+  }
+
 </style>
