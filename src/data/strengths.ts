@@ -17,7 +17,7 @@ export const strengths: Strength[] = [
   {
     id: 'PT-01',
     figure: '/figures/pt-01.svg',
-    figureAlt: { en: 'Contour rings tightening on a single centre', es: 'Curvas de nivel cerrándose sobre un único centro' },
+    figureAlt: { en: 'Nested triangles converging on a point', es: 'Triángulos encajados convergiendo en un punto' },
     title: { en: 'UX Strategy', es: 'Estrategia UX' },
     value: { en: 'CSAT → OKR', es: 'CSAT → OKR' },
     body: {
@@ -28,7 +28,7 @@ export const strengths: Strength[] = [
   {
     id: 'PT-02',
     figure: '/figures/pt-02.svg',
-    figureAlt: { en: 'Two contour fields running into one another', es: 'Dos campos de curvas encontrándose' },
+    figureAlt: { en: 'Two fields of squares overlapping', es: 'Dos campos de cuadrados solapándose' },
     title: { en: 'Design Operations', es: 'Design Operations' },
     value: { en: '3 countries', es: '3 países' },
     body: {
@@ -39,7 +39,7 @@ export const strengths: Strength[] = [
   {
     id: 'PT-03',
     figure: '/figures/pt-03.svg',
-    figureAlt: { en: 'Contour rings stepped at an even interval', es: 'Curvas de nivel a intervalo constante' },
+    figureAlt: { en: 'A hexagon tiling, the same cell repeated', es: 'Un teselado de hexágonos, la misma celda repetida' },
     title: { en: 'Design Systems', es: 'Design Systems' },
     value: { en: '7 brands', es: '7 marcas' },
     body: {
@@ -50,7 +50,7 @@ export const strengths: Strength[] = [
   {
     id: 'PT-04',
     figure: '/figures/pt-04.svg',
-    figureAlt: { en: 'One field breaking into four smaller centres', es: 'Un campo que se abre en cuatro centros' },
+    figureAlt: { en: 'Circles multiplying and growing across the band', es: 'Círculos que se multiplican y crecen a lo ancho' },
     title: { en: 'Team Leadership', es: 'Liderazgo de equipo' },
     value: { en: '2 → 8 people', es: '2 → 8 personas' },
     body: {
