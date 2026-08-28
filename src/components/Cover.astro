@@ -1,6 +1,7 @@
 ---
 import { hero, spec } from '../data/home';
 import type { Lang } from '../data/types';
+import Tag from './ui/Tag.astro';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -47,9 +48,36 @@ const rollDelay = 120 + h.stem.length * 100;
 
     <dl class="sheet">
       {rows.map((row, n) => (
-        <div class="sheet__row" data-reveal style={`--reveal-delay:${380 + n * 60}ms`}>
-          <dt class="meta">{row.term}</dt>
-          <dd>{row.value}</dd>
+        <div class="sheet__row" data-reveal style={`--reveal-delay:${380 + n * 90}ms`}>
+          <dt class="sheet__head">
+            <span class="sheet__i">{row.index}</span>
+            <span class="meta">{row.term}</span>
+          </dt>
+
+          <dd class="sheet__body">
+            <p class="sheet__text">{row.body}</p>
+
+            {row.tags && (
+              <ul class="sheet__tags">
+                {row.tags.map((t) => (
+                  <li><Tag>{t}</Tag></li>
+                ))}
+              </ul>
+            )}
+
+            {/* The markets, drawn as a legend: the code carries the weight and
+                the country names it, the way a map key does. */}
+            {row.markets && (
+              <ul class="sheet__markets">
+                {row.markets.map((m) => (
+                  <li class="market">
+                    <b class="market__code">{m.code}</b>
+                    <span class="meta market__name">{m.name}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </dd>
         </div>
       ))}
     </dl>
@@ -178,24 +206,95 @@ const rollDelay = 120 + h.stem.length * 100;
 
   @keyframes draw { to { transform: scaleX(1); } }
 
+  /* The two facts, drawn as two panels of a spec sheet rather than as two
+     paragraphs: an indexed head above a hairline, the sentence, and then the
+     evidence — the three practices as tags, the three markets as a legend. */
   .sheet {
-    margin-top: clamp(2rem, 5vw, 3.5rem);
+    margin-top: clamp(2.25rem, 5vw, 3.5rem);
+    display: grid;
+    gap: 0;
     border-top: 1px solid var(--rule);
   }
 
   .sheet__row {
     display: grid;
-    gap: 0.15rem 2rem;
-    padding-block: 0.85rem;
+    align-content: start;
+    gap: 0.9rem;
+    padding: 1.15rem 0 1.35rem;
     border-bottom: 1px solid var(--rule-2);
   }
 
-  .sheet__row dt { padding-top: 0.3rem; }
-  .sheet__row dd { font-size: var(--fs-small); max-width: 62ch; }
+  .sheet__head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+  }
+
+  .sheet__i {
+    font-size: var(--fs-meta);
+    font-weight: 500;
+    letter-spacing: var(--track-meta);
+    color: var(--mark);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .sheet__body { margin: 0; display: grid; gap: 0.9rem; }
+
+  .sheet__text {
+    font-size: var(--fs-small);
+    line-height: 1.5;
+    color: var(--ink-2);
+    max-width: 34ch;
+    text-wrap: pretty;
+  }
+
+  .sheet__tags {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .sheet__markets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+  }
+
+  /* One hairline between codes, none on the ends: the rule belongs to the gap,
+     so it is drawn as a left border on every item after the first. */
+  .market {
+    display: grid;
+    gap: 0.1rem;
+    padding-inline: 1.1rem;
+  }
+
+  .market:first-child { padding-left: 0; }
+  .market + .market { border-left: 1px solid var(--rule); }
+
+  .market__code {
+    font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .market__name { color: var(--ink-3); }
 
   @media (min-width: 700px) {
-    .sheet__row { grid-template-columns: var(--rail) minmax(0, 1fr); align-items: baseline; }
-    .sheet__row dt { padding-top: 0; }
+    .sheet {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: clamp(2rem, 5vw, 5rem);
+    }
+
+    /* Both panels sit under the same top rule and over the same bottom one, so
+       the pair reads as one band however unevenly they fill. */
+    .sheet__row { padding-block: 1.35rem 1.6rem; }
   }
 
   /* Reduced motion: everything is simply already in place. */

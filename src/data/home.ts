@@ -49,27 +49,50 @@ export const hero: L10n<{
 };
 
 /** The cover sheet: what the discipline is, and where it is practised. */
-export const spec: L10n<{ term: string; value: string }[]> = {
+/* The two facts under the claim. Each one carries its own kind of evidence:
+   the discipline names its three practices, the domain names its three
+   markets — so the block reads as a legend, not as a paragraph. */
+export const spec: L10n<{
+  index: string;
+  term: string;
+  body: string;
+  tags?: string[];
+  markets?: { code: string; name: string }[];
+}[]> = {
   en: [
     {
+      index: '01',
       term: 'Discipline',
-      value:
-        'UX strategy, design operations and design systems — the practice of keeping design coherent as teams, brands and markets multiply.',
+      body: 'Keeping design coherent as teams, brands and markets multiply.',
+      tags: ['UX strategy', 'Design operations', 'Design systems'],
     },
     {
+      index: '02',
       term: 'Domain',
-      value: 'High-traffic marketplaces. Spain, France, Germany.',
+      body: 'High-traffic marketplaces, at national scale.',
+      markets: [
+        { code: 'ES', name: 'Spain' },
+        { code: 'FR', name: 'France' },
+        { code: 'DE', name: 'Germany' },
+      ],
     },
   ],
   es: [
     {
+      index: '01',
       term: 'Disciplina',
-      value:
-        'Estrategia UX, design operations y design systems — la práctica de mantener el diseño coherente mientras equipos, marcas y mercados se multiplican.',
+      body: 'Mantener el diseño coherente mientras equipos, marcas y mercados se multiplican.',
+      tags: ['Estrategia UX', 'Design operations', 'Design systems'],
     },
     {
+      index: '02',
       term: 'Ámbito',
-      value: 'Marketplaces de alto tráfico. España, Francia, Alemania.',
+      body: 'Marketplaces de alto tráfico, a escala nacional.',
+      markets: [
+        { code: 'ES', name: 'España' },
+        { code: 'FR', name: 'Francia' },
+        { code: 'DE', name: 'Alemania' },
+      ],
     },
   ],
 };
@@ -105,7 +128,7 @@ export const board: L10n<{
     radius: 'Radius',
     type: 'Type',
     colour: 'Colour',
-    shared: 'Site component',
+    shared: 'In use on this site',
   },
   es: {
     label: 'Librería de componentes',
@@ -121,7 +144,7 @@ export const board: L10n<{
     radius: 'Radios',
     type: 'Tipografía',
     colour: 'Color',
-    shared: 'Componente del site',
+    shared: 'En uso en este site',
   },
 };
 
@@ -154,19 +177,19 @@ export const careerIntro: L10n<{ label: string; heading: string; body: string }>
   en: {
     label: '02 · Where',
     heading: 'Where it was built',
-    body: 'Twenty-four years, five employers, one continuous problem: how design holds together as everything around it multiplies.',
+    body: 'Twenty-four years, four employers, one continuous problem: how design holds together as everything around it multiplies.',
   },
   es: {
     label: '02 · Dónde',
     heading: 'Dónde se construyó',
-    body: 'Veinticuatro años, cinco empresas, un mismo problema de fondo: cómo mantener el diseño coherente mientras todo a su alrededor se multiplica.',
+    body: 'Veinticuatro años, cuatro empresas, un mismo problema de fondo: cómo mantener el diseño coherente mientras todo a su alrededor se multiplica.',
   },
 };
 
 /** The measured record, shown as a four-up row of figures. */
 /**
  * The measured record. Every figure here traces to a date or a claim already
- * on the page — the 2002 the dimension line starts at, the five employers the
+ * on the page — the 2002 the dimension line starts at, the four employers the
  * Where intro counts, the 2 → 8 in PT-04, the three countries in PT-02. None
  * of them is an estimate.
  */

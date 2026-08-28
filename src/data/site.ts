@@ -77,7 +77,7 @@ export const ui: L10n<Record<string, string>> = {
     langLabel: 'Idioma',
     dsLabel: 'A · Referencia',
     dsTitle: 'La librería de componentes',
-    dsBody: 'El sistema sobre el que está construido este site, dibujado dos veces: como diseño y como la especificación desde la que trabaja un equipo. Cada número es el número que pone el CSS, y el botón y la etiqueta son los componentes reales del site, no copias.',
+    dsBody: 'El sistema sobre el que está construido este site, dibujado dos veces: como diseño y como la especificación desde la que trabaja un equipo. Cada número es el número que pone el CSS, y el botón y la etiqueta son los componentes reales del site: el CTA de la cabecera y las etiquetas bajo el claim salen de estos mismos archivos.',
     contactLabel: '03 · Contacto',
     contactHeading: 'Empecemos una conversación',
     contactNote: 'Abierto a posiciones de liderazgo de diseño',
