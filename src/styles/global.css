@@ -342,7 +342,10 @@ a { color: inherit; text-decoration: none; }
   padding-inline: 10px;
   border: 1px solid var(--rule);
   border-radius: var(--r-pill);
-  background: transparent;
+  /* White ground, so a tag reads as a chip on the paper rather than a hole in
+     it. On the panel-coloured cells of the reference board it disappears into
+     the cell, which is the same result transparent gave there. */
+  background: var(--panel);
   font: inherit;
   font-size: 0.6875rem;
   font-weight: 500;

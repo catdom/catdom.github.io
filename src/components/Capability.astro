@@ -47,6 +47,8 @@ const i = strengthsIntro[lang];
      two neighbours never double the rule between them. */
   .parts { display: grid; gap: 0; }
 
+  /* The card is a panel, not an outline: white ground on the paper, its edges
+     on the rig lines and its content inset from them. */
   .part {
     display: grid;
     /* The text row takes the slack, so the outcome sits on the floor of every
@@ -54,7 +56,8 @@ const i = strengthsIntro[lang];
     grid-template-rows: auto auto 1fr auto;
     gap: 0.55rem;
     position: relative;
-    padding: clamp(1.35rem, 2.6vw, 1.9rem) var(--col-pad) clamp(1.5rem, 3vw, 2rem) 0;
+    background: var(--panel);
+    padding: clamp(1.35rem, 2.4vw, 1.75rem);
     box-shadow: inset 0 -1px 0 var(--rule);
   }
 
@@ -97,11 +100,31 @@ const i = strengthsIntro[lang];
 
   /* Hover is the only state a card has, and it stays inside the drawing: the
      rule under the value runs out and takes the mark's colour. */
+  /* Hover, on a card that is already white: the mark takes the card's left
+     edge and the rule under the outcome runs out. Nothing moves. */
+  .part::before {
+    content: '';
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 2px;
+    background: var(--mark);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--dur-fast) var(--ease);
+  }
+
   @media (hover: hover) and (pointer: fine) {
-    .part { transition: background-color var(--dur-fast) var(--ease); }
-    .part:hover { background: var(--panel); }
+    .part:hover::before { transform: none; }
     .part:hover .part__value::before { width: 100%; background: var(--mark); }
     .part:hover .part__value { color: var(--ink-2); }
+    .part:hover .part__title { color: var(--mark); }
+  }
+
+  /* Two lines are reserved for every title, so a name that wraps does not
+     push its description out of step with the cards beside it. */
+  .part__title {
+    min-height: 2.5em;
+    transition: color var(--dur-fast) var(--ease);
   }
 
 </style>
