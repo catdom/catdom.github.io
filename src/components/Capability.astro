@@ -34,9 +34,12 @@ const i = strengthsIntro[lang];
 <style>
   .cap { padding-block: var(--section-y); }
 
+  /* The rule the cards hang from is the same hairline that draws them, not the
+     heavier ink rule the other section heads use: it is the top edge of the
+     first row of boxes, so it has to match their other three sides. */
   .cap__head {
     padding-bottom: clamp(1.5rem, 3.5vw, 2.5rem);
-    border-bottom: 1px solid var(--ink);
+    border-bottom: 1px solid var(--rule);
   }
 
   .cap__note { margin-top: 0.75rem; max-width: 54ch; }
@@ -100,21 +103,12 @@ const i = strengthsIntro[lang];
 
   /* Hover is the only state a card has, and it stays inside the drawing: the
      rule under the value runs out and takes the mark's colour. */
-  /* Hover, on a card that is already white: the mark takes the card's left
-     edge and the rule under the outcome runs out. Nothing moves. */
-  .part::before {
-    content: '';
-    position: absolute;
-    inset: 0 auto 0 0;
-    width: 2px;
-    background: var(--mark);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform var(--dur-fast) var(--ease);
-  }
-
+  /* Hover, on a card that is already white: the mark takes all four edges and
+     the rule under the outcome runs out. Drawn as an inset ring, so the box
+     keeps its size and its neighbours do not move. */
   @media (hover: hover) and (pointer: fine) {
-    .part:hover::before { transform: none; }
+    .part { transition: box-shadow var(--dur-fast) var(--ease); }
+    .part:hover { box-shadow: inset 0 0 0 1px var(--mark); }
     .part:hover .part__value::before { width: 100%; background: var(--mark); }
     .part:hover .part__value { color: var(--ink-2); }
     .part:hover .part__title { color: var(--mark); }
