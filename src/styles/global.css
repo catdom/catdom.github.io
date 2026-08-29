@@ -38,11 +38,11 @@
     'Liberation Mono', Menlo, monospace;
 
   /* Every line of the headline — the stem as well as each rotating phrase —
-     has to hold one line at every width, and Spanish is the binding case:
-     measured largest size that holds is 10.6vw at 320px, rising to 11.5vw by
-     430px. The fluid term carries the headline, since a fixed floor would only
-     bind on phones, which is exactly where the longest line needs to shrink. */
-  --fs-display: clamp(1.85rem, 10.5vw, 8.5rem);
+     has to hold one line at every width, and Spanish is the binding case: the
+     largest size that holds is 10.6vw at 320px, rising to 11.5vw by 430px.
+     Set 20% under that ceiling, which gives the claim air on the fold and
+     leaves the one-line rule with room to spare at every width. */
+  --fs-display: clamp(1.48rem, 8.4vw, 6.8rem);
   --fs-h2: clamp(1.85rem, 4.6vw, 3.6rem);
   --fs-h3: clamp(1.15rem, 1.7vw, 1.5rem);
   --fs-row: clamp(1.3rem, 2.6vw, 2.25rem);
