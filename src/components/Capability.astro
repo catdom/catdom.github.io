@@ -38,6 +38,10 @@ const i = strengthsIntro[lang];
      ground, so only the head changes voice. White on the mark measures 7.6:1,
      and the note at 80% white still clears AA at 5.4:1. */
   .cap {
+    /* This section carries its own ground, so it lands flush with the top of
+       the screen: the blue is the clearance the bar needs, and the heading is
+       already a section's padding below it. */
+    scroll-margin-top: 0;
     padding-block: var(--section-y);
     background: var(--mark);
     color: #ffffff;

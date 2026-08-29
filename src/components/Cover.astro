@@ -63,13 +63,16 @@ const rollDelay = 120 + h.stem.length * 100;
 
 <style>
   /* The hero is sized on load so the brand strip below it lands on the fold;
-     the claim sits at the bottom of whatever height that turns out to be. */
+     the caption and the claim sit centred in whatever height that turns out
+     to be. The padding is equal top and bottom so the centring holds in the
+     border box too, and its floor — 96px — clears the fixed bar, which
+     measures 79px at its tallest. */
   .cover {
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    padding-block: clamp(7rem, 16vh, 11rem) clamp(2.5rem, 6vw, 4.5rem);
+    justify-content: center;
+    padding-block: clamp(6rem, 12vh, 8rem);
   }
 
   .cover__field {
