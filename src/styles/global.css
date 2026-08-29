@@ -74,7 +74,17 @@
   --track-meta: 0.08em;
 
   /* Space */
-  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+  /* The page's side margin, and with it the rig's, never narrower than the
+     display's own safe area: on a phone held sideways the notch eats one
+     edge, and taking the larger of the two keeps the grid symmetric rather
+     than shunting every column across. */
+  --gutter: max(
+    clamp(1.25rem, 4vw, 3.5rem),
+    env(safe-area-inset-left, 0px),
+    env(safe-area-inset-right, 0px)
+  );
+  /* Read from script, which cannot ask for an env() directly. */
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
   --maxw: 1440px;
   --section-y: clamp(3.5rem, 9vw, 7rem);
   --rail: clamp(6rem, 12vw, 13rem);

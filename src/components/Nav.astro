@@ -75,6 +75,10 @@ const href = (to: string) => (to.startsWith('#') ? to : `${langPrefix(lang)}${to
     backdrop-filter: blur(10px);
   }
 
+  /* The bar's ground runs up behind the status bar; its contents start below
+     it, so the clock and the camera never sit on the wordmark. */
+  .nav { padding-top: env(safe-area-inset-top, 0px); }
+
   .nav__inner {
     max-width: var(--maxw);
     margin-inline: auto;

@@ -46,7 +46,8 @@ const year = new Date().getFullYear();
      of metadata come over without being restyled. The mark is the lifted one
      — the site's own blue reads 2.5:1 here. */
   .foot {
-    padding-block: var(--section-y) clamp(2rem, 5vw, 3rem);
+    padding-block: var(--section-y)
+      calc(clamp(2rem, 5vw, 3rem) + env(safe-area-inset-bottom, 0px));
     background: var(--ground-dark);
     color: var(--on-dark);
 

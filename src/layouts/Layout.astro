@@ -35,7 +35,11 @@ const personLd = {
 <html lang={lang} class="no-js" data-theme={theme}>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- viewport-fit=cover lets the page fill the whole display on a notched
+         phone, so the ground behind the status bar is the section you are on
+         rather than a band of chrome. Everything that would otherwise land
+         under the notch or the home indicator is inset in CSS with env(). -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>{title}</title>
     <meta name="description" content={description} />
     {!site.indexable && <meta name="robots" content="noindex, nofollow" />}
@@ -59,7 +63,10 @@ const personLd = {
     <meta property="og:locale" content={lang === 'en' ? 'en_GB' : 'es_ES'} />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <meta name="theme-color" content="#f6f6f3" />
+    <!-- No theme-color: iOS paints the status bar with it and would hold the
+         page on paper the whole way down. Left off, Safari samples the page
+         itself, so the bar goes blue over the capability section and dark
+         over the footer. -->
 
     <script is:inline>
       document.documentElement.classList.remove('no-js');

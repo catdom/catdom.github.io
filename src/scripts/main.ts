@@ -272,7 +272,13 @@ const fitCover = () => {
     cover.style.minHeight = '';
     const vh = window.innerHeight;
     if (vh < 560) return;
-    const room = vh - belt.offsetHeight - STRIP;
+    /* With viewport-fit=cover the viewport runs to the bottom of the display,
+       so the home indicator would sit on the strip. Give it back its band. */
+    const safe =
+      parseFloat(
+        getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom'),
+      ) || 0;
+    const room = vh - safe - belt.offsetHeight - STRIP;
     // Never shorter than the claim itself needs.
     if (room > cover.offsetHeight * 0.6) cover.style.minHeight = `${room}px`;
   };
