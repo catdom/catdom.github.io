@@ -41,9 +41,25 @@ const year = new Date().getFullYear();
 </footer>
 
 <style>
-  .foot { padding-block: 0 clamp(2rem, 5vw, 3rem); }
+  /* The page closes on ink. Same trick as the figures above: the ground
+     redefines the tokens, so the ghost button, the hairlines and every line
+     of metadata come over without being restyled. The mark is the lifted one
+     — the site's own blue reads 2.5:1 here. */
+  .foot {
+    padding-block: var(--section-y) clamp(2rem, 5vw, 3rem);
+    background: var(--ground-dark);
+    color: var(--on-dark);
 
-  .foot__label { display: block; margin-top: clamp(4rem, 12vw, 8rem); }
+    --paper: var(--ground-dark);
+    --ink: var(--on-dark);
+    --ink-2: var(--on-dark-2);
+    --ink-3: var(--on-dark-2);
+    --rule: var(--rule-dark);
+    --rule-2: var(--rule-dark);
+    --mark: var(--mark-on-dark);
+  }
+
+  .foot__label { display: block; margin-top: 0; }
 
   .foot__cta {
     display: inline-flex;

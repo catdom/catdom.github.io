@@ -22,9 +22,23 @@ const { lang } = Astro.props;
 </section>
 
 <style>
-  .figs-wrap { padding-bottom: var(--section-y); }
+  /* The figures stand on the accent, between two sheets of paper. The
+     section redefines the tokens its contents read from rather than
+     restyling them one by one. */
+  .figs-wrap {
+    padding-block: var(--section-y);
+    background: var(--ground-mark);
+    color: var(--on-mark);
 
-  .figs__label { display: block; margin: clamp(2rem, 5vw, 3rem) 0 1rem; }
+    --ink: var(--on-mark);
+    --ink-2: var(--on-mark-2);
+    --ink-3: var(--on-mark-2);
+    --rule: var(--rule-mark);
+    --rule-2: var(--rule-mark);
+    --mark: var(--on-mark);
+  }
+
+  .figs__label { display: block; margin: 0 0 1rem; }
 
   /* Hairline cells: one background showing through 1px gaps, so the rules
      never double up where two cells meet. */
@@ -39,7 +53,7 @@ const { lang } = Astro.props;
   @media (min-width: 1000px) { .figs { grid-template-columns: repeat(4, 1fr); } }
 
   .fig {
-    background: var(--panel);
+    background: var(--ground-mark);
     padding: clamp(1.25rem, 2.5vw, 2rem);
     display: grid;
     gap: 0.4rem;
