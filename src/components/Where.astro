@@ -1,6 +1,6 @@
 ---
 import { careerIntro } from '../data/home';
-import { timeline } from '../data/timeline';
+import { timeline, yearsIn } from '../data/timeline';
 import { ui } from '../data/site';
 import { langPrefix, type Lang } from '../data/types';
 
@@ -28,7 +28,10 @@ const base = langPrefix(lang);
         return (
           <li class="role" data-reveal style={`--reveal-delay:${n * 60}ms`}>
             <Row class:list={['role__inner', 'rows', { 'is-link': href }]} href={href}>
-              <p class="meta role__yr">{entry.range}</p>
+              <div class="role__yr">
+                <p class="meta">{entry.range[lang]}</p>
+                <p class="meta role__len">{yearsIn(entry, lang)}</p>
+              </div>
               <div class="role__main">
                 <h3 class="role__co">{entry.company}</h3>
                 <p class="meta role__role">{entry.role[lang]}</p>
@@ -55,9 +58,10 @@ const base = langPrefix(lang);
 <style>
   .where { padding-block: var(--section-y); }
 
+  /* No rule of its own: the first card draws its own top edge a few pixels
+     below, and the two together read as one doubled line over Kleinanzeigen. */
   .where__head {
     padding-bottom: clamp(1.5rem, 3.5vw, 2.5rem);
-    border-bottom: 1px solid var(--rule);
   }
 
   .where__note { max-width: 52ch; }
@@ -104,7 +108,11 @@ const base = langPrefix(lang);
     .roles .role__inner:focus-visible { opacity: 1; }
   }
 
-  .role__yr { color: var(--ink-3); }
+  .role__yr { color: var(--ink-3); display: grid; gap: 4px; }
+
+  /* How long the role ran, under its dates. A step quieter than the years
+     themselves: it is the answer to a question the dates already ask. */
+  .role__len { color: var(--ink-3); opacity: 0.75; }
 
   .role__main { display: grid; gap: 0.3rem; }
 
@@ -115,7 +123,9 @@ const base = langPrefix(lang);
     font-weight: 500;
   }
 
-  .role__role { color: var(--ink-2); }
+  /* The job title speaks in the mark: on a card it is the one thing that
+     names what the role actually was. 7.0:1 on the card's white. */
+  .role__role { color: var(--mark); }
 
   .role__aside { display: grid; gap: 0; align-content: start; }
   .role__aside p { color: var(--ink-2); max-width: 80ch; }

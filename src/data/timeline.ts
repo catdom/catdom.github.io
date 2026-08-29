@@ -6,7 +6,11 @@ export type TimelineEntry = {
   role: L10n;
   period: L10n;
   /** Displayed in the left rail of the row. */
-  range: string;
+  range: L10n;
+  /** First and last month worked, ISO. A missing end means still there — the
+      row's duration is counted from today, so it never goes stale. */
+  start: string;
+  end?: string;
   location: L10n;
   /** A single synthesised paragraph for the right-hand column of the Where row. */
   summary: L10n;
@@ -20,7 +24,8 @@ export const timeline: TimelineEntry[] = [
     company: 'Kleinanzeigen',
     role: { en: 'Senior Product Design', es: 'Senior Product Design' },
     period: { en: 'Mar 2025 — Present', es: 'Mar 2025 — Actualidad' },
-    range: '2025 —',
+    range: { en: '2025 — Today', es: '2025 — Hoy' },
+    start: '2025-03',
     location: { en: 'Barcelona', es: 'Barcelona' },
     caseSlug: 'kleinanzeigen',
     summary: {
@@ -33,7 +38,9 @@ export const timeline: TimelineEntry[] = [
     company: 'Fotocasa & Habitaclia',
     role: { en: 'Design Ops & Systems', es: 'Design Ops & Systems' },
     period: { en: 'Nov 2021 — May 2025', es: 'Nov 2021 — May 2025' },
-    range: '2021 — 2025',
+    range: { en: '2021 — 2025', es: '2021 — 2025' },
+    start: '2021-11',
+    end: '2025-05',
     location: { en: 'Barcelona', es: 'Barcelona' },
     caseSlug: 'fotocasa',
     summary: {
@@ -46,7 +53,9 @@ export const timeline: TimelineEntry[] = [
     company: 'coches.net',
     role: { en: 'Head of User Experience', es: 'Head of User Experience' },
     period: { en: 'Jan 2016 — Nov 2021', es: 'Ene 2016 — Nov 2021' },
-    range: '2016 — 2021',
+    range: { en: '2016 — 2021', es: '2016 — 2021' },
+    start: '2016-01',
+    end: '2021-11',
     location: { en: 'Barcelona', es: 'Barcelona' },
     caseSlug: 'coches-net',
     summary: {
@@ -59,7 +68,9 @@ export const timeline: TimelineEntry[] = [
     company: 'coches.net',
     role: { en: 'UX & Web Development', es: 'UX y desarrollo web' },
     period: { en: 'Nov 2007 — Jan 2016', es: 'Nov 2007 — Ene 2016' },
-    range: '2007 — 2016',
+    range: { en: '2007 — 2016', es: '2007 — 2016' },
+    start: '2007-11',
+    end: '2016-01',
     location: { en: 'Barcelona', es: 'Barcelona' },
     summary: {
       en: 'UX and front-end in the same pair of hands, building UI components and frameworks that product teams kept using long after I had moved on.',
@@ -71,7 +82,9 @@ export const timeline: TimelineEntry[] = [
     company: 'Herraiz Soto — BMW',
     role: { en: 'Web Design & Development', es: 'Diseño y desarrollo web' },
     period: { en: 'Jan 2005 — Nov 2007', es: 'Ene 2005 — Nov 2007' },
-    range: '2005 — 2007',
+    range: { en: '2005 — 2007', es: '2005 — 2007' },
+    start: '2005-01',
+    end: '2007-11',
     location: { en: 'Barcelona', es: 'Barcelona' },
     caseSlug: 'bmw',
     summary: {
@@ -80,3 +93,19 @@ export const timeline: TimelineEntry[] = [
     },
   },
 ];
+
+/**
+ * Completed years in a role, for the line under its dates. Counted in whole
+ * months so a role that ran three years and eleven months does not claim four,
+ * and counted from today for the one still running.
+ */
+export const yearsIn = (entry: TimelineEntry, lang: 'en' | 'es'): string => {
+  const [sy, sm] = entry.start.split('-').map(Number);
+  const now = new Date();
+  const [ey, em] = entry.end
+    ? entry.end.split('-').map(Number)
+    : [now.getFullYear(), now.getMonth() + 1];
+  const years = Math.max(1, Math.floor(((ey - sy) * 12 + (em - sm)) / 12));
+  if (lang === 'es') return `${years} ${years === 1 ? 'año' : 'años'}`;
+  return `${years} ${years === 1 ? 'yr' : 'yrs'}`;
+};

@@ -88,12 +88,16 @@ const href = (to: string) => (to.startsWith('#') ? to : `${langPrefix(lang)}${to
     gap: 1.5rem;
   }
 
+  /* Set like a title rather than a logotype: the same face the headings use,
+     declared here rather than inherited, at their weight and their tracking.
+     One voice for everything the site says in DM Sans. */
   .mark {
     flex: none;
     display: block;
+    font-family: var(--font-sans);
     font-size: 1.15rem;
-    font-weight: 700;
-    letter-spacing: -0.03em;
+    font-weight: 500;
+    letter-spacing: var(--track-h2);
     line-height: 1;
   }
 
