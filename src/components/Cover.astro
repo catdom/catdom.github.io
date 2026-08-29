@@ -18,7 +18,8 @@ const rollDelay = 120 + h.stem.length * 100;
   <div class="shell">
     <p class="meta cover__eyebrow">{h.eyebrow}</p>
 
-    <h1 class="display cover__h1">
+    <div class="cover__claim">
+      <h1 class="display cover__h1">
       {h.stem.map((line, n) => (
         <span class="cover__line"><i style={`--d:${120 + n * 100}ms`}>{line}</i></span>
       ))}
@@ -35,15 +36,30 @@ const rollDelay = 120 + h.stem.length * 100;
           </span>
         </i>
       </span>
-    </h1>
+      </h1>
+
+      <!-- The one thing to do on this screen. It is a link, not a heading, so
+           it sits beside the claim rather than inside it. -->
+      <a class="btn btn--ghost cover__go" href="#where">
+        {h.scroll}
+        <svg viewBox="0 0 16 16" width="11" height="11" aria-hidden="true" focusable="false">
+          <path d="M8 3v10M8 13l-4-4M8 13l4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
 
 
   </div>
 </header>
 
 <style>
+  /* The hero is sized on load so the brand strip below it lands on the fold;
+     the claim sits at the bottom of whatever height that turns out to be. */
   .cover {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     padding-block: clamp(7rem, 16vh, 11rem) clamp(2.5rem, 6vw, 4.5rem);
   }
 
@@ -75,9 +91,26 @@ const rollDelay = 120 + h.stem.length * 100;
     animation: fade 700ms var(--ease) 60ms forwards;
   }
 
-  .cover__h1 {
+  /* The claim and the invitation share one row, with the link pinned to the
+     bottom of it so it lands beside the rotating line whatever it says. */
+  .cover__claim {
     display: grid;
+    gap: 1rem;
     margin-top: clamp(1rem, 2.5vw, 2rem);
+  }
+
+  .cover__h1 { display: grid; }
+
+  .cover__go { justify-self: start; }
+
+  @media (min-width: 900px) {
+    .cover__claim {
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: end;
+      column-gap: clamp(1.5rem, 4vw, 3rem);
+    }
+
+    .cover__go { justify-self: end; margin-bottom: 0.35em; }
   }
 
   /* Each line is a window; the text inside rises out of it on load.

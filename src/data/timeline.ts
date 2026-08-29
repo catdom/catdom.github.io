@@ -24,8 +24,8 @@ export const timeline: TimelineEntry[] = [
     location: { en: 'Barcelona', es: 'Barcelona' },
     caseSlug: 'kleinanzeigen',
     summary: {
-      en: 'End-to-end design on one of Europe\'s biggest classifieds marketplaces. The job is scale: keeping the busiest flows consistent, paying down design debt and getting teams to agree on the same thing.',
-      es: 'Diseño end-to-end en uno de los mayores marketplaces de clasificados de Europa. El trabajo aquí es la escala: mantener coherentes los flujos con más tráfico, bajar deuda de diseño y conseguir que los equipos se pongan de acuerdo.',
+      en: 'End-to-end design on one of Europe\u2019s biggest classifieds marketplaces, where the job is scale: consistent flows, less debt, teams agreeing.',
+      es: 'Dise\u00f1o end-to-end en uno de los mayores marketplaces de clasificados de Europa: flujos coherentes, menos deuda de dise\u00f1o y equipos de acuerdo.'
     },
   },
   {
@@ -37,8 +37,8 @@ export const timeline: TimelineEntry[] = [
     location: { en: 'Barcelona', es: 'Barcelona' },
     caseSlug: 'fotocasa',
     summary: {
-      en: 'I ran Design Operations across two marketplaces and built the multi-brand system their product teams still work in \u2014 tokens, documentation, governance \u2014 and got the leads in Spain, France and Germany onto one way of working without slowing any of them down.',
-      es: 'Llev\u00e9 Design Operations en dos marketplaces y constru\u00ed el sistema multimarca en el que sus equipos de producto siguen trabajando \u2014tokens, documentaci\u00f3n, gobernanza\u2014 y puse de acuerdo a los responsables de Espa\u00f1a, Francia y Alemania en una forma de trabajar sin frenar a ninguno.',
+      en: 'Design Operations across two marketplaces, and the multi-brand system their product teams still work in: tokens, documentation, governance.',
+      es: 'Design Operations en dos marketplaces y el sistema multimarca en el que sus equipos de producto siguen trabajando: tokens, documentaci\u00f3n y gobernanza.'
     },
   },
   {
@@ -50,8 +50,8 @@ export const timeline: TimelineEntry[] = [
     location: { en: 'Barcelona', es: 'Barcelona' },
     caseSlug: 'coches-net',
     summary: {
-      en: 'I led UX at one of Spain\u2019s biggest car marketplaces and grew the team from two designers to eight. Satisfaction stopped being a feeling: CSATs mapped to the key flows and folded into the company\u2019s OKRs.',
-      es: 'Lider\u00e9 UX en uno de los mayores marketplaces de automoci\u00f3n de Espa\u00f1a y llev\u00e9 el equipo de dos dise\u00f1adores a ocho. La satisfacci\u00f3n dej\u00f3 de ser una sensaci\u00f3n: CSATs mapeados a los flujos clave y metidos en los OKRs de compa\u00f1\u00eda.',
+      en: 'UX at one of Spain\u2019s biggest car marketplaces: a team from two designers to eight, and CSATs mapped to key flows and folded into OKRs.',
+      es: 'UX en uno de los mayores marketplaces de coches de Espa\u00f1a: el equipo de dos dise\u00f1adores a ocho y los CSATs metidos en los OKRs de la compa\u00f1\u00eda.'
     },
   },
   {
@@ -75,8 +75,8 @@ export const timeline: TimelineEntry[] = [
     location: { en: 'Barcelona', es: 'Barcelona' },
     caseSlug: 'bmw',
     summary: {
-      en: 'Layouts and site structures for BMW, one of the agency\u2019s biggest accounts, under brand standards that left no room to improvise \u2014 and always shoulder to shoulder with creatives, developers and the client.',
-      es: 'Layouts y estructuras de site para BMW, una de las cuentas grandes de la agencia, bajo unos est\u00e1ndares de marca que no dejaban margen para improvisar \u2014 y siempre codo con codo con creativos, desarrolladores y cliente.',
+      en: 'Layouts and site structures for BMW under brand standards with no room to improvise, alongside creatives, developers and the client.',
+      es: 'Layouts y estructuras de site para BMW bajo unos est\u00e1ndares de marca sin margen para improvisar, junto a creativos, desarrolladores y cliente.'
     },
   },
 ];

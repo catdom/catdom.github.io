@@ -17,6 +17,8 @@ export const hero: L10n<{
   rotating: string[];
   from: string;
   to: string;
+  /** The one thing to do on the first screen. */
+  scroll: string;
 }> = {
   en: {
     eyebrow: 'Jordi Catalán · Barcelona',
@@ -31,6 +33,7 @@ export const hero: L10n<{
     ],
     from: '2002',
     to: '2026',
+    scroll: 'See the work',
   },
   es: {
     eyebrow: 'Jordi Catalán · Barcelona',
@@ -45,6 +48,7 @@ export const hero: L10n<{
     ],
     from: '2002',
     to: '2026',
+    scroll: 'Ver el trabajo',
   },
 };
 

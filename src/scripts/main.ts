@@ -252,8 +252,45 @@ const rotatingHeadline = () => {
   window.setTimeout(start, 1400);
 };
 
+/* The brand strip lands on the fold.
+ *
+ * On load the hero is sized so the marquee sits at the bottom of the first
+ * screen with 24px to spare, and those 24px are the top of the section below —
+ * a band of the next colour, which is what tells you there is more page. It is
+ * not sticky: this only sets the hero's height, once, and again on resize.
+ *
+ * Below 560px of viewport there is not enough room to do this without squeezing
+ * the claim, so the hero keeps its natural height instead. */
+const fitCover = () => {
+  const cover = document.querySelector<HTMLElement>('.cover');
+  const belt = document.querySelector<HTMLElement>('.belt');
+  if (!cover || !belt) return;
+
+  const STRIP = 24;
+
+  const fit = () => {
+    cover.style.minHeight = '';
+    const vh = window.innerHeight;
+    if (vh < 560) return;
+    const room = vh - belt.offsetHeight - STRIP;
+    // Never shorter than the claim itself needs.
+    if (room > cover.offsetHeight * 0.6) cover.style.minHeight = `${room}px`;
+  };
+
+  fit();
+  // Web fonts change the claim's height, so measure again once they land.
+  if (document.fonts?.ready) document.fonts.ready.then(fit);
+
+  let frame: number | undefined;
+  window.addEventListener('resize', () => {
+    if (frame) cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(fit);
+  });
+};
+
 reveal();
 headerBand();
 smoothScroll();
 rotatingHeadline();
 heroField();
+fitCover();
