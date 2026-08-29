@@ -1,0 +1,352 @@
+<meta charset="utf-8">
+<title>The Caption Gets a Face</title>
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap">
+
+<style>
+  /* ---------------------------------------------------------------------
+     Four ways to set "Jordi Catalán · Barcelona" on two lines with a mark
+     to its left, shown at the size and on the ground the hero actually
+     uses, so the judgement is the real one.
+
+     Palette and faces are the site's own, unchanged.
+  --------------------------------------------------------------------- */
+  :root {
+    --paper: #f6f6f3;
+    --panel: #fffffd;
+    --rule: #dcdbd3;
+    --rule-2: #e9e8e1;
+    --ink: #100f0d;
+    --ink-2: #55534c;
+    --ink-3: #6f6d66;
+    --mark: #1f3fd8;
+
+    --font-sans: 'DM Sans', ui-sans-serif, 'Helvetica Neue', Arial, sans-serif;
+    --font-body: 'Geist', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-mono: 'Geist Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+    --track-meta: 0.08em;
+    --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .shell {
+    width: min(100% - 3rem, 1180px);
+    margin-inline: auto;
+  }
+
+  .meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: var(--track-meta);
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 0;
+  }
+
+  /* --- Page head ---------------------------------------------------- */
+  .top { padding-block: clamp(3rem, 8vw, 5.5rem) clamp(2rem, 4vw, 3rem); }
+  .top h1 {
+    font-family: var(--font-sans);
+    font-size: clamp(1.9rem, 4.4vw, 3.1rem);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    margin: 0.9rem 0 0;
+    text-wrap: balance;
+    max-width: 20ch;
+  }
+  .top p {
+    max-width: 62ch;
+    color: var(--ink-2);
+    margin: 1.1rem 0 0;
+  }
+  .top .rule {
+    height: 1px;
+    background: var(--mark);
+    margin-top: 24px;
+    width: 100%;
+    max-width: 20ch;
+  }
+
+  /* --- One option --------------------------------------------------- */
+  .opt { border-top: 1px solid var(--rule); padding-block: clamp(2.5rem, 5vw, 4rem); }
+  .opt__head { display: flex; flex-wrap: wrap; gap: 0.4rem 1.5rem; align-items: baseline; }
+  .opt__name {
+    font-family: var(--font-sans);
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+  .opt__note { max-width: 58ch; color: var(--ink-2); margin: 0.6rem 0 0; }
+
+  /* The stage reproduces the hero: same paper, same left edge, the claim
+     set under the caption so the caption is judged against it. */
+  .stage {
+    margin-top: 1.8rem;
+    background: var(--paper);
+    border: 1px solid var(--rule-2);
+    padding: clamp(1.6rem, 3.5vw, 2.75rem);
+    overflow: hidden;
+  }
+
+  .claim {
+    font-family: var(--font-sans);
+    font-size: clamp(1.6rem, 5.2vw, 3.4rem);
+    line-height: 0.94;
+    letter-spacing: -0.035em;
+    font-weight: 500;
+    margin: clamp(0.9rem, 2vw, 1.4rem) 0 0;
+    max-width: 14ch;
+  }
+  .claim em { font-style: normal; color: var(--mark); }
+
+  /* --- The caption, shared skeleton --------------------------------- */
+  .cap {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  .cap__lines { display: grid; }
+  .cap__l1 {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: var(--track-meta);
+    text-transform: uppercase;
+    color: var(--ink);
+    line-height: 1.45;
+  }
+  .cap__l2 {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: var(--track-meta);
+    text-transform: uppercase;
+    color: var(--ink-3);
+    line-height: 1.45;
+  }
+
+  /* The mark itself. No photograph exists in the repo, so each option
+     draws one from something the site already owns. */
+  .avatar {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+  }
+
+  /* A — the account row: a round monogram in the mark. */
+  .a-round { border-radius: 999px; background: var(--mark); color: #fff; }
+
+  /* B — the spec sheet: a square plate, hairline, monogram in the mark. */
+  .b-plate {
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    color: var(--mark);
+    border-radius: 0;
+  }
+
+  /* C — the stamp: the favicon's triangle, which is already the mark. */
+  .c-mark { background: none; }
+  .c-mark svg { display: block; }
+
+  /* D — the photo slot: a real portrait, shown here as the frame it
+     would arrive in, cropped square with a hairline. */
+  .d-photo {
+    width: 44px; height: 44px;
+    border-radius: 999px;
+    border: 1px solid var(--rule);
+    background:
+      radial-gradient(120% 120% at 30% 20%, #e7e9f7 0%, #cfd4ef 45%, #b9c0e6 100%);
+    position: relative;
+    overflow: hidden;
+    color: var(--ink-3);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: var(--track-meta);
+  }
+
+  /* Option A also gets the online dot, since that is the app convention
+     being borrowed. Kept as an availability signal, not decoration. */
+  .cap--a .avatar { position: relative; }
+  .cap--a .avatar::after {
+    content: '';
+    position: absolute;
+    right: -1px; bottom: -1px;
+    width: 10px; height: 10px;
+    border-radius: 999px;
+    background: #1fa971;
+    box-shadow: 0 0 0 2.5px var(--paper);
+  }
+
+  /* Option B sets the two lines against a rule instead of a plate edge. */
+  .cap--b .cap__lines { padding-left: 0.85rem; border-left: 1px solid var(--rule); }
+
+  .verdict {
+    border-top: 1px solid var(--rule);
+    padding-block: clamp(2.5rem, 5vw, 4rem) clamp(4rem, 8vw, 6rem);
+  }
+  .verdict h2 {
+    font-family: var(--font-sans);
+    font-size: 1.5rem;
+    letter-spacing: -0.015em;
+    margin: 0.9rem 0 0;
+  }
+  .verdict p { max-width: 62ch; color: var(--ink-2); }
+  .verdict strong { color: var(--ink); font-weight: 600; }
+</style>
+
+<div class="shell">
+  <header class="top">
+    <p class="meta">Proposal · Hero caption</p>
+    <h1>The caption gets a face</h1>
+    <div class="rule"></div>
+    <p>
+      Today the hero opens with one mono line: <em>Jordi Catalán · Barcelona</em>.
+      Splitting it in two puts the name on its own line and turns the city into
+      what it actually is — a second-order fact — and a mark to the left gives the
+      pair something to sit against. Four ways to draw that mark, each on the
+      hero's own ground with the claim underneath, since the caption is only ever
+      read against it.
+    </p>
+    <p>
+      There is no photograph in the repository, so three of these draw the mark
+      from something the site already owns. The fourth is the slot a real
+      portrait would drop into.
+    </p>
+  </header>
+
+  <section class="opt">
+    <div class="opt__head">
+      <p class="meta">Option A</p>
+      <h2 class="opt__name">The account row</h2>
+    </div>
+    <p class="opt__note">
+      The convention borrowed straight: a round monogram in the accent, a green
+      dot for availability. Most familiar, and the least like the rest of the
+      page — nothing else here is a circle, and nothing else is filled.
+    </p>
+    <div class="stage">
+      <div class="cap cap--a">
+        <div class="avatar a-round">JC</div>
+        <div class="cap__lines">
+          <span class="cap__l1">Jordi Catalán</span>
+          <span class="cap__l2">Barcelona · Open to lead roles</span>
+        </div>
+      </div>
+      <p class="claim">Design leadership focused on <em>UX strategy.</em></p>
+    </div>
+  </section>
+
+  <section class="opt">
+    <div class="opt__head">
+      <p class="meta">Option B</p>
+      <h2 class="opt__name">The title block</h2>
+    </div>
+    <p class="opt__note">
+      What a drawing does: a square plate with a hairline, the initials in the
+      accent, and the two lines held off it by a rule. Square corners, one
+      hairline, no fill — the same vocabulary as every card on the page.
+    </p>
+    <div class="stage">
+      <div class="cap cap--b">
+        <div class="avatar b-plate">JC</div>
+        <div class="cap__lines">
+          <span class="cap__l1">Jordi Catalán</span>
+          <span class="cap__l2">Head of UX &amp; Design Ops · Barcelona</span>
+        </div>
+      </div>
+      <p class="claim">Design leadership focused on <em>UX strategy.</em></p>
+    </div>
+  </section>
+
+  <section class="opt">
+    <div class="opt__head">
+      <p class="meta">Option C</p>
+      <h2 class="opt__name">The stamp</h2>
+    </div>
+    <p class="opt__note">
+      The favicon's triangle, at caption size. No plate, no initials — the mark
+      the tab already shows, used once more where it means "this is mine". The
+      quietest of the four, and the only one that adds no new shape.
+    </p>
+    <div class="stage">
+      <div class="cap">
+        <div class="avatar c-mark">
+          <svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true">
+            <path d="M16 9 25 23 7 23Z" fill="#1f3fd8" stroke="#1f3fd8" stroke-width="4" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="cap__lines">
+          <span class="cap__l1">Jordi Catalán</span>
+          <span class="cap__l2">Barcelona · 2002 — 2026</span>
+        </div>
+      </div>
+      <p class="claim">Design leadership focused on <em>UX strategy.</em></p>
+    </div>
+  </section>
+
+  <section class="opt">
+    <div class="opt__head">
+      <p class="meta">Option D</p>
+      <h2 class="opt__name">The portrait slot</h2>
+    </div>
+    <p class="opt__note">
+      The same row, sized for a real photograph — 44px, square-cropped, one
+      hairline so it does not float. A face is the one thing on this page a
+      recruiter cannot get from the copy, and it is the strongest of the four
+      the moment a photo exists. The grey disc below is a placeholder, not a
+      proposal.
+    </p>
+    <div class="stage">
+      <div class="cap">
+        <div class="avatar d-photo">PHOTO</div>
+        <div class="cap__lines">
+          <span class="cap__l1">Jordi Catalán</span>
+          <span class="cap__l2">Head of UX &amp; Design Ops · Barcelona</span>
+        </div>
+      </div>
+      <p class="claim">Design leadership focused on <em>UX strategy.</em></p>
+    </div>
+  </section>
+
+  <section class="verdict">
+    <p class="meta">What I would ship</p>
+    <h2>B now, D the day there is a photo</h2>
+    <p>
+      <strong>B</strong> is the one that belongs to this site. Every other block
+      on the page is a square with one hairline and no fill; a round filled
+      avatar with a status dot is a different design language wearing the same
+      palette, and it will read as borrowed. B says the same thing — this is a
+      person, here is where they are — in the vocabulary the page already speaks,
+      and it earns the second line by putting the job title there rather than
+      repeating the city.
+    </p>
+    <p>
+      <strong>D</strong> beats all three the moment a portrait exists, and I would
+      keep B's frame for it: square-cropped, one hairline, same 44px. Send a
+      photo and it is a ten-minute change.
+    </p>
+    <p>
+      One caution on <strong>A</strong>: the green dot is a claim about
+      availability that nothing else on the site backs up, and a status light
+      that is always on stops meaning anything. If availability is worth saying,
+      the footer already says it in words.
+    </p>
+  </section>
+</div>

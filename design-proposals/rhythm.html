@@ -1,0 +1,356 @@
+<meta charset="utf-8">
+<title>Light, Dark, Repeat</title>
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap">
+
+<style>
+  /* ---------------------------------------------------------------------
+     Three ways to alternate the page's grounds, side by side at a size you
+     can actually judge. Each strip is the same five sections in the same
+     order — hero, capability, where, numbers, footer — with only the ground
+     of each one changed.
+
+     The site's real palette, unchanged: paper, ink, one mark.
+  --------------------------------------------------------------------- */
+  :root {
+    --paper: #f6f6f3;
+    --panel: #fffffd;
+    --rule: #dcdbd3;
+    --rule-2: #e9e8e1;
+    --ink: #100f0d;
+    --ink-2: #55534c;
+    --ink-3: #6f6d66;
+    --mark: #1f3fd8;
+
+    /* The dark ground is the ink, lifted just enough not to read as pure
+       black on a screen that is already showing near-black type elsewhere. */
+    --dark: #14130f;
+    --on-dark: #f6f6f3;
+    --on-dark-2: rgba(246, 246, 243, 0.68);
+    --rule-dark: rgba(246, 246, 243, 0.16);
+    --mark-on-dark: #7d92f0;
+
+    --on-mark: #ffffff;
+    --on-mark-2: rgba(255, 255, 255, 0.8);
+    --rule-mark: rgba(255, 255, 255, 0.28);
+
+    --sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+    --body: 'Geist', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --mono: 'Geist Mono', ui-monospace, 'SF Mono', Consolas, Menlo, monospace;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  * { box-sizing: border-box; margin: 0; }
+
+  body {
+    background: #e9e8e1;
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* --- Page chrome ------------------------------------------------------- */
+
+  .page { max-width: 1360px; margin-inline: auto; padding: 32px 24px 64px; }
+
+  .lede { display: grid; gap: 14px; padding: 24px 0 40px; max-width: 62ch; }
+  .lede h1 { font-family: var(--sans); font-size: 30px; font-weight: 500; letter-spacing: -0.03em; }
+  .lede p { color: var(--ink-2); }
+  .lede .meta { color: var(--mark); }
+
+  .options { display: grid; gap: 40px; }
+
+  @media (min-width: 1080px) {
+    .options { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+  }
+
+  .option { display: grid; gap: 14px; align-content: start; }
+
+  .option__head { display: grid; gap: 6px; }
+  .option__head b { font-family: var(--sans); font-size: 17px; font-weight: 500; letter-spacing: -0.02em; }
+  .option__head span { font-size: 13.5px; color: var(--ink-2); line-height: 1.5; }
+  .option__head .meta { color: var(--mark); }
+
+  /* The specimen: a whole page at a twelfth of the type size, so what you are
+     judging is the rhythm of the grounds and nothing else. */
+  .strip {
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    overflow: hidden;
+  }
+
+  .sec { padding: 22px 18px; }
+  .sec + .sec { border-top: 1px solid transparent; }
+
+  .sec__label { font-family: var(--mono); font-size: 8px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .sec__title { font-family: var(--sans); font-weight: 500; letter-spacing: -0.03em; line-height: 1.05; margin-top: 6px; }
+  .sec__note { font-size: 9px; line-height: 1.5; margin-top: 6px; max-width: 34ch; }
+
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-top: 14px; }
+  .card { background: var(--panel); padding: 10px; display: grid; gap: 5px; }
+  .card i { display: block; width: 12px; height: 12px; background: var(--mark); }
+  .card b { font-family: var(--sans); font-size: 10px; font-weight: 700; }
+  .card span { font-size: 8px; color: var(--ink-2); line-height: 1.45; }
+
+  .rows { display: grid; gap: 6px; margin-top: 14px; }
+  .row { display: grid; grid-template-columns: 34px 1fr 1fr; gap: 8px; align-items: baseline; padding: 8px 10px; }
+  .row .yr { font-family: var(--mono); font-size: 7.5px; }
+  .row .co { font-family: var(--sans); font-size: 12px; font-weight: 500; letter-spacing: -0.03em; }
+  .row .de { font-size: 8px; line-height: 1.5; }
+
+  .figs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin-top: 14px; }
+  .fig { padding: 10px; display: grid; gap: 3px; }
+  .fig b { font-family: var(--sans); font-size: 18px; font-weight: 500; letter-spacing: -0.03em; }
+  .fig span { font-family: var(--mono); font-size: 7px; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  .belt {
+    display: flex;
+    gap: 14px;
+    padding: 8px 18px;
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: -0.02em;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .foot { display: grid; gap: 10px; }
+  .foot .cta { font-family: var(--sans); font-size: 26px; font-weight: 500; letter-spacing: -0.04em; }
+  .foot .base { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 7.5px; letter-spacing: 0.08em; text-transform: uppercase; padding-top: 10px; }
+
+  /* --- The three grounds ------------------------------------------------- */
+
+  .g-light { background: var(--paper); color: var(--ink); }
+  .g-light .sec__label { color: var(--mark); }
+  .g-light .sec__note, .g-light .row .de, .g-light .row .yr { color: var(--ink-2); }
+  .g-light .fig span { color: var(--ink-3); }
+  .g-light .row { background: var(--panel); border: 1px solid var(--rule-2); }
+  .g-light .figs { background: var(--rule); }
+  .g-light .fig { background: var(--panel); }
+  .g-light .belt { border-block: 1px solid var(--rule); }
+  .g-light .base { border-top: 1px solid var(--rule-2); color: var(--ink-3); }
+
+  .g-mark { background: var(--mark); color: var(--on-mark); }
+  .g-mark .sec__label { color: var(--on-mark-2); }
+  .g-mark .sec__note { color: var(--on-mark-2); }
+  .g-mark .cards { background: var(--rule-mark); }
+  .g-mark .row { background: var(--panel); border: 1px solid transparent; color: var(--ink); }
+  .g-mark .row .de, .g-mark .row .yr { color: var(--ink-2); }
+  .g-mark .figs { background: var(--rule-mark); }
+  .g-mark .fig { background: transparent; }
+  .g-mark .fig span { color: var(--on-mark-2); }
+  .g-mark .belt { border-block: 1px solid var(--rule-mark); }
+  .g-mark .base { border-top: 1px solid var(--rule-mark); color: var(--on-mark-2); }
+
+  .g-dark { background: var(--dark); color: var(--on-dark); }
+  .g-dark .sec__label { color: var(--mark-on-dark); }
+  .g-dark .sec__note, .g-dark .row .de, .g-dark .row .yr { color: var(--on-dark-2); }
+  .g-dark .cards { background: var(--rule-dark); }
+  .g-dark .card { background: #1c1a16; color: var(--on-dark); }
+  .g-dark .card span { color: var(--on-dark-2); }
+  .g-dark .card i { background: var(--mark-on-dark); }
+  .g-dark .row { background: #1c1a16; border: 1px solid var(--rule-dark); }
+  .g-dark .figs { background: var(--rule-dark); }
+  .g-dark .fig { background: var(--dark); }
+  .g-dark .fig span { color: var(--on-dark-2); }
+  .g-dark .belt { border-block: 1px solid var(--rule-dark); }
+  .g-dark .base { border-top: 1px solid var(--rule-dark); color: var(--on-dark-2); }
+
+  .note {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+    display: grid;
+    gap: 12px;
+    max-width: 74ch;
+  }
+
+  .note h2 { font-family: var(--sans); font-size: 19px; font-weight: 500; letter-spacing: -0.02em; }
+  .note p, .note li { color: var(--ink-2); }
+  .note ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 8px; }
+  .note b { color: var(--ink); font-weight: 500; }
+</style>
+
+<div class="page">
+  <div class="lede">
+    <p class="meta">Grounds · three options</p>
+    <h1>Light, dark, repeat</h1>
+    <p>The same five sections three times over, with only the ground of each one changed. The footer counts as a section, which is what makes the count odd and forces a choice: either the page ends dark, or the alternation breaks somewhere on purpose.</p>
+  </div>
+
+  <div class="options">
+    <!-- A ------------------------------------------------------------- -->
+    <section class="option">
+      <div class="option__head">
+        <p class="meta">Option A</p>
+        <b>Paper · accent · paper · accent · dark</b>
+        <span>What the site does today, carried through: the blue plates alternate with paper and the footer closes on ink. Three grounds, so nothing repeats twice in a row.</span>
+      </div>
+
+      <div class="strip">
+        <div class="sec g-light">
+          <p class="sec__label">Jordi Catalán · Barcelona</p>
+          <p class="sec__title" style="font-size:26px">Design leadership<br>focused on <span style="color:var(--mark)">UX strategy.</span></p>
+        </div>
+        <div class="belt g-light"><span>Kleinanzeigen</span><span>·</span><span>Fotocasa</span><span>·</span><span>coches.net</span><span>·</span><span>BMW</span></div>
+        <div class="sec g-mark">
+          <p class="sec__label">01 · Capability</p>
+          <p class="sec__title" style="font-size:17px">Four disciplines I lead</p>
+          <p class="sec__note">None of them is a deliverable.</p>
+          <div class="cards">
+            <div class="card"><i></i><b>UX Strategy</b><span>Research into a direction.</span></div>
+            <div class="card"><i></i><b>Design Operations</b><span>Friction out of the middle.</span></div>
+            <div class="card"><i></i><b>Design Systems</b><span>Parts teams adopt.</span></div>
+            <div class="card"><i></i><b>Team Leadership</b><span>Two designers to eight.</span></div>
+          </div>
+        </div>
+        <div class="sec g-light">
+          <p class="sec__label">02 · Where</p>
+          <p class="sec__title" style="font-size:17px">Where it all got built</p>
+          <div class="rows">
+            <div class="row"><span class="yr">2025 —</span><span class="co">Kleinanzeigen</span><span class="de">End-to-end design at scale.</span></div>
+            <div class="row"><span class="yr">2021—25</span><span class="co">Fotocasa</span><span class="de">Design Ops and the system.</span></div>
+            <div class="row"><span class="yr">2016—21</span><span class="co">coches.net</span><span class="de">UX, two designers to eight.</span></div>
+          </div>
+        </div>
+        <div class="sec g-mark">
+          <p class="sec__label">The short version, in numbers</p>
+          <div class="figs">
+            <div class="fig"><b>24</b><span>Years</span></div>
+            <div class="fig"><b>19</b><span>In marketplaces</span></div>
+            <div class="fig"><b>×4</b><span>The team</span></div>
+            <div class="fig"><b>3</b><span>Countries</span></div>
+          </div>
+        </div>
+        <div class="sec g-dark foot">
+          <p class="sec__label">03 · Contact</p>
+          <p class="cta">Work together ↗</p>
+          <div class="base"><span>LinkedIn</span><span>© 2026 Jordi Catalán</span><span>Back to top</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- B ------------------------------------------------------------- -->
+    <section class="option">
+      <div class="option__head">
+        <p class="meta">Option B</p>
+        <b>Paper · dark · paper · dark · paper</b>
+        <span>Strict alternation, ink as the second ground and the accent kept for type and marks only. The page opens and closes on paper, and the blue stays scarce enough to still mean something.</span>
+      </div>
+
+      <div class="strip">
+        <div class="sec g-light">
+          <p class="sec__label">Jordi Catalán · Barcelona</p>
+          <p class="sec__title" style="font-size:26px">Design leadership<br>focused on <span style="color:var(--mark)">UX strategy.</span></p>
+        </div>
+        <div class="belt g-light"><span>Kleinanzeigen</span><span>·</span><span>Fotocasa</span><span>·</span><span>coches.net</span><span>·</span><span>BMW</span></div>
+        <div class="sec g-dark">
+          <p class="sec__label">01 · Capability</p>
+          <p class="sec__title" style="font-size:17px">Four disciplines I lead</p>
+          <p class="sec__note">None of them is a deliverable.</p>
+          <div class="cards">
+            <div class="card"><i></i><b>UX Strategy</b><span>Research into a direction.</span></div>
+            <div class="card"><i></i><b>Design Operations</b><span>Friction out of the middle.</span></div>
+            <div class="card"><i></i><b>Design Systems</b><span>Parts teams adopt.</span></div>
+            <div class="card"><i></i><b>Team Leadership</b><span>Two designers to eight.</span></div>
+          </div>
+        </div>
+        <div class="sec g-light">
+          <p class="sec__label">02 · Where</p>
+          <p class="sec__title" style="font-size:17px">Where it all got built</p>
+          <div class="rows">
+            <div class="row"><span class="yr">2025 —</span><span class="co">Kleinanzeigen</span><span class="de">End-to-end design at scale.</span></div>
+            <div class="row"><span class="yr">2021—25</span><span class="co">Fotocasa</span><span class="de">Design Ops and the system.</span></div>
+            <div class="row"><span class="yr">2016—21</span><span class="co">coches.net</span><span class="de">UX, two designers to eight.</span></div>
+          </div>
+        </div>
+        <div class="sec g-dark">
+          <p class="sec__label">The short version, in numbers</p>
+          <div class="figs">
+            <div class="fig"><b>24</b><span>Years</span></div>
+            <div class="fig"><b>19</b><span>In marketplaces</span></div>
+            <div class="fig"><b>×4</b><span>The team</span></div>
+            <div class="fig"><b>3</b><span>Countries</span></div>
+          </div>
+        </div>
+        <div class="sec g-light foot">
+          <p class="sec__label">03 · Contact</p>
+          <p class="cta" style="color:var(--ink)">Work together ↗</p>
+          <div class="base"><span>LinkedIn</span><span>© 2026 Jordi Catalán</span><span>Back to top</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- C ------------------------------------------------------------- -->
+    <section class="option">
+      <div class="option__head">
+        <p class="meta">Option C</p>
+        <b>Paper · accent · dark · accent · dark</b>
+        <span>The page darkens as it goes: paper for the claim, then the grounds take over, and the last third never returns to light. The strongest reading, and the one that commits.</span>
+      </div>
+
+      <div class="strip">
+        <div class="sec g-light">
+          <p class="sec__label">Jordi Catalán · Barcelona</p>
+          <p class="sec__title" style="font-size:26px">Design leadership<br>focused on <span style="color:var(--mark)">UX strategy.</span></p>
+        </div>
+        <div class="belt g-light"><span>Kleinanzeigen</span><span>·</span><span>Fotocasa</span><span>·</span><span>coches.net</span><span>·</span><span>BMW</span></div>
+        <div class="sec g-mark">
+          <p class="sec__label">01 · Capability</p>
+          <p class="sec__title" style="font-size:17px">Four disciplines I lead</p>
+          <p class="sec__note">None of them is a deliverable.</p>
+          <div class="cards">
+            <div class="card"><i></i><b>UX Strategy</b><span>Research into a direction.</span></div>
+            <div class="card"><i></i><b>Design Operations</b><span>Friction out of the middle.</span></div>
+            <div class="card"><i></i><b>Design Systems</b><span>Parts teams adopt.</span></div>
+            <div class="card"><i></i><b>Team Leadership</b><span>Two designers to eight.</span></div>
+          </div>
+        </div>
+        <div class="sec g-dark">
+          <p class="sec__label">02 · Where</p>
+          <p class="sec__title" style="font-size:17px">Where it all got built</p>
+          <div class="rows">
+            <div class="row"><span class="yr">2025 —</span><span class="co">Kleinanzeigen</span><span class="de">End-to-end design at scale.</span></div>
+            <div class="row"><span class="yr">2021—25</span><span class="co">Fotocasa</span><span class="de">Design Ops and the system.</span></div>
+            <div class="row"><span class="yr">2016—21</span><span class="co">coches.net</span><span class="de">UX, two designers to eight.</span></div>
+          </div>
+        </div>
+        <div class="sec g-mark">
+          <p class="sec__label">The short version, in numbers</p>
+          <div class="figs">
+            <div class="fig"><b>24</b><span>Years</span></div>
+            <div class="fig"><b>19</b><span>In marketplaces</span></div>
+            <div class="fig"><b>×4</b><span>The team</span></div>
+            <div class="fig"><b>3</b><span>Countries</span></div>
+          </div>
+        </div>
+        <div class="sec g-dark foot">
+          <p class="sec__label">03 · Contact</p>
+          <p class="cta">Work together ↗</p>
+          <div class="base"><span>LinkedIn</span><span>© 2026 Jordi Catalán</span><span>Back to top</span></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="note">
+    <h2>What actually changes, beyond the colour</h2>
+    <ul>
+      <li><b>The cards have to pick a side.</b> On the accent they stay white and keep their own ink, which is what the site does now. On ink they have to become dark panels — a white card on a dark ground reads as a hole, and four of them read as a lightbox.</li>
+      <li><b>The blue stops being loud on ink.</b> #1f3fd8 on #14130f is 2.4:1 — unreadable as text. On a dark ground the accent has to lift to something like #7d92f0 (7.1:1), which is a second accent to maintain. Option B pays that cost once; Option C pays it on every dark section.</li>
+      <li><b>Five sections, two grounds, no clean alternation.</b> Whatever you pick, one boundary repeats or the page ends where it started. A is the safest, B is the most disciplined, C is the one with a point of view.</li>
+      <li><b>The 24px strip under the marquee gets more interesting.</b> It shows the next section's ground, so on B and C it is the moment the page goes dark — visible before you scroll into it.</li>
+    </ul>
+  </div>
+</div>
