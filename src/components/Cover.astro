@@ -16,7 +16,16 @@ const rollDelay = 120 + h.stem.length * 100;
   <canvas class="cover__field" data-field aria-hidden="true"></canvas>
 
   <div class="shell">
-    <p class="meta cover__eyebrow">{h.eyebrow}</p>
+    <!-- Who, then where, with a mark to the left: the row an app puts an
+         account in. The initials are decoration — the name is written out
+         beside them — so the disc stays out of the accessibility tree. -->
+    <div class="cover__who">
+      <span class="cover__avatar" aria-hidden="true">{h.initials}</span>
+      <span class="cover__lines">
+        <span class="meta cover__name">{h.name}</span>
+        <span class="meta cover__place">{h.place}</span>
+      </span>
+    </div>
 
     <div class="cover__claim">
       <h1 class="display cover__h1">
@@ -40,7 +49,7 @@ const rollDelay = 120 + h.stem.length * 100;
 
       <!-- The one thing to do on this screen. It is a link, not a heading, so
            it sits beside the claim rather than inside it. -->
-      <a class="btn btn--ghost cover__go" href="#where">
+      <a class="btn btn--ghost cover__go" href="#capability">
         {h.scroll}
         <svg viewBox="0 0 16 16" width="11" height="11" aria-hidden="true" focusable="false">
           <path d="M8 3v10M8 13l-4-4M8 13l4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
@@ -85,11 +94,49 @@ const rollDelay = 120 + h.stem.length * 100;
   /* The claim sits over the figure, never under it. */
   .cover > .shell { position: relative; z-index: 1; }
 
-  .cover__eyebrow {
-    display: block;
+  .cover__who {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
     opacity: 0;
     animation: fade 700ms var(--ease) 60ms forwards;
   }
+
+  /* 38px is the smallest disc that still holds two letters legibly at the
+     caption's weight. White on the mark measures 7.6:1. */
+  .cover__avatar {
+    flex: none;
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 999px;
+    background: var(--mark);
+    color: #ffffff;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  /* The availability light, set on the paper so it reads as an inlay rather
+     than a sticker. */
+  .cover__avatar::after {
+    content: '';
+    position: absolute;
+    right: -1px;
+    bottom: -1px;
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: #1fa971;
+    box-shadow: 0 0 0 2.5px var(--paper);
+  }
+
+  .cover__lines { display: grid; }
+  .cover__name { color: var(--ink); line-height: 1.45; }
+  .cover__place { color: var(--ink-3); line-height: 1.45; }
 
   /* The claim and the invitation share one row, with the link pinned to the
      bottom of it so it lands beside the rotating line whatever it says. */
@@ -170,7 +217,7 @@ const rollDelay = 120 + h.stem.length * 100;
 
   /* Reduced motion: everything is simply already in place. */
   @media (prefers-reduced-motion: reduce) {
-    .cover__eyebrow { opacity: 1; animation: none; }
+    .cover__who { opacity: 1; animation: none; }
     .cover__line i { transform: none; animation: none; }
     /* The rotation is stopped in script too; this keeps the first phrase
        placed rather than transitioned into place. */

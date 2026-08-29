@@ -11,7 +11,6 @@ import type { L10n } from './types';
  * beside the shorter ones.
  */
 export const hero: L10n<{
-  eyebrow: string;
   stem: string[];
   /** Cycled in place, in the mark colour. */
   rotating: string[];
@@ -19,9 +18,12 @@ export const hero: L10n<{
   to: string;
   /** The one thing to do on the first screen. */
   scroll: string;
+  /** The two-line caption: who, then where. Initials draw the mark. */
+  name: string;
+  place: string;
+  initials: string;
 }> = {
   en: {
-    eyebrow: 'Jordi Catalán · Barcelona',
     stem: ['Design leadership', 'focused on'],
     rotating: [
       'UX strategy.',
@@ -34,9 +36,11 @@ export const hero: L10n<{
     from: '2002',
     to: '2026',
     scroll: 'See the work',
+    name: 'Jordi Catalán',
+    place: 'Barcelona',
+    initials: 'JC',
   },
   es: {
-    eyebrow: 'Jordi Catalán · Barcelona',
     stem: ['Liderazgo de diseño', 'enfocado en'],
     rotating: [
       'estrategia UX.',
@@ -49,6 +53,9 @@ export const hero: L10n<{
     from: '2002',
     to: '2026',
     scroll: 'Ver el trabajo',
+    name: 'Jordi Catalán',
+    place: 'Barcelona',
+    initials: 'JC',
   },
 };
 

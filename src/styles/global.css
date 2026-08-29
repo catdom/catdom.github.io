@@ -43,8 +43,8 @@
      Set 20% under that ceiling, which gives the claim air on the fold and
      leaves the one-line rule with room to spare at every width. */
   --fs-display: clamp(1.48rem, 8.4vw, 6.8rem);
-  --fs-h2: clamp(1.85rem, 4.6vw, 3.6rem);
-  --fs-h3: clamp(1.15rem, 1.7vw, 1.5rem);
+  --fs-h2: clamp(2.13rem, 5.29vw, 4.14rem);
+  --fs-h3: clamp(1.32rem, 1.96vw, 1.73rem);
   --fs-row: clamp(1.3rem, 2.6vw, 2.25rem);
   --fs-fig: clamp(2rem, 4.5vw, 3.25rem);
   --fs-lead: clamp(1rem, 1.1vw, 1.125rem);
