@@ -8,45 +8,45 @@
 <path d="M48 138L1152 138" stroke="#dcdbd3" stroke-width="1"/>
 <text x="48" y="170" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="0.08em" fill="#100f0d">color/brand/primary</text>
 <path d="M48 188L1152 188" stroke="#e9e8e1" stroke-width="1"/>
-<path d="M378 166L596 166" stroke="#1f3fd8" stroke-width="1"/>
-<path d="M596 166L590 162" stroke="#1f3fd8" stroke-width="1"/>
-<path d="M596 166L590 170" stroke="#1f3fd8" stroke-width="1"/>
-<rect x="620" y="154" width="22" height="22" rx="3" fill="#1f3fd8" stroke="#dcdbd3" stroke-width="1"/>
-<text x="652" y="170" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="0.08em" fill="#55534c">#1f3fd8</text>
+<path d="M378 166L596 166" stroke="#2f2fe4" stroke-width="1"/>
+<path d="M596 166L590 162" stroke="#2f2fe4" stroke-width="1"/>
+<path d="M596 166L590 170" stroke="#2f2fe4" stroke-width="1"/>
+<rect x="620" y="154" width="22" height="22" rx="3" fill="#2f2fe4" stroke="#dcdbd3" stroke-width="1"/>
+<text x="652" y="170" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="0.08em" fill="#55534c">#2f2fe4</text>
 <rect x="900" y="154" width="22" height="22" rx="3" fill="#0a7d5a" stroke="#dcdbd3" stroke-width="1"/>
 <text x="932" y="170" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="0.08em" fill="#55534c">#0a7d5a</text>
 <text x="48" y="232" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="0.08em" fill="#100f0d">color/surface/raised</text>
 <path d="M48 250L1152 250" stroke="#e9e8e1" stroke-width="1"/>
-<path d="M378 228L596 228" stroke="#1f3fd8" stroke-width="1"/>
-<path d="M596 228L590 224" stroke="#1f3fd8" stroke-width="1"/>
-<path d="M596 228L590 232" stroke="#1f3fd8" stroke-width="1"/>
+<path d="M378 228L596 228" stroke="#2f2fe4" stroke-width="1"/>
+<path d="M596 228L590 224" stroke="#2f2fe4" stroke-width="1"/>
+<path d="M596 228L590 232" stroke="#2f2fe4" stroke-width="1"/>
 <rect x="620" y="216" width="22" height="22" rx="3" fill="#ffffff" stroke="#dcdbd3" stroke-width="1"/>
 <text x="652" y="232" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="0.08em" fill="#55534c">#ffffff</text>
 <rect x="900" y="216" width="22" height="22" rx="3" fill="#ffffff" stroke="#dcdbd3" stroke-width="1"/>
 <text x="932" y="232" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="0.08em" fill="#55534c">#ffffff</text>
 <text x="48" y="294" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="0.08em" fill="#100f0d">radius/control</text>
 <path d="M48 312L1152 312" stroke="#e9e8e1" stroke-width="1"/>
-<path d="M378 290L596 290" stroke="#1f3fd8" stroke-width="1"/>
-<path d="M596 290L590 286" stroke="#1f3fd8" stroke-width="1"/>
-<path d="M596 290L590 294" stroke="#1f3fd8" stroke-width="1"/>
+<path d="M378 290L596 290" stroke="#2f2fe4" stroke-width="1"/>
+<path d="M596 290L590 286" stroke="#2f2fe4" stroke-width="1"/>
+<path d="M596 290L590 294" stroke="#2f2fe4" stroke-width="1"/>
 <text x="620" y="294" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="0.08em" fill="#55534c">8</text>
 <text x="900" y="294" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="0.08em" fill="#55534c">999</text>
 <text x="48" y="356" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="0.08em" fill="#100f0d">space/inset/md</text>
 <path d="M48 374L1152 374" stroke="#e9e8e1" stroke-width="1"/>
-<path d="M378 352L596 352" stroke="#1f3fd8" stroke-width="1"/>
-<path d="M596 352L590 348" stroke="#1f3fd8" stroke-width="1"/>
-<path d="M596 352L590 356" stroke="#1f3fd8" stroke-width="1"/>
+<path d="M378 352L596 352" stroke="#2f2fe4" stroke-width="1"/>
+<path d="M596 352L590 348" stroke="#2f2fe4" stroke-width="1"/>
+<path d="M596 352L590 356" stroke="#2f2fe4" stroke-width="1"/>
 <text x="620" y="356" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="0.08em" fill="#55534c">16</text>
 <text x="900" y="356" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="0.08em" fill="#55534c">16</text>
 <text x="48" y="418" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="0.08em" fill="#100f0d">type/body/size</text>
 <path d="M48 436L1152 436" stroke="#e9e8e1" stroke-width="1"/>
-<path d="M378 414L596 414" stroke="#1f3fd8" stroke-width="1"/>
-<path d="M596 414L590 410" stroke="#1f3fd8" stroke-width="1"/>
-<path d="M596 414L590 418" stroke="#1f3fd8" stroke-width="1"/>
+<path d="M378 414L596 414" stroke="#2f2fe4" stroke-width="1"/>
+<path d="M596 414L590 410" stroke="#2f2fe4" stroke-width="1"/>
+<path d="M596 414L590 418" stroke="#2f2fe4" stroke-width="1"/>
 <text x="620" y="418" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="0.08em" fill="#55534c">16</text>
 <text x="900" y="418" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="0.08em" fill="#55534c">16</text>
 <text x="48" y="494" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.08em" fill="#6f6d66">THE COMPONENT BOTH BRANDS SHIP</text>
-<rect x="620" y="508" width="168" height="44" rx="8" fill="#1f3fd8" stroke="#1f3fd8" stroke-width="1"/>
+<rect x="620" y="508" width="168" height="44" rx="8" fill="#2f2fe4" stroke="#2f2fe4" stroke-width="1"/>
 <text x="704" y="536" font-family="'DM Sans', ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="14" font-weight="500" fill="#ffffff" text-anchor="middle">Contactar</text>
 <rect x="900" y="508" width="168" height="44" rx="22" fill="#0a7d5a" stroke="#0a7d5a" stroke-width="1"/>
 <text x="984" y="536" font-family="'DM Sans', ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="14" font-weight="500" fill="#ffffff" text-anchor="middle">Contactar</text>

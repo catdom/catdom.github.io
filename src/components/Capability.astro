@@ -34,33 +34,39 @@ const i = strengthsIntro[lang];
 </section>
 
 <style>
-  /* The section takes the accent full-bleed; the cards keep their own white
-     ground, so only the head changes voice. White on the mark measures 7.6:1,
-     and the note at 80% white still clears AA at 5.4:1. */
+  /* The section takes the dark full-bleed; the cards keep their own white
+     ground, so only the head changes voice — and the token overrides are on
+     the head alone, never on the section, or the cards' own mark and
+     hairlines would be lifted for a ground they do not stand on. */
   .cap {
     /* This section carries its own ground, so it lands flush with the top of
        the screen: the blue is the clearance the bar needs, and the heading is
        already a section's padding below it. */
     scroll-margin-top: 0;
     padding-block: var(--section-y);
-    background: var(--mark);
-    color: #ffffff;
+    background: var(--ground-dark);
+    color: var(--on-dark);
   }
 
   /* Only the head changes voice: the cards keep their own ground and their
-     own ink, so the metadata inside them must not be turned white. */
-  .cap__head .meta { color: rgba(255, 255, 255, 0.75); }
-  .cap__head .h2 { color: #ffffff; }
+     own ink, so nothing inside them may be turned over. 18.5:1 for the
+     heading, 7.3:1 for the caption in the lifted mark. */
+  .cap__head {
+    --mark: var(--mark-on-dark);
+    --ink-3: var(--on-dark-2);
+  }
+
+  .cap__head .h2 { color: var(--on-dark); }
 
   /* The rule the cards hang from is the same hairline that draws them, not the
      heavier ink rule the other section heads use: it is the top edge of the
      first row of boxes, so it has to match their other three sides. */
   .cap__head {
     padding-bottom: clamp(1.5rem, 3.5vw, 2.5rem);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+    border-bottom: 1px solid var(--rule-dark);
   }
 
-  .cap__note { max-width: 54ch; color: rgba(255, 255, 255, 0.8); }
+  .cap__note { max-width: 54ch; color: var(--on-dark-2); }
 
   /* Four cards, tiled on the rig: one column, then two of the eight behind
      them, then three of the twelve. The hairlines are inset shadows rather

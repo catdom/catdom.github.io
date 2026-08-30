@@ -22,7 +22,7 @@ const C = {
   ink: '#100f0d',
   ink2: '#55534c',
   ink3: '#6f6d66',
-  mark: '#1f3fd8',
+  mark: '#2f2fe4',
   markSoft: '#c9d1f5',
   spec: '#cb008e',
 };
@@ -83,7 +83,7 @@ const tokens = () => {
   out.push(label(48, 82, 'One definition, two brands, no forking', { size: 22, weight: 500 }));
 
   const rows = [
-    ['color/brand/primary', '#1f3fd8', '#0a7d5a'],
+    ['color/brand/primary', '#2f2fe4', '#0a7d5a'],
     ['color/surface/raised', '#ffffff', '#ffffff'],
     ['radius/control', '8', '999'],
     ['space/inset/md', '16', '16'],
@@ -130,7 +130,7 @@ const tokens = () => {
       `<text x="${x + 84}" y="${y + 28}" font-family="${SANS}" font-size="14" font-weight="500" fill="#ffffff" text-anchor="middle">Contactar</text>`,
     ].join('\n');
 
-  out.push(button(xB1, yc + 14, '#1f3fd8', 8));
+  out.push(button(xB1, yc + 14, '#2f2fe4', 8));
   out.push(button(xB2, yc + 14, '#0a7d5a', 22));
   out.push(dim(xB1, yc + 76, xB1 + 168, 'w 168 · h 44'));
   out.push(dim(xB2, yc + 76, xB2 + 168, 'w 168 · h 44'));

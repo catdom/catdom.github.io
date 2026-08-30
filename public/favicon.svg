@@ -4,5 +4,5 @@
        one alike, so this needs no colour-scheme query and no second file. -->
   <!-- Drawn inset and stroked with a round join, which rounds the three
        corners without hand-built arcs. -->
-  <path d="M16 9 25 23 7 23Z" fill="#1f3fd8" stroke="#1f3fd8" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M16 9 25 23 7 23Z" fill="#2f2fe4" stroke="#2f2fe4" stroke-width="4" stroke-linejoin="round"/>
 </svg>

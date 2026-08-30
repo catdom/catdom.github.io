@@ -22,21 +22,24 @@
   --ink-2: #55534c;
   --ink-3: #6f6d66;
   --on-dark: #f6f6f3;
-  --mark: #1f3fd8;
+  --mark: #2f2fe4;
 
   /* The two grounds that are not paper. A section standing on one of them
      does not restyle its contents: it redefines the tokens they already read
      from, so a button, a hairline or a line of metadata behaves the same
      whichever paper it happens to be printed on.
 
-     Measured on their own ground: --on-dark 17.7:1, its 68% step 8.4:1, and
-     the lifted mark 6.6:1 — the site's own #1f3fd8 manages 2.5:1 on ink and
-     cannot be used there. On the accent: white 7.6:1, its 80% step 5.4:1. */
-  --ground-dark: #100f0d;
-  --ground-mark: #1f3fd8;
+     Measured on their own ground: --on-dark 18.5:1, its 68% step 8.6:1, and
+     the lifted mark 7.3:1 — the site's own #2f2fe4 manages 2.5:1 on the dark
+     and cannot be used there. On the accent: white 7.9:1, its 80% step 5.6:1.
+
+     The dark is a blue-black rather than the ink: it belongs to the accent's
+     hue, not to the type's. */
+  --ground-dark: #080616;
+  --ground-mark: #2f2fe4;
   --on-dark-2: rgba(246, 246, 243, 0.68);
   --rule-dark: rgba(246, 246, 243, 0.16);
-  --mark-on-dark: #7d92f0;
+  --mark-on-dark: #9292f5;
   --on-mark: #ffffff;
   --on-mark-2: rgba(255, 255, 255, 0.8);
   --rule-mark: rgba(255, 255, 255, 0.28);

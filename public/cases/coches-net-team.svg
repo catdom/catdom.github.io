@@ -11,7 +11,7 @@
 <text x="48" y="174" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="0.08em" fill="#100f0d">01</text>
 <text x="84" y="174" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" letter-spacing="0.08em" fill="#cb008e">FROM THE START</text>
 <rect x="230" y="156" width="112" height="28" rx="0" fill="none" stroke="#e9e8e1" stroke-width="1"/>
-<rect x="230" y="156" width="112" height="28" rx="0" fill="#1f3fd8" stroke="none" stroke-width="1"/>
+<rect x="230" y="156" width="112" height="28" rx="0" fill="#2f2fe4" stroke="none" stroke-width="1"/>
 <rect x="350" y="156" width="112" height="28" rx="0" fill="none" stroke="#e9e8e1" stroke-width="1"/>
 <rect x="350" y="156" width="37" height="28" rx="0" fill="#c9d1f5" stroke="none" stroke-width="1"/>
 <rect x="470" y="156" width="112" height="28" rx="0" fill="none" stroke="#e9e8e1" stroke-width="1"/>
@@ -28,7 +28,7 @@
 <rect x="350" y="196" width="112" height="28" rx="0" fill="none" stroke="#e9e8e1" stroke-width="1"/>
 <rect x="350" y="196" width="75" height="28" rx="0" fill="#7d8fe8" stroke="none" stroke-width="1"/>
 <rect x="470" y="196" width="112" height="28" rx="0" fill="none" stroke="#e9e8e1" stroke-width="1"/>
-<rect x="470" y="196" width="112" height="28" rx="0" fill="#1f3fd8" stroke="none" stroke-width="1"/>
+<rect x="470" y="196" width="112" height="28" rx="0" fill="#2f2fe4" stroke="none" stroke-width="1"/>
 <rect x="590" y="196" width="112" height="28" rx="0" fill="none" stroke="#e9e8e1" stroke-width="1"/>
 <rect x="590" y="196" width="75" height="28" rx="0" fill="#7d8fe8" stroke="none" stroke-width="1"/>
 <rect x="710" y="196" width="112" height="28" rx="0" fill="none" stroke="#e9e8e1" stroke-width="1"/>
@@ -40,7 +40,7 @@
 <rect x="350" y="236" width="112" height="28" rx="0" fill="none" stroke="#e9e8e1" stroke-width="1"/>
 <rect x="350" y="236" width="37" height="28" rx="0" fill="#c9d1f5" stroke="none" stroke-width="1"/>
 <rect x="470" y="236" width="112" height="28" rx="0" fill="none" stroke="#e9e8e1" stroke-width="1"/>
-<rect x="470" y="236" width="112" height="28" rx="0" fill="#1f3fd8" stroke="none" stroke-width="1"/>
+<rect x="470" y="236" width="112" height="28" rx="0" fill="#2f2fe4" stroke="none" stroke-width="1"/>
 <rect x="590" y="236" width="112" height="28" rx="0" fill="none" stroke="#e9e8e1" stroke-width="1"/>
 <rect x="590" y="236" width="37" height="28" rx="0" fill="#c9d1f5" stroke="none" stroke-width="1"/>
 <rect x="710" y="236" width="112" height="28" rx="0" fill="none" stroke="#e9e8e1" stroke-width="1"/>
@@ -50,7 +50,7 @@
 <rect x="230" y="276" width="112" height="28" rx="0" fill="none" stroke="#e9e8e1" stroke-width="1"/>
 <rect x="230" y="276" width="75" height="28" rx="0" fill="#7d8fe8" stroke="none" stroke-width="1"/>
 <rect x="350" y="276" width="112" height="28" rx="0" fill="none" stroke="#e9e8e1" stroke-width="1"/>
-<rect x="350" y="276" width="112" height="28" rx="0" fill="#1f3fd8" stroke="none" stroke-width="1"/>
+<rect x="350" y="276" width="112" height="28" rx="0" fill="#2f2fe4" stroke="none" stroke-width="1"/>
 <rect x="470" y="276" width="112" height="28" rx="0" fill="none" stroke="#e9e8e1" stroke-width="1"/>
 <rect x="470" y="276" width="37" height="28" rx="0" fill="#c9d1f5" stroke="none" stroke-width="1"/>
 <rect x="590" y="276" width="112" height="28" rx="0" fill="none" stroke="#e9e8e1" stroke-width="1"/>
@@ -67,7 +67,7 @@
 <rect x="470" y="316" width="112" height="28" rx="0" fill="none" stroke="#e9e8e1" stroke-width="1"/>
 <rect x="470" y="316" width="75" height="28" rx="0" fill="#7d8fe8" stroke="none" stroke-width="1"/>
 <rect x="590" y="316" width="112" height="28" rx="0" fill="none" stroke="#e9e8e1" stroke-width="1"/>
-<rect x="590" y="316" width="112" height="28" rx="0" fill="#1f3fd8" stroke="none" stroke-width="1"/>
+<rect x="590" y="316" width="112" height="28" rx="0" fill="#2f2fe4" stroke="none" stroke-width="1"/>
 <rect x="710" y="316" width="112" height="28" rx="0" fill="none" stroke="#e9e8e1" stroke-width="1"/>
 <rect x="710" y="316" width="37" height="28" rx="0" fill="#c9d1f5" stroke="none" stroke-width="1"/>
 <rect x="830" y="316" width="112" height="28" rx="0" fill="none" stroke="#e9e8e1" stroke-width="1"/>
@@ -80,12 +80,12 @@
 <rect x="590" y="356" width="112" height="28" rx="0" fill="none" stroke="#e9e8e1" stroke-width="1"/>
 <rect x="590" y="356" width="37" height="28" rx="0" fill="#c9d1f5" stroke="none" stroke-width="1"/>
 <rect x="710" y="356" width="112" height="28" rx="0" fill="none" stroke="#e9e8e1" stroke-width="1"/>
-<rect x="710" y="356" width="112" height="28" rx="0" fill="#1f3fd8" stroke="none" stroke-width="1"/>
+<rect x="710" y="356" width="112" height="28" rx="0" fill="#2f2fe4" stroke="none" stroke-width="1"/>
 <rect x="830" y="356" width="112" height="28" rx="0" fill="none" stroke="#e9e8e1" stroke-width="1"/>
 <rect x="830" y="356" width="37" height="28" rx="0" fill="#c9d1f5" stroke="none" stroke-width="1"/>
 <text x="48" y="414" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="0.08em" fill="#6f6d66">07</text>
 <rect x="230" y="396" width="112" height="28" rx="0" fill="none" stroke="#e9e8e1" stroke-width="1"/>
-<rect x="230" y="396" width="112" height="28" rx="0" fill="#1f3fd8" stroke="none" stroke-width="1"/>
+<rect x="230" y="396" width="112" height="28" rx="0" fill="#2f2fe4" stroke="none" stroke-width="1"/>
 <rect x="350" y="396" width="112" height="28" rx="0" fill="none" stroke="#e9e8e1" stroke-width="1"/>
 <rect x="350" y="396" width="37" height="28" rx="0" fill="#c9d1f5" stroke="none" stroke-width="1"/>
 <rect x="470" y="396" width="112" height="28" rx="0" fill="none" stroke="#e9e8e1" stroke-width="1"/>
@@ -107,13 +107,13 @@
 <rect x="710" y="436" width="112" height="28" rx="0" fill="none" stroke="#e9e8e1" stroke-width="1"/>
 <rect x="710" y="436" width="75" height="28" rx="0" fill="#7d8fe8" stroke="none" stroke-width="1"/>
 <rect x="830" y="436" width="112" height="28" rx="0" fill="none" stroke="#e9e8e1" stroke-width="1"/>
-<rect x="830" y="436" width="112" height="28" rx="0" fill="#1f3fd8" stroke="none" stroke-width="1"/>
+<rect x="830" y="436" width="112" height="28" rx="0" fill="#2f2fe4" stroke="none" stroke-width="1"/>
 <text x="48" y="510" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.08em" fill="#6f6d66">DEPTH</text>
 <rect x="120" y="499" width="14" height="14" rx="0" fill="#c9d1f5" stroke="none" stroke-width="1"/>
 <text x="140" y="510" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.08em" fill="#55534c">AWARE</text>
 <rect x="270" y="499" width="14" height="14" rx="0" fill="#7d8fe8" stroke="none" stroke-width="1"/>
 <text x="290" y="510" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.08em" fill="#55534c">PRACTISES</text>
-<rect x="420" y="499" width="14" height="14" rx="0" fill="#1f3fd8" stroke="none" stroke-width="1"/>
+<rect x="420" y="499" width="14" height="14" rx="0" fill="#2f2fe4" stroke="none" stroke-width="1"/>
 <text x="440" y="510" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.08em" fill="#55534c">LEADS</text>
 <path d="M230 110L942 110" stroke="#cb008e" stroke-width="1"/>
 <path d="M230 106L230 114" stroke="#cb008e" stroke-width="1"/>

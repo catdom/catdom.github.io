@@ -7,12 +7,12 @@
 <path d="M48 146L560 146" stroke="#dcdbd3" stroke-width="1"/>
 <text x="48" y="174" font-family="'DM Sans', ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="15" font-weight="500" fill="#100f0d">Search</text>
 <rect x="210" y="162" width="300" height="14" rx="0" fill="#f6f6f3" stroke="#e9e8e1" stroke-width="1"/>
-<rect x="210" y="162" width="234" height="14" rx="0" fill="#1f3fd8" stroke="none" stroke-width="1"/>
+<rect x="210" y="162" width="234" height="14" rx="0" fill="#2f2fe4" stroke="none" stroke-width="1"/>
 <text x="522" y="174" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="0.08em" fill="#55534c">78</text>
 <path d="M48 194L560 194" stroke="#e9e8e1" stroke-width="1"/>
 <text x="48" y="242" font-family="'DM Sans', ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="15" font-weight="500" fill="#100f0d">Listing detail</text>
 <rect x="210" y="230" width="300" height="14" rx="0" fill="#f6f6f3" stroke="#e9e8e1" stroke-width="1"/>
-<rect x="210" y="230" width="252" height="14" rx="0" fill="#1f3fd8" stroke="none" stroke-width="1"/>
+<rect x="210" y="230" width="252" height="14" rx="0" fill="#2f2fe4" stroke="none" stroke-width="1"/>
 <text x="522" y="242" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="0.08em" fill="#55534c">84</text>
 <path d="M48 262L560 262" stroke="#e9e8e1" stroke-width="1"/>
 <text x="48" y="310" font-family="'DM Sans', ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="15" font-weight="500" fill="#100f0d">Contact seller</text>
@@ -22,25 +22,25 @@
 <path d="M48 330L560 330" stroke="#e9e8e1" stroke-width="1"/>
 <text x="48" y="378" font-family="'DM Sans', ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="15" font-weight="500" fill="#100f0d">Publish a car</text>
 <rect x="210" y="366" width="300" height="14" rx="0" fill="#f6f6f3" stroke="#e9e8e1" stroke-width="1"/>
-<rect x="210" y="366" width="213" height="14" rx="0" fill="#1f3fd8" stroke="none" stroke-width="1"/>
+<rect x="210" y="366" width="213" height="14" rx="0" fill="#2f2fe4" stroke="none" stroke-width="1"/>
 <text x="522" y="378" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="0.08em" fill="#55534c">71</text>
 <path d="M48 398L560 398" stroke="#e9e8e1" stroke-width="1"/>
 <rect x="202" y="290" width="360" height="30" rx="0" fill="none" stroke="#cb008e" stroke-width="1" stroke-dasharray="3 3"/>
 <text x="210" y="340" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.08em" fill="#cb008e">LOWEST SCORE → THIS QUARTER’S OBJECTIVE</text>
-<path d="M600 300L668 300" stroke="#1f3fd8" stroke-width="1"/>
-<path d="M668 300L662 296" stroke="#1f3fd8" stroke-width="1"/>
-<path d="M668 300L662 304" stroke="#1f3fd8" stroke-width="1"/>
+<path d="M600 300L668 300" stroke="#2f2fe4" stroke-width="1"/>
+<path d="M668 300L662 296" stroke="#2f2fe4" stroke-width="1"/>
+<path d="M668 300L662 304" stroke="#2f2fe4" stroke-width="1"/>
 <rect x="700" y="150" width="452" height="300" rx="0" fill="#f6f6f3" stroke="#dcdbd3" stroke-width="1"/>
 <text x="724" y="182" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.08em" fill="#6f6d66">OBJECTIVE · Q3</text>
 <text x="724" y="214" font-family="'DM Sans', ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="17" font-weight="500" fill="#100f0d">Buyers reach a seller without friction</text>
 <text x="724" y="272" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="0.08em" fill="#55534c">KR1  Contact CSAT 63 → 75</text>
 <rect x="724" y="282" width="360" height="8" rx="0" fill="#fffffd" stroke="#e9e8e1" stroke-width="1"/>
-<rect x="724" y="282" width="198" height="8" rx="0" fill="#1f3fd8" stroke="none" stroke-width="1"/>
+<rect x="724" y="282" width="198" height="8" rx="0" fill="#2f2fe4" stroke="none" stroke-width="1"/>
 <text x="724" y="328" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="0.08em" fill="#55534c">KR2  Contact drop-off −20%</text>
 <rect x="724" y="338" width="360" height="8" rx="0" fill="#fffffd" stroke="#e9e8e1" stroke-width="1"/>
-<rect x="724" y="338" width="252" height="8" rx="0" fill="#1f3fd8" stroke="none" stroke-width="1"/>
+<rect x="724" y="338" width="252" height="8" rx="0" fill="#2f2fe4" stroke="none" stroke-width="1"/>
 <text x="724" y="384" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="0.08em" fill="#55534c">KR3  Reply rate +15%</text>
 <rect x="724" y="394" width="360" height="8" rx="0" fill="#fffffd" stroke="#e9e8e1" stroke-width="1"/>
-<rect x="724" y="394" width="144" height="8" rx="0" fill="#1f3fd8" stroke="none" stroke-width="1"/>
+<rect x="724" y="394" width="144" height="8" rx="0" fill="#2f2fe4" stroke="none" stroke-width="1"/>
 <text x="48" y="580" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.08em" fill="#6f6d66">RESEARCH → MEASUREMENT → OBJECTIVE → THE SAME NUMBER, NEXT QUARTER</text>
 </svg>

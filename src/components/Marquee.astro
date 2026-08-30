@@ -20,11 +20,20 @@ const run = [...brands, ...brands];
 </section>
 
 <style>
+  /* The strip stands on the dark, the same one the section below it uses, so
+     the fold reads as one band rather than a line. Token overrides, like the
+     other two grounds: the names take the dark's second step at 8.6:1 and the
+     dots the lifted mark at 7.3:1. */
   .belt {
     border-block: 1px solid var(--rule);
     padding-block: clamp(0.9rem, 2vw, 1.4rem);
     overflow: hidden;
-    background: var(--paper);
+    background: var(--ground-dark);
+    color: var(--on-dark);
+
+    --ink-2: var(--on-dark-2);
+    --rule: var(--rule-dark);
+    --mark: var(--mark-on-dark);
   }
 
   .belt__run {
